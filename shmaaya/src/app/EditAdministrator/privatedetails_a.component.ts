@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'privatedetails_a',
   template: `
   <div>
+    
     <label>שם פרטי</label><input type="text"/>
     <label>שם משפחה</label><input type="text"/><br>
     <label>ת.ז.</label><input type="text"/>
