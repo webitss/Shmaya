@@ -44,7 +44,7 @@ import { appService } from '../app.service';
  <app-dialog [(visible)]="showDialog">
  <label>ביטול הזמנה</label><br>
  <label>האם לבטל הזמנה זו?</label><br>
- <input type="button" (click)="(service.delete(true)) value="כן"">
+ <input type="button" (click)="service.delete(true)"  value="כן"/>
  <input type="button" (click)="showDialog = !showDialog" class="btn" value="לא"/>
  
  <app-dialog>
@@ -54,6 +54,5 @@ import { appService } from '../app.service';
 export class OrderlistComponent {
     constructor(public service: appService) {
     }
-    showDialog:boolean=false; 
     
 }

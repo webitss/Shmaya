@@ -8,9 +8,9 @@ import { appService } from '../app.service';
   <input type="button" (click)="showDialog = !showDialog" value="שיחה חדשה"/>
  </div>
  <app-dialog [(visible)]="showDialog">
- <form [formGroup]="service.frmNewCon" (ngSubmit)="service.login(service.frmNewCon)">
+ <form [formGroup]="service.frmNewCon">
     <label>שיחה חדשה</label><br>
-    <label>נושא</label><input type="text" formControlName="con_subject">
+    <label>נושא</label><input type="text" formControlName="con_subject"><br>
     <label>תוכן</label>
     <textarea rows="4" cols="50" formControlName="con_content"></textarea><br>
     <input type="button" value="ביטול">

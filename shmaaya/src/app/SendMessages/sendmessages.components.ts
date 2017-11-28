@@ -12,9 +12,9 @@ import { Component } from '@angular/core';
 </form>
 <label>אל</label>
 <form action="">
-<input type="radio" name="type" value="mail">לקוחות
-<input type="radio" name="type" value="mail">נותני שירות
-<input type="radio" name="type" value="mail">כולם
+  <input type="radio" name="type" value="mail">לקוחות
+  <input type="radio" name="type" value="mail">נותני שירות
+  <input type="radio" name="type" value="mail">כולם
 </form>
 <label>סה"כ נבחרו</label>
 <label>נושא</label><input type="text"><br>

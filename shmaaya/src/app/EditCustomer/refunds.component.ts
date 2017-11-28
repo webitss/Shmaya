@@ -23,22 +23,23 @@ import { Component } from '@angular/core';
  </div>
  <app-dialog [(visible)]="showDialog">
  <label>הוספת רכישה</label><br>
- <label>שם מוצר</label>
- <select>
-    <option></option>
-</select><br>
-<label>תאריך רכישה</label>
-<select>
-   <option></option>
-</select><br>
-<label>שיוך לחודש</label>
-<select>
-   <option></option>
-</select><br>
-<label>סכום לתשלום</label><input type="text"><br>
-<input type="button" value="העלה אסמכתא\ מחק אסמכתא"><br>
-<input type="button" value="ביטול">
-<input type="button" value="שמירה">
+    <label>שם מוצר</label>
+    <select>
+        <option></option>
+    </select><br>
+    <label>תאריך רכישה</label>
+    <select>
+      <option></option>
+    </select><br>
+    <label>שיוך לחודש</label>
+    <select>
+      <option></option>
+    </select><br>
+    <label>סכום לתשלום</label><input type="text"><br>
+    <input type="button" value="העלה אסמכתא\ מחק אסמכתא"><br>
+    <input type="button" value="ביטול">
+    <input type="button"  value="שמירה">
+
  <app-dialog>
   `,
   styles: []
