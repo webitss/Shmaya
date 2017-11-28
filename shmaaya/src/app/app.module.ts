@@ -4,7 +4,7 @@ import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './container.component';
-import { DialogComponent } from './dialogbox.component';
+import { AppDialogComponent } from './dialogbox.component';
 import { AlfonComponent } from './Alfon/alfon.component';
 import { OrderComponent } from './Orders/order.component';
 import { OrderboardComponent } from './Orders/orderboard.component';
@@ -37,17 +37,13 @@ import { ReciveserviceRepComponent } from './Reports/reciveservice_rep.component
 import { ProductsRepComponent } from './Reports/products_rep.component';
 import { appService } from './app.service';
 import { LoginComponent } from './login.component';
-
-
-
-
-
+import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderComponent,
-    DialogComponent,
+    AppDialogComponent,
     OrderboardComponent,
     OrderlistComponent,
     AlfonComponent,
@@ -78,10 +74,13 @@ import { LoginComponent } from './login.component';
     ServiceprovidersRepComponent,
     ReciveserviceRepComponent,
     ProductsRepComponent,
-    LoginComponent
+    LoginComponent,
+    
+    
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, ReactiveFormsModule, FormsModule,
+
     RouterModule.forRoot([
       {path:"login",component:LoginComponent},
       {path:"container",component:ContainerComponent},
