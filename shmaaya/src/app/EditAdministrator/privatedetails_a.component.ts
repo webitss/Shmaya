@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { appService } from '../app.service';
 
 @Component({
   selector: 'privatedetails_a',
   template: `
   <div>
-    
-    <label>שם פרטי</label><input type="text"/>
+  <form [formGroup]="service.frmDetAdmin">
+    <input type="submit" value="שמירה">
+    <label>שם פרטי</label><input type="text" formControlName="fName"/>
     <label>שם משפחה</label><input type="text"/><br>
     <label>ת.ז.</label><input type="text"/>
     <label>תאריך לידה</label><input type="text"/><br>
@@ -22,10 +24,13 @@ import { Component } from '@angular/core';
       <option>עוסק מורשה</option>
       <option>עובד</option>
     </select><br>
+    </form>
   </div>
+
   `,
   styles: []
 })
 export class PrivateDetailsAComponent {
+  constructor(public service:appService){}
 
 }

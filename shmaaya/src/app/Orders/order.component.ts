@@ -5,10 +5,10 @@ import { appService } from '../app.service';
   selector: 'order',
   template: `
  <div dir="rtl">
- <a routerLink="orderlist"  routerLinkActive="active">תצוגת רשימה</a> |
- <a routerLink="orderboard"  routerLinkActive="active">תצוגת לוח</a> <br>
+ <a routerLink="orderlist"  routerLinkActive="active" (click)="service.isShowBtnNewOrder=true">תצוגת רשימה</a> |
+ <a routerLink="orderboard"  routerLinkActive="active" (click)="service.isShowBtnNewOrder=true">תצוגת לוח</a> <br>
  <router-outlet></router-outlet>
- <input type="button" (click)="showDialog = !showDialog" value="הזמנה חדשה"/>
+ <input type="button" (click)="showDialog = !showDialog" *ngIf="service.isShowBtnNewOrder==true" value="הזמנה חדשה"/>
 
 
  </div>
@@ -63,7 +63,8 @@ import { appService } from '../app.service';
   `,
   styles: []
 })
-export class OrderComponent {
-  constructor(public service:appService){}
-
+export class OrderComponent { 
+  constructor(public service:appService){
+  }
+  
 }

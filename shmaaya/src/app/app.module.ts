@@ -39,6 +39,7 @@ import { appService } from './app.service';
 import { LoginComponent } from './login.component';
 import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,12 +76,13 @@ import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
     ReciveserviceRepComponent,
     ProductsRepComponent,
     LoginComponent,
+  
+  
     
     
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule, FormsModule,
-
+    BrowserModule, ReactiveFormsModule, FormsModule, 
     RouterModule.forRoot([
       {path:"login",component:LoginComponent},
       {path:"container",component:ContainerComponent},

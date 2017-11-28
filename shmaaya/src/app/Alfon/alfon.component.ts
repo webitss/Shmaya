@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   <a routerLink="customers"  routerLinkActive="active">לקוחות</a> |
   <a routerLink="serviceprovider"  routerLinkActive="active">נותני שירות</a> |
   <a routerLink="administrators"  routerLinkActive="active">מנהלים</a> |
-    <input type="button" value="שליחת הודעה"/>
     <router-outlet></router-outlet>
     <app-dialog [(visible)]="showDialog">
     <privatedetails></privatedetails>
