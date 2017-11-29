@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* header */
+
+.header-main{
+    line-height: 11vh;
+    border-bottom: 2px solid #340a3e;
+    height: 11vh;
+    line-height: 11vh;
+}
+
+.header-main .nav-pills > li {
+    float: right;
+    width: 10%;
+    background: #0f53540f;
+    text-align: center;
+    color: #340a3e;
+    font-size: 1.1em;
+    display: list-item;
+}
+.logo-img
+{
+float: right;
+margin-left: 30px;
+}
