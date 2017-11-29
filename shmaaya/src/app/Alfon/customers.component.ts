@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'customers',
   template: `
-  <div dir="rtl">
+  <div >
   
   <input type="button" value="הוספת חדש" (click)="showDialog2 = !showDialog2" >
   <input type="button" value="שליחת הודעה"/>
