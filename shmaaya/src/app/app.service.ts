@@ -6,8 +6,13 @@ export class appService
     custs: string[];
     custsFilter:string[];
     isDelete:boolean=false; 
+    isShowBtnNewOrder:boolean=false;
     frmNewCon:FormGroup;
     frmNewPurchase:FormGroup;
+    frmDetAdmin:FormGroup;
+    frmDetCust:FormGroup;
+    frmAddPur:FormGroup;
+    frmDetPS:FormGroup;
    
     frmNewOrder:FormGroup;
     constructor(){
@@ -19,6 +24,18 @@ export class appService
         this.frmNewOrder=new FormGroup({
             custName: new FormControl('', Validators.required),
         })
+        this.frmDetAdmin=new FormGroup({
+            fName: new FormControl('', Validators.required),
+        })
+        this.frmDetCust=new FormGroup({  
+        })
+        this.frmAddPur=new FormGroup({
+
+        })
+        this.frmDetPS= new FormGroup({
+
+        })
+        
        
     }
     search(event)

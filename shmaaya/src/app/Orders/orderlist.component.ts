@@ -33,7 +33,7 @@ import { appService } from '../app.service';
 </tr>
   <tr *ngFor="let item of service.custsFilter let i = index">
     <td></td>
-    <td><input type="button" (click)="(showDialog = !showDialog)&&(service.delete(false,i))"></td>
+    <td><input type="button" (click)="showDialog = !showDialog;service.delete(false,i)"></td>
     <td></td>
     <td></td>
     <td>{{item}}</td>
@@ -44,7 +44,7 @@ import { appService } from '../app.service';
  <app-dialog [(visible)]="showDialog">
  <label>ביטול הזמנה</label><br>
  <label>האם לבטל הזמנה זו?</label><br>
- <input type="button" (click)="service.delete(true)"  value="כן"/>
+ <input type="button" (click)="showDialog = !showDialog;service.delete(true)"  value="כן"/>
  <input type="button" (click)="showDialog = !showDialog" class="btn" value="לא"/>
  
  <app-dialog>

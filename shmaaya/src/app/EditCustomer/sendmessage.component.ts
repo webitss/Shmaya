@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { appService } from '../app.service';
 
 @Component({
   selector: 'sendmessage',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
   <input type="button" (click)="showDialog = !showDialog" value=" הודעה חדשה"/>
  </div>
  <app-dialog [(visible)]="showDialog">
+ <form [formGroup]="service.frmNewCon">
     <label>הודעה חדשה</label>
     <label>סוג הודעה</label>
     <form action="">
@@ -20,17 +22,19 @@ import { Component } from '@angular/core';
     <input type="radio" name="type" value="mail">כולם
     </form>
     <label>סה"כ נבחרו</label>
-    <label>נושא</label><input type="text"><br>
+    <label>נושא</label><input type="text" formControlName="con_subject"><br>
     <label>תוכן</label>
-    <textarea rows="4" cols="50"></textarea>
+    <textarea rows="4" cols="50" formControlName="con_content"></textarea>
     <br><br>
     <label>מייל לתוצאות</label>
     <label>מאת</label><input type="text">
+  </form>
   </app-dialog>
 
   `,
   styles: []
 })
 export class SendmessageComponent {
+  constructor(public service:appService){}
 
 }

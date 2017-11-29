@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   <div dir="rtl">
   
   <input type="button" value="הוספת חדש" (click)="showDialog2 = !showDialog2" >
+  <input type="button" value="שליחת הודעה"/>
     <table>
         <th>עריכה</th>
         <th>מחיקה</th>
