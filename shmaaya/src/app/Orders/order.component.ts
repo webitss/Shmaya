@@ -4,14 +4,23 @@ import { appService } from '../app.service';
 @Component({
   selector: 'order',
   template: `
- <div dir="rtl">
- <a routerLink="orderlist"  routerLinkActive="active" (click)="service.isShowBtnNewOrder=true">תצוגת רשימה</a> |
- <a routerLink="orderboard"  routerLinkActive="active" (click)="service.isShowBtnNewOrder=true">תצוגת לוח</a> <br>
+  <div class="sub-header-main">
+  <div class="container">
+    <ul class="nav nav-pills">
+       <li routerLink="orderlist"  routerLinkActive="active" (click)="service.isShowBtnNewOrder=true">תצוגת רשימה</li> 
+       <li routerLink="orderboard"  routerLinkActive="active" (click)="service.isShowBtnNewOrder=true">תצוגת לוח</li>
+    </ul>
+ </div>
+ </div>
+
+
+ <div class="container">
  <router-outlet></router-outlet>
+ </div>
+
+ 
  <input type="button" (click)="showDialog = !showDialog" *ngIf="service.isShowBtnNewOrder==true" value="הזמנה חדשה"/>
 
-
- </div>
 
  <app-dialog [(visible)]="showDialog">
  <form [formGroup]="service.frmNewOrder" (ngSubmit)="this.service.saveOrder('hi')" >

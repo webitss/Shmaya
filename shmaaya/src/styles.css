@@ -8,16 +8,46 @@
     height: 11vh;
     line-height: 11vh;
 }
+.sub-header-main{
+background: #ececec;
+height: 4vh;
+line-height: 4vh;
+margin-bottom: 3%;
+}
+
 
 .header-main .nav-pills > li {
     float: right;
     width: 10%;
-    background: #0f53540f;
     text-align: center;
     color: #340a3e;
     font-size: 1.1em;
     display: list-item;
 }
+
+.header-main .nav-pills > li:hover{
+    background: #e2e2e257;  
+}
+
+.header-main .nav-pills > li:active{
+    background: #340a3e;
+    color: white;
+}
+
+.sub-header-main .nav-pills > li{
+width: 12%;
+text-align: center;
+color: #828282;
+}
+
+.sub-header-main .nav-pills > li:hover{
+background: #e2e2e2;
+}
+
+.sub-header-main .nav-pills > li:active{
+    background: #cacaca;
+    }
+
 .logo-img
 {
 float: right;

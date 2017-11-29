@@ -4,7 +4,10 @@ import { appService } from '../app.service';
 @Component({
   selector: 'sendmessages',
   template: `
-  <div dir="rtl">
+
+  <div class="sub-header-main"></div>
+  
+  <div class="container">
   <form [formGroup]="service.frmNewCon">
     <input type="button" value="שלח הודעה"/>
     <label>סוג הודעה</label>

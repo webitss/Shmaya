@@ -3,15 +3,26 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'alfon',
   template: `
-  <div dir="rtl">
-  <a routerLink="customers"  routerLinkActive="active">לקוחות</a> |
-  <a routerLink="serviceprovider"  routerLinkActive="active">נותני שירות</a> |
-  <a routerLink="administrators"  routerLinkActive="active">מנהלים</a> |
+
+  <div class="sub-header-main">
+  <div class="container">
+
+  <ul class="nav nav-pills">
+  <li routerLink="customers"  routerLinkActive="active">לקוחות</li>
+  <li routerLink="serviceprovider"  routerLinkActive="active">נותני שירות</li>
+  <li routerLink="administrators"  routerLinkActive="active">מנהלים</li>
+  </ul>
+  </div>
+  </div>
+
+  <div class="container">
     <router-outlet></router-outlet>
+  </div>
+  
     <app-dialog [(visible)]="showDialog">
     <privatedetails></privatedetails>
     </app-dialog>
- </div>
+ 
   `,
   styles: []
 })

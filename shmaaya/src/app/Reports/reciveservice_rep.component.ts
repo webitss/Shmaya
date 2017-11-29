@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'reciveservice_rep',
   template: `
-  <div dir="rtl">
+  <div class="">
   <label>בחר חודש</label><input type="text"><br>
   <input type="button" value="הפק דוח" >
  
