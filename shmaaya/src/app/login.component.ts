@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'login',
   template: `
-  <div dir="rtl">
+  <div >
   <label>שם משתמש</label>
   <input type="text" placeholder="שם משתמש">
   <label>סיסמא</label>
