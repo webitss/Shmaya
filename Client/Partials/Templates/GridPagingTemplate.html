@@ -1,0 +1,43 @@
+﻿<div class="class grid-paging">
+
+    <div class="btn-group" uib-dropdown>
+        <div class="btn btn-dropdown dropdown-toggle claerfix" uib-dropdown-toggle >
+            <!--<span class="btn-dropdown-title">{{filtereddata.length < count ? filtereddata.length : count}} מתוך {{filtereddata.length}}</span>-->
+            <span class="btn-dropdown-title">{{length | number}} / {{(length < count ? length  : count)|number}}</span>
+            <span class="caret pull-left"></span>
+        </div>
+        <!-- uib-dropdown-menu uib-dropdown  role="menu" role="menuitem" role="menuitem" -->
+        <ul class="dropdown-menu dropdown-display-mode" uib-dropdown-menu aria-labelledby="single-button">
+            <li ng-click="count = length; updateData(0, length)">
+                <span>הצג הכל</span></li>
+            <li ng-repeat="item in paging" role="menuitem" ng-click="updateCount(item) ; updateData(0, count)"><span>{{item}} רשומות</span>
+            </li>
+        </ul>
+    </div>
+
+    <button class="btn btn-default no-btn-style  grid-paging-right" ng-disabled="start == 0"
+          ng-click="end = start; start = start - count;  updateData(start, end);">
+        <span class="glyphicon glyphicon-menu-right"></span>
+    </button>
+
+    <div class="btn-group" >
+        <div class="btn btn-dropdown dropdown-toggle claerfix" uib-dropdown-toggle>
+            <span class="btn-dropdown-title"><!--{{filtereddata.length < count ? filtereddata.length : count}} מתוך -->{{filtereddata.length}}</span>
+            <span class="btn-dropdown-title">{{length == count ? 1 : ((length / count) | floor) + 1 }} / {{((length / count ) | floor ) - ((start / count - ((length / count ) | floor )) | abs) + 1}}</span>
+            <span class="caret pull-left"></span>
+        </div>
+        <ul class="dropdown-menu paging" role="menu"  aria-labelledby="single-button"
+            ng-if="getPagesCountArray(length == count ? 1 : ((length / count) | floor) + 1).length > 1">
+            <li ng-repeat="i in getPagesCountArray(length == count ? 1 : ((length / count) | floor) + 1) track by $index"
+                role="menuitem" ng-click="goToPage($index)">
+                <span>{{$index + 1}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <button class="btn btn-default no-btn-style  grid-paging-right" ng-disabled="end >= length"
+          ng-click="start = end; end = end + count; updateData(start, end); pageNumber = pageNumber + 1">
+        <span class="glyphicon glyphicon-menu-left"></span>
+    </button>
+
+</div>

@@ -1,0 +1,17 @@
+﻿<div class="search-template">
+    <div ng-click="isSearchName = true; onClick()" ng-show="!isSearchName" class="filter-header-row " >
+        <span class="filter-icon">{{searchtext}}</span>
+            <span class="btn btn-default pull-left" ng-click="searchmodel = ''">
+        <span class="fa fa-search" style="vertical-align: bottom"></span>
+        </span>
+    </div>
+    <div class="form-control filter-header-row"
+         style="position: relative; width: 100%; padding: 6px; height: 34px; line-height: 28px; margin-top: 5px;" ng-show="isSearchName">
+        <input type="text" id="searchText" ng-model="searchmodel" placeholder="חפש..." style="outline: none; padding-right: 10px;"/>
+
+        <div ng-click="isSearchName = false;" style="position: absolute; left: 5px; top: 0;">
+                <span class="fa fa-times" ng-click="searchmodel = ''">
+        </span>
+        </div>
+    </div>
+</div>

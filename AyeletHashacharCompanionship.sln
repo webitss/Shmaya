@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AyeletHashachaClient", "Client\AyeletHashachaClient.csproj", "{6A437DFF-3AC8-4CD8-AE66-1C70D11DC952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{33CD7972-BBDC-44A4-9DD1-17FB90823D2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A437DFF-3AC8-4CD8-AE66-1C70D11DC952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A437DFF-3AC8-4CD8-AE66-1C70D11DC952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A437DFF-3AC8-4CD8-AE66-1C70D11DC952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A437DFF-3AC8-4CD8-AE66-1C70D11DC952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CD7972-BBDC-44A4-9DD1-17FB90823D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CD7972-BBDC-44A4-9DD1-17FB90823D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CD7972-BBDC-44A4-9DD1-17FB90823D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CD7972-BBDC-44A4-9DD1-17FB90823D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

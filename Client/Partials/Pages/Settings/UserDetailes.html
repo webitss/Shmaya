@@ -1,0 +1,138 @@
+﻿<div class="container" ng-controller="UserDetailesCtrl">
+    <br />
+    <div class="row margin-top-double">
+        <div class="pull-left col-md-6">
+            <div class="row">
+                <div class="col-md-10">
+                    <button class="btn btn-default btn-ayelet color-yellow pull-left" ng-click="$modalClose(); saveDetails()">
+                        <div class="save-btn-ayelet"></div>
+                        <span>שמור</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <form name="form.personalDetails" novalidate>
+        <div class="person-detailes">
+            <div class="row">
+                <form-field span-text="מספר זהות" class="col-md-6">
+                    <input class="form-control" type="text" ng-minlength="9" ng-maxlength="9" ng-pattern="/^[0-9]{9}$/" ng-model="user.nvIdentityNumber"/>
+                </form-field>
+
+                <form-field ng-if="user.iUserType != 591 && user.iUserType != 592" span-text="* מחלקה" class="col-md-6">
+                    <form-dropdown ng-model="user.iDepartmentId" enablesearch="false" data="departmentList" required></form-dropdown>
+                </form-field>
+
+                <form-field ng-if="user.iUserType == 592" span-text="* מחלקה" class="col-md-6">
+                    <!-- !! -->
+                     <input class="form-control" type="text" ng-model="user.nvDepartmentName" ng-blur="checkDepartmentExists(user.nvDepartmentName)" required/>
+                </form-field>
+            </div>
+
+            
+
+            <div class="row">
+                <form-field span-text="* שם פרטי" class="col-md-6">
+                    <input autofocus class="form-control" type="text" ng-model="user.nvFirstName" required/>
+                </form-field>
+
+                <form-field span-text="* מגדר" class="col-md-6">
+                     <form-dropdown  ng-model="user.iGenderType" enablesearch="false" data="genderList" required></form-dropdown>
+                </form-field>
+            </div>
+
+            <div class="row">
+                <form-field span-text="* שם משפחה" class="col-md-6">
+                    <input class="form-control" type="text" ng-model="user.nvLastName" required/>
+                </form-field>
+
+                <form-field span-text="* מצב משפחתי" class="col-md-6">
+                    <form-dropdown  ng-model="user.iMaritalStatusType" enablesearch="false" data="maritalStatusList" required></form-dropdown>
+                </form-field>
+            </div>
+
+            <div class="row">
+                <form-field span-text="עיר" class="col-md-6">
+                    <form-dropdown  style="border-color:green" ng-model="user.iCityType" enablesearch="true" data="cityList"></form-dropdown>
+                </form-field>
+
+                <form-field span-text="טלפון" class="col-md-6">
+                    <input class="form-control" type="text" ng-model="user.nvPhoneNumber" ng-pattern="/^[0-9*#]{3,10}$/"/>
+                </form-field>
+            </div>
+
+            <div class="row">
+                <form-field span-text="כתובת" class="col-md-6">
+                    <input class="form-control" type="text" ng-autocomplete options="addressOptions" details="details" ng-model="user.nvAddress"/>
+                </form-field>
+
+                <form-field span-text="* פלאפון" class="col-md-6">
+                    <input class="form-control" type="text" ng-model="user.nvMobileNumber" ng-minlength="10" ng-maxlength="10"  ng-pattern="/^0+[0-9]{9}$/" required/>
+               </form-field>
+
+            </div>
+
+            <div class="row">
+                <form-field span-text="הערה לכתובת" class="col-md-6">
+                    <input class="form-control" type="text" ng-model="user.nvAddressComment"/>
+                </form-field>
+
+                <form-field span-text="מייל" class="col-md-6">
+                     <input class="form-control" type="text" ng-pattern="/^[a-z0-9._]+@[a-z0-9-_]+\.[a-z.]{2,5}$/" ng-model="user.nvEmail"/>
+                </form-field>
+            </div>
+        </div>
+
+        <div class="user-detailes">
+
+            <div class="row">
+                <form-field span-text="* שם משתמש" class="col-md-6">
+                    <input class="form-control" type="text" ng-blur="checkUserNameExists(user.nvUserName)" ng-model="user.nvUserName" ng-change="changeUserName=true" required/>
+                </form-field>
+
+                <form-field span-text="* הרשאת משתמש" class="col-md-6">
+                    <form-dropdown  ng-model="user.iUserType" enablesearch="false" data="userTypeList" required></form-dropdown>
+                </form-field>
+            </div>
+
+            <br />
+
+            <div class="row" ng-if="user.iUserType == 592">
+                <form-field span-text="* מספר טלפון להודעות חוזרות" class="col-md-6">
+                    <input class="form-control" type="text" ng-model="user.nvDepartmentMobileNumber" ng-minlength="10" ng-maxlength="10"  ng-pattern="/^0+[0-9]{9}$/" required/>
+                </form-field>
+
+                <form-field span-text="* כתובת מייל להודעות חוזרות" class="col-md-6">
+                      <input class="form-control" type="text" ng-pattern="/^[a-z0-9._]+@[a-z0-9-_]+\.[a-z.]{2,5}$/" ng-model="user.nvDepartmentEmail" required/>
+                </form-field>
+            </div>            
+           
+
+
+            <div class="row">
+                
+                <a class="changePassword-a col-md-6" ng-show="!changePassword" type="button" ng-click="changePassword = true;user.nvPassword = '';var.nvPassword = ''">שנה סיסמה</a>
+                <div ng-if="changePassword">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <form-field span-text="* סיסמה" class="col-md-6">
+                             <input class="form-control" required type="password" ng-model="user.nvPassword" />
+                        </form-field>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <form-field span-text="* סיסמה בשנית" class="col-md-6">
+                             <input class="form-control" required type="password" ng-model="var.nvPassword" ng-blur="checkPassword(user.nvPassword,var.nvPassword)"/>
+                        </form-field
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+                              
+        </div>
+    </form>
+</div>

@@ -1,0 +1,58 @@
+﻿<div class="container link-wrap-div" ng-controller="CompanionshipsHistoryCtrl">
+    <br />
+    <h5>{{noCompanionship}}</h5>
+    <br />
+    <uib-accordion close-others="oneAtATime" class="list-ayelet">
+        <div uib-accordion-group class="panel-default pass list-ayelet-line" ng-repeat="companionship in history" is-open="companionship.isCollapse">
+            <uib-accordion-heading>
+                <span class="col-md link-icon">
+                    <span class="glyphicon glyphicon-link link"></span>
+                </span>
+                <div class="companionship-info">
+                    <span class="col-md-3 conversation"><b>שם חברותא: </b>{{companionship.nvName}}</span>
+                    <span class="col-md-3 conversation"><b>שם רכז: </b>{{companionship.nvCoordinatorName}}</span>
+                    <span class="col-md-3 conversation"><b>סטטוס חברותא: </b>{{companionship.nvStatus}}</span>
+                    <span class="col-md-2"></span>
+                    <!--<span class="glyphicon col-md-1" ng-class="{'glyphicon-menu-down': isCollapse, 'glyphicon-menu-right': !isCollapse}"></span>-->
+                     <span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': companionship.isCollapse, 'glyphicon glyphicon-menu-left': !companionship.isCollapse}"></span>
+                </div> 
+            </uib-accordion-heading>
+
+            <div class="rox">
+
+            </div>
+
+            <div ng-if="companionship.iStatusType == statusToChange">
+
+                <button type="button" class="btn btn-ayelet glyphicon glyphicon-repeat" 
+                    
+                    ng-click="changeCompanionshipStatus(companionship.iCompanionshipId)">הפוך לפעיל</button>
+
+<!--                <button type="button" class="btn btn-ayelet glyphicon glyphicon-repeat" ng-click="changeCompanionshipStatus(companionship.iCompanionshipId)">הפוך לפעיל</button>
+
+                <span type="button" class=" changePassword-a margin-b-9 display-inline-block" ng-click="changeCompanionshipStatus(companionship.iCompanionshipId)">הפוך לפעיל</span>-->
+
+            </div>
+<!--ng-disabled="selected.nvCompanionshipStatus != 'אין קשר פעיל'"-->
+            <div class="text-align-right big-text row">
+                <label  class="col-md-2">הערת שיבוץ: </label>
+                <span  class="col-md-7">{{companionship.nvSchedulingComment}}</span>
+            </div>
+              <div class="text-align-right big-text row">
+                <label  class="col-md-2">הערת פרוק: </label>
+                <span  class="col-md-7">{{companionship.nvDischargedComment}}</span>
+            </div>
+
+            <div class="text-align-right big-text row">
+                <label  class="col-md-2">תאריך התחלה: </label>
+                <span  class="col-md-7">{{companionship.dtStartDate| date: "dd-MM-yyyy"}}</span>
+            </div>
+
+            <div class="text-align-right big-text row">
+                <label  class="col-md-2">תאריך סיום: </label>
+                <span  class="col-md-7">{{companionship.dtEndDate| date: "dd-MM-yyyy"}}</span>
+            </div>
+                
+        </div>
+    </uib-accordion>
+</div>

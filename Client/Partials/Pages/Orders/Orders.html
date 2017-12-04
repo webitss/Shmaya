@@ -1,0 +1,21 @@
+﻿<div class="container" ng-controller="OrdersCtrl">
+	<div>
+		<input type="button" class="pull-left" value="הזמנה חדשה" />
+		<button class="btn btn-default pass btn-ayelet color-yellow exportToExcel pull-left" title="ייצוא לאקסל" ng-click="exportToExcel()">
+			<span class=""></span>
+		</button>
+		<br /><br />
+		<div class="row">
+			<grid columns="columns"
+				  data="ordersList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded"
+				  footer-text="ערכים"
+				  row-class="{'highlight-row': item.bIsTodayConversation}"
+				  grid-identity="{{gridIdentity}}"></grid>
+		</div>
+
+		<create-dialog ng-if="selected.newOrderr" id="newOrderr" cancel="true">
+			<div ng-include="'Partials/Pages/MainExpand.html'+ $root.appVersionParameter"></div>
+		</create-dialog>
+	</div>

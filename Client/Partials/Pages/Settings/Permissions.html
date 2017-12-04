@@ -1,0 +1,47 @@
+﻿<div>
+    <wait></wait>
+    <div class="container" ng-controller="PermissionsCtrl">
+        <div class="setting">
+            <div class="row">
+                <div class="title">
+                    <!--<span>הרשאות</span>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <grid-pager class="col-md pull-right grid-paging-style cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+            <div class="commands menu-klaly">
+                <div class="nav pull-left">
+                    <button type="button" class="col-md btn btn-default pass btn-ayelet add-user" ng-click="addUser()">
+                        <label>+</label>
+                        <span class="color-text-white">הוסף משתמש</span>
+                    </button>
+                   <button class="btn btn-default pass btn-ayelet color-yellow exportToExcel" title="ייצוא לאקסל" ng-click="exportToExcel()">
+                        <span class=""></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <grid columns="usersColumns" data="UsersData" is-data-loaded="isDataLoaded" footer-text="משתמשים"></grid>
+        </div>
+
+        <div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
+            <!--<div>-->
+
+
+            <create-dialog ng-if="selected.newUser" id="newUser" title="{{'משתמש חדש'}}" cancel="true">
+                <div ng-include="'Partials/Pages/Settings/UserDetailes.html'+ $root.appVersionParameter"></div>
+            </create-dialog>
+
+            <div ng-repeat="item in UsersData">
+                <create-dialog ng-if="item.dialogIsOpen" item="item" title="{{item.nvFirstName+' '+item.nvLastName}}" comment="{{notificationAlert}}" id="{{item.nvIdentityNumber}}" cancel="true">
+                <div ng-include="'Partials/Pages/Settings/UserDetailes.html'+ $root.appVersionParameter"></div>
+            </create-dialog>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿<div>
+    <wait></wait>
+    <div ng-controller="SettingsCtrl" class="container">
+        <div class="setting">
+            <div class="row">
+                <div class="title">
+                    <!--<span>טבלאות קוד</span>-->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 grid-paging-wrapper">
+                    <grid-pager class="sites-pager-container"></grid-pager>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control input-orange" ng-model="iTableId" ng-options="table.iSysTableRowId as table.nvValue for table in tables" ng-change="getTableCode(iTableId)">
+                        <option selected disabled>בחר טבלה</option>
+                    </select>
+                </div>
+                <div class="command-row-left pull-left">
+                    <!--<div ng-click="clearFilters()" class="btn btn-default command-btn clear-filter" title="נקה סינון">-->
+                    <!--<img src="Images/x-command.png"/>-->
+                    <!--</div>-->
+                    <!--<button class="btn btn-default command-button square" ng-click="exportToExcel()">-->
+                    <!--<span class="flaticon-excel"></span>-->
+                    <!--</button>-->
+                    <div class="col-md btn btn-default pass btn-ayelet color-yellow" ng-click="addEntry()">
+                        <span>הוסף ערך</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <grid columns="tablesCodeColumns" data="tablesCodeData" is-data-loaded="isTablesCodeDataLoaded"
+                    footer-text="ערכים"></grid>
+            </div>
+        </div>
+    </div>
+</div>

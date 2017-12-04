@@ -1,0 +1,136 @@
+﻿<div ng-controller="ExistingCompanionshipCtrl" class="container">
+    <br />
+    <h5>{{noCompanionship}}</h5>
+
+    <br />
+        <div class="row">
+            <div class="col-md-8">
+                <div ng-if="noCompanionship==null">
+                    <div class="row">
+                        <div class="col-md div-companionship">
+                            <span class="user-class-green top-pad"></span>
+                            <span class="link-existing-icon">{{companionship.nvVolunteerName}}</span>
+                        </div>
+
+                        <div class="col-md glyphicon glyphicon-link link-existing-icon top-pad"></div>
+
+                        <div class="col-md div-companionship">
+                            <span class="user-class-blue top-pad"></span>
+                            <span class="link-existing-icon">{{companionship.nvStudentName}}</span>
+                        </div>
+
+                        <div class="col-md top-pad">
+                            <!--<span class="link-existing-icon"></span>-->
+                            <b>תאריך התחלה: </b>{{companionship.dtStartDate | date: "dd-MM-yyyy"}}
+                        </div>
+
+                        <div class="col-md-4 top-pad row">
+                            <b class="col-md-3">סטטוס: </b>
+                            <form-dropdown class="col-md-9" ng-model="companionship.iStatusType" ng-change="changeStatus()" enablesearch="false" placeholder="סטטוס קשר" data="companionshipStatus"></form-dropdown>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="conversation-buttons" ng-if="user.iUserType != 591 && user.iUserType != 592" ng-show="!noCompanionship">
+                    <button type="button" ng-click="openNewConversation(null, companionship.iVolunteerId)" class="btn btn-default btn-ayelet color-yellow new-button" ng-show="!bIsNewConversationOpen">
+                        <div class="new-phone-btn"></div>
+                        <span>שיחה חדשה - מתנדב</span>
+                    </button>
+                    &nbsp
+                <button type="button" ng-if="user.iUserType != 591 && user.iUserType != 592" ng-click="openNewConversation(companionship.iStudentId, null)" style="margin-left: 8px;" class="btn btn-default btn-ayelet color-yellow new-button" ng-show="!bIsNewConversationOpen">
+                    <div class="new-phone-btn"></div>
+                    <span>שיחה חדשה - מתלמד</span>
+                </button>
+
+                    <button type="button" ng-click="saveConversation()" class="btn btn-default btn-ayelet color-yellow" ng-show="bIsNewConversationOpen">
+                        <div class="save-btn-ayelet"></div>
+                        <span>שמור</span>
+                    </button>
+
+                    <button type="button" ng-click="cancelConversation()" class="btn btn-default btn-ayelet color-yellow" ng-show="bIsNewConversationOpen">
+                        <span>ביטול</span>
+                        <span class="glyphicon glyphicon-erase"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <br /><!--ng-if="CompanionshipsConversations==null"-->
+    <div ng-if="!noCompanionship">
+        <b>הערת שיבוץ: </b> {{companionship.nvSchedulingComment}}
+    </div>
+    <div class="new-conversation" ng-if="bIsNewConversationOpen">
+
+        <div class="row new-con-title cancel-left-margin cancel-right-margin">
+            <span class="conversation-icon-b col-md-1 color-yellow color-text-white">
+                <span></span>
+            </span>
+            <div class="phone-info">
+                <span class="">
+                    <b>תאריך שיחה: </b>
+                    {{newConversation.dtConversationDate | date : 'dd-MM-yyyy'}}
+                </span>
+                <span><b>רכז: </b>{{newConversation.nvCoordinatorName}}</span>
+                <span><b>שיחה עם: </b>{{newConversation.iStudentId ? companionship.nvStudentName :companionship.nvVolunteerName}}</span>
+                <span></span>
+            </div>
+        </div>
+        <form name="form.newConversationForm" class="padding-t-17 " novalidate>
+            <div class="panel-default line-list-open ng-scope">
+                <div class="text-align-right big-text row form-group" show-errors>
+                    <label class="col-md-3">נושא:</label>
+                    <input name="nvSubject" class="form-control input-solid col-md-4" type="text" ng-model="newConversation.nvSubject" required />
+                </div>
+
+                <div class="text-align-right big-text row form-group">
+                    <label class="col-md-3">הערה:</label>
+                    <textarea type="text" name="nvComment" ng-model="newConversation.nvComment" class="input-solid col-md-4 text-area" />
+                </div>
+
+                <div class="text-align-right big-text form-group row" show-errors>
+                    <label class="col-md-3">תאריך שיחה הבאה:</label>
+                    <input type="date" name="dtNextConversation" ng-model="newConversation.dtNextConversation" class="input-solid form-control col-md-4" required />
+                </div>
+
+                <div class="text-align-right big-text row form-group" show-errors>
+                    <label class="col-md-3">סטטוס שיחה:</label>
+                    <form-dropdown name="iStatusConversationType" class="input-solid col-md-4 cancel-right-padding cancel-left-padding" ng-model="newConversation.iStatusConversationType"
+                        enablesearch="false" placeholder="סטטוס שיחה:" data="conversationStatusList" required>
+                        </form-dropdown>
+                </div>
+                <br />
+            </div>
+        </form>
+    </div>
+
+    <uib-accordion close-others="oneAtATime" class="list-ayelet">
+        <div uib-accordion-group class="panel-default pass list-ayelet-line" ng-repeat="conversation1 in CompanionshipsConversations" is-open="conversation1.isCollapse">
+            <uib-accordion-heading>
+                <span class="col-md conversation-icon" ng-class="{'green-background' : conversation1.iVolunteerId, 'blue-background': conversation1.iStudentId}">
+                    <span class=""></span>
+                </span>
+                <div class="phone-info">
+                    <span class="col-md conversation"><b>תאריך שיחה: </b>{{conversation1.dtConversationDate | date: "dd-MM-yyyy"}}</span>
+                    <span class="col-md conversation"><b>רכז: </b>{{conversation1.nvCoordinatorName}}</span>
+                    <span class="col-md conversation"><b>נושא: </b>{{conversation1.nvSubject}}</span>
+                    <span class="col-md conversation"><b>שיחה הבאה: </b>{{conversation1.dtNextConversation | date : 'dd-MM-yyyy'}}</span>
+                    <span class="col-md conversation conversation-status"><b>סטטוס שיחה: </b>{{conversation1.nvStatusConversation}}</span>
+                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': conversation1.isCollapse, 'glyphicon glyphicon-menu-left': !conversation1.isCollapse}"></span>
+                </div> 
+            </uib-accordion-heading>
+
+            <div class="panel-default line-list-open">
+                <div class="text-align-right big-text row">
+                    <label class="col-md-1">נושא: </label> 
+                    <span  class="col-md-7">{{conversation1.nvSubject}}</span>
+                </div>
+
+                <div class="text-align-right big-text row">
+                    <label  class="col-md-1">הערה: </label><span  class="col-md-7">{{conversation1.nvComment}}</span>
+                </div>
+            </div>
+        </div>
+    </uib-accordion>
+</div>
