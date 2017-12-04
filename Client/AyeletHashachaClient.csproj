@@ -65,6 +65,7 @@
     <Content Include="Images\phone-plus.png" />
     <Content Include="Images\phone-under.png" />
     <Content Include="Images\save-icon.png" />
+    <Content Include="Images\shmayaLogo.png" />
     <Content Include="Images\user-blue.png" />
     <Content Include="Images\user-green.png" />
     <Content Include="Images\user-white.png" />
