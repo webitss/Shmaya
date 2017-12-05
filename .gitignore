@@ -1,2 +1,7 @@
+*.csproj
+*.dll
+*.pdb
+*.txt
+*.cache
 
-.vs/AyeletHashacharCompanionship/v15/.suo
+*.suo
