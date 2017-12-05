@@ -101,6 +101,7 @@
     <Content Include="Partials\Pages\Orders\OrdersTabs.html" />
     <Content Include="Partials\Pages\Reports\Reports.html" />
     <Content Include="Partials\Pages\Reports\ReportsTabs.html" />
+    <Content Include="Partials\Pages\Settings\EligibilityTable.html" />
     <Content Include="Partials\Pages\Settings\MoreSettings.html" />
     <Content Include="Partials\Pages\Settings\Permissions.html" />
     <Content Include="Partials\Pages\Settings\Settings.html" />
@@ -141,6 +142,7 @@
     <Content Include="Scripts\Controllers\Orders\OrdersTabsCtrl.js" />
     <Content Include="Scripts\Controllers\Reports\ReportsCtrl.js" />
     <Content Include="Scripts\Controllers\Reports\ReportsTabsCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\EligibilityTableCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\PermissionsCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\SettingsCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\SettingTabsCtrl.js" />

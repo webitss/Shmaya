@@ -1,0 +1,11 @@
+﻿<div ng-controller="EligibilityTableCtrl" class="popup-ayelet">
+	<div class="row">
+		<grid columns="columns"
+			  data="ordersList"
+			  class="color-gray"
+			  is-data-loaded="isDataLoaded"
+			  footer-text="ערכים"
+			  row-class="{'highlight-row': item.bIsTodayConversation}"
+			  grid-identity="{{gridIdentity}}"></grid>
+	</div>
+</div>
