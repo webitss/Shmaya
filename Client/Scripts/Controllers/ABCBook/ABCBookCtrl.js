@@ -130,20 +130,13 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
             },
             { title: 'שם פרטי', fieldName: 'nvFirstName' },
             { title: 'שם משפחה', fieldName: 'nvLastName' },
-            { title: 'גיל', fieldName: 'iAge', weight: 0.5 },
+            { title: 'ת.ז.', fieldName: 'iAge', weight: 0.5 },
             { title: 'כתובת', fieldName: 'nvAddress' },
-            { title: 'עיר', fieldName: 'nvCityType' },
-            { title: 'מייל', fieldName: 'nvEmail' },
             { title: 'טלפון', fieldName: 'nvPhoneNumber' },
-            { title: 'טלפון נייד', fieldName: 'nvMobileNumber' },
-            { title: 'מחלקה', fieldName: 'nvDepartmentName', weight: 0.8 },
-            { title: 'סטטוס', fieldName: 'nvStatusType' },
-            { title: 'רצינות', fieldName: 'nvSeriousness' },
-            { title: 'זמינות', fieldName: 'nvAvailability' },
-            { title: 'השכלה', fieldName: 'nvEducationType' },
-            //{ title: 'עיסוק', fieldName: 'nvEmploymentType' },
-            { title: 'תאריך ליצירת קשר', fieldName: 'dtNextConversation', type: 'date' },
-            { title: 'מקור השם', fieldName: 'nvNameSourceType' }
+			{ title: 'טלפון נייד', fieldName: 'nvMobileNumber' },
+			{ title: 'מייל', fieldName: 'nvEmail' },
+            { title: 'סוג זכאות', fieldName: 'nvDepartmentName', weight: 0.8 },
+            { title: 'בנק שעות', fieldName: 'nvStatusType' }
         ];
         //   $scope.getData();
 
@@ -224,8 +217,13 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 idVolunteer: null
             }
         $scope.selected.newMember = true;
-        $rootScope.$broadcast('displayDialog', { id: 'newMember' });
-    }
+		$rootScope.$broadcast('displayDialog', { id: 'editCustomer' });
+	}
+	$scope.EditCust = function ()
+	{
+		$scope.editCustomer = true;
+		$rootScope.$broadcast('displayDialog', { id: 'newMember' });
+	}
 
     $scope.exportToExcel = function () {
         $scope.$broadcast('exportToExcel', {

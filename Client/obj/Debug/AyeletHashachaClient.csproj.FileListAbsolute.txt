@@ -30,3 +30,10 @@ C:\git.dev\shmayaCrm\Client\obj\Debug\AyeletHashachaClient.csproj.CoreCompileInp
 C:\git.dev\shmayaCrm\Client\obj\Debug\Client.dll
 C:\git.dev\shmayaCrm\Client\obj\Debug\Client.pdb
 C:\git.dev\shmayaCrm\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\git.dev\Shmaya\Client\bin\Client.dll.config
+C:\git.dev\Shmaya\Client\bin\Client.dll
+C:\git.dev\Shmaya\Client\bin\Client.pdb
+C:\git.dev\Shmaya\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\git.dev\Shmaya\Client\obj\Debug\AyeletHashachaClient.csproj.CoreCompileInputs.cache
+C:\git.dev\Shmaya\Client\obj\Debug\Client.dll
+C:\git.dev\Shmaya\Client\obj\Debug\Client.pdb

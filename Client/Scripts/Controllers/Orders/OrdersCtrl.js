@@ -1,7 +1,7 @@
 // JavaScript source code
 "use strict"
 companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
-
+	//$scope.isDataLoaded = 0;
 	$scope.gridIdentity = 'ordersList';
 	$scope.columns = [
 		{
@@ -40,6 +40,13 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', 'connect', '$time
 		{ title: 'שעת התחלה', fieldName: 'dtTimeBegin' },
 		{ title: 'משתמש מזין', fieldName: 'nvAvailability' }
 	];
+	$scope.addNewOrder = function ()
+	{
+		$scope.name = "אלפון";
+		$scope.newOrder = true;
+		$rootScope.$broadcast('displayDialog', { id: 'newOrder' });
+	}
+	
 
 }]);
 

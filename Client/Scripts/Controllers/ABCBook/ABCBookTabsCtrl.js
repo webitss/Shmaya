@@ -4,7 +4,7 @@ companionApp.controller('ABCBookTabsCtrl', ['$scope', '$rootScope', 'connect', '
 	$scope.tabs = [
 		{ title: 'לקוחות', content: 'Partials/Pages/ABCBook/ABCBook.html' },
 		{ title: 'נותני שירות', content: 'Partials/Pages/ABCBook/ABCBookProviders.html' },
-		{ title: 'מנהלים', content: 'Partials/Pages/ABCBook/ABCBookProviders.html' }
+		{ title: 'מנהלים', content: 'Partials/Pages/ABCBook/ABCBookAdministrators.html' }
 
 	];
 

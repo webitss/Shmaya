@@ -25,7 +25,7 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
             },
             {
                 text: 'דוחות',
-                //url: '/Reports'
+                url: '/ReportsTabs'
             }
          ];
 
