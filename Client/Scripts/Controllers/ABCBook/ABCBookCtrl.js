@@ -27,7 +27,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
     $scope.showNewStudents = function () {
         $scope.newStudents = true;
         connect.post(true, "GetNewStudents", { iCoordinatorId: $rootScope.user.iCoordinatorId }, function (result) {
-            $scope.volunteersAndStudents = result;
+			$scope.ABCBookCustomers = result;
             $scope.isDataLoaded++;
         });
     }
@@ -58,8 +58,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
         $scope.createNewCompanionship = { iPersonId: undefined };
         $scope.type = undefined;
         $scope.isDataLoaded = 0;
-        $scope.gridIdentity = 'volunteersAndStudents';
-        $scope.columns = [
+        $scope.gridIdentity = 'ABCBookCustomers';
+        $scope.columnsCustomers = [
             {
                 fieldName: 'iId',
                 title: 'עריכה',
@@ -76,17 +76,17 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                     $rootScope.$broadcast('showComment', { id: item.iPersonId });
                 },
                 sortStudents: function () {
-                    $scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-                    $scope.volunteersAndStudents = $filter('filter')($rootScope.volunteersAndStudents, { iVolunteerId: null });
+					$scope.ABCBookCustomers = $rootScope.ABCBookCustomers;
+					$scope.ABCBookCustomers = $filter('filter')($rootScope.ABCBookCustomers, { iVolunteerId: null });
                     $scope.isDataLoaded++;
                 },
                 sortVolunteers: function () {
-                    $scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-                    $scope.volunteersAndStudents = $filter('filter')($rootScope.volunteersAndStudents, { iStudentId: null });
+					$scope.ABCBookCustomers = $rootScope.ABCBookCustomers;
+					$scope.ABCBookCustomers = $filter('filter')($rootScope.ABCBookCustomers, { iStudentId: null });
                     $scope.isDataLoaded++;
                 },
                 showAll: function () {
-                    $scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
+					$scope.ABCBookCustomers = $rootScope.ABCBookCustomers;
                     $scope.isDataLoaded++;
                 },
                 weight: 0.9,
@@ -138,14 +138,85 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
             { title: 'סוג זכאות', fieldName: 'nvDepartmentName', weight: 0.8 },
             { title: 'בנק שעות', fieldName: 'nvStatusType' }
         ];
-        //   $scope.getData();
-
-        //$scope.calculateAge = function () {
-        //    if (!$scope.member) return;
-        //    var ageDifMs = Date.now() - $scope.member.dtDateBirth.getTime();
-        //    var ageDate = new Date(ageDifMs);
-        //    //$scope.member.iAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-        //};
+		$scope.gridIdentity = 'ABCBookProviders';
+		$scope.columnsProviders = [
+			{
+				fieldName: 'iId',
+				title: 'עריכה',
+				titleTemplate: '</div>' +
+				'<div class="pass user-class-white-all" style="display: inline-block;" title="הצג הכל" ng-click="col.showAll()"></div>&nbsp' +
+				'<div class="pass user-class-blue" style="display: inline-block;" title="הצג מתלמדים" ng-click="col.sortStudents()"></div>&nbsp' +
+				'<div class="pass user-class-green" style="display: inline-block;" title="הצג מתנדבים" ng-click="col.sortVolunteers()"></div>' +
+				'</div>',
+				template: '<div class=\'pass user-class\'  ng-click=\'col.clickEvent(item)\' title="{{item.iStudentId?\'מתלמד\':\'מתנדב\'}}" ng-class="{\'user-class-blue\': item.iStudentId, \'user-class-green\': item.iVolunteerId}"></div>',
+				clickEvent: function (item) {
+					item.dialogIsOpen = true;
+					$scope.selected.nvDepartmentName = item.nvDepartmentName;
+					$rootScope.$broadcast('displayDialog', { id: item.iPersonId });
+					$rootScope.$broadcast('showComment', { id: item.iPersonId });
+				},
+				sortStudents: function () {
+					$scope.ABCBookProviders = $rootScope.ABCBookProviders;
+					$scope.ABCBookProviders = $filter('filter')($rootScope.ABCBookProviders, { iVolunteerId: null });
+					$scope.isDataLoaded++;
+				},
+				sortVolunteers: function () {
+					$scope.ABCBookProviders = $rootScope.ABCBookProviders;
+					$scope.ABCBookProviders = $filter('filter')($rootScope.ABCBookProviders, { iStudentId: null });
+					$scope.isDataLoaded++;
+				},
+				showAll: function () {
+					$scope.ABCBookProviders = $rootScope.ABCBookProviders;
+					$scope.isDataLoaded++;
+				},
+				weight: 0.9,
+				filter: false,
+				sort: false
+			},
+			{
+				title: 'שליחת הודעה',
+				template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+				addMemberToMessage: function (item) {
+					$scope.messageList(item);
+				},
+				weight: 0.9,
+				filter: false,
+				sort: false
+			},
+			{
+				fieldName: 'iPersonId',
+				title: 'מחיקה',
+				type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
+				template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAMember(item)\'></div>',
+				deleteAMember: function (item) {
+					$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
+					alerts.confirm('האם ברצונך להסיר את ' + $scope.someone + ' מהאלפון?', alerts.titles.message, function () {
+						$scope.deleteMember(item);
+					}, function () {
+					});
+				},
+				weight: 0.5,
+				filter: false,
+				sort: false
+			},
+			{
+				title: 'מצב הקשר',
+				fieldName: 'nvCompanionshipStatus'
+			},
+			{
+				title: 'מצב הקשר',
+				fieldName: 'iCompanionshipStatusType',
+				type: 'hidden'
+			},
+			{ title: 'שם פרטי', fieldName: 'nvFirstName' },
+			{ title: 'שם משפחה', fieldName: 'nvLastName' },
+			{ title: 'ת.ז.', fieldName: 'iAge', weight: 0.5 },
+			{ title: 'כתובת', fieldName: 'nvAddress' },
+			{ title: 'טלפון', fieldName: 'nvPhoneNumber' },
+			{ title: 'טלפון נייד', fieldName: 'nvMobileNumber' },
+			{ title: 'מייל', fieldName: 'nvEmail' },
+			{ title: 'שעות עבודה', fieldName: 'nvDepartmentName', weight: 0.8 }
+		];
     };
 
     $scope.messageList = function (person) {
@@ -195,8 +266,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 bInCompanionship: $scope.displaymembers.inCompanionship
             },
             function (result) {
-                $scope.volunteersAndStudents = result;
-                $rootScope.volunteersAndStudents = $scope.volunteersAndStudents;
+				$scope.ABCBookProviders = result;
+				$rootScope.ABCBookProviders = $scope.ABCBookProviders;
                 $scope.isDataLoaded++;
             });
     };

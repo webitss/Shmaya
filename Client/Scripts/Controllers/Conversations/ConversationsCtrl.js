@@ -93,7 +93,9 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
         $scope.cancelConversation = function () {
             $scope.bIsNewConversationOpen = false;
             $scope.newConversation = {};
-        }
+		}
+
+		
 
 
     }]);

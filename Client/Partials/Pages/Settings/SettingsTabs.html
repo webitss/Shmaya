@@ -20,7 +20,7 @@
     <div class=" second-menu">
                   
                 <div ng-repeat="tab in tabs" class=" second-menu-item" ng-class="{' second-menu-item-active': settingsActiveTab == $index }">
-                    <span class="header-menu-tab" ng-click="settingsTabClick($index)" ng-if="!tab.disabled" ">{{tab.title}}</span>
+                    <span class="header-menu-tab" ng-click="settingsTabClick($index)">{{tab.title}}</span>
                 </div>
       
     </div>

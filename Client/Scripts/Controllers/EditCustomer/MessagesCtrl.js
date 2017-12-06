@@ -1,5 +1,5 @@
 ﻿"use strict"
-companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter',
+companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter',
 	function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter) {
 		$scope.noConversation = null;
 

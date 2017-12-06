@@ -83,6 +83,7 @@
     <Content Include="Partials\Pages\ABCBook\ABCBookProviders.html" />
     <Content Include="Partials\Pages\ABCBook\ABCBookTabs.html" />
     <Content Include="Partials\Pages\ABCBook\ABCBookAdministrators.html" />
+    <Content Include="Partials\Pages\ABCBook\AddNewAdministrator.html" />
     <Content Include="Partials\Pages\EditCustomer\EditCustomer.html" />
     <Content Include="Partials\Pages\Companionships\CompanionshipsHistory.html" />
     <Content Include="Partials\Pages\Companionships\MatchMemberDetails.html" />
@@ -90,6 +91,7 @@
     <Content Include="Partials\Pages\Companionships\ExistingCompanionship.html" />
     <Content Include="Partials\Pages\Conversations.html" />
     <Content Include="Partials\Pages\EditCustomer\Connections.html" />
+    <Content Include="Partials\Pages\EditCustomer\Messages.html" />
     <Content Include="Partials\Pages\EditCustomer\Privatedetails.html" />
     <Content Include="Partials\Pages\EditCustomer\Refunds.html" />
     <Content Include="Partials\Pages\EditCustomer\Remarks.html" />
@@ -101,13 +103,17 @@
     <Content Include="Partials\Pages\Orders\OrdersTabs.html" />
     <Content Include="Partials\Pages\Reports\Reports.html" />
     <Content Include="Partials\Pages\Reports\ReportsTabs.html" />
+    <Content Include="Partials\Pages\Settings\CommunicationBasket.html" />
     <Content Include="Partials\Pages\Settings\EligibilityTable.html" />
     <Content Include="Partials\Pages\Settings\MoreSettings.html" />
+    <Content Include="Partials\Pages\Settings\Payments.html" />
     <Content Include="Partials\Pages\Settings\Permissions.html" />
+    <Content Include="Partials\Pages\Settings\Products.html" />
     <Content Include="Partials\Pages\Settings\Settings.html" />
     <Content Include="Partials\Pages\Settings\SettingsTabs.html" />
     <Content Include="Partials\Pages\Settings\UserDetailes.html" />
     <Content Include="Partials\Templates\AlertTemplate.html" />
+    <Content Include="Partials\Templates\CalendarTemplate.html" />
     <Content Include="Partials\Templates\ConfirmTemplate.html" />
     <Content Include="Partials\Templates\CreateDialogTemplate.html" />
     <Content Include="Partials\Templates\CustomTemplate.html" />
@@ -119,11 +125,12 @@
     <Content Include="Partials\Templates\SearchTemplate.html" />
     <Content Include="Partials\Templates\TableCodeDetailsTemplate.html" />
     <Content Include="Scripts\Constant\CodeTablesId.js" />
-    <Content Include="Scripts\Controllers\ABCBook\ABCBookAdministrators.js" />
+    <Content Include="Scripts\Controllers\ABCBook\ABCBookAdministratorsCtrl.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookCtrl.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookDetailesCtrl.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookProvidersCtrl.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookTabsCtrl.js" />
+    <Content Include="Scripts\Controllers\ABCBook\AddNewAdministratorCtrl.js" />
     <Content Include="Scripts\Controllers\Companionships\CompanionshipsHistoryCtrl.js" />
     <Content Include="Scripts\Controllers\Companionships\ExistingCompanionshipCtrl.js" />
     <Content Include="Scripts\Controllers\Companionships\MatchMemberDetailsCtrl.js" />
@@ -131,6 +138,7 @@
     <Content Include="Scripts\Controllers\Conversations\ConversationsCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\ConnectionsCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\EditCustomerCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\MessagesCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\PrivateDetailsCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\RefundsCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\RemarksCtrl.js" />
@@ -142,11 +150,15 @@
     <Content Include="Scripts\Controllers\Orders\OrdersTabsCtrl.js" />
     <Content Include="Scripts\Controllers\Reports\ReportsCtrl.js" />
     <Content Include="Scripts\Controllers\Reports\ReportsTabsCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\CommunicationBasketCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\EligibilityTableCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\PaymentsCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\PermissionsCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\ProductsCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\SettingsCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\SettingTabsCtrl.js" />
     <Content Include="Scripts\Controllers\Settings\UserDetailesCtrl.js" />
+    <Content Include="Scripts\Directives\CalendarDirective.js" />
     <Content Include="Scripts\Directives\CreateDialogDir.js" />
     <Content Include="Scripts\Directives\DateRtl.js" />
     <Content Include="Scripts\Directives\DropdownDirective.js" />
@@ -176,6 +188,7 @@
     <Content Include="Scripts\Controllers\Menu\MenuCtrl.js" />
     <Content Include="Scripts\Directives\GridDirective.js" />
     <Content Include="Scripts\Factories\ExcelFactory2.js" />
+    <Content Include="Scripts\Filters\HebrewDateFilter.js" />
     <Content Include="Scripts\Libraries\angular-animate.min.js" />
     <Content Include="Scripts\Libraries\angular-resource.min.js" />
     <Content Include="Scripts\Libraries\angular-route.min.js" />
@@ -187,6 +200,7 @@
     <Content Include="Scripts\Libraries\moment.min.js" />
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.4.0.min.js" />
     <Content Include="Style\directives-style.css" />
+    <Content Include="Style\directives-style1.css" />
     <Content Include="Style\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.min.js" />

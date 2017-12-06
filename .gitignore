@@ -1,7 +1,11 @@
 *.csproj
-*.dll
+
 *.pdb
 *.txt
 *.cache
 
 *.suo
+
+
+
+*.pdb

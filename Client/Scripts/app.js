@@ -25,7 +25,7 @@ companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvi
 			//,controller: 'MessagesCtrl'
 		})
 		.when('/ReportsTabs', {
-			templateUrl: 'Partials/Pages/ReportsTabs.html' + appVersionParameter,
+			templateUrl: 'Partials/Pages/Reports/ReportsTabs.html' + appVersionParameter,
 			controller: 'ReportsTabsCtrl'
 		})
 		.when('/OrdersTabs', {

@@ -10,7 +10,7 @@
 				  data="ordersList"
 				  class="color-gray"
 				  is-data-loaded="isDataLoaded"
-				  footer-text="ערכים"
+				  footer-text="הזמנות"
 				  row-class="{'highlight-row': item.bIsTodayConversation}"
 				  grid-identity="{{gridIdentity}}"></grid>
 		</div>
@@ -18,7 +18,7 @@
 		<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
 
 			<create-dialog ng-if="newOrder" id="newOrder" cancel="true">
-				<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{selected.idStudent?'מתלמד חדש':'מתנדב חדש'}}"-->
+				<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'הזמנה חדשה'}}"-->
 				<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 			</create-dialog>
 		</div>

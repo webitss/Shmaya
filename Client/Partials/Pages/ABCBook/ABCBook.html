@@ -31,10 +31,21 @@
 			</div>
 			<br />
 			<button ng-click="EditCust()">עריכה זמני</button>
-			<div class="row">
+			<div class="row" ng-if="showCustomer">
 				<!--"{'new-member': item.iStatusType==693,'new-shibutz-member':item.iStatusType==694,'again-shibutz-member':item.iStatusType==706}"-->
-				<grid columns="columns"
-					  data="volunteersAndStudents"
+				<grid columns="columnsCustomers"
+					  data="ABCBookCustomers"
+					  class="color-gray"
+					  is-data-loaded="isDataLoaded"
+					  footer-text="ערכים"
+					  row-class="{'highlight-row': item.bIsTodayConversation}"
+					  grid-identity="{{gridIdentity}}"></grid>
+			</div>
+
+			<div class="row" ng-if="!showCustomer">
+				<!--"{'new-member': item.iStatusType==693,'new-shibutz-member':item.iStatusType==694,'again-shibutz-member':item.iStatusType==706}"-->
+				<grid columns="columnsProviders"
+					  data="ABCBookProviders"
 					  class="color-gray"
 					  is-data-loaded="isDataLoaded"
 					  footer-text="ערכים"
