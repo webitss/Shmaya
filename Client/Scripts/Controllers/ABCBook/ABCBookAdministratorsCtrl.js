@@ -65,31 +65,12 @@ companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$
 				{
 					fieldName: 'iId',
 					title: 'עריכה',
-					titleTemplate: '</div>' +
-					'<div class="pass user-class-white-all" style="display: inline-block;" title="הצג הכל" ng-click="col.showAll()"></div>&nbsp' +
-					'<div class="pass user-class-blue" style="display: inline-block;" title="הצג מתלמדים" ng-click="col.sortStudents()"></div>&nbsp' +
-					'<div class="pass user-class-green" style="display: inline-block;" title="הצג מתנדבים" ng-click="col.sortVolunteers()"></div>' +
-					'</div>',
 					template: '<div class=\'pass user-class\'  ng-click=\'col.clickEvent(item)\' title="{{item.iStudentId?\'מתלמד\':\'מתנדב\'}}" ng-class="{\'user-class-blue\': item.iStudentId, \'user-class-green\': item.iVolunteerId}"></div>',
 					clickEvent: function (item) {
 						item.dialogIsOpen = true;
 						$scope.selected.nvDepartmentName = item.nvDepartmentName;
 						$rootScope.$broadcast('displayDialog', { id: item.iPersonId });
 						$rootScope.$broadcast('showComment', { id: item.iPersonId });
-					},
-					sortStudents: function () {
-						$scope.ABCBookAdministrator = $rootScope.ABCBookAdministrator;
-						$scope.ABCBookAdministrator = $filter('filter')($rootScope.ABCBookAdministrator, { iVolunteerId: null });
-						$scope.isDataLoaded++;
-					},
-					sortVolunteers: function () {
-						$scope.ABCBookAdministrator = $rootScope.ABCBookAdministrator;
-						$scope.ABCBookAdministrator = $filter('filter')($rootScope.ABCBookAdministrator, { iStudentId: null });
-						$scope.isDataLoaded++;
-					},
-					showAll: function () {
-						$scope.ABCBookAdministrator = $rootScope.ABCBookAdministrator;
-						$scope.isDataLoaded++;
 					},
 					weight: 0.9,
 					filter: false,

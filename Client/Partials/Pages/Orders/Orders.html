@@ -21,6 +21,12 @@
 				<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'הזמנה חדשה'}}"-->
 				<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 			</create-dialog>
-		</div>
+
+			<div ng-repeat="order in ordersList">
+				<create-dialog ng-if="order.dialogIsOpen" item="order" image=""
+							   title="{{order.}}" comment="{{notificationAlert}}" id="{{order.iOrderId}}" cancel="true">
+					<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
+				</create-dialog>
+			</div>
 	</div>
 </div>

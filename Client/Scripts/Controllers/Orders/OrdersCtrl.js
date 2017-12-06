@@ -5,8 +5,13 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', 'connect', '$time
 	$scope.gridIdentity = 'ordersList';
 	$scope.columns = [
 		{
-			fieldName: 'iId',
+			fieldName: 'iOrderId',
 			title: 'עריכה',
+			template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
+			clickEvent: function (order) {
+				order.dialogIsOpen = true;
+				$rootScope.$broadcast('displayDialog', { id: order.iOrderId });
+			},
 			weight: 0.9,
 			filter: false,
 			sort: false

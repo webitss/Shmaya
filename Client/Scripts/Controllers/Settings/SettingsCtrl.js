@@ -24,7 +24,7 @@ companionApp.controller('SettingsCtrl', ['$scope', '$rootScope', '$compile', '$f
                         $scope.iSysTableRowId = item.iSysTableRowId;
                         $scope.setting.nvEntry = $filter('filter')($scope.tablesCodeData, { iSysTableRowId: item.iSysTableRowId }, true)[0].nvValue;
                         $scope.pop = "<input type='text' class='form-control' required ng-model='setting.nvEntry' required/>";
-                        alerts.custom($scope.pop, 'עריכה',$scope,
+                        alerts.custom($scope.pop, 'הוספת מוצר',$scope,
                             function () {
                                 $scope.changeEntry($scope, $scope.setting.nvEntry, false);
                             }, function () { }

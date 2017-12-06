@@ -380,16 +380,7 @@ namespace Service
 			return User.GetUsers(iUserType);
 		}
 
-		[OperationContract]
-		[WebInvoke(
-		   Method = "POST",
-		   UriTemplate = "GetProduct",
-		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		   ResponseFormat = WebMessageFormat.Json)]
-		public List<Product> GetProduct()
-		{
-			return Product.GetProduct();
-		}
+		
 
 		[OperationContract]
 		[WebInvoke(
@@ -516,11 +507,43 @@ namespace Service
             return Messages.SendSMSToGroup(lMember, message, iUserId);
         }
 
-        #endregion
+		#endregion
 
-        #region All
+		#region All
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetProduct",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Product> GetProduct()
+		{
+			return Product.GetProduct();
+		}
 
-        [OperationContract]
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetCommunicationCart",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<CommunicationCart> GetCommunicationCart()
+		{
+			return CommunicationCart.GetCommunicationCart();
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetPayments",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Payment> GetPayments()
+		{
+			return Payment.GetPayments();
+		}
+
+		[OperationContract]
         [WebInvoke(
            Method = "POST",
            UriTemplate = "GetAllVolunteers",

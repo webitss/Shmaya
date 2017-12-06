@@ -1,5 +1,6 @@
 ﻿"use strict"
-companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
+companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId',
+	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
 
 	$scope.variable = {
         openDialog1: false,
@@ -13,33 +14,12 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
         $scope.gridIdentity = 'ABCBookCustomers';
         $scope.columnsCustomers = [
             {
-                fieldName: 'iId',
+				fieldName: 'iUserId',
                 title: 'עריכה',
-                titleTemplate: '</div>'+
-                    '<div class="pass user-class-white-all" style="display: inline-block;" title="הצג הכל" ng-click="col.showAll()"></div>&nbsp' +
-                    '<div class="pass user-class-blue" style="display: inline-block;" title="הצג מתלמדים" ng-click="col.sortStudents()"></div>&nbsp'+
-                    '<div class="pass user-class-green" style="display: inline-block;" title="הצג מתנדבים" ng-click="col.sortVolunteers()"></div>' +
-                    '</div>',
-                template: '<div class=\'pass user-class\'  ng-click=\'col.clickEvent(item)\' title="{{item.iStudentId?\'מתלמד\':\'מתנדב\'}}" ng-class="{\'user-class-blue\': item.iStudentId, \'user-class-green\': item.iVolunteerId}"></div>',
-                clickEvent: function (item) {
-                    item.dialogIsOpen = true;
-                    $scope.selected.nvDepartmentName = item.nvDepartmentName;
-                    $rootScope.$broadcast('displayDialog', { id: item.iPersonId });
-                    $rootScope.$broadcast('showComment', { id: item.iPersonId });
-                },
-                sortStudents: function () {
-					$scope.ABCBookCustomers = $rootScope.ABCBookCustomers;
-					$scope.ABCBookCustomers = $filter('filter')($rootScope.ABCBookCustomers, { iVolunteerId: null });
-                    $scope.isDataLoaded++;
-                },
-                sortVolunteers: function () {
-					$scope.ABCBookCustomers = $rootScope.ABCBookCustomers;
-					$scope.ABCBookCustomers = $filter('filter')($rootScope.ABCBookCustomers, { iStudentId: null });
-                    $scope.isDataLoaded++;
-                },
-                showAll: function () {
-					$scope.ABCBookCustomers = $rootScope.ABCBookCustomers;
-                    $scope.isDataLoaded++;
+				template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                clickEvent: function (user) {
+					user.dialogIsOpen = true;
+					$rootScope.$broadcast('displayDialog', { id: user.iUserId });
                 },
                 weight: 0.9,
                 filter: false,
@@ -95,31 +75,10 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 			{
 				fieldName: 'iId',
 				title: 'עריכה',
-				titleTemplate: '</div>' +
-				'<div class="pass user-class-white-all" style="display: inline-block;" title="הצג הכל" ng-click="col.showAll()"></div>&nbsp' +
-				'<div class="pass user-class-blue" style="display: inline-block;" title="הצג מתלמדים" ng-click="col.sortStudents()"></div>&nbsp' +
-				'<div class="pass user-class-green" style="display: inline-block;" title="הצג מתנדבים" ng-click="col.sortVolunteers()"></div>' +
-				'</div>',
-				template: '<div class=\'pass user-class\'  ng-click=\'col.clickEvent(item)\' title="{{item.iStudentId?\'מתלמד\':\'מתנדב\'}}" ng-class="{\'user-class-blue\': item.iStudentId, \'user-class-green\': item.iVolunteerId}"></div>',
-				clickEvent: function (item) {
-					item.dialogIsOpen = true;
-					$scope.selected.nvDepartmentName = item.nvDepartmentName;
-					$rootScope.$broadcast('displayDialog', { id: item.iPersonId });
-					$rootScope.$broadcast('showComment', { id: item.iPersonId });
-				},
-				sortStudents: function () {
-					$scope.ABCBookProviders = $rootScope.ABCBookProviders;
-					$scope.ABCBookProviders = $filter('filter')($rootScope.ABCBookProviders, { iVolunteerId: null });
-					$scope.isDataLoaded++;
-				},
-				sortVolunteers: function () {
-					$scope.ABCBookProviders = $rootScope.ABCBookProviders;
-					$scope.ABCBookProviders = $filter('filter')($rootScope.ABCBookProviders, { iStudentId: null });
-					$scope.isDataLoaded++;
-				},
-				showAll: function () {
-					$scope.ABCBookProviders = $rootScope.ABCBookProviders;
-					$scope.isDataLoaded++;
+				template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+				clickEvent: function (user) {
+					user.dialogIsOpen = true;
+					$rootScope.$broadcast('displayDialog', { id: user.iUserId });
 				},
 				weight: 0.9,
 				filter: false,
@@ -245,6 +204,11 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
             }
         });
     }
-	
+
+	$scope.EditCust = function () {
+		$scope.editCustomer = true;
+		$rootScope.$broadcast('displayDialog', { id: 'editCustomer' });
+	}
+
     $scope.prepareData();
 }]);

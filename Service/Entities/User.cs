@@ -66,7 +66,7 @@ namespace Service.Entities
 		public int iWorkerType { get; set; }
 		[DataMember]
 		[NoSendToSQL]
-		public int nvWorkerType { get; set; }
+		public string nvWorkerType { get; set; }
 		[DataMember]
 		public int iBuyCryingDetector { get; set; }
 		[DataMember]
@@ -169,6 +169,11 @@ namespace Service.Entities
 				Log.ExceptionLog(ex.Message, "GetUsers");
 				return null;
 			}
+		}
+
+		public static Dictionary<string, List<CodeTable>> GetUserCodeTables(int iUserId)
+		{
+			return CodeTable.GetListCodeTables("TUser_CodeTables_SLCT", new List<SqlParameter>() { new SqlParameter("iUserId", iUserId) });
 		}
 
 		#endregion

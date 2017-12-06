@@ -1,11 +1,18 @@
-﻿<div ng-controller="PaymentsCtrl" class="popup-ayelet">
-	<div class="row">
-		<grid columns="columns"
-			  data="ordersList"
-			  class="color-gray"
-			  is-data-loaded="isDataLoaded"
-			  footer-text="ערכים"
-			  row-class="{'highlight-row': item.bIsTodayConversation}"
-			  grid-identity="{{gridIdentity}}"></grid>
+﻿
+<div ng-controller="PaymentsCtrl">
+	<wait></wait>
+	<div class="container">
+		<div class="row">
+			<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+		</div>
+		<br />
+		<div class="row">
+			<grid columns="columns"
+				  data="paymentsList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded"
+				  footer-text="תשלומים"
+				  grid-identity="{{gridIdentity}}"></grid>
+		</div>
 	</div>
 </div>

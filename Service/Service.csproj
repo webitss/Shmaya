@@ -76,6 +76,7 @@
     <Compile Include="Entities\CodeTable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\CommunicationCart.cs" />
     <Compile Include="Entities\Companionship.cs" />
     <Compile Include="Entities\Conversations.cs">
       <SubType>Code</SubType>
@@ -90,6 +91,7 @@
     <Compile Include="Entities\MemberSettings.cs" />
     <Compile Include="Entities\Messages.cs" />
     <Compile Include="Entities\Orders.cs" />
+    <Compile Include="Entities\Payment.cs" />
     <Compile Include="Entities\Person.cs">
       <SubType>Code</SubType>
     </Compile>
