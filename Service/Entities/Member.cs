@@ -181,7 +181,7 @@ namespace Service.Entities
         {
             try
             {
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TMembers_SLCT", new List<SqlParameter>() {
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TMembers_SLCT", new List<SqlParameter>() {
                 new SqlParameter("iUserId",iUserId),
                 new SqlParameter("iUserType",iUserType),
                 new SqlParameter("bInCompanionship",bInCompanionship)

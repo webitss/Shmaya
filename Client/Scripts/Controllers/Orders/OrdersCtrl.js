@@ -18,7 +18,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', 'connect', '$time
 			template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAMember(item)\'></div>',
 			deleteAMember: function (item) {
 				$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
-				alerts.confirm('האם ברצונך להסיר את ' + $scope.someone + ' מהאלפון?', alerts.titles.message, function () {
+				alerts.confirm('האם לבטל הזמנה זו? ', alerts.titles.message, function () {
 					$scope.deleteMember(item);
 				}, function () {
 				});

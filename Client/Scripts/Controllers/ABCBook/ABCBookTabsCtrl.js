@@ -12,7 +12,9 @@ companionApp.controller('ABCBookTabsCtrl', ['$scope', '$rootScope', 'connect', '
 
 	$scope.ordersTabClick = function (index) {
 		$scope.ordersActiveTab = index;
-		if (index == 2)
+		if (index == 1) 
 			$scope.showCustomer = false;
+		else
+			$scope.showCustomer = true;
 	};
 }]);

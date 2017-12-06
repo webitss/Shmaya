@@ -8,7 +8,6 @@
 					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
 
 					<div class="nav pull-left">
-
 						<button type="button" class="btn btn-default pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="sendMessage()">
 							<div class="glyphicon glyphicon-send color-text-white"></div>
 							<span class="color-text-white">שלח הודעה</span>
@@ -29,27 +28,25 @@
 					</div>
 				</div>
 			</div>
+
 			<br />
+
 			<button ng-click="EditCust()">עריכה זמני</button>
 			<div class="row" ng-if="showCustomer">
-				<!--"{'new-member': item.iStatusType==693,'new-shibutz-member':item.iStatusType==694,'again-shibutz-member':item.iStatusType==706}"-->
 				<grid columns="columnsCustomers"
 					  data="ABCBookCustomers"
 					  class="color-gray"
-					  is-data-loaded="isDataLoaded"
+					  is-data-loaded="isDataLoadedCustomers"
 					  footer-text="ערכים"
-					  row-class="{'highlight-row': item.bIsTodayConversation}"
 					  grid-identity="{{gridIdentity}}"></grid>
 			</div>
 
 			<div class="row" ng-if="!showCustomer">
-				<!--"{'new-member': item.iStatusType==693,'new-shibutz-member':item.iStatusType==694,'again-shibutz-member':item.iStatusType==706}"-->
 				<grid columns="columnsProviders"
 					  data="ABCBookProviders"
 					  class="color-gray"
-					  is-data-loaded="isDataLoaded"
+					  is-data-loaded="isDataLoadedProviders"
 					  footer-text="ערכים"
-					  row-class="{'highlight-row': item.bIsTodayConversation}"
 					  grid-identity="{{gridIdentity}}"></grid>
 			</div>
 
@@ -60,17 +57,8 @@
 					<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 
-				<create-dialog ng-if="selected.newMember" id="newMember" image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{selected.idStudent?'מתלמד חדש':'מתנדב חדש'}}" cancel="true">
-					<div ng-include="'Partials/Pages/MainExpand.html'+ $root.appVersionParameter"></div>
-				</create-dialog>
-
 				<create-dialog ng-if="newMessage.isOpen" id="sendMassege" image="glyphicon glyphicon-send color-gray-message" title="{{'שליחת הודעה'}}" cancel="true">
 					<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter" ng-init="whom='#';list=listToSend"></div>
-				</create-dialog>
-
-				<create-dialog ng-if="searchMember.getSearch" item="searchMember" image="{{searchMember.iStudentId?'user-class-blue':'user-class-green'}}"
-							   title="{{searchMember.nvFirstName+' '+searchMember.nvLastName}}" comment="{{notificationAlert}}" id="{{searchMember.iPersonId}}" cancel="true">
-					<div ng-include="'Partials/Pages/MainExpand.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 
 				<div ng-repeat="item in volunteersAndStudents">

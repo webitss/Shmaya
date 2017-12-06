@@ -39,6 +39,7 @@ namespace Service
         {
             return Member.GetAMember(iPersonId);
         }
+
         [OperationContract]
         [WebInvoke(
            Method = "POST",
@@ -371,6 +372,28 @@ namespace Service
 		[OperationContract]
 		[WebInvoke(
 		   Method = "POST",
+		   UriTemplate = "GetUsers",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<User> GetUsers(int iUserType)
+		{
+			return User.GetUsers(iUserType);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetProduct",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Product> GetProduct()
+		{
+			return Product.GetProduct();
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
 		   UriTemplate = "ResetUserPassword",
 		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
 		   ResponseFormat = WebMessageFormat.Json)]
@@ -391,16 +414,16 @@ namespace Service
             return User.Login(userName, password);
         }
 
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "getUsers",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<UserDetailes> getUsers(int iUserType)
-        {
-            return UserDetailes.getUsers(iUserType);
-        }
+        //[OperationContract]
+        //[WebInvoke(
+        //   Method = "POST",
+        //   UriTemplate = "getUsers",
+        //   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+        //   ResponseFormat = WebMessageFormat.Json)]
+        //public List<UserDetailes> getUsers(int iUserType)
+        //{
+        //    return UserDetailes.getUsers(iUserType);
+        //}
 
         [OperationContract]
         [WebInvoke(

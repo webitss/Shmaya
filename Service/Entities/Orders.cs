@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,6 +16,9 @@ namespace Service.Entities
 		public int iUserId { get; set; }
 		[DataMember]
 		public int iTypeOrder { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvTypeOrder { get; set; }
 		[DataMember]
 		public int iTypeTranslation { get; set; }
 		[DataMember]
@@ -57,4 +61,5 @@ namespace Service.Entities
 		
 
 	}
+
 }

@@ -93,6 +93,7 @@
     <Compile Include="Entities\Person.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Student.cs">
       <SubType>Code</SubType>
     </Compile>

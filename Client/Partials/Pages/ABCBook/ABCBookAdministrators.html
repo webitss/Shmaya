@@ -14,11 +14,6 @@
 							<span class="color-text-white">שלח הודעה</span>
 						</button>
 
-						<button type="button" class="col-md btn btn-default pass color-grn btn-ayelet" ng-click="AddNew(1)">
-							<div class="user-class-white"></div>
-							<span class="color-text-white">הוסף מתנדב</span>
-						</button>
-
 						<button type="button" class="col-md btn btn-default pass btn-ayelet color-lb " ng-click="AddNew(2)">
 							<span class="user-class-white"></span>
 							<span class="color-text-white">הוסף מתלמד</span>
@@ -35,7 +30,7 @@
 			<div class="row">
 				<!--"{'new-member': item.iStatusType==693,'new-shibutz-member':item.iStatusType==694,'again-shibutz-member':item.iStatusType==706}"-->
 				<grid columns="columns"
-					  data="volunteersAndStudents"
+					  data="ABCBookAdministrator"
 					  class="color-gray"
 					  is-data-loaded="isDataLoaded"
 					  footer-text="ערכים"
@@ -46,23 +41,15 @@
 
 			<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
 
-				<create-dialog ng-if="editCustomer" id="editCustomer" title="{{'כרטיס לקוח- שם לקוח'}}" cancel="true">
-					<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
-				</create-dialog>
-
-				<create-dialog ng-if="selected.newMember" id="newMember" image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{selected.idStudent?'מתלמד חדש':'מתנדב חדש'}}" cancel="true">
-					<div ng-include="'Partials/Pages/MainExpand.html'+ $root.appVersionParameter"></div>
+				<create-dialog ng-if="addAdmin" id="addAdmin" title="{{'עריכת מנהל'}}" cancel="true">
+					<div ng-include="'Partials/Pages/ABCBook/AddNewAdministrator.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 
 				<create-dialog ng-if="newMessage.isOpen" id="sendMassege" image="glyphicon glyphicon-send color-gray-message" title="{{'שליחת הודעה'}}" cancel="true">
 					<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter" ng-init="whom='#';list=listToSend"></div>
 				</create-dialog>
 
-				<create-dialog ng-if="searchMember.getSearch" item="searchMember" image="{{searchMember.iStudentId?'user-class-blue':'user-class-green'}}"
-							   title="{{searchMember.nvFirstName+' '+searchMember.nvLastName}}" comment="{{notificationAlert}}" id="{{searchMember.iPersonId}}" cancel="true">
-					<div ng-include="'Partials/Pages/MainExpand.html'+ $root.appVersionParameter"></div>
-				</create-dialog>
-
+				
 				<div ng-repeat="item in volunteersAndStudents">
 					<create-dialog ng-if="item.dialogIsOpen" item="item" image="{{item.iStudentId?'user-class-blue':'user-class-green'}}"
 								   title="{{item.nvFirstName+' '+item.nvLastName}}" comment="{{notificationAlert}}" id="{{item.iPersonId}}" cancel="true">

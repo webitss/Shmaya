@@ -1,63 +1,15 @@
 ﻿"use strict"
 companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
-    $scope.newStudents = false;
-    $scope.listToSend = [];
 
-    $scope.newMessage = { isOpen: false };
-
-    $scope.haveSend = false;
-    $scope.aMember =
-            {
-                iPersonId: null,
-                nvName: null,
-                nvEmail: null,
-                nvMobileNumber: null
-            };
-
-    $scope.variable = {
+	$scope.variable = {
         openDialog1: false,
         openDialog2: false
     };
-
-    $scope.displaymembers = { inCompanionship: $rootScope.user.iUserType == codeTablesId.permissionType.coordinator };
-    $scope.coordinatorPermission = $rootScope.user.iUserType == codeTablesId.permissionType.coordinator || $rootScope.user.iUserType == codeTablesId.permissionType.schedulingCoordinator
-
-    $scope.searchText = { searchAbcBook: null };
-
-    $scope.showNewStudents = function () {
-        $scope.newStudents = true;
-        connect.post(true, "GetNewStudents", { iCoordinatorId: $rootScope.user.iCoordinatorId }, function (result) {
-			$scope.ABCBookCustomers = result;
-            $scope.isDataLoaded++;
-        });
-    }
-
-    $scope.search = function () {
-        if ($scope.searchText.searchAbcBook == null || $scope.searchText.searchAbcBook == undefined || $scope.searchText.searchAbcBook == "") return;
-        if ($scope.searchText.searchAbcBook.length != 10) return;
-        connect.post(true, connect.functions.GetMemberBySearchText, { searchText: $scope.searchText.searchAbcBook, iUserId: $rootScope.user.iUserId }, function (result) {
-            $scope.searchMember = result;
-
-            if (result == undefined || result == null || result.length == 0)
-                alerts.alert('מספר לא קיים');
-            else if ($scope.searchMember.iDepartmentId == -1)
-                alerts.alert('מספר לא קיים במחלקה');
-            else {
-                $scope.searchMember.getSearch = true;
-                $scope.searchMember.iVolunteerId ? ($scope.selected.idVolunteer = $scope.searchMember.iVolunteerId) : ($scope.selected.idStudent = $scope.searchMember.iStudentId);
-                $rootScope.$broadcast('displayDialog', { id: $scope.searchMember.iPersonId });
-            }
-            $scope.searchText.searchAbcBook = "";
-        });
-    }
-
-    $scope.prepareData = function () {
-        $scope.selected = { idStudent: undefined, idVolunteer: undefined, newMemeber: false, nvDepartmentName: null };
-
-        $rootScope.delete = undefined;
-        $scope.createNewCompanionship = { iPersonId: undefined };
-        $scope.type = undefined;
-        $scope.isDataLoaded = 0;
+	
+	$scope.prepareData = function () {
+		$scope.getData();
+		$scope.isDataLoadedCustomers = 0;
+		$scope.isDataLoadedProviders = 0;
         $scope.gridIdentity = 'ABCBookCustomers';
         $scope.columnsCustomers = [
             {
@@ -130,13 +82,13 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
             },
             { title: 'שם פרטי', fieldName: 'nvFirstName' },
             { title: 'שם משפחה', fieldName: 'nvLastName' },
-            { title: 'ת.ז.', fieldName: 'iAge', weight: 0.5 },
-            { title: 'כתובת', fieldName: 'nvAddress' },
-            { title: 'טלפון', fieldName: 'nvPhoneNumber' },
-			{ title: 'טלפון נייד', fieldName: 'nvMobileNumber' },
+			{ title: 'ת.ז.', fieldName: 'nvID', weight: 0.5 },
+			{ title: 'כתובת', fieldName: 'nvAdress' },
+			{ title: 'טלפון', fieldName: 'nvPhoneNum' },
+			{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
 			{ title: 'מייל', fieldName: 'nvEmail' },
             { title: 'סוג זכאות', fieldName: 'nvDepartmentName', weight: 0.8 },
-            { title: 'בנק שעות', fieldName: 'nvStatusType' }
+			{ title: 'בנק שעות', fieldName: 'nNumHours' }
         ];
 		$scope.gridIdentity = 'ABCBookProviders';
 		$scope.columnsProviders = [
@@ -210,12 +162,12 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 			},
 			{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 			{ title: 'שם משפחה', fieldName: 'nvLastName' },
-			{ title: 'ת.ז.', fieldName: 'iAge', weight: 0.5 },
-			{ title: 'כתובת', fieldName: 'nvAddress' },
-			{ title: 'טלפון', fieldName: 'nvPhoneNumber' },
-			{ title: 'טלפון נייד', fieldName: 'nvMobileNumber' },
+			{ title: 'ת.ז.', fieldName: 'nvID', weight: 0.5 },
+			{ title: 'כתובת', fieldName: 'nvAdress' },
+			{ title: 'טלפון', fieldName: 'nvPhoneNum' },
+			{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
 			{ title: 'מייל', fieldName: 'nvEmail' },
-			{ title: 'שעות עבודה', fieldName: 'nvDepartmentName', weight: 0.8 }
+			{ title: 'שעות עבודה', fieldName: 'nNumHours', weight: 0.8 }
 		];
     };
 
@@ -255,47 +207,26 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
         $scope.newMessage.isOpen = true;
         $rootScope.$broadcast('displayDialog', { id: 'sendMassege' });
     };
-
-
-    $scope.getData = function () {
-        //$scope.newStudents = false;
-        connect.post(true, connect.functions.GetABCBook,
-            {
-                iUserId: $rootScope.user.iUserId,
-                iUserType: $rootScope.user.iUserType,
-                bInCompanionship: $scope.displaymembers.inCompanionship
-            },
-            function (result) {
-				$scope.ABCBookProviders = result;
-				$rootScope.ABCBookProviders = $scope.ABCBookProviders;
-                $scope.isDataLoaded++;
-            });
+	
+	$scope.getData = function () {
+		if ($scope.showCustomer) {
+			connect.post(true, 'GetUsers',
+				{ iUserType: 2 },
+				function (result) {
+					$scope.ABCBookCustomers = result;
+					$scope.isDataLoadedCustomers++;
+				});
+		}
+		else if (!$scope.showCustomer) {
+			connect.post(true, 'GetUsers',
+				{ iUserType: 38 },
+				function (result) {
+					$scope.ABCBookProviders = result;
+					$scope.isDataLoadedProviders++;
+				});
+		}
     };
-
-    $scope.details = {};
-
-    $scope.AddNew = function (type) {
-        $scope.name = "אלפון";
-        if (type == 1) {
-            $scope.selected = {
-                idVolunteer: -1,
-                idStudent: null
-            }
-        }
-        else if (type == 2)
-            $scope.selected = {
-                idStudent: -1,
-                idVolunteer: null
-            }
-        $scope.selected.newMember = true;
-		$rootScope.$broadcast('displayDialog', { id: 'editCustomer' });
-	}
-	$scope.EditCust = function ()
-	{
-		$scope.editCustomer = true;
-		$rootScope.$broadcast('displayDialog', { id: 'newMember' });
-	}
-
+		
     $scope.exportToExcel = function () {
         $scope.$broadcast('exportToExcel', {
             id: $scope.gridIdentity,
@@ -314,42 +245,6 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
             }
         });
     }
-
-    //$scope.removeMember = function (item) {
-    //    var index = $scope.volunteersAndStudents.indexOf(item);
-    //    $scope.volunteersAndStudents.splice(index, 1);
-    //    $scope.isDataLoaded++;
-    //}
-
-    $scope.$watch('displaymembers.inCompanionship', function () {
-        $scope.getData();
-    });
-
-
-    $scope.$on('insertNewMember', function (scopeDetails, data) {
-        //$scope.volunteersAndStudents.push(data.newMember);
-        //$scope.isDataLoaded++;
-        $scope.getData();
-    });
-
-    $scope.$on('updateMemberInGrid', function (scopeDetails, data) {
-        $scope.getData();
-        //var item = $filter('filter')($scope.volunteersAndStudents, { iPersonId: data.member.iPersonId }, true)[0];
-        //angular.extend(item, data.member);
-        //$scope.isDataLoaded++;
-    });
-
-    //$scope.$on('updateCompanionshipStatus', function (data) {
-    //    data.CompanionshipStatus = 
-    //    //var item = $filter('filter')($scope.volunteersAndStudents, { iPersonId: data.member.iPersonId }, true)[0];
-    //    //angular.extend(item, data.member);
-    //    //$scope.isDataLoaded++;
-    //});
-
-    $rootScope.$on('deleteList', function () {
-        $scope.listToSend = [];
-        $scope.haveSend = false
-    });
-
+	
     $scope.prepareData();
 }]);

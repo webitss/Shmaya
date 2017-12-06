@@ -65,6 +65,9 @@ namespace Service.Entities
 		[DataMember]
 		public int iWorkerType { get; set; }
 		[DataMember]
+		[NoSendToSQL]
+		public int nvWorkerType { get; set; }
+		[DataMember]
 		public int iBuyCryingDetector { get; set; }
 		[DataMember]
 		public double nSumPayment { get; set; }
@@ -97,9 +100,7 @@ namespace Service.Entities
                 return null;
             }
         }
-
-       
-
+		
         public static bool DeleteUser(int iUserId)
         {
             try
@@ -148,6 +149,25 @@ namespace Service.Entities
 				Log.ExceptionLog(ex.Message, "ResetUserPassword");
 				return -1;
 				//  "שליחת המייל נכשלה";
+			}
+		}
+		//database פונקצית שליפת כל המשתמשים מה 
+		//לפי פרמטר של סוג משתמש
+		public static List<User> GetUsers(int iUserType)
+		{
+			try
+			{
+				//data table שולף טבלה
+				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT", new SqlParameter("iUserType",iUserType)).Tables[0];
+				List<User> lUsers = new List<User>();
+				//פונקציה שהופכת את הטבלה לרשימה
+				lUsers = ObjectGenerator<User>.GeneratListFromDataRowCollection(dt.Rows);
+				return lUsers;
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "GetUsers");
+				return null;
 			}
 		}
 

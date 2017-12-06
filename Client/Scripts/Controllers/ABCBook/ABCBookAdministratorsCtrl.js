@@ -2,6 +2,7 @@
 companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 		$scope.newStudents = false;
+		$scope.addAdmin = false;
 		$scope.listToSend = [];
 
 		$scope.newMessage = { isOpen: false };
@@ -59,7 +60,7 @@ companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$
 			$scope.createNewCompanionship = { iPersonId: undefined };
 			$scope.type = undefined;
 			$scope.isDataLoaded = 0;
-			$scope.gridIdentity = 'volunteersAndStudents';
+			$scope.gridIdentity = 'ABCBookAdministrator';
 			$scope.columns = [
 				{
 					fieldName: 'iId',
@@ -77,17 +78,17 @@ companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$
 						$rootScope.$broadcast('showComment', { id: item.iPersonId });
 					},
 					sortStudents: function () {
-						$scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-						$scope.volunteersAndStudents = $filter('filter')($rootScope.volunteersAndStudents, { iVolunteerId: null });
+						$scope.ABCBookAdministrator = $rootScope.ABCBookAdministrator;
+						$scope.ABCBookAdministrator = $filter('filter')($rootScope.ABCBookAdministrator, { iVolunteerId: null });
 						$scope.isDataLoaded++;
 					},
 					sortVolunteers: function () {
-						$scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-						$scope.volunteersAndStudents = $filter('filter')($rootScope.volunteersAndStudents, { iStudentId: null });
+						$scope.ABCBookAdministrator = $rootScope.ABCBookAdministrator;
+						$scope.ABCBookAdministrator = $filter('filter')($rootScope.ABCBookAdministrator, { iStudentId: null });
 						$scope.isDataLoaded++;
 					},
 					showAll: function () {
-						$scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
+						$scope.ABCBookAdministrator = $rootScope.ABCBookAdministrator;
 						$scope.isDataLoaded++;
 					},
 					weight: 0.9,
@@ -131,21 +132,24 @@ companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$
 				},
 				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'ת.ז.', fieldName: 'iAge', weight: 0.5 },
-				{ title: 'כתובת', fieldName: 'nvAddress' },
-				{ title: 'טלפון', fieldName: 'nvPhoneNumber' },
-				{ title: 'טלפון נייד', fieldName: 'nvMobileNumber' },
+				{ title: 'ת.ז.', fieldName: 'nvID', weight: 0.5 },
+				{ title: 'כתובת', fieldName: 'nvAdress' },
+				{ title: 'טלפון', fieldName: 'nvPhoneNum' },
+				{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
 				{ title: 'מייל', fieldName: 'nvEmail' },
-				{ title: 'סוג עובד', fieldName: 'nvDepartmentName', weight: 0.8 }
+				{ title: 'סוג עובד', fieldName: 'nvWorkerType', weight: 0.8 }
 			];
-			//   $scope.getData();
+		    $scope.getData();
 
-			//$scope.calculateAge = function () {
-			//    if (!$scope.member) return;
-			//    var ageDifMs = Date.now() - $scope.member.dtDateBirth.getTime();
-			//    var ageDate = new Date(ageDifMs);
-			//    //$scope.member.iAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-			//};
+		
+		};
+		$scope.getData = function () {
+				connect.post(true, 'GetUsers',
+					{ iUserType: 1 },
+					function (result) {
+						$scope.ABCBookAdministrator = result;
+						$scope.isDataLoaded++;
+					});
 		};
 
 		$scope.messageList = function (person) {
@@ -186,20 +190,20 @@ companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$
 		};
 
 
-		$scope.getData = function () {
-			//$scope.newStudents = false;
-			connect.post(true, connect.functions.GetABCBook,
-				{
-					iUserId: $rootScope.user.iUserId,
-					iUserType: $rootScope.user.iUserType,
-					bInCompanionship: $scope.displaymembers.inCompanionship
-				},
-				function (result) {
-					$scope.volunteersAndStudents = result;
-					$rootScope.volunteersAndStudents = $scope.volunteersAndStudents;
-					$scope.isDataLoaded++;
-				});
-		};
+		//$scope.getData = function () {
+		//	//$scope.newStudents = false;
+		//	connect.post(true, connect.functions.GetABCBook,
+		//		{
+		//			iUserId: $rootScope.user.iUserId,
+		//			iUserType: $rootScope.user.iUserType,
+		//			bInCompanionship: $scope.displaymembers.inCompanionship
+		//		},
+		//		function (result) {
+		//			$scope.volunteersAndStudents = result;
+		//			$rootScope.volunteersAndStudents = $scope.volunteersAndStudents;
+		//			$scope.isDataLoaded++;
+		//		});
+		//};
 
 		$scope.details = {};
 
@@ -282,16 +286,8 @@ companionApp.controller('ABCBookAdministratorsCtrl', ['$scope', '$rootScope', '$
 		$scope.prepareData();
 		$scope.AddAdministrator = function ()
 		{
-			//companionApp.config(function ($routeProvider)
-			//{
-			//	$routeProvider
-			//		.when('/AddNewAdministrator',
-			//		{
-			//			templateUrl: 'Partials/Pages/ABCBook/AddNewAdministrator.html' + appVersionParameter,
-			//			controller: 'AddNewAdministratorCtrl'
-
-			//		})
-			//}
+			$scope.addAdmin = true;
+			$rootScope.$broadcast('displayDialog', { id: 'addAdmin' });
 			
 		}
 	}]);
