@@ -1,21 +1,41 @@
 ﻿<div class="container" ng-controller="OrdersCtrl">
-	<div>
-		<input type="button" class="pull-left" value="הזמנה חדשה" ng-click="addNewOrder()" />
-		<button class="btn btn-default pass btn-ayelet color-yellow exportToExcel pull-left" title="ייצוא לאקסל" ng-click="exportToExcel()">
-			<span class=""></span>
-		</button>
+	<wait></wait>
+	<div class="container">
+		<div class="row">
+			<div class="commands menu-klaly">
+
+				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+
+				<div class="nav pull-left">
+
+					<input type="button" class="pull-left" value="הזמנה חדשה" ng-click="addNewOrder()" />
+					<button class="btn btn-default pass btn-ayelet color-yellow exportToExcel pull-left" title="ייצוא לאקסל" ng-click="exportToExcel()">
+						<span class=""></span>
+					</button>
+					<button class="btn btn-default pass btn-ayelet color-yellow exportToExcel" title="ייצוא לאקסל" ng-click="exportToExcel()">
+						<span class=""></span>
+					</button>
+				</div>
+			</div>
+		</div>
 		<br /><br />
 		<div class="row">
 			<grid columns="columns"
-				  data="ordersList"
+				  data="OrdersList"
 				  class="color-gray"
 				  is-data-loaded="isDataLoaded"
 				  footer-text="הזמנות"
-				  row-class="{'highlight-row': item.bIsTodayConversation}"
 				  grid-identity="{{gridIdentity}}"></grid>
 		</div>
 
+
 		<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
+			<!--<div ng-repeat="order in OrdersList">
+				<create-dialog ng-if="order.dialogIsOpen" item="user" image="glyphicon glyphicon-user"
+							   title="{{order.iOrderId}}" id="{{item.iOrderId}}" cancel="true">
+					<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
+				</create-dialog>
+			</div>-->
 
 			<create-dialog ng-if="newOrder" id="newOrder" cancel="true">
 				<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'הזמנה חדשה'}}"-->
@@ -28,5 +48,6 @@
 					<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 			</div>
+		</div>
 	</div>
 </div>

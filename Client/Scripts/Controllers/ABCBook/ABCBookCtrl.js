@@ -110,15 +110,6 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				filter: false,
 				sort: false
 			},
-			{
-				title: 'מצב הקשר',
-				fieldName: 'nvCompanionshipStatus'
-			},
-			{
-				title: 'מצב הקשר',
-				fieldName: 'iCompanionshipStatusType',
-				type: 'hidden'
-			},
 			{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 			{ title: 'שם משפחה', fieldName: 'nvLastName' },
 			{ title: 'ת.ז.', fieldName: 'nvID', weight: 0.5 },

@@ -1,0 +1,32 @@
+﻿<!--<div class="container" ng-controller="OrdersCtrl">
+	<div>
+		<input type="button" class="pull-left" value="הזמנה חדשה" ng-click="addNewOrder()" />
+		<button class="btn btn-default pass btn-ayelet color-yellow exportToExcel pull-left" title="ייצוא לאקסל" ng-click="exportToExcel()">
+			<span class=""></span>
+		</button>
+		<br /><br />
+		<div class="row">
+			<grid columns="columns"
+				  data="ordersList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded"
+				  footer-text="הזמנות"
+				  row-class="{'highlight-row': item.bIsTodayConversation}"
+				  grid-identity="{{gridIdentity}}"></grid>
+		</div>
+
+		<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
+
+			<create-dialog ng-if="newOrder" id="newOrder" cancel="true">
+				image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'הזמנה חדשה'}}"
+				<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
+			</create-dialog>
+
+			<div ng-repeat="order in ordersList">
+				<create-dialog ng-if="order.dialogIsOpen" item="order" image=""
+							   title="{{order.}}" comment="{{notificationAlert}}" id="{{order.iOrderId}}" cancel="true">
+					<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
+				</create-dialog>
+			</div>
+	</div>
+</div>-->

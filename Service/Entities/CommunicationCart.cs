@@ -27,8 +27,8 @@ namespace Service.Entities
 				for (int i = 0; i < dt.Rows.Count; i++)
 				{
 					CommunicationCart communicationCart = new CommunicationCart();
-					communicationCart.iCommunicationCart = int.Parse(dt.Rows[i]["iPaymentId"].ToString());
-					communicationCart.nvCommunicationCart = dt.Rows[i]["nvPaymentType"].ToString();
+					communicationCart.iCommunicationCart = int.Parse(dt.Rows[i]["iCommunicationCart"].ToString());
+					communicationCart.nvCommunicationCart = dt.Rows[i]["nvCommunicationCart"].ToString();
 					communicationCart.nTariff = double.Parse(dt.Rows[i]["nTariff"].ToString());
 					lCommunicationCart.Add(communicationCart);
 				}

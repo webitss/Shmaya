@@ -520,6 +520,16 @@ namespace Service
 		{
 			return Product.GetProduct();
 		}
+		[OperationContract]
+		[WebInvoke(
+	   Method = "POST",
+	   UriTemplate = "GetEligibiltyTable",
+	   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	   ResponseFormat = WebMessageFormat.Json)]
+		public List<EligibiltyTable> GetEligibiltyTable()
+		{
+			return EligibiltyTable.GetEligibiltyTable();
+		}
 
 		[OperationContract]
 		[WebInvoke(
@@ -586,16 +596,28 @@ namespace Service
         {
             return All.GetAll(iUserId);
         }
-        #endregion
-
-        #region General
 
 
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetOrders",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Orders> GetOrders()
+		{
+			return Orders.GetOrders();
+		}
+		#endregion
 
-        #endregion
+		#region General
 
-        #region Settings
-        [OperationContract]
+
+
+		#endregion
+
+		#region Settings
+		[OperationContract]
         [WebInvoke(
            Method = "POST",
            UriTemplate = "InsertSysTableRow",

@@ -1,58 +1,116 @@
-// JavaScript source code
-"use strict"
-companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
-	//$scope.isDataLoaded = 0;
-	$scope.gridIdentity = 'ordersList';
-	$scope.columns = [
-		{
-			fieldName: 'iOrderId',
-			title: 'ςψιλδ',
-			template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
-			clickEvent: function (order) {
-				order.dialogIsOpen = true;
-				$rootScope.$broadcast('displayDialog', { id: order.iOrderId });
-			},
-			weight: 0.9,
-			filter: false,
-			sort: false
-		},
-		{
-			fieldName: 'iPersonId',
-			title: 'αιθεμ',
-			type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
-			template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAMember(item)\'></div>',
-			deleteAMember: function (item) {
-				$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
-				alerts.confirm('δΰν μαθμ δζξπδ ζε? ', alerts.titles.message, function () {
-					$scope.deleteMember(item);
-				}, function () {
+ο»Ώ'use strict'
+companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
+	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
+		
+		$scope.prepareData = function () {
+			$scope.isDataLoaded = 0;
+			$scope.gridIdentity = 'OrdersList';
+			$scope.columns = [
+				{
+					fieldName: 'iOrderId',
+					title: 'ΧΆΧ¨Χ™Χ›Χ”',
+					template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
+					clickEvent: function (order) {
+						order.dialogIsOpen = true;
+						$rootScope.$broadcast('displayDialog', { id: order.iOrderId });
+					},
+					weight: 0.9,
+					filter: false,
+					sort: false
+				},
+				{
+					fieldName: 'iPersonId',
+					title: 'ΧΧ—Χ™Χ§Χ”',
+					type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
+					template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAMember(item)\'></div>',
+					deleteAMember: function (item) {
+						$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
+						alerts.confirm('Χ”ΧΧ ΧΧ‘ΧΧ Χ”Χ–ΧΧ Χ” Χ–Χ•?', alerts.titles.message, function () {
+							$scope.deleteMember(item);
+						}, function () {
+						});
+					},
+					weight: 0.5,
+					filter: false,
+					sort: false
+				},
+				{ title: 'ΧΧ΅Χ¤Χ¨ Χ”Χ–ΧΧ Χ”', fieldName: 'iOrderId' },
+				{ title: 'Χ©Χ ΧΧ§Χ•Χ—', fieldName: 'nameCustomer' },
+				{ title: 'Χ©Χ ΧΧªΧ•Χ¨Χ’ΧΧ', fieldName: 'nameTranslator' },
+				{ title: 'Χ΅Χ•Χ’ Χ”Χ–ΧΧ Χ”', fieldName: 'typeOrder' },
+				{ title: 'Χ΅Χ•Χ’ ΧªΧ¨Χ’Χ•Χ', fieldName: 'typeTranslation' },
+				{ title: 'ΧΧ™Χ–Χ•Χ¨', fieldName: 'area' },
+				{ title: 'Χ›ΧªΧ•Χ‘Χª', fieldName: 'nvStreet' },
+				{ title: 'ΧªΧΧ¨Χ™Χ ΧªΧ¨Χ’Χ•Χ', fieldName: 'dtDateTraslation',type:'date' },
+				{ title: 'Χ©Χ™Χ•Χ ΧΧ—Χ•Χ“Χ©', fieldName: '' },
+				{ title: 'Χ–ΧΧ ΧªΧ¨Χ’Χ•Χ', fieldName: 'timeTranslation' },
+				{ title: 'Χ©ΧΆΧª Χ”ΧªΧ—ΧΧ”', fieldName: 'dtTimeBegin'},
+				{ title: 'ΧΧ©ΧªΧΧ© ΧΧ–Χ™Χ', fieldName: '' },
+			];
+			$scope.getData();
+
+
+		};
+		$scope.getData = function () {
+			connect.post(true, 'GetOrders', {},
+				function (result) {
+					$scope.OrdersList = result;
+					$scope.isDataLoaded++;
 				});
-			},
-			weight: 0.5,
-			filter: false,
-			sort: false
-		},
-		{ title: 'ξρτψ δζξπδ', fieldName: 'iOrderId' },
-		{ title: 'ων μχεη', fieldName: 'nvLastName' },
-		{ title: 'ων ξϊεψβξο', fieldName: 'iAge', weight: 0.5 },
-		{ title: 'ρεβ δζξπδ', fieldName: 'nvAddress' },
-		{ title: 'ρεβ ϊψβεν', fieldName: 'nvCityType' },
-		{ title: 'ΰιζεψ', fieldName: 'nvEmail' },
-		{ title: 'λϊεαϊ', fieldName: 'nvPhoneNumber' },
-		{ title: 'ϊΰψικ ϊψβεν', fieldName: 'nvMobileNumber' },
-		{ title: 'ωιεκ μηεγω', fieldName: 'nvDepartmentName', weight: 0.8 },
-		{ title: 'ζξο ϊψβεν', fieldName: 'nvStatusType' },
-		{ title: 'ωςϊ δϊημδ', fieldName: 'dtTimeBegin' },
-		{ title: 'ξωϊξω ξζιο', fieldName: 'nvAvailability' }
-	];
-	$scope.addNewOrder = function ()
-	{
-		$scope.name = "ΰμτεο";
-		$scope.newOrder = true;
-		$rootScope.$broadcast('displayDialog', { id: 'newOrder' });
-	}
-	
+		};
 
-}]);
+		$scope.AddNew = function (type) {
+			$scope.name = "ΧΧΧ¤Χ•Χ";
+			if (type == 1) {
+				$scope.selected = {
+					idVolunteer: -1,
+					idStudent: null
+				}
+			}
+			else if (type == 2)
+				$scope.selected = {
+					idStudent: -1,
+					idVolunteer: null
+				}
+			$scope.selected.newMember = true;
+			$rootScope.$broadcast('displayDialog', { id: 'editCustomer' });
+		}
 
+		$scope.EditCust = function () {
+			$scope.editCustomer = true;
+			$rootScope.$broadcast('displayDialog', { id: 'newMember' });
+		}
 
+		$scope.exportToExcel = function () {
+			$scope.$broadcast('exportToExcel', {
+				id: $scope.gridIdentity,
+				fileName: 'ΧΧΧ¤Χ•Χ'
+			});
+		};
+
+		$scope.deleteMember = function (item) {
+			$rootScope.delete = true;
+			connect.post(true, connect.functions.DeleteMember, { 'iPersonId': item.iPersonId, iUserId: $rootScope.user.iUserId }, function (result) {
+				if (result) {
+					//$scope.removeMember(item);
+					$scope.getData();
+				} else {
+					alert('error!');
+				}
+			});
+		}
+
+		$rootScope.$on('deleteList', function () {
+			$scope.listToSend = [];
+			$scope.haveSend = false
+		});
+
+		$scope.prepareData();
+		
+		$scope.addNewOrder = function () {
+			$scope.name = "ΧΧΧ¤Χ•Χ";
+			$scope.newOrder = true;
+			$rootScope.$broadcast('displayDialog', { id: 'newOrder' });
+		}
+
+	}]);

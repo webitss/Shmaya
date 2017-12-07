@@ -85,6 +85,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\EligibiltyTable.cs" />
     <Compile Include="Entities\Member.cs">
       <SubType>Code</SubType>
     </Compile>

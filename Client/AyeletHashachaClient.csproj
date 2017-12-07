@@ -99,6 +99,7 @@
     <Content Include="Partials\Pages\Messages\Messages.html" />
     <Content Include="Partials\Pages\Orders\AddNewOrder.html" />
     <Content Include="Partials\Pages\Orders\Orders.html" />
+    <Content Include="Partials\Pages\Orders\Orders1.html" />
     <Content Include="Partials\Pages\Orders\OrdersBoard.html" />
     <Content Include="Partials\Pages\Orders\OrdersTabs.html" />
     <Content Include="Partials\Pages\Reports\Reports.html" />
@@ -145,8 +146,9 @@
     <Content Include="Scripts\Controllers\MainExpandCtrl.js" />
     <Content Include="Scripts\Controllers\Messages\MessagesCtrl.js" />
     <Content Include="Scripts\Controllers\Orders\AddNewOrderCtrl.js" />
-    <Content Include="Scripts\Controllers\Orders\OrdersBoardCtrl.js" />
     <Content Include="Scripts\Controllers\Orders\OrdersCtrl.js" />
+    <Content Include="Scripts\Controllers\Orders\OrdersBoardCtrl.js" />
+    <Content Include="Scripts\Controllers\Orders\Orders1Ctrl.js" />
     <Content Include="Scripts\Controllers\Orders\OrdersTabsCtrl.js" />
     <Content Include="Scripts\Controllers\Reports\ReportsCtrl.js" />
     <Content Include="Scripts\Controllers\Reports\ReportsTabsCtrl.js" />
