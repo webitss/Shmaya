@@ -1,0 +1,625 @@
+
+
+/*directives- paging*/
+
+.grid-paging {
+}
+
+.dropdown-display-mode li {
+    padding: 5px 8px !important;
+}
+
+.grid-paging-right {
+    margin-left: 2px;
+}
+
+.grid-paging-left {
+    margin-right: 2px;
+}
+
+/*directives- dropdown*/
+
+.span-dropdown-value {
+    white-space: normal;
+}
+
+
+
+.btn-group .combo-left {
+    float: left;
+    text-align: left;
+}
+
+    .btn-group .combo-left .span-dropdown-value {
+        margin-right: 15px;
+        display: inline-block;
+    }
+
+.filter-input:not(.phone-prefix) .btn-group .combo-left .caret {
+    display: inline-block;
+}
+
+.btn-group .combo-left.combo-split .span-dropdown-value {
+    margin-right: 0;
+}
+
+.btn-group .combo-split .caret {
+    margin-top: 8px;
+    float: left;
+    padding-bottom: 8px;
+}
+
+.btn-group .combo-split .span-dropdown-value {
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown-template .dropdown-menu > li:first-child {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.dropdown-menu li .search-input {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.btn.display-btn {
+    padding: 4px;
+    width: auto;
+}
+
+.filter-input.dashboard-filter-with-display .btn.clear-btn {
+    width: 12%;
+}
+
+.filter-input.dashboard-filter-with-display .search-input {
+    width: 70%;
+}
+
+/*Date Picker*/
+
+
+.date-wrapper {
+    direction: rtl;
+    !important;
+    /*float: right; !important;*/
+    position: relative;
+}
+
+
+.date-default::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+
+
+.date-default {
+    border: none;
+    outline: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    margin-top: 2px;
+    /* padding-left: 5px; */
+}
+
+/*.date-default{*/
+/*border: none;*/
+/*outline: none;*/
+/*position:absolute;*/
+/*/*width:100%;*/
+/*top: 0;*/
+/*margin-top: 2px;*/
+/*/*visibility:hidden*/
+/*/*padding-left: 5px;*/
+/*}*/
+
+.date-override {
+    text-align: -webkit-left;
+    position: absolute;
+    width: calc(100% - 50px);
+    border: none;
+    outline: none;
+    margin-top: 1px;
+    height: 28px !important;
+    box-shadow: none;
+    top: 0;
+    /*padding-left: 5px;*/
+}
+
+    .date-override:focus {
+        box-shadow: none !important;
+        border-color: transparent !important;
+    }
+
+.invalid-date {
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+
+
+/*Date Picker END*/
+
+/*Calender style*/
+
+/**/
+
+
+.active-day-table {
+    left: 45%;
+    top: 7px;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border: #7ec0c4 1px solid;
+    border-radius: 50%;
+}
+
+    .active-day-table:focus {
+        border: #7ec0c4 1px solid !important;
+    }
+
+    .active-day-table.choose {
+        /*left: 48%;
+        top: 3px;
+        position: absolute;
+        height: 24px;
+        width: 24px;
+        border: #7ec0c4 1px solid;*/
+        background-color: #7ec0c4;
+        border-radius: 50%;
+    }
+
+
+
+    .active-day-table span {
+        margin-top: 6px;
+        margin-right: 4px;
+        display: block;
+        width: 19px;
+        height: 17px;
+        background: white;
+        -webkit-clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+        clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+    }
+
+.not-choose-day-table {
+    left: 48%;
+    top: 3px;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border: #7ec0c4 1px solid;
+    border-radius: 50%;
+}
+
+
+
+.choose-day {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-color: #7ec0c4;
+    border-radius: 50%;
+    vertical-align: bottom;
+    margin-left: 3px;
+}
+
+    .choose-day span {
+        margin-top: 6px;
+        margin-right: 4px;
+        display: block;
+        width: 19px;
+        height: 17px;
+        background: white;
+        -webkit-clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+        clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+    }
+
+.not-choose-day {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    border: #7ec0c4 1px solid;
+    border-radius: 50%;
+    vertical-align: bottom;
+    margin-left: 3px;
+}
+
+
+
+.time-in-table {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f4eff5;
+    right: 0;
+    height: 26px;
+    line-height: 32px;
+    text-align: center;
+    color: #404041;
+    font-weight: 600;
+}
+
+.month-div {
+    margin: 8px 0 0px 0;
+}
+
+.month-name {
+    display: inline-block;
+    width: 115px;
+    text-align: center;
+    color: #7ec0c4;
+}
+
+.month-div span {
+    font-weight: bold;
+    cursor: pointer;
+    height: 17px;
+    width: 12px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.chose-all {
+    float: left;
+    margin-left: 7px;
+}
+
+
+/**/
+
+.active-day-table {
+    left: 45%;
+    top: 7px;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border: #7ec0c4 1px solid;
+    border-radius: 50%;
+}
+
+    .active-day-table:focus {
+        border: #7ec0c4 1px solid !important;
+    }
+
+    .active-day-table.choose {
+        /*left: 48%;
+        top: 3px;
+        position: absolute;
+        height: 24px;
+        width: 24px;
+        border: #7ec0c4 1px solid;*/
+        background-color: #7ec0c4;
+        border-radius: 50%;
+    }
+
+
+
+    .active-day-table span {
+        margin-top: 6px;
+        margin-right: 4px;
+        display: block;
+        width: 19px;
+        height: 17px;
+        /*background: white;*/
+        /*-webkit-clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+        clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);*/
+    }
+
+    .active-day-table.choose span:after {
+        box-sizing: border-box;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        left: 7.66667px;
+        top: 3.22222px;
+        display: table;
+        width: 6.66667px;
+        height: 13.33333px;
+        border-width: 2px;
+        border-style: solid;
+        border-top: 0;
+        border-left: 0;
+        content: '';
+        border-color: rgba(255, 255, 255, 0.87);
+    }
+
+
+
+
+
+
+
+.not-choose-day-table {
+    left: 48%;
+    top: 3px;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border: #7ec0c4 1px solid;
+    border-radius: 50%;
+}
+
+
+
+.choose-day {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-color: #7ec0c4;
+    border-radius: 50%;
+    vertical-align: bottom;
+    margin-left: 3px;
+}
+
+    .choose-day span {
+        margin-top: 6px;
+        margin-right: 4px;
+        display: block;
+        width: 19px;
+        height: 17px;
+        background: white;
+        -webkit-clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+        clip-path: polygon(93% 0, 100% 0, 42% 76%, 11% 52%, 14% 48%, 40% 69%);
+    }
+
+.not-choose-day {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    border: #7ec0c4 1px solid;
+    border-radius: 50%;
+    vertical-align: bottom;
+    margin-left: 3px;
+}
+
+
+
+.time-in-table {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f4eff5;
+    right: 0;
+    height: 26px;
+    line-height: 32px;
+    text-align: center;
+    color: #404041;
+    font-weight: 600;
+}
+
+.month-div {
+    margin: 8px 0 0px 0;
+}
+
+.month-name {
+    display: inline-block;
+    width: 115px;
+    text-align: center;
+    color: #7ec0c4;
+}
+
+.month-div span {
+    font-weight: bold;
+    cursor: pointer;
+    height: 17px;
+    width: 12px;
+    display: inline-block;
+    text-align: center;
+}
+
+.month-hebrew-name {
+    text-align: center;
+}
+
+.month-hebrew-design {
+    margin-right: 24px;
+    margin-left: 10px;
+}
+
+.chose-all {
+    float: left;
+    margin-left: 7px;
+}
+
+    .chose-all .active-day-table {
+        display: inline-block;
+        vertical-align: bottom;
+        left: 18%;
+        top: -3px;
+    }
+
+
+.calendar_header {
+    margin-top: 10px;
+}
+
+.day_item {
+    width: calc(14% - 0px);
+    padding: 15px;
+    border: 1px solid rgb(88, 129, 63);
+    height: 29px;
+    line-height: 7px;
+    background-color: #58813f;
+    color: white;
+}
+
+.day_item_inner {
+    background-color: white;
+    color: #9e9e9f;
+    height: 115px;
+    position: relative;
+}
+
+.day_item_inner_small {
+    height: 35px;
+    cursor: pointer;
+}
+
+.day_item_inner_active {
+    background-color: rgba(60, 107, 118, 0.46);
+    color: white !important;
+}
+
+.day_item_inner_today {
+    border-color: #020303;
+}
+
+
+.job-status .day_item_inner {
+    font-size: 10px;
+    height: 43px;
+    margin-top: 0 !important;
+}
+
+.job-info .job-status .day_item_inner span {
+    font-size: 10px;
+}
+
+.job-info .job-status span {
+    font-size: 10px;
+}
+
+.job-status .time-in-table {
+    height: 16px;
+}
+
+    .job-status .time-in-table span {
+        display: block;
+        margin-top: -7px;
+        font-size: 8px !important;
+    }
+
+@media screen and (max-width: 1630px) {
+    .job-status .time-in-table span {
+        font-size: 7px !important;
+    }
+}
+
+
+.job-info .job-status div {
+    margin-top: 0px;
+}
+
+.hour-input {
+    display: inline-block;
+    width: calc(100% - 126px);
+}
+
+.day_item .hebrew-date {
+    /*margin-top: -8px;*/
+}
+
+    .day_item .hebrew-date.margin-t-6 {
+        font-weight: bold;
+        color: #1a7387;
+    }
+
+.day_item_other_month {
+    color: #d3d3d4;
+}
+
+    .day_item_other_month .active-day-table {
+        border: rgba(126, 192, 196, 0.5) 1px solid !important;
+    }
+
+        .day_item_other_month .active-day-table.choose {
+            background-color: rgba(126, 192, 196, 0.5);
+        }
+
+    .day_item_other_month .time-in-table {
+        color: #9e9e9f;
+    }
+
+.comment-message {
+    margin: 9px;
+    line-height: 15px;
+    color: #6f6f6f;
+}
+
+
+.bbtn {
+    margin-left: 9px;
+    margin-top: -5px;
+    color: #8dce64;
+}
+#calendar-directive
+{
+    margin-bottom:3%;
+}
+/*Calender End*/
+
+
+
+/*CreateDialogDir*/
+
+.modal-backdrop-min {
+    opacity: 1;
+}
+
+.dialog-directive .minimize-modal .modal {
+    top: inherit;
+    right: inherit;
+}
+
+.dialog-directive .modal-style {
+    /*overflow-y: auto;*/
+    /*display: block;*/
+    left: 0%;
+    height: 90%;
+    margin: 0 auto;
+}
+
+.dialog-comment {
+    float: left;
+    line-height: 20px;
+    font-size: 20px;
+    color: #d59500;
+    font-family: RUBIK-REGULAR;
+}
+
+.dialog-title {
+    margin-right: 10px;
+}
+
+.dialog-directive .modal-style-min {
+    top: inherit;
+    right: inherit;
+    float: left;
+    overflow: hidden !important;
+    position: initial;
+    /*bottom: 60px;*/
+    display: inline;
+    /*position:inherit;
+    bottom:0;*/
+    /*display: inline-block;    
+    padding: 0px !important;
+    margin: 0px;
+    position: static !important;*/
+}
+
+.dialog-directive .modal-header {
+    background-color: #606060;
+    height: 50px;
+    width: 100%;
+    color: white;
+}
+
+    .dialog-directive .modal-header .close {
+        color: white;
+    }
+
+.dialog-directive .modal-dialog {
+    width: 85%;
+    height: 100%;
+}
+
+.dialog-directive .modal-style-min .modal-dialog {
+    margin: 0;
+    width: 300px;
+}
+/*CreateDialogDir End*/

@@ -1,6 +1,6 @@
 ﻿"use strict"
 //var mainApp = angular.module('mainApp', ['ngAnimate', 'ngRoute', 'ngStorage', 'ui.bootstrap', 'fundoo.services', 'ngSanitize', 'angularFileUpload', 'ui.calendar', 'ngAutocomplete']);
-var companionApp = angular.module('companionApp', ['ngRoute', 'ngAnimate', 'ngAutocomplete', 'ui.bootstrap', 'fundoo.services']);
+var companionApp = angular.module('companionApp', ['ngRoute', 'ngAnimate', 'ngAutocomplete', 'ui.bootstrap', 'fundoo.services', 'angularFileUpload']);
 companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/', {
@@ -20,9 +20,9 @@ companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvi
 			templateUrl: 'Partials/Pages/Settings/SettingsTabs.html' + appVersionParameter,
 			controller: 'SettingTabsCtrl'
 		})
-		.when('/Messages/:whom', {
+		.when('/Messages', {
 			templateUrl: 'Partials/Pages/Messages/Messages.html' + appVersionParameter
-			//,controller: 'MessagesCtrl'
+			, controller: 'MessagesCtrl'
 		})
 		.when('/ReportsTabs', {
 			templateUrl: 'Partials/Pages/Reports/ReportsTabs.html' + appVersionParameter,
@@ -31,6 +31,14 @@ companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvi
 		.when('/OrdersTabs', {
 			templateUrl: 'Partials/Pages/Orders/OrdersTabs.html' + appVersionParameter,
 			controller: 'OrdersTabsCtrl'
+		})
+		//.when('/PdfToProviders/:iUserId/:dtBeginDate/:dtEndDate', {
+		//	controller: 'PdfToProvidersCtrl',
+		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
+		//})
+		.when('/PdfToProviders', {
+			controller: 'PdfToProvidersCtrl',
+			templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
 		});
 
 	//app.config(['$qProvider', function ($qProvider) {
@@ -59,7 +67,9 @@ companionApp.run(function ($rootScope, $location, connect, $timeout, $window) {
 	}, function (value, oldValue) {
 		$rootScope.isLogin = !!($location.$$url == '/Login' || $location.$$url == '/');
 		var currentURL = $location.$$absUrl;
-		if (currentURL != '/Login' && currentURL != '/') {
+		currentURL = currentURL.split('/');
+		currentURL = currentURL[currentURL.length - 1];
+		if (currentURL != 'Login' && currentURL != 'PdfToProviders' && currentURL != '/') {
 			if ($rootScope.user == null || $rootScope.user == undefined) {
 				var userJson = localStorage.getItem('AyeletHashacharCompanionship');
 				if (userJson != 'null' && userJson != null) {

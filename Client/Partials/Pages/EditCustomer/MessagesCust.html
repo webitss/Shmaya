@@ -1,0 +1,94 @@
+﻿
+	<div class="container phone-wrap-div" ng-controller="MessagesCustCtrl">
+		<!--<div class="container" ng-controller="ConversationsCtrl">-->
+
+		<br />
+		<div class="conversation-buttons">
+			<button type="button" ng-click="openNewMessage()" class="btn btn-default btn-ayelet color-yellow"> <!--ng-show="!bIsNewConversationOpen==true"-->
+				<div class="new-phone-btn"></div>
+				<span>הודעה חדשה</span>
+			</button>
+		</div>
+
+			<!--<button type="button" ng-click="saveConversation()" class="btn btn-default btn-ayelet color-yellow" ng-show="bIsNewConversationOpen==true">
+				<div class="save-btn-ayelet"></div>
+				<span>שמור</span>
+
+			</button>
+			<button type="button" ng-click="cancelConversation()" class="btn btn-default btn-ayelet color-yellow" ng-show="bIsNewConversationOpen==true">
+				<span>ביטול</span>
+				<span class="glyphicon glyphicon-erase"></span>
+			</button>
+		</div>
+		<br />
+		<!--החלק העליון- הנתונים האוטומטיים-->
+		<!--<div class="new-conversation" ng-hide="!bIsNewConversationOpen">
+			<div class="row new-con-title cancel-left-margin cancel-right-margin">
+				<span class="conversation-icon-b col-md-1 color-yellow color-text-white">
+					<span></span>
+				</span>
+				<div class="phone-info">
+					<span class="">
+						<b>תאריך שיחה: </b>
+						{{newConversation.dtCreateDate | date : 'dd-MM-yyyy'}}
+					</span>
+					<span><b>מקבל השיחה: </b>{{newConversation.nvCreateUser}}</span>
+					<span><b>נושא: </b>{{newConversation.nvSubject}}</span>
+					<span></span>
+				</div>
+			</div>
+			הבפנים
+			<form name="form.newConversationForm" class="padding-t-17" novalidate>
+				<div class="panel-default line-list-open ng-scope">
+
+
+					<div class="text-align-right big-text row">
+						<label class="col-md-1">נושא: </label>
+						<input name="nvSubject" class="form-control input-solid col-md-4" type="text" ng-model="newConversation.nvSubject" required />
+					</div>
+
+					<div class="text-align-right big-text row">
+						<label class="col-md-1">תוכן: </label>
+						<input name="nvComment" class="form-control input-solid col-md-4" type="text" ng-model="newConversation.nvComment" required />
+					</div>
+
+					<br />
+				</div>
+			</form>
+		</div>-->
+
+		<div>
+			<!--אקורדיון-->
+			<uib-accordion close-others="oneAtATime" class="list-ayelet">
+				<div uib-accordion-group class="panel-default pass list-ayelet-line" ng-repeat="Message1 in allMessages" is-open="Message1.isCollapse">
+					<!--כותרת האקורדיון-->
+					<uib-accordion-heading>
+						<span class="col-md conversation-icon" ng-class="{'green-background' : Message1.iVolunteerId, 'blue-background': Message1.iStudentId}">
+							<span class=""></span>
+						</span>
+						<div class="phone-info">
+							<span class="col-md conversation"><b>תאריך שליחה: </b>{{Message1.dtCreateDate | date: "dd-MM-yyyy"}}</span>
+							<span class="col-md conversation"><b>משתמש שולח: </b>{{Message1.nvCreateUser}}</span>
+							<span class="col-md conversation"><b>נושא: </b>{{Message1.nvSubject}}</span>
+							<!--<span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': isCollapse, 'glyphicon glyphicon-menu-right': !isCollapse}"></span>-->
+							<span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': Message1.isCollapse, 'glyphicon glyphicon-menu-left': !Message1.isCollapse}"></span>
+						</div>
+					</uib-accordion-heading>
+					<!--תוכן האקורדיון- ההרחבה-->
+					<div class="panel-default line-list-open">
+						<div class="text-align-right big-text row form-group" show-errors>
+							<label class="col-md-3">תוכן השיחה:</label>
+							<span class="col-md-7">{{Message1.nvComment}}</span>
+						</div>
+					</div>
+				</div>
+			</uib-accordion>
+		</div>
+
+		<div>
+			<create-dialog ng-if="newMessage1" id="newMessage1" cancel="true">
+				<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
+				<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter"></div>
+			</create-dialog>
+		</div>
+	</div>

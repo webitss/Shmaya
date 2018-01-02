@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMFront\201712310934</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Client.dll">
+      <publishTime>12/31/2017 09:36:18</publishTime>
+    </File>
+    <File Include="bin/Client.pdb">
+      <publishTime>12/31/2017 09:36:18</publishTime>
+    </File>
+    <File Include="ClassDiagram1.cd">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/excel-icon.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/logo[1].jpg">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/phone-plus.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/phone-under.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/save-icon.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/shmayaLogo.png">
+      <publishTime>12/05/2017 09:44:01</publishTime>
+    </File>
+    <File Include="Images/user-blue.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/user-green.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/user-white.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/v-command.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/webit_logo.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Images/x-command.png">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="index.html">
+      <publishTime>12/28/2017 15:08:11</publishTime>
+    </File>
+    <File Include="LICENSE/angular-animate.txt">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="LICENSE/LICENSE.txt">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Partials/Pages/ABCBook/ABCBook.html">
+      <publishTime>12/27/2017 11:55:08</publishTime>
+    </File>
+    <File Include="Partials/Pages/ABCBook/ABCBookDetailes.html">
+      <publishTime>12/17/2017 10:06:24</publishTime>
+    </File>
+    <File Include="Partials/Pages/ABCBook/ABCBookTabs.html">
+      <publishTime>12/12/2017 09:13:44</publishTime>
+    </File>
+    <File Include="Partials/Pages/Conversations.html">
+      <publishTime>12/19/2017 09:12:26</publishTime>
+    </File>
+    <File Include="Partials/Pages/EditCustomer/Connections.html">
+      <publishTime>12/27/2017 14:15:28</publishTime>
+    </File>
+    <File Include="Partials/Pages/EditCustomer/EditCustomer.html">
+      <publishTime>12/04/2017 14:55:45</publishTime>
+    </File>
+    <File Include="Partials/Pages/EditCustomer/MessagesCust.html">
+      <publishTime>12/26/2017 11:50:05</publishTime>
+    </File>
+    <File Include="Partials/Pages/EditCustomer/PrivateDetails.html">
+      <publishTime>12/27/2017 11:22:51</publishTime>
+    </File>
+    <File Include="Partials/Pages/EditCustomer/Refunds.html">
+      <publishTime>12/28/2017 15:43:43</publishTime>
+    </File>
+    <File Include="Partials/Pages/EditCustomer/Remarks.html">
+      <publishTime>12/19/2017 11:02:34</publishTime>
+    </File>
+    <File Include="Partials/Pages/Login.html">
+      <publishTime>12/05/2017 09:44:01</publishTime>
+    </File>
+    <File Include="Partials/Pages/menu/Header.html">
+      <publishTime>12/05/2017 09:44:01</publishTime>
+    </File>
+    <File Include="Partials/Pages/menu/Menu.html">
+      <publishTime>12/27/2017 13:11:49</publishTime>
+    </File>
+    <File Include="Partials/Pages/Messages/Messages.html">
+      <publishTime>12/28/2017 17:05:17</publishTime>
+    </File>
+    <File Include="Partials/Pages/Orders/AddNewOrder.html">
+      <publishTime>12/28/2017 12:02:34</publishTime>
+    </File>
+    <File Include="Partials/Pages/Orders/Orders.html">
+      <publishTime>12/31/2017 08:36:59</publishTime>
+    </File>
+    <File Include="Partials/Pages/Orders/OrdersBoard.html">
+      <publishTime>12/27/2017 10:20:16</publishTime>
+    </File>
+    <File Include="Partials/Pages/Orders/OrdersTabs.html">
+      <publishTime>12/04/2017 10:03:01</publishTime>
+    </File>
+    <File Include="Partials/Pages/Reports/Reports.html">
+      <publishTime>12/27/2017 13:59:49</publishTime>
+    </File>
+    <File Include="Partials/Pages/Reports/ReportsCustomer.html">
+      <publishTime>12/27/2017 14:01:52</publishTime>
+    </File>
+    <File Include="Partials/Pages/Reports/ReportsProduct.html">
+      <publishTime>12/27/2017 14:01:51</publishTime>
+    </File>
+    <File Include="Partials/Pages/Reports/ReportsTabs.html">
+      <publishTime>12/04/2017 17:36:27</publishTime>
+    </File>
+    <File Include="Partials/Pages/Settings/CommunicationBasket.html">
+      <publishTime>12/14/2017 12:11:52</publishTime>
+    </File>
+    <File Include="Partials/Pages/Settings/EligibilityTable.html">
+      <publishTime>12/14/2017 12:05:28</publishTime>
+    </File>
+    <File Include="Partials/Pages/Settings/Month.html">
+      <publishTime>12/24/2017 16:52:31</publishTime>
+    </File>
+    <File Include="Partials/Pages/Settings/Payments.html">
+      <publishTime>12/14/2017 12:29:54</publishTime>
+    </File>
+    <File Include="Partials/Pages/Settings/Products.html">
+      <publishTime>12/14/2017 11:06:17</publishTime>
+    </File>
+    <File Include="Partials/Pages/Settings/SettingsTabs.html">
+      <publishTime>12/05/2017 10:41:58</publishTime>
+    </File>
+    <File Include="Partials/Templates/AlertTemplate.html">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Partials/Templates/CalendarTemplate.html">
+      <publishTime>12/03/2017 16:13:35</publishTime>
+    </File>
+    <File Include="Partials/Templates/ConfirmTemplate.html">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Partials/Templates/CreateDialogTemplate.html">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Partials/Templates/CustomTemplate.html">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Partials/Templates/DischargeCompanionship.html">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Partials/Templates/DropdownTemplate.html">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Partials/Templates/FormDropdownTemplate.html">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Partials/Templates/GridPagingTemplate.html">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Partials/Templates/GridTemplate.html">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Partials/Templates/multiFormDropdownTemplate.html">
+      <publishTime>12/20/2017 15:32:57</publishTime>
+    </File>
+    <File Include="Partials/Templates/SearchTemplate.html">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Partials/Templates/TableCodeDetailsTemplate.html">
+      <publishTime>12/04/2017 10:02:51</publishTime>
+    </File>
+    <File Include="Scripts/app.js">
+      <publishTime>12/28/2017 15:29:19</publishTime>
+    </File>
+    <File Include="Scripts/Constant/CodeTablesId.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/ABCBook/ABCBookCtrl.js">
+      <publishTime>12/27/2017 11:55:08</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/ABCBook/ABCBookDetailesCtrl.js">
+      <publishTime>12/17/2017 10:06:24</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/ABCBook/ABCBookTabsCtrl.js">
+      <publishTime>12/28/2017 15:44:10</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Conversations/ConversationsCtrl.js">
+      <publishTime>12/19/2017 11:19:24</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/EditCustomer/ConnectionsCtrl.js">
+      <publishTime>12/28/2017 14:40:36</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/EditCustomer/EditCustomerCtrl.js">
+      <publishTime>12/28/2017 14:40:36</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/EditCustomer/MessagesCustCtrl.js">
+      <publishTime>12/26/2017 10:54:16</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/EditCustomer/PrivateDetailsCtrl.js">
+      <publishTime>12/27/2017 11:10:05</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/EditCustomer/RefundsCtrl.js">
+      <publishTime>12/28/2017 17:03:53</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/EditCustomer/RemarksCtrl.js">
+      <publishTime>12/19/2017 11:02:34</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/LoginCtrl.js">
+      <publishTime>12/04/2017 09:56:29</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Menu/HeaderCtrl.js">
+      <publishTime>12/03/2017 14:39:41</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Menu/MenuCtrl.js">
+      <publishTime>12/25/2017 15:47:56</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Messages/MessagesCtrl.js">
+      <publishTime>12/28/2017 17:03:53</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Orders/AddNewOrderCtrl.js">
+      <publishTime>12/28/2017 12:02:34</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Orders/OrdersBoardCtrl.js">
+      <publishTime>12/27/2017 10:14:29</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Orders/OrdersCtrl.js">
+      <publishTime>12/31/2017 09:34:46</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Orders/OrdersTabsCtrl.js">
+      <publishTime>12/28/2017 12:02:34</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Reports/ReportsCtrl.js">
+      <publishTime>12/27/2017 14:06:54</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Reports/ReportsCustomerCtrl.js">
+      <publishTime>12/27/2017 14:06:54</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Reports/ReportsProductCtrl.js">
+      <publishTime>12/27/2017 15:36:09</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Reports/ReportsTabsCtrl.js">
+      <publishTime>12/26/2017 16:53:07</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Settings/CommunicationBasketCtrl.js">
+      <publishTime>12/14/2017 12:19:48</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Settings/EligibilityTableCtrl.js">
+      <publishTime>12/14/2017 11:46:28</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Settings/MonthCtrl.js">
+      <publishTime>12/24/2017 17:36:02</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Settings/PaymentsCtrl.js">
+      <publishTime>12/14/2017 12:31:17</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Settings/ProductsCtrl.js">
+      <publishTime>12/14/2017 11:43:05</publishTime>
+    </File>
+    <File Include="Scripts/Controllers/Settings/SettingTabsCtrl.js">
+      <publishTime>12/24/2017 14:28:54</publishTime>
+    </File>
+    <File Include="Scripts/Directives/angular-file-upload.js">
+      <publishTime>12/28/2017 14:49:49</publishTime>
+    </File>
+    <File Include="Scripts/Directives/CalendarDirective.js">
+      <publishTime>12/27/2017 16:27:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/CreateDialogDir.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/DateRtl.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/DropdownDirective.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/FormDropdown.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/FormField.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Directives/FormValidation.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Directives/GooglePlacesDirective.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/GridDirective.js">
+      <publishTime>12/19/2017 12:34:09</publishTime>
+    </File>
+    <File Include="Scripts/Directives/GridPagingDirective.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/MultiFormDropdown.js">
+      <publishTime>12/20/2017 15:58:06</publishTime>
+    </File>
+    <File Include="Scripts/Directives/ngAutocomplete.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Directives/SearchDirective.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Directives/TooltipsTargetDirective.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Directives/WaitDirective.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Factories/Alerts.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Factories/changesAlert.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Factories/Connect.js">
+      <publishTime>12/31/2017 09:06:20</publishTime>
+    </File>
+    <File Include="Scripts/Factories/createDialogFactory.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Factories/ExcelFactory2.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Factories/ForceLogOut.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Factories/ScreenHeight.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Filters/Abs.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Filters/Floor.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Filters/HebrewDateFilter.js">
+      <publishTime>12/05/2017 16:44:03</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/angular-animate.min.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/angular-resource.min.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/angular-route.min.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/angular.min.js">
+      <publishTime>12/04/2017 10:06:06</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/bootstrap/js/bootstrap.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/bootstrap/js/bootstrap.min.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/bootstrap/js/npm.js">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/createDialog.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/fullcalendar.js">
+      <publishTime>12/04/2017 10:02:52</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/jquery-3.1.1.min.js">
+      <publishTime>12/04/2017 10:07:32</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/jquery-ui.min.js">
+      <publishTime>12/04/2017 10:07:32</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/jquery.flip.min.js">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/moment.min.js">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/ui-bootstrap-tpls-2.3.1.min.js">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Style/ayelet_hashachar-companionship.css">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Style/bootstrap-flipped.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap-flipped.min.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap-rtl.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap-rtl.min.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap-theme.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap-theme.min.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap-theme.min.css.map">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/bootstrap.min.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/directives-style.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/directives-style1.css">
+      <publishTime>12/03/2017 16:13:35</publishTime>
+    </File>
+    <File Include="Style/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/OFL.txt">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/RUBIK-LIGHT.TTF">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/RUBIK-MEDIUM.TTF">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/fonts/RUBIK-REGULAR.TTF">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/grid-style.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/jquery-ui.css">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Style/jquery-ui.min.css">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Style/jquery-ui.structure.css">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Style/jquery-ui.structure.min.css">
+      <publishTime>12/04/2017 10:02:53</publishTime>
+    </File>
+    <File Include="Style/jquery-ui.theme.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/jquery-ui.theme.min.css">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Style/package.json">
+      <publishTime>12/03/2017 09:02:05</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/31/2017 09:09:33</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

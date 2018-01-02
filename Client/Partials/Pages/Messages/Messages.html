@@ -1,111 +1,34 @@
 ﻿<div>
     <wait></wait>
     <div ng-controller="MessagesCtrl">
-        <form id="massegeForm" name="massegeForm" class="container container-message" ng-if="canSend">
+        <form id="massegeForm" name="massegeForm" class="container container-message" >
             <button type="submit" class="btn btn-default pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="massegeForm.$invalid" ng-click="sendMessage();$index = 0;">
                 <div class="glyphicon glyphicon-send color-text-white"></div>
                 <span class="color-text-white"> שלח הודעה</span>
             </button>
-
             <div class="clear"></div>
             <div class="line-in-message">
-                <span>סוג הודעה</span>
-
-                <div class="in-message-div">
-
-                    <div ng-class="classSMS" class="class1 chose-inline">
-                        <div class="outer-circle">
-                            <div ng-click="chageSendOption(1)" class="inner-circle">
-                            </div>
-                        </div>
-                        <span>SMS</span>
-                    </div>
-                    &nbsp&nbsp
-                    <div ng-class="classMail" class="chose-inline">
-                        <div class="outer-circle">
-                            <div ng-click="chageSendOption(2)" class="inner-circle">
-                            </div>
-                        </div>
-                        <span>מייל</span>
-                    </div>
-
-                </div>
+                <span>סוג הודעה</span><br />
+					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="1"> Mail<br />
+					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="2"> SMS<br>
             </div>
-
-            <div class="">
-                <div class="line-in-message">
-                    <span>אל</span>
-                    <div ng-if="(whom != '*' && whom != '#') || (whom == '#'  && toList.length == 1)" class="in-message-div">
-                        <form-field ng-if="mail==true" class=" form-field-message"  span-text=""> 
-                            <span> <strong>{{aMember.nvName}}</strong> &nbsp <u>{{aMember.nvEmail}}</u></span>
-                        </form-field>
-                        <form-field ng-if="sms==true" span-text="" class=" form-field-message">
-                            <span><strong>{{aMember.nvName}}</strong> &nbsp <u>{{aMember.nvMobileNumber}}</u></span>
-                        </form-field>
-                    </div>
-
-                    <div ng-if="whom == '*'" class="in-message-div">
-
-                        <div ng-class="classes[0]" class="chose-inline">
-                            <div class="outer-circle">
-                                <div ng-click="messageTo(0)" class="inner-circle">
-                                </div>
-                            </div>
-                            <span>מתנדבים</span>
-                        </div>
-                        <div ng-class="classes[1]" class="chose-inline">
-                            <div class="outer-circle">
-                                <div ng-click="messageTo(1)" class="inner-circle">
-                                </div>
-                            </div>
-                            <span>מתלמדים</span>
-                        </div>
-                        <div ng-if="iUser.iUserType == codeTablesId.permissionType.systemAdministrator || iUser.iUserType == codeTablesId.permissionType.departmentManager"
-                             ng-class="classes[2]" class="chose-inline">
-                            <div class="outer-circle">
-                                <div ng-click="messageTo(2)" class="inner-circle">
-                                </div>
-                            </div>
-                            <span>רכזים</span>
-                        </div>
-                        <div ng-class="classes[3]" class="chose-inline">
-                            <div class="outer-circle">
-                                <div ng-click="messageTo(3)" class="inner-circle">
-                                </div>
-                            </div>
-                            <span>הכל</span>
-                        </div>&nbsp&nbsp&nbsp
-                        <span ng-if="toList.length >= 0">נבחרו {{toList.length}}</span>
-                    </div>
-                    
-                    <div ng-if="(whom == '#'  && toList.length > 1)|| (whom == '*')" class="in-message-div in-message-ul-div">
-                        <ul ng-repeat="one in toList" class="in-message-ul">
-                            <li ng-if="mail==true" class="col-md-12">
-                                <strong>{{one.nvName}}</strong> &nbsp
-                                <u>{{one.nvEmail}}</u>
-                            </li>
-                            <li ng-if="sms==true" class=" col-md-12">
-                                <strong>{{one.nvName}}</strong> &nbsp
-                                <u>{{one.nvMobileNumber}}</u>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        
-            <div ng-if="mail==true" class="line-in-message ">
+			<div ng-show="newMessage1!=true&&newMessage2!=true">
+				<span>אל</span><br />
+				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="2"> לקוחות<br />
+				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="3"> נותני שירות<br />
+				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="1"> כולם<br>
+				<span>{{len}} נבחרו</span>
+			</div>
+            <div  class="line-in-message ">
                 <span>נושא</span>
 
                 <div class="in-message-div">
                     <input ng-model="messageToSend.nvSubject" />
                 </div>
             </div>
+
             <div class="line-in-message">
                 <span>*תוכן</span>
-
-                <!--<div ng-if="sms==true" class="in-message-div">
-                    <input required ng-model="messageToSend.nvMessage" />
-                </div>-->
 
                 <div class="in-message-div">
                     <textarea style="vertical-align: text-top; resize: none;" required ng-model="messageToSend.nvMessage" />
@@ -113,9 +36,9 @@
 
                 <div class="line-in-message">
                     <span></span>
-                    <div ng-if="sms==true" class="in-message-div">
+                    <div ng-if="typeSelect==2" class="in-message-div">
                         <section ng-if="messageToSend.nvMessage" class="sms-message-length">מספר תווים: <b>{{messageToSend.nvMessage.length}}</b></section>
-                        <section ng-if="sms==true" class="sms-message-length">כל 69 תווים בעברית נחשבים כהודעה, יש לשכתב את ההודעה בהתאם!</section>
+                        <section ng-if="typeSelect==2" class="sms-message-length">כל 69 תווים בעברית נחשבים כהודעה, יש לשכתב את ההודעה בהתאם!</section>
                     </div>
 
                 </div>
@@ -128,34 +51,45 @@
                 <span class="vertical-align-super">*מאת</span>
 
                 <div class="in-message-div row vertical-align-sub">
-                    <div ng-if="sms==true" class="col-md-4 ">
+                    <div ng-if="typeSelect==2" class="col-md-4 ">
                         <div class="row">
                             <div class="col-md"><span class="vertical-baseline-middle">מספר לחזרה</span></div>
 
                             <div class="col-md-10">
-                                <input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="user.nvDepartmentMobileNumber" />
+                                <input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
                             </div>
                         </div>
                     </div>
 
-                    <div ng-if="mail==true" class="col-md-6 ">
+                    <div ng-if="typeSelect==1" class="col-md-6 ">
                         <div class="row">
                             <div class="col-md "><span class="vertical-baseline-middle">מייל לתוצאות</span></div>
 
                             <div class="col-md-12">
-                                <input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="user.nvDepartmentEmail" />
+                                <input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
                             </div>
                         </div>
                     </div>
 
                 </div>
+				
             </div>
         </form>
+		<div ng-show="newMessage1!=true&&newMessage2!=true">
+			<form id="sumMassegeForm" name="sumMassegeForm" class="container container-message">
+				<span>מתאריך</span><input class="form-control" type="date" ng-model="dtStartDate" required />
+				<span>עד תאריך</span><input class="form-control" type="date" ng-model="dtEndDate" required />
+				<button type="submit" class="btn btn-default pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="sumMassegeForm.$invalid" ng-click="sendSumMessage()">
+					<div class="glyphicon glyphicon-send color-text-white"></div>
+					<span class="color-text-white"> שליחת הודעת סיכום חודשי</span>
+				</button>
+			</form>
+		</div>
 
         <div ng-if="!canSend" class="container">
             <br />
             <h5><b>{{messageCantSend}}</b></h5>
-        </div>
+        </div>-->
     </div>
 
 </div>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
@@ -42,5 +43,45 @@ namespace Service.Entities
 				return null;
 			}
 		}
+		public static int? EligibilityUpdate(EligibiltyTable eligibility, int iUserManagerId)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = new List<SqlParameter>(); //ObjectGenerator<EligibiltyTable>.GetSqlParametersFromObject(eligibility);
+				parameters.Add(new SqlParameter("iEntitlementTypeId", eligibility.iEntitlementTypeId));
+				parameters.Add(new SqlParameter("nvEntitlementType", eligibility.nvEntitlementType));
+				parameters.Add(new SqlParameter("nNumHours", eligibility.nNumHours));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TEntitlement_UPD", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "EligibilityUpdate");
+				return -1;
+			}
+		}
+
+		public static int? EligibilityInsert(EligibiltyTable eligibility, int iUserManagerId)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iEntitlementTypeId", eligibility.iEntitlementTypeId));
+				parameters.Add(new SqlParameter("nvEntitlementType", eligibility.nvEntitlementType));
+				parameters.Add(new SqlParameter("nNumHours", eligibility.nNumHours));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TEntitlement_INS", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "EligibilityInsert");
+				return -1;
+			}
+		}
 	}
+	
 }

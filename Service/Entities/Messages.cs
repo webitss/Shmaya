@@ -17,7 +17,8 @@ namespace Service.Entities
 	public class Messages
 	{
 		#region Members
-
+		[NoSendToSQL]
+		public int iUserId { get; set; }
 		[NoSendToSQL]
 		public int iMessageId { get; set; }
 		public string nvSubject { get; set; }
@@ -29,64 +30,49 @@ namespace Service.Entities
 
 		#region Functions
 
-		#region Mail
-
-		public static bool SendEmailToOne(Messages message)
+		public static bool SendEmailToOne( Messages message)
 		{
-
-			MailMessage mailMessage = new MailMessage();
-			mailMessage.From = new MailAddress(message.nvFrom);
-			mailMessage.To.Add(new MailAddress(message.nvTo));
-			mailMessage.Subject = message.nvSubject;
-			mailMessage.IsBodyHtml = true;
-			mailMessage.Body = message.nvMessage;
-			try
+			if (message.nvTo != null && message.nvTo != "")
 			{
-				using (SmtpClient smtpClient = new SmtpClient())
+				//reportDetails = new Reports { sFileName = "AttendanceReport", configKey = "AttendanceSheetPath", iMonth = iMonthId, iPersonId = item.iPersonId, iAfterSchoolId = -1, iCoordinatorId = -1 };
+				MailMessage mailMessage = new MailMessage();
+				//if (message.nvFrom == null)
+				//    mailMessage.From = new MailAddress("saram@webit-sys.com");//new MailAddress(message.nvMailFrom);//ConfigurationManager.AppSettings["mailFrom"].ToString());
+				//else
+				mailMessage.From = new MailAddress(message.nvFrom);
+				//mailMessage.From = new MailAddress(message.nvFrom);//ConfigurationManager.AppSettings["mailFrom"].ToString());
+				mailMessage.To.Add(new MailAddress(message.nvTo));
+				mailMessage.Subject = message.nvSubject;
+				mailMessage.Body = message.nvMessage;
+				try
 				{
-					smtpClient.Send(mailMessage);
-					return true;
+					using (SmtpClient smtpClient = new SmtpClient())
+					{
+						smtpClient.Send(mailMessage);
+					}
 				}
-			}
-			catch (Exception ex)
-			{
-				Log.ExceptionLog(ex.Message, "sendEmailToOne");
-				return false;
-			}
-			//try
-			//{
-			//    List<SqlParameter> parameters = new List<SqlParameter>() 
-			//        {
-			//            new SqlParameter("iUserId", iUserId) ,
-			//            new SqlParameter("iPersonId", member.iPersonId) ,
-			//            new SqlParameter("nvName", member.nvName) ,
-			//            new SqlParameter("nvEmail", member.nvEmail) 
-			//        };
-			//    parameters.AddRange(ObjectGenerator<Messages>.GetSqlParametersFromObject(message));
-			//    DataSet ds = SqlDataAccess.ExecuteDatasetSP("TMessages_INS", parameters);
-			//    return true;
-			//}
-			//catch (Exception ex)
-			//{
-			//    Log.ExceptionLog(ex.Message, "sendEmailToOne, DB");
-			//    return false;
-			//}
+				catch (Exception ex)
+				{
+					Log.ExceptionLog(ex.Message, "sendEmailToOne, nvEmail: " + message.nvTo);
+					return false;
+				}
 
+			}
+			return true;
 		}
 
-		public static bool SendEmailToGroup(List<All> lMember, Messages message, int iUserId)
+
+		public static bool SendEmailToGroup(List<User> lMember, Messages message, int iUserId)
 		{
 
 			MailMessage mailMessage = new MailMessage();
-			//if (message.nvFrom == null)
-			//    mailMessage.From = new MailAddress("saram@webit-sys.com");//new MailAddress(message.nvMailFrom);//ConfigurationManager.AppSettings["mailFrom"].ToString());
-			//else
 			mailMessage.From = new MailAddress(message.nvFrom);
 			mailMessage.Subject = message.nvSubject;
 			mailMessage.Body = message.nvMessage;
 			for (int i = 0; i < lMember.Count; i++)
 			{
 				if (lMember[i].nvEmail != null && lMember[i].nvEmail != "")
+					//To ליסט של כתובות מייל
 					mailMessage.To.Add(new MailAddress(lMember[i].nvEmail));
 			}
 			try
@@ -101,53 +87,39 @@ namespace Service.Entities
 				Log.ExceptionLog(ex.Message, "sendEmailToGroup, Email");
 				return false;
 			}
-			try
+			foreach (var item in lMember)
 			{
-				for (int i = 0; i < lMember.Count; i++)
-				{
-					List<SqlParameter> parameters = new List<SqlParameter>()
-						{
-							new SqlParameter("iUserId", iUserId) ,
-							new SqlParameter("iPersonId", lMember[i].iPersonId) ,
-							new SqlParameter("nvName", lMember[i].nvName),
-							new SqlParameter("nvEmail", lMember[i].nvEmail)
-						};
-					parameters.AddRange(ObjectGenerator<Messages>.GetSqlParametersFromObject(message));
-					DataSet ds = SqlDataAccess.ExecuteDatasetSP("TMessages_INS", parameters);
-				}
-				return true;
+				MessageCust messageCust = new MessageCust();
+				messageCust.iCreateUserId = iUserId;
+				messageCust.nvSubject = message.nvSubject;
+				messageCust.nvComment = message.nvMessage;
+				messageCust.iUserId = item.iUserId;
+				bool res = MessageCust.CreateNewMessage(messageCust);
+				if (!res)
+					return res;
 			}
-			catch (Exception ex)
-			{
-				Log.ExceptionLog(ex.Message, "sendEmailToGroup, DB");
-				return false;
-			}
+			return true;
 		}
 
-		#endregion
-
-		#region SMS
-
-		public static bool SendSMSToGroup(List<All> lMember, Messages message, int iUserId)
+		public static bool SendSMSToGroup(List<User> lMember, Messages message, int iUserId)
 		{
 			foreach (var member in lMember)
 			{
 				try
 				{
-					message.nvTo = member.nvMobileNumber;
+					message.nvTo = member.nvMobileNum;
 					SendSMSToOne(member, message, iUserId);
 				}
 				catch (Exception ex)
 				{
-					Log.ExceptionLog(ex.Message, "sendESMSToGroup, member:" + member.nvName + ", " + member.nvMobileNumber);
+					Log.ExceptionLog(ex.Message, "sendESMSToGroup, member:" + member.nvFullName + ", " + member.nvMobileNum);
 				}
 			}
 			return true;
 		}
 
-		public static string SendSMSToOne(All member, Messages message, int iUserId)
+		public static string SendSMSToOne(User member, Messages message, int iUserId)
 		{
-			//UpdateLog("SendSMS", "start", "");
 			StringBuilder sbXml = new StringBuilder();
 			sbXml.Append("<Inforu>");
 			sbXml.Append("<User>");
@@ -170,16 +142,14 @@ namespace Service.Entities
 			sbXml.Append("</Inforu>");
 			string strXML = HttpUtility.UrlEncode(sbXml.ToString(), System.Text.Encoding.UTF8);
 			string result = PostDataToURL("http://api.inforu.co.il/SendMessageXml.ashx", "InforuXML=" + strXML);
-			//UpdateLog("SendSMS", result, "");
-			List<SqlParameter> parameters = new List<SqlParameter>()
-						{
-							new SqlParameter("iUserId", iUserId) ,
-							new SqlParameter("iPersonId", member.iPersonId) ,
-							new SqlParameter("nvName", member.nvName),
-							new SqlParameter("nvMobileNumber",member.nvMobileNumber)
-						 };
-			parameters.AddRange(ObjectGenerator<Messages>.GetSqlParametersFromObject(message));
-			DataSet ds = SqlDataAccess.ExecuteDatasetSP("TMessages_INS", parameters);
+
+			MessageCust messageCust = new MessageCust();
+			messageCust.iCreateUserId = iUserId;
+			messageCust.nvSubject = message.nvSubject;
+			messageCust.nvComment = message.nvMessage;
+			messageCust.iUserId = member.iUserId;
+			bool res = MessageCust.CreateNewMessage(messageCust);
+
 			return result;
 		}
 
@@ -223,92 +193,8 @@ namespace Service.Entities
 				return szResult;
 			}
 		}
-
-		#endregion
-
+		
 		#endregion
 	}
-
-	public class All
-	{
-		#region Members
-
-		public int iId { get; set; }
-		public int iPersonId { get; set; }
-		public string nvName { get; set; }
-		public string nvEmail { get; set; }
-		public string nvMobileNumber { get; set; }
-		public bool bNotReceivingMessages { get; set; }
-		public int iGenderType { get; set; }
-
-		#endregion
-
-		#region Functions
-
-		public static List<All> GetAllVolunteers(int iUserId)
-		{
-			try
-			{
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TVolunteers_SLCT", new SqlParameter("iUserId", iUserId));
-				List<All> lVolunteers = new List<All>();
-				lVolunteers = ObjectGenerator<All>.GeneratListFromDataRowCollection(ds.Tables[0].Rows);
-				return lVolunteers;
-			}
-			catch (Exception ex)
-			{
-				Log.ExceptionLog(ex.Message, "GetAllVolunteers");
-				return null;
-			}
-		}
-
-		public static List<All> GetAllStudents(int iUserId)
-		{
-			try
-			{
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TStudents_SLCT", new SqlParameter("iUserId", iUserId));
-				List<All> lVolunteers = new List<All>();
-				lVolunteers = ObjectGenerator<All>.GeneratListFromDataRowCollection(ds.Tables[0].Rows);
-				return lVolunteers;
-			}
-			catch (Exception ex)
-			{
-				Log.ExceptionLog(ex.Message, "GetAllStudents");
-				return null;
-			}
-		}
-
-		public static List<All> GetAllCoordinators(int iUserId)
-		{
-			try
-			{
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TCoordinators_SLCT", new SqlParameter("iUserId", iUserId));
-				List<All> lVolunteers = new List<All>();
-				lVolunteers = ObjectGenerator<All>.GeneratListFromDataRowCollection(ds.Tables[0].Rows);
-				return lVolunteers;
-			}
-			catch (Exception ex)
-			{
-				Log.ExceptionLog(ex.Message, "GetAllCoordinators");
-				return null;
-			}
-		}
-
-		public static List<All> GetAll(int iUserId)
-		{
-			try
-			{
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TAll_SLCT", new SqlParameter("iUserId", iUserId));
-				List<All> lVolunteers = new List<All>();
-				lVolunteers = ObjectGenerator<All>.GeneratListFromDataRowCollection(ds.Tables[0].Rows);
-				return lVolunteers;
-			}
-			catch (Exception ex)
-			{
-				Log.ExceptionLog(ex.Message, "GetAll");
-				return null;
-			}
-		}
-
-		#endregion
-	}
+	
 }

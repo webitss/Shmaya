@@ -115,7 +115,8 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
                 case 'localhost':
                     //D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\AyeletHashacharService
                     //url = 'http://localhost:57982/AyeletHashachar/AyeletHashacharCompanionship/Service/';
-					url = "http://localhost:47964/";
+					url = "http://localhost:47963/";
+
                     //url = "http://localhost/AyeletService/"
                     break;
                 case '10.0.0.109':
@@ -125,14 +126,14 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
                     url = "http://ws.webit-track.com/AyeletHashacharService/";
                     break;
                 case 'qa.webit-track.com':
-                    url = "http://qa.webit-track.com/AyeletHashacharService/";
+                    url = "http://qa.webit-track.com/Service/";
                     break;
             }
             return url;
         },
 
         getFilesUrl: function () {
-            return connectObj.getServiceUrl() + 'PublicFiles/';
+            return connectObj.getServiceUrl() + 'Files/';
         },
 
         functions: {
@@ -148,7 +149,7 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
             GetExistingCompanionship: 'GetExistingCompanionship',
             GetCompanionshipConversations: 'GetCompanionshipConversations',
             UpdateCompanionshipStatus: 'UpdateCompanionshipStatus',
-            GetMember: 'GetMember',
+            //GetMember: 'GetMember',
             GetCities: 'GetCities',
             getSettings: 'getSettings',    
             GetMemberDetails: 'GetMemberDetails',

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
@@ -40,6 +41,45 @@ namespace Service.Entities
 			{
 				Log.ExceptionLog(ex.Message, "GetPayments");
 				return null;
+			}
+		}
+		public static int? PaymentUpdate(Payment payment, int iUserManagerId)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = new List<SqlParameter>(); 
+				parameters.Add(new SqlParameter("iPaymentId", payment.iPaymentId));
+				parameters.Add(new SqlParameter("nvPaymentType", payment.nvPaymentType));
+				parameters.Add(new SqlParameter("nTariff", payment.nTariff));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TPayment_UPD", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "PaymentUpdate");
+				return -1;
+			}
+		}
+
+		public static int? PaymentInsert(Payment payment, int iUserManagerId)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iPaymentId", payment.iPaymentId));
+				parameters.Add(new SqlParameter("nvPaymentType", payment.nvPaymentType));
+				parameters.Add(new SqlParameter("nTariff", payment.nTariff));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TPayment_INS", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "PaymentInsert");
+				return -1;
 			}
 		}
 

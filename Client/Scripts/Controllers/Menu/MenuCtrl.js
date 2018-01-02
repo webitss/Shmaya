@@ -17,7 +17,7 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
             },
             {
                 text: 'שליחת הודעות',
-                url: '/Messages/*'
+                url: '/Messages'
             },
             {
                 text: 'הגדרות',
@@ -26,7 +26,7 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
             {
                 text: 'דוחות',
                 url: '/ReportsTabs'
-            }
+			}
          ];
 
     $scope.notification = function (alert) {
@@ -36,7 +36,7 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
         }, 1500);
     };
 
-    $scope.navigate = function (page, index) {
+	$scope.navigate = function (page, index) {
         if (!$scope.tabs[index].url) return;
         $scope.index = index;
         $location.path(page);
@@ -49,7 +49,7 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
     //});
 
 
-    $scope.tabClick = function (tab, index) {
+	$scope.tabClick = function (tab, index) {
         if (!$scope.tabs[index].url) return;
         $scope.index = index;
         changesAlert.alert(function () {

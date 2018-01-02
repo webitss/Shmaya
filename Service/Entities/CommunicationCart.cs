@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
 namespace Service.Entities
 {
+	#region members
 	[DataContract]
 	public class CommunicationCart
 	{
@@ -17,6 +19,8 @@ namespace Service.Entities
 		public string nvCommunicationCart;
 		[DataMember]
 		public double nTariff;
+		#endregion
+	#region function
 		public static List<CommunicationCart> GetCommunicationCart()
 		{
 			try
@@ -42,5 +46,44 @@ namespace Service.Entities
 				return null;
 			}
 		}
+
+		public static int? CommunicationUpdate(CommunicationCart comm, int iUserManagerId)
+		{
+			try
+			{
+				List<SqlParameter> parameters = new List<SqlParameter>(); 
+				parameters.Add(new SqlParameter("iCommunicationCart", comm.iCommunicationCart));
+				parameters.Add(new SqlParameter("nvCommunicationCart", comm.nvCommunicationCart));
+				parameters.Add(new SqlParameter("nTariff", comm.nTariff));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TCommunication_UPD", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "CommunicationUpdate");
+				return -1;
+			}
+		}
+
+		public static int? CommunicationInsert(CommunicationCart comm, int iUserManagerId)
+		{
+			try
+			{
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iCommunicationCart", comm.iCommunicationCart));
+				parameters.Add(new SqlParameter("nvCommunicationCart", comm.nvCommunicationCart));
+				parameters.Add(new SqlParameter("nTariff", comm.nTariff));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TCommunication_INS", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "CommunicationInsert");
+				return -1;
+			}
+		}
 	}
+	#endregion
 }

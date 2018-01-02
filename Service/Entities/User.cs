@@ -12,17 +12,21 @@ using System.Configuration;
 
 namespace Service.Entities
 {
-    [DataContract]
-    public class User
-    {
+	[DataContract]
+	public class User
+	{
 		#region Members
 		[DataMember]
 		public int iUserId { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public string nvUserName { get; set; }
 		[DataMember]
 		public string nvPassword { get; set; }
 		[DataMember]
+		public string nvId { get; set; }
+		[DataMember]
+		[NoSendToSQL]
 		public int iUserRoleId { get; set; }
 		[DataMember]
 		public string nvEmail { get; set; }
@@ -30,8 +34,6 @@ namespace Service.Entities
 		public string nvLastName { get; set; }
 		[DataMember]
 		public string nvFirstName { get; set; }
-		[DataMember]
-		public string nvID { get; set; }
 		[DataMember]
 		public string nvAdress { get; set; }
 		[DataMember]
@@ -43,79 +45,124 @@ namespace Service.Entities
 		[DataMember]
 		public int iGenderId { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public double nBankHours { get; set; }
 		[DataMember]
-		public int iEntitlementTypeId { get; set; }
+		public int? iEntitlementTypeId { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public DateTime? dtResetHours { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public DateTime? dtResetCommunication { get; set; }
 		[DataMember]
 		public DateTime? dtBirthDate { get; set; }
 		[DataMember]
 		public bool isWorker { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public double nNumHours { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public int iCommunicationCart { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public int iCommunicationFee { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public double nBankCommunication { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public int iWorkerType { get; set; }
+
+
 		[DataMember]
 		[NoSendToSQL]
-		public string nvWorkerType { get; set; }
+
+
+
+
+		public string 
+			
+			
+			
+			nvWorkerType { get; set; }
+
 		[DataMember]
-		public int iBuyCryingDetector { get; set; }
+		[NoSendToSQL]
+		public int? iBuyCryingDetector { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public double nSumPayment { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public int iAreaId { get; set; }
-
+		[DataMember]
+		[NoSendToSQL]
+		public string nvEntitlementType { get; set; }
+		[NoSendToSQL]
+		[DataMember]
+		public List<int> lLanguage { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public List<int> lOrderType { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public int iLastModifyUserId { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvFullName { get; set; }
+		[NoSendToSQL]
+		[DataMember]
+		public string nvOrdersType { get; set; }
+		[NoSendToSQL]
+		[DataMember]
+		public string nvLanguage { get; set; }
+		[NoSendToSQL]
+		[DataMember]
+		public DateTime? dtCreateDate { get; set; }
 
 		#endregion
 
 		#region Methods
 		public static User Login(string nvUserName, string nvPassword)
-        {
-            try
-            {
-                SqlParameter[] param = {                                  
-                                        new SqlParameter("nvUserName",nvUserName), 
-                                        new SqlParameter("nvPassword",nvPassword)
-                                        };
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_Login", param);
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                {
-                    User user = ObjectGenerator<User>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
-                    return user;
-                }
-                return new User { iUserId = -1 };
-            }
-            catch (Exception ex)
-            {
-                Log.ExceptionLog(ex.Message, "Login");
-                return null;
-            }
-        }
-		
-        public static bool DeleteUser(int iUserId)
-        {
-            try
-            {
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_DLT", new List<SqlParameter>() {
-                new SqlParameter("iUserId",iUserId)
-                });
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Log.ExceptionLog(ex.Message, "DeleteUser");
-                return false;
-            }
-        }
+		{
+			try
+			{
+				SqlParameter[] param = {
+										new SqlParameter("nvUserName",nvUserName),
+										new SqlParameter("nvPassword",nvPassword)
+										};
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_Login", param);
+				if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+				{
+					User user = ObjectGenerator<User>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
+					return user;
+				}
+				return new User { iUserId = -1 };
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "Login");
+				return null;
+			}
+		}
+
+		public static bool DeleteUser(int iUserId)
+		{
+			try
+			{
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_DLT",
+				new SqlParameter("iUserId", iUserId)
+				);
+				return true;
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "DeleteUser");
+				return false;
+			}
+		}
 
 		public static int ResetUserPassword(string nvMail)
 		{
@@ -138,7 +185,7 @@ namespace Service.Entities
 						return -1;
 					//return "שליחת המייל נכשלה";
 					else
-						return 1;
+					return 1;
 					//    "הסיסמא נשלחה לכתובת מייל שהזנת";
 				}
 				return -2;
@@ -151,23 +198,99 @@ namespace Service.Entities
 				//  "שליחת המייל נכשלה";
 			}
 		}
-		//database פונקצית שליפת כל המשתמשים מה 
-		//לפי פרמטר של סוג משתמש
-		public static List<User> GetUsers(int iUserType)
+
+
+	public static List<User> GetUsers(int? iUserType)
+	{
+		try
+		{
+			//data set שולף אוסף של טבלאות
+			DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT", new SqlParameter("iUserType", iUserType));
+			
+			List<User> lUsers = new List<User>();
+			DataView dv;
+				//מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
+				foreach (DataRow dr in ds.Tables[0].Rows)
+				{
+					User user = new User();
+					//הפיכת כל יוזר לפריט בליסט
+					user = ObjectGenerator<User>.GeneratFromDataRow(dr);
+					//יצירת הטבלה השניה כדינאמית שמחזירה רק שורות התואמות לתנאי מסוים
+					dv = new DataView(ds.Tables[1],
+					 "iUserId = " + user.iUserId.ToString(),
+					 "", DataViewRowState.CurrentRows);
+					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
+					//user.lLanguage = ObjectGenerator<int>.GeneratListFromDataRowCollection(dv.ToTable().Rows);
+					user.lLanguage = new List<int>();
+					for (int j = 0; j < dv.Count; j++)
+					{
+						user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
+					}
+
+					dv = new DataView(ds.Tables[2],
+					 "iUserId = " + user.iUserId.ToString(),
+					 "", DataViewRowState.CurrentRows);
+					user.lOrderType = new List<int>();
+					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
+					for (int j = 0; j < dv.Count; j++)
+					{
+						user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
+					}
+
+					lUsers.Add(user);
+				}
+			return lUsers;
+		}
+		catch (Exception ex)
+		{
+			Log.ExceptionLog(ex.Message, "GetUsers");
+			return null;
+		}
+	}
+
+	public static int? UserUpdate(User user, int iUserManagerId)
 		{
 			try
 			{
-				//data table שולף טבלה
-				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT", new SqlParameter("iUserType",iUserType)).Tables[0];
-				List<User> lUsers = new List<User>();
-				//פונקציה שהופכת את הטבלה לרשימה
-				lUsers = ObjectGenerator<User>.GeneratListFromDataRowCollection(dt.Rows);
-				return lUsers;
+				List<SqlParameter> parameters = ObjectGenerator<User>.GetSqlParametersFromObject(user);
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList( user.lLanguage,"int", "lLanguage"));
+				parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lOrderType, "int", "lOrderType"));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("User_UPD", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
 			}
 			catch (Exception ex)
 			{
-				Log.ExceptionLog(ex.Message, "GetUsers");
-				return null;
+				Log.ExceptionLog(ex.Message, "UserUpdate");
+				return -1;
+			}
+		}
+
+		public static int? UserInsert(User user, int iUserManagerId, int userType)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = ObjectGenerator<User>.GetSqlParametersFromObject(user);
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				parameters.Add(new SqlParameter("userType", userType));
+				if (userType == 3)
+				{
+					parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lLanguage, "int", "lLanguage"));
+					parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lOrderType, "int", "lOrderType"));
+				}
+				if (userType == 1)
+				{
+					user.iEntitlementTypeId = null;
+				}
+			
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_INS", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "UserInsert");
+				return -1;
 			}
 		}
 

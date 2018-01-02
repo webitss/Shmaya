@@ -17,7 +17,6 @@ namespace Service.Entities
 		[DataMember]
 		public int iProductTypeId;
 		[DataMember]
-		[NoSendToSQL]
 		public string nvProductTypeId;
 		[DataMember]
 		public string nvPruductName;
@@ -46,6 +45,44 @@ namespace Service.Entities
 			{
 				Log.ExceptionLog(ex.Message, "GetProduct");
 				return null;
+			}
+		}
+		public static int? ProductUpdate(Product product, int iUserManagerId)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iProductId", product.iProductId));
+				parameters.Add(new SqlParameter("iProductTypeId", product.iProductTypeId));
+				parameters.Add(new SqlParameter("nvPruductName", product.nvPruductName));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TProduct_UPD", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "ProductUpdate");
+				return -1;
+			}
+		}
+
+		public static int? ProductInsert(Product product, int iUserManagerId)
+		{
+			try
+			{
+
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iProductTypeId", product.iProductTypeId));
+				parameters.Add(new SqlParameter("nvPruductName", product.nvPruductName));
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TProduct_INS", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "ProductUpdate");
+				return -1;
 			}
 		}
 	}

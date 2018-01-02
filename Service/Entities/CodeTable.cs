@@ -105,8 +105,8 @@ namespace Service.Entities
         #region Members
         [DataMember]
         public Dictionary<string, List<CodeTable>> dCodeTable { get; set; }
-        [DataMember]
-        public List<Year> years { get; set; }
+        //[DataMember]
+        //public List<Year> years { get; set; }
         #endregion
 
         #region Methods
@@ -121,7 +121,7 @@ namespace Service.Entities
                 for (int i = 0; i < 8; i++)
                     codeTableForStatisticsGoals.dCodeTable.Add
                         (ds.Tables[i++].Rows[0][0].ToString(), ObjectGenerator<CodeTable>.GeneratListFromDataRowCollection(ds.Tables[i].Rows));
-                codeTableForStatisticsGoals.years = ObjectGenerator<Year>.GeneratListFromDataRowCollection(ds.Tables[8].Rows);
+                //codeTableForStatisticsGoals.years = ObjectGenerator<Year>.GeneratListFromDataRowCollection(ds.Tables[8].Rows);
                 return codeTableForStatisticsGoals;
             }
 

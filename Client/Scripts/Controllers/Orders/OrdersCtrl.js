@@ -1,7 +1,7 @@
 ﻿'use strict'
 companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
-		
+		$scope.isEdit = false;
 		$scope.prepareData = function () {
 			$scope.isDataLoaded = 0;
 			$scope.gridIdentity = 'OrdersList';
@@ -11,28 +11,36 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 					title: 'עריכה',
 					template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (order) {
+						$scope.isEdit = true;
 						order.dialogIsOpen = true;
 						$rootScope.$broadcast('displayDialog', { id: order.iOrderId });
 					},
-					weight: 0.9,
+
+					weight: 0.5,
 					filter: false,
 					sort: false
 				},
 				{
-					fieldName: 'iPersonId',
-					title: 'מחיקה',
-					type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
-					template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAMember(item)\'></div>',
-					deleteAMember: function (item) {
-						$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
+					fieldName: 'iOrderId',
+					title: 'ביטול',
+					//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
+					template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAOrder(item)\'></div>',
+					deleteAOrder: function (item) {
+						//$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
 						alerts.confirm('האם לבטל הזמנה זו?', alerts.titles.message, function () {
-							$scope.deleteMember(item);
+							$scope.deleteOrder(item);
 						}, function () {
 						});
 					},
 					weight: 0.5,
 					filter: false,
 					sort: false
+			
+				},
+				{
+					title: 'סטאטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
+						alert("לשנות בשרת")
+					}
 				},
 				{ title: 'מספר הזמנה', fieldName: 'iOrderId' },
 				{ title: 'שם לקוח', fieldName: 'nameCustomer' },
@@ -41,11 +49,11 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'סוג תרגום', fieldName: 'typeTranslation' },
 				{ title: 'איזור', fieldName: 'area' },
 				{ title: 'כתובת', fieldName: 'nvStreet' },
-				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation',type:'date' },
-				{ title: 'שיוך לחודש', fieldName: '' },
-				{ title: 'זמן תרגום', fieldName: 'timeTranslation' },
-				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin'},
-				{ title: 'משתמש מזין', fieldName: '' },
+				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation',type:'date'},
+				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
+				{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation', type:'time'},
+				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin',type:'time'},
+				{ title: 'משתמש מזין', fieldName: 'nvCreateUserId' },
 			];
 			$scope.getData();
 
@@ -58,24 +66,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 					$scope.isDataLoaded++;
 				});
 		};
-
-		$scope.AddNew = function (type) {
-			$scope.name = "אלפון";
-			if (type == 1) {
-				$scope.selected = {
-					idVolunteer: -1,
-					idStudent: null
-				}
-			}
-			else if (type == 2)
-				$scope.selected = {
-					idStudent: -1,
-					idVolunteer: null
-				}
-			$scope.selected.newMember = true;
-			$rootScope.$broadcast('displayDialog', { id: 'editCustomer' });
-		}
-
+		
 		$scope.EditCust = function () {
 			$scope.editCustomer = true;
 			$rootScope.$broadcast('displayDialog', { id: 'newMember' });
@@ -84,21 +75,21 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 		$scope.exportToExcel = function () {
 			$scope.$broadcast('exportToExcel', {
 				id: $scope.gridIdentity,
-				fileName: 'אלפון'
+				fileName: 'הזמנות'
 			});
 		};
 
-		$scope.deleteMember = function (item) {
-			$rootScope.delete = true;
-			connect.post(true, connect.functions.DeleteMember, { 'iPersonId': item.iPersonId, iUserId: $rootScope.user.iUserId }, function (result) {
-				if (result) {
-					//$scope.removeMember(item);
-					$scope.getData();
-				} else {
-					alert('error!');
-				}
-			});
-		}
+		//$scope.deleteMember = function (item) {
+		//	$rootScope.delete = true;
+		//	connect.post(true, connect.functions.DeleteMember, { 'iPersonId': item.iPersonId, iUserId: $rootScope.user.iUserId }, function (result) {
+		//		if (result) {
+		//			//$scope.removeMember(item);
+		//			$scope.getData();
+		//		} else {
+		//			alert('error!');
+		//		}
+		//	});
+		//}
 
 		$rootScope.$on('deleteList', function () {
 			$scope.listToSend = [];
@@ -108,9 +99,21 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 		$scope.prepareData();
 		
 		$scope.addNewOrder = function () {
+			$scope.isEdit = false;
 			$scope.name = "אלפון";
 			$scope.newOrder = true;
 			$rootScope.$broadcast('displayDialog', { id: 'newOrder' });
+		}
+		$scope.deleteOrder = function (item) {
+			$rootScope.delete = true;
+			connect.post(true, "DeleteOrder", { 'iOrderId': item.iOrderId }, function (result) {
+				if (result) {
+					//$scope.removeMember(item);
+					$scope.getData();
+				} else {
+					alert('error!');
+				}
+			});
 		}
 
 	}]);

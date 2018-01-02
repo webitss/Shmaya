@@ -13,359 +13,6 @@ namespace Service
     [ServiceContract]
     public class Service
     {
-        //#region Department
-        //[OperationContract]
-        //[WebInvoke(
-        //   Method = "POST",
-        //   UriTemplate = "DepartmentInsert",
-        //   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-        //   ResponseFormat = WebMessageFormat.Json)]
-        //public bool DepartmentInsert(Department department, int iManageUserId)
-        //{
-        //    return Department.DepartmentInsert(department,iManageUserId);
-        //}
-
-        //#endregion
-
-        #region ABCBook
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetAMember",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int GetAMember(int iPersonId)
-        {
-            return Member.GetAMember(iPersonId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetABCBook",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<Member> GetABCBook(int iUserId, int iUserType, bool bInCompanionship)
-        {
-            return Member.GetABCBook(iUserId, iUserType, bInCompanionship);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetNewStudents",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        //int iUserId, int iUserType, bool bInCompanionship
-        public List<Member> GetNewStudents(int iCoordinatorId)
-        {
-            //iUserId, iUserType, bInCompanionship
-            return Member.GetNewStudents(iCoordinatorId);
-        }
-
-        //
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetMemberBySearchText",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public Member GetMemberBySearchText(string searchText, int iUserId)
-        {
-            return Member.GetMemberBySearchText(searchText, iUserId);
-        }
-        #endregion
-
-        #region Companionship
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "CreateNewCompanionship",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int? CreateNewCompanionship(Companionship companionship, int iUserId)
-        {
-            return Companionship.CreateNewCompanionship(companionship, iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetMatchingCompanionships",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<Member> GetMatchingCompanionships(int iPersonId)
-        {
-            return Member.GetMatchingCompanionships(iPersonId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetExistingCompanionship",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public Companionship GetExistingCompanionship(int? iStudentId, int? iVolunteerId)
-        {
-            return Companionship.GetExistingCompanionship(iStudentId, iVolunteerId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "UpdateCompanionshipStatus",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int UpdateCompanionshipStatus(int iCompanionshipId, int iStatusType, string nvDischargedComment, int iStudentStatus, int iVolunteerStatus, int iUserId)
-        {
-            return Companionship.UpdateCompanionshipStatus(iCompanionshipId, iStatusType,nvDischargedComment,iStudentStatus,iVolunteerStatus, iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "getCompanionshipsHistory",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<Companionship> getCompanionshipsHistory(int? iStudentId, int? iVolunteerId)
-        {
-            return Companionship.getCompanionshipsHistory(iStudentId, iVolunteerId);
-        }
-
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "companionshipChekExists",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int companionshipChekExists(int? iStudentId, int? iVolunteerId)
-        {
-            return Companionship.companionshipChekExists(iStudentId, iVolunteerId);
-        }
-
-        //[OperationContract]
-        //[WebInvoke(
-        //   Method = "POST",
-        //   UriTemplate = "GetCompanionshipConversations",
-        //   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-        //   ResponseFormat = WebMessageFormat.Json)]
-        //public List<Conversations> GetCompanionshipConversations(int iCompanionshipId)
-        //{
-        //    return Conversations.GetCompanionshipConversations(iCompanionshipId);
-        //}
-
-        //SetCompanionshipPositive
-        #endregion
-
-        #region Conversations
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetAllConversations",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<Conversations> GetAllConversations(int? iStudentId, int? iVolunteerId, int? iCompanionshipId)
-        {
-            return Conversations.GetAllConversations(iStudentId, iVolunteerId, iCompanionshipId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetConversation",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public Conversations GetConversation(int iConversationId)
-        {
-            return Conversations.GetConversation(iConversationId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "CreateNewConversation",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public bool CreateNewConversation(Conversations conversation, int iUserId)
-        {
-            return Conversations.CreateNewConversation(conversation, iUserId);
-        }
-        #endregion
-
-        #region NextConversation
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetNextConversation",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int GetNextConversation(int iCompanionshipId)
-        {
-            return NextConversation.GetNextConversation(iCompanionshipId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetNumDays",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<NextConversation> GetNumDays()
-        {
-            return NextConversation.GetNumDays();
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "SetNumDays",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public bool SetNumDays(NextConversation setting, int iUserId)
-        {
-            return NextConversation.SetNumDays(setting, iUserId);
-        }
-        //
-        #endregion
-
-        #region Member
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetMemberCodeTables",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public Dictionary<string, List<CodeTable>> GetMemberCodeTables(int iUserId)
-        {
-            return Member.GetMemberCodeTables(iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetMemberDetails",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public Member GetMemberDetails(int iPersonId)
-        {
-            return Member.GetMemberDetails(iPersonId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetMember",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public Member GetMember(int? iStudentId, int? iVolunteerId)
-        {
-            return Member.GetMember(iStudentId, iVolunteerId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "MemberInsertUpdate",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int? MemberInsertUpdate(Member member, int iUserId)
-        {
-            return Member.MemberInsertUpdate(member, iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "DeleteMember",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public bool DeleteMember(int iPersonId, int iUserId)
-        {
-            return Member.DeleteMember(iPersonId, iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "CheckMemberExist",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int CheckMemberExist(string nvMobileNumber)
-        {
-            return Member.CheckMemberExist(nvMobileNumber);
-        }
-
-        #endregion
-
-        //#region MemberSetting
-        ////[OperationContract]
-        ////[WebInvoke(
-        ////   Method = "POST",
-        ////   UriTemplate = "getSettings",
-        ////   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-        ////   ResponseFormat = WebMessageFormat.Json)]
-        ////public List<MemberSettings> getSettings()
-        ////{
-        ////    return MemberSettings.getSettings();
-        ////}
-        //#endregion
-
-        #region Department
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "checkDepartmentExists",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int checkDepartmentExists(string nvDepartmentName)
-        {
-            return Department.checkDepartmentExists(nvDepartmentName);
-        }
-        //checkDepartmentExists(string nvDepartmentName)
-
-        #endregion
-
-        #region Cities
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetCities",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<CodeTable> GetCities()
-        {
-            return CodeTable.GetCities();
-        }
-        #endregion
-
-        #region Coordinators
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetCoordinators",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        List<Coordinator> GetCoordinators(int iDepartmentId)
-        {
-            return Coordinator.GetCoordinators(iDepartmentId);
-
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetCoordinatorsCodeTable",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        Dictionary<string, List<CodeTable>> GetCoordinatorsCodeTable(int iDepartmentId)
-        {
-            return Coordinator.GetCoordinatorsCodeTable(iDepartmentId);
-        }
-		#endregion
 
 		#region User
 
@@ -375,12 +22,23 @@ namespace Service
 		   UriTemplate = "GetUsers",
 		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
 		   ResponseFormat = WebMessageFormat.Json)]
-		public List<User> GetUsers(int iUserType)
+		public List<User> GetUsers(int? iUserType)
 		{
 			return User.GetUsers(iUserType);
 		}
 
-		
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetUserCodeTables",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public Dictionary<string, List<CodeTable>> GetUserCodeTables(int iUserId)
+		{
+			return User.GetUserCodeTables(iUserId);
+		}
+
+
 
 		[OperationContract]
 		[WebInvoke(
@@ -416,16 +74,6 @@ namespace Service
         //    return UserDetailes.getUsers(iUserType);
         //}
 
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "getUser",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public UserDetailes GetUser(int iUserId)
-        {
-            return UserDetailes.GetUser(iUserId);
-        }
 
         [OperationContract]
         [WebInvoke(
@@ -438,41 +86,187 @@ namespace Service
             return User.DeleteUser(iUserId);
         }
 
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "UserInsertUpdate",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public bool UserInsertUpdate(UserDetailes newUser, int iManageUserId)
-        {
-            return UserDetailes.UserInsertUpdate(newUser, iManageUserId);
-        }
 
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "CheckUserNameExist",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public int CheckUserNameExist(string nvUserName)
-        {
-            return UserDetailes.CheckUserNameExist(nvUserName);
-        }
-        #endregion
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "UserInsert",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+			public int? UserInsert(User user, int iUserManagerId, int userType)
+			{
+				return User.UserInsert(user, iUserManagerId, userType);
+			}
 
-        #region Messages
+		//[OperationContract]
+		//[WebInvoke(
+		//   Method = "POST",
+		//   UriTemplate = "UserUpdate",
+		//   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		//   ResponseFormat = WebMessageFormat.Json)]
+		//public bool UserUpdate(UserDetailes newUser, int iManageUserId)
+		//{
+		//    return UserDetailes.UserUpdate(newUser, iManageUserId);
+		//}
 
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "SendEmailToOne",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public bool sendEmailToOne(Messages message)
-        {
-            return Messages.SendEmailToOne(message);
-        }
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "UserUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? UserUpdate(User user, int iUserManagerId)
+		{
+			return User.UserUpdate(user, iUserManagerId);
+		}
+		#endregion
+
+		#region Order
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetOrders",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Orders> GetOrders()
+		{
+			return Orders.GetOrders();
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetOrdersByUser",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Orders> GetOrdersByUser(int iUserId,int iUserType)
+		{
+			return Orders.GetOrdersByUser(iUserId, iUserType);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "DeleteOrder",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public bool DeleteOrder(int iOrderId)
+		{
+			return Orders.DeleteOrder(iOrderId);
+		}
+		[OperationContract]
+		[WebInvoke(
+	  Method = "POST",
+	  UriTemplate = "OrderUpdate",
+	  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	  ResponseFormat = WebMessageFormat.Json)]
+		public int? OrderUpdate(Orders order, int iUserManagerId)
+		{
+			return Orders.OrderUpdate(order, iUserManagerId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "OrderInsert",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? OrderInsert(Orders order, int iUserManagerId)
+		{
+			return Orders.OrderInsert(order, iUserManagerId);
+		}
+		#endregion
+
+		#region conversations
+		[OperationContract]
+		[WebInvoke(
+			   Method = "POST",
+			   UriTemplate = "GetConversations",
+			   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+			   ResponseFormat = WebMessageFormat.Json)]
+		public List<Conversations> GetConversations(int iUserId)
+		{
+			return Conversations.GetConversations(iUserId);
+		}
+
+		//[OperationContract]
+		//[WebInvoke(
+		// Method = "POST",
+		// UriTemplate = "ConversationInsert",
+		// BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		// ResponseFormat = WebMessageFormat.Json)]
+		//public int? ConversationInsert(Conversations conversation, int iCreateUserId, int iUserId)
+		//{
+		//	return Conversations.ConversationInsert(conversation, iCreateUserId, iUserId);
+		//}
+
+		//[OperationContract]
+		//[WebInvoke(
+		//   Method = "POST",
+		//   UriTemplate = "GetAllConversations",
+		//   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		//   ResponseFormat = WebMessageFormat.Json)]
+		//public List<Conversations> GetAllConversations(int iUserId)
+		//{
+		//    return Conversations.GetAllConversations(iUserId);
+		//}
+
+		//[OperationContract]
+		//[WebInvoke(
+		//   Method = "POST",
+		//   UriTemplate = "GetConversation",
+		//   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		//   ResponseFormat = WebMessageFormat.Json)]
+		//public Conversations GetConversation(int iConversationId)
+		//{
+		//    return Conversations.GetConversation(iConversationId);
+		//}
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "CreateNewConversation",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public bool CreateNewConversation(Conversations conversation/*, int iUserId*/)
+		{
+			return Conversations.CreateNewConversation(conversation/*, iUserId*/);
+		}
+
+		#endregion
+
+		#region Messages
+		[OperationContract]
+		[WebInvoke(
+			Method = "POST",
+			UriTemplate = "GetMessages",
+			BodyStyle = WebMessageBodyStyle.WrappedRequest,
+			ResponseFormat = WebMessageFormat.Json)]
+		public List<MessageCust> GetMessages(int iUserId)
+		{
+			return MessageCust.GetMessages(iUserId);
+		}
+		[OperationContract]
+		[WebInvoke(
+		Method = "POST",
+		UriTemplate = "CreateNewMessage",
+		BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		ResponseFormat = WebMessageFormat.Json)]
+		public bool CreateNewMessage(MessageCust message)
+		{
+			return MessageCust.CreateNewMessage(message);
+		}
+
+		//[OperationContract]
+  //      [WebInvoke(
+  //         Method = "POST",
+  //         UriTemplate = "SendEmailToOne",
+  //         BodyStyle = WebMessageBodyStyle.WrappedRequest,
+  //         ResponseFormat = WebMessageFormat.Json)]
+  //      public bool sendEmailToOne(Messages message,int iUserId)
+  //      {
+  //          return Messages.SendEmailToOne(message, iUserId);
+  //      }
 
         [OperationContract]
         [WebInvoke(
@@ -480,7 +274,7 @@ namespace Service
            UriTemplate = "SendEmailToGroup",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public bool sendEmailToGroup(List<All> lMember, Messages message, int iUserId)
+        public bool sendEmailToGroup(List<User> lMember, Messages message, int iUserId)
         {
             return Messages.SendEmailToGroup(lMember, message, iUserId);
         }
@@ -491,7 +285,7 @@ namespace Service
            UriTemplate = "SendSMSToOne",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public string SendSMSToOne(All member, Messages message, int iUserId)
+        public string SendSMSToOne(User member, Messages message, int iUserId)
         {
             return Messages.SendSMSToOne(member, message, iUserId);
         }
@@ -502,24 +296,27 @@ namespace Service
            UriTemplate = "SendSMSToGroup",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public bool SendSMSToGroup(List<All> lMember, Messages message, int iUserId)
+        public bool SendSMSToGroup(List<User> lMember, Messages message, int iUserId)
         {
             return Messages.SendSMSToGroup(lMember, message, iUserId);
         }
 
-		#endregion
-
-		#region All
 		[OperationContract]
 		[WebInvoke(
-		   Method = "POST",
-		   UriTemplate = "GetProduct",
-		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		   ResponseFormat = WebMessageFormat.Json)]
-		public List<Product> GetProduct()
+		  Method = "POST",
+		  UriTemplate = "SendSMSToGroup",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public static bool SendEmailToOne(Messages message)
 		{
-			return Product.GetProduct();
+			return Messages.SendEmailToOne(message);
 		}
+
+	
+
+		#endregion
+
+		#region Eligibility
 		[OperationContract]
 		[WebInvoke(
 	   Method = "POST",
@@ -530,6 +327,103 @@ namespace Service
 		{
 			return EligibiltyTable.GetEligibiltyTable();
 		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "EligibilityUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? EligibilityUpdate(EligibiltyTable eligibility, int iUserManagerId)
+		{
+			return EligibiltyTable.EligibilityUpdate(eligibility, iUserManagerId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+	  Method = "POST",
+	  UriTemplate = "EligibilityInsert",
+	  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	  ResponseFormat = WebMessageFormat.Json)]
+		public int? EligibilityInsert(EligibiltyTable eligibility, int iUserManagerId)
+		{
+			return EligibiltyTable.EligibilityInsert(eligibility, iUserManagerId);
+		}
+		#endregion
+
+		#region Payment
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetPayments",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Payment> GetPayments()
+		{
+			return Payment.GetPayments();
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "PaymentUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? PaymentUpdate(Payment payment, int iUserManagerId)
+		{
+			return Payment.PaymentUpdate(payment, iUserManagerId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+	  Method = "POST",
+	  UriTemplate = "PaymentInsert",
+	  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	  ResponseFormat = WebMessageFormat.Json)]
+		public int? PaymentInsert(Payment payment, int iUserManagerId)
+		{
+			return Payment.PaymentInsert(payment, iUserManagerId);
+		}
+
+		#endregion
+
+		#region Product
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetProduct",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Product> GetProduct()
+		{
+			return Product.GetProduct();
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "ProductUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? ProductUpdate(Product product, int iUserManagerId)
+		{
+			return Product.ProductUpdate(product, iUserManagerId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+			Method = "POST",
+			UriTemplate = "ProductInsert",
+			BodyStyle = WebMessageBodyStyle.WrappedRequest,
+			ResponseFormat = WebMessageFormat.Json)]
+		public int? ProductInsert(Product product, int iUserManagerId)
+		{
+			return Product.ProductInsert(product, iUserManagerId);
+		}
+		#endregion
+
+		#region Communication
 
 		[OperationContract]
 		[WebInvoke(
@@ -544,76 +438,159 @@ namespace Service
 
 		[OperationContract]
 		[WebInvoke(
-		   Method = "POST",
-		   UriTemplate = "GetPayments",
-		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		   ResponseFormat = WebMessageFormat.Json)]
-		public List<Payment> GetPayments()
+		  Method = "POST",
+		  UriTemplate = "CommunicationUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? CommunicationUpdate(CommunicationCart comm, int iUserManagerId)
 		{
-			return Payment.GetPayments();
+			return CommunicationCart.CommunicationUpdate(comm, iUserManagerId);
 		}
-
-		[OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetAllVolunteers",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<All> GetAllVolunteers(int iUserId)
-        {
-            return All.GetAllVolunteers(iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetAllStudents",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<All> GetAllStudents(int iUserId)
-        {
-            return All.GetAllStudents(iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetAllCoordinators",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<All> GetAllCoordinators(int iUserId)
-        {
-            return All.GetAllCoordinators(iUserId);
-        }
-
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetAll",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<All> GetAll(int iUserId)
-        {
-            return All.GetAll(iUserId);
-        }
 
 
 		[OperationContract]
 		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "CommunicationInsert",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? CommunicationInsert(CommunicationCart comm, int iUserManagerId)
+		{
+			return CommunicationCart.CommunicationInsert(comm, iUserManagerId);
+		}
+		#endregion
+		#region Refund
+
+		[OperationContract]
+		[WebInvoke(
 		   Method = "POST",
-		   UriTemplate = "GetOrders",
+		   UriTemplate = "GetRefunds",
 		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
 		   ResponseFormat = WebMessageFormat.Json)]
-		public List<Orders> GetOrders()
+		public List<Refund> GetRefunds(int iUserId)
 		{
-			return Orders.GetOrders();
+			return Refund.GetRefunds(iUserId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "RefundUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public string RefundUpdate(Refund refund, int iUserManagerId)
+		{
+			return Refund.RefundUpdate(refund, iUserManagerId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "RefundInsert",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? RefundInsert(Refund refund, int iUserManagerId,int iUserId)
+		{
+			return Refund.RefundInsert(refund, iUserManagerId, iUserId);
 		}
 		#endregion
 
-		#region General
+		#region Remark
 
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetRemarks",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Remark> GetRemarks(int iUserId)
+		{
+			return Remark.GetRemarks(iUserId);
+		}
 
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "CreateNewRemark",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public bool CreateNewRemark(Remark remark/*, int iUserId*/)
+		{
+			return Remark.CreateNewRemark(remark/*, iUserId*/);
+		}
+		#endregion
 
+		#region Month
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "MonthUpdate",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? MonthUpdate(int iMonthId,DateTime? dtGlobalDateBegin, DateTime? dtGlobalDateEnd, int iUserManagerId)
+		{
+			return Month.MonthUpdate(iMonthId,dtGlobalDateBegin, dtGlobalDateEnd, iUserManagerId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "MonthInsert",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? MonthInsert(int iMonthId,DateTime? dtGlobalDateBegin, DateTime? dtGlobalDateEnd, int iUserManagerId)
+		{
+			return Month.MonthInsert(iMonthId,dtGlobalDateBegin, dtGlobalDateEnd, iUserManagerId);
+		}
+		#endregion
+
+		#region Reports
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetReports",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Report> GetReports(int iMonthId, int iTypeOrder)
+		{
+			return Report.GetReports(iMonthId,iTypeOrder);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+		   Method = "POST",
+		   UriTemplate = "GetReportsCustomer",
+		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		   ResponseFormat = WebMessageFormat.Json)]
+		public List<Report> GetReportsCustomer(int iMonthId, int iTypeOrder)
+		{
+			return Report.GetReportsCustomer(iMonthId, iTypeOrder);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+	   Method = "POST",
+	   UriTemplate = "GetReportsProduct",
+	   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	   ResponseFormat = WebMessageFormat.Json)]
+		public List<Report> GetReportsProduct(int iMonthId)
+		{
+			return Report.GetReportsProduct(iMonthId);
+		}
+
+		[OperationContract]
+		[WebInvoke(
+	   Method = "POST",
+	   UriTemplate = "GetReportscryingDetector",
+	   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	   ResponseFormat = WebMessageFormat.Json)]
+		public List<Report> GetReportscryingDetector(int iMonthId)
+		{
+			return Report.GetReportscryingDetector(iMonthId);
+		}
+
+		
 		#endregion
 
 		#region Settings
@@ -673,6 +650,19 @@ namespace Service
         {
             return SysTableRow.GetSysTables();
         }
-        #endregion
-    }
+		#endregion
+
+		#region MessageToProvider
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "GetMessageToProvider",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public static List<MessageToProvider> GetMessageToProvider(int iUserId,DateTime? dtBeginDate,DateTime? dtEndDate)
+		{
+			return MessageToProvider.GetMessageToProvider(iUserId, dtBeginDate, dtEndDate);
+		}
+		#endregion
+	}
 }

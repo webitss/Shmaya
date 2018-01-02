@@ -1,50 +1,56 @@
 ﻿"use strict"
 companionApp.controller('ConnectionsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId',
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
-		$scope.gridIdentity = 'volunteersAndStudents';
-		$scope.columns = [
-			{
-				fieldName: 'iId',
-				title: 'עריכה',
-				titleTemplate: '</div>' +
-				'<div class="pass user-class-white-all" style="display: inline-block;" title="הצג הכל" ng-click="col.showAll()"></div>&nbsp' +
-				'<div class="pass user-class-blue" style="display: inline-block;" title="הצג מתלמדים" ng-click="col.sortStudents()"></div>&nbsp' +
-				'<div class="pass user-class-green" style="display: inline-block;" title="הצג מתנדבים" ng-click="col.sortVolunteers()"></div>' +
-				'</div>',
-				template: '<div class=\'pass user-class\'  ng-click=\'col.clickEvent(item)\' title="{{item.iStudentId?\'מתלמד\':\'מתנדב\'}}" ng-class="{\'user-class-blue\': item.iStudentId, \'user-class-green\': item.iVolunteerId}"></div>',
-				clickEvent: function (item) {
-					item.dialogIsOpen = true;
-					$scope.selected.nvDepartmentName = item.nvDepartmentName;
-					$rootScope.$broadcast('displayDialog', { id: item.iPersonId });
-					$rootScope.$broadcast('showComment', { id: item.iPersonId });
-				},
-				sortStudents: function () {
-					$scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-					$scope.volunteersAndStudents = $filter('filter')($rootScope.volunteersAndStudents, { iVolunteerId: null });
-					$scope.isDataLoaded++;
-				},
-				sortVolunteers: function () {
-					$scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-					$scope.volunteersAndStudents = $filter('filter')($rootScope.volunteersAndStudents, { iStudentId: null });
-					$scope.isDataLoaded++;
-				},
-				showAll: function () {
-					$scope.volunteersAndStudents = $rootScope.volunteersAndStudents;
-					$scope.isDataLoaded++;
-				},
-				weight: 0.9,
-				filter: false,
-				sort: false
-			},
-			{ title: 'סטטוס', fieldName: 'nvFirstName' },
-			{ title: 'מספר הזמנה', fieldName: 'nvLastName' },
-			{ title: 'שם מתורגמן', fieldName: 'iAge', weight: 0.5 },
-			{ title: 'סוג הזמנה', fieldName: 'nvAddress' },
-			{ title: 'סוג תרגום', fieldName: 'nvCityType' },
-			{ title: 'תאריך תרגום', fieldName: 'nvEmail' },
-			{ title: 'שיוך לחודש', fieldName: 'nvPhoneNumber' },
-			{ title: 'זמן תרגום', fieldName: 'nvMobileNumber' },
-			{ title: 'שעת התחלה', fieldName: 'nvMobileNumber' }
+		$scope.prepareData = function () {
+			if ($scope.showCustomer == true) {
+				$scope.userType = 2;
+				$scope.nameType = 'שם מתורגמן';
+				$scope.fieldType ='nameTranslator'
+			}
+			else
+			{ 
+				$scope.userType = 3;
+				$scope.nameType = 'שם לקוח';
+				$scope.fieldType = 'nameCustomer'
+			}
 
-		];
+			$scope.isDataLoaded = 0;
+			$scope.gridIdentity = 'ordersByUserList';
+			$scope.columns = [
+				{
+					fieldName: 'iUserId',
+					title: 'עריכה',
+					template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
+					clickEvent: function (order) {
+						order.dialogIsOpen = true;
+						$rootScope.$broadcast('displayDialog', { id: order.iOrderId });
+					},
+
+					weight: 0.5,
+					filter: false,
+					sort: false
+				},
+				{ title: 'סטטוס', fieldName: 'status' },
+				{ title: 'מספר הזמנה', fieldName: 'iOrderId', weight: 0.5 },
+				{ title: $scope.nameType, fieldName: $scope.fieldType },
+				{ title: 'סוג הזמנה', fieldName: 'typeOrder' },
+				{ title: 'סוג תרגום', fieldName: 'typeTranslation' },
+				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation' ,type:'date'},
+				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
+				{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation',type:'time' },
+				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin',type:'time' }
+
+			];
+			$scope.getData();
+			
+		};
+		$scope.getData = function () {
+			
+			connect.post(true, 'GetOrdersByUser', { iUserId: $scope.user.iUserId, iUserType: $scope.userType },
+				function (result) {
+					$scope.ordersByUserList = result;
+					$scope.isDataLoaded++;
+				});
+		};
+		$scope.prepareData();
 	}]);

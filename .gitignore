@@ -1,4 +1,5 @@
 *.csproj
+<<<<<<< HEAD
 
 *.pdb
 *.txt
@@ -9,3 +10,13 @@
 
 
 *.pdb
+=======
+*.dll
+*.pdb
+*.txt
+*.cache
+
+*.suo
+>>>>>>> dbe0b6c5db30400dd00596859a90f0bd5b1107ea
+Client/bin/Client.dll
+Client/bin/Client.pdb
