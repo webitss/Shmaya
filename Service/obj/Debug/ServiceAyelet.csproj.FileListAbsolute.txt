@@ -1,2 +1,0 @@
-D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\obj\Debug\Service.dll
-D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\obj\Debug\Service.pdb
