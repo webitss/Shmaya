@@ -1,15 +1,9 @@
 *.csproj
-
+*.pdb
+*.dll
 *.pdb
 *.txt
 *.cache
-
 *.suo
-
-*.dll
-
 Client/bin/Client.dll
 Client/bin/Client.pdb
-
-
-.vs
