@@ -21,13 +21,8 @@ companionApp.controller('PdfToProvidersCtrl', ['$scope', '$rootScope', '$timeout
 			$scope.columns2 = [
 				{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation' ,type:'time'},
 				{ title: 'סה"כ לתשלום', fieldName: 'nSumPayment' },
-				{ title: 'ת.ז.', fieldName: 'nvId' },
-				{ title: 'כתובת', fieldName: 'nvAdress' },
-				{ title: 'טלפון', fieldName: 'nvPhoneNum' },
-				{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
-				{ title: 'מייל', fieldName: 'nvEmail' },
-				{ title: 'סוג זכאות', fieldName: 'nvEntitlementType', weight: 0.8 },
-				{ title: 'בנק שעות', fieldName: 'nBankHours' }
+				{ title: 'תשלום שעה ראשונה', fieldName: 'nTariffToFirst' },
+				{ title: 'תשלום שעה שניה', fieldName: 'nTariffToSecond' }
 			];
 
 			$scope.getData1();
