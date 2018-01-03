@@ -1,0 +1,17 @@
+﻿<div class="divLogin">
+    <div id="menu-temp">
+        <div>
+            <div class="row main-menu menu-div">
+                <div ng-repeat="tab in tabs">
+                    <div class="col-md-2 col-sm-2 menu-item-padding" ng-style="{'width' : width}" ng-if="!tab.disabled">
+                        <div active="active"  class="menu-item-div pass-menu" ng-click="navigate(tab.url,$index)" tooltips-target info="{{!tab.url? 'בבניה. פרטים בקרוב!': ''}}" ng-class="{'tab-selected': $index == index}">
+                            <!--<div class="menu-item-div pass"  ng-click="tabClick(tab, $index)" tooltips-target ng-class="{'tab-selected': $index == index}">-->
+                            <label class="menu-item-div-one">{{tab.text}}</label>
+                            <label style="height:10px;"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

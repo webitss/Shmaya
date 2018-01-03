@@ -1,0 +1,115 @@
+﻿using GanimWS.Entities;
+using Service.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Web;
+
+namespace Service.Entities
+{
+	[DataContract]
+	public class Refund
+	{
+		#region members
+		[DataMember]
+		public int iRefundId { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string productType { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvPruductName { get; set; }
+		[DataMember]
+		public DateTime? dtPurchase { get; set; }
+		[DataMember]
+		public double nPayment { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public double nRefund { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public DateTime? dtCreateDate { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public int iCreatedByUserId { get; set; }
+		[DataMember]
+		public int iProductId { get; set; }
+		[DataMember]
+		public string iMonthId { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvMonthName { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvCreatedByUser { get; set; }
+		[DataMember]
+		public string nvDocPath { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvDocName { get; set; }
+
+
+		#endregion
+		#region functions
+		public static List<Refund> GetRefunds(int iUserId)
+		{
+			try
+			{
+				//data table שולף טבלה
+				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TRefunds_SLCT",new SqlParameter("iUserId",iUserId)).Tables[0];
+				List<Refund> lRefunds = new List<Refund>();
+				//פונקציה שהופכת את הטבלה לרשימה
+				lRefunds = ObjectGenerator<Refund>.GeneratListFromDataRowCollection(dt.Rows);
+				return lRefunds;
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "GetRefunds");
+				return null;
+			}
+		}
+
+		public static string RefundUpdate(Refund refund, int iUserManagerId)
+		{
+			try
+			{
+				refund.nvDocPath = new FileManageCtrl().SaveFile( refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1),iUserManagerId);
+
+				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TRefund_UPD", parameters);
+				return refund.nvDocPath.ToString();
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "RefundUpdate");
+				return null;
+			}
+		}
+
+		public static int? RefundInsert(Refund refund, int iUserManagerId,int iUserId)
+		{
+			try
+			{
+				refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+
+				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
+				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				parameters.Add(new SqlParameter("iUserId", iUserId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TRefund_INS", parameters);
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "RefundInsert");
+				return -1;
+			}
+		}
+		
+		#endregion
+
+	}
+}

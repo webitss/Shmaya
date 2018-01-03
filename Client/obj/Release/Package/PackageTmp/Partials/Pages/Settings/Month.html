@@ -1,0 +1,31 @@
+﻿<div ng-controller="MonthCtrl">
+	<div class="row margin-top-double">
+		<div class="pull-left col-md-6">
+			<div class="row">
+				<div class="col-md-10">
+					<button class="btn btn-default btn-ayelet color-yellow pull-left" ng-click="saveDate()">
+						<div class="save-btn-ayelet"></div>
+						<span>שמירה</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+		<form id="formOrder" name="formMonth" novalidate>
+			<div class="row">
+				<form-field span-text="בחר חודש" class="col-md-6">
+					<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required></form-dropdown>
+				</form-field>
+			</div>
+			<div class="row">
+				<form-field span-text="מתאריך" class="col-md-6">
+					<input class="form-control" type="date" ng-model="dtGlobalDateBegin" required />
+				</form-field>
+			</div>
+			<div class="row">
+				<form-field span-text="עד תאריך" class="col-md-6">
+					<input class="form-control" type="date" ng-model="dtGlobalDateEnd" required />
+				</form-field>
+			</div>
+</form>
+	</div>

@@ -1,0 +1,52 @@
+﻿<div class="container">
+	<wait></wait>
+
+	<style>
+		.gridRow.headerFilter {
+			display: none;
+		}
+		.gridBody {
+			height: inherit !important;
+			overflow: hidden;
+			border-left: 1px solid lightgray;
+			width: 100%;
+		}
+		.grid-paging {
+			display: none;
+		}
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="commands menu-klaly">
+				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+			</div>
+		</div>
+		<br /><br />
+		<div class="row">
+			<grid columns="columns"
+				  data="OrdersList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded"
+				  footer-text="הזמנות"
+				  grid-identity="{{gridIdentity}}"></grid>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="commands menu-klaly">
+				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>
+			</div>
+		</div>
+		<br /><br />
+		<div class="row">
+			<grid columns="columns2"
+				  data="CustomersList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded2"
+				  footer-text="לקוחות"
+				  grid-identity="{{gridIdentity2}}"
+				  show-all="true"></grid>
+		</div>
+	</div>
+</div>

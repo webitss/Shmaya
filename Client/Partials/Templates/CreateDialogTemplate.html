@@ -1,0 +1,22 @@
+﻿<div class="fade in modal-backdrop" ng-class="max ?'fade in modal-backdrop' :'modal-backdrop-min'" ng-if="ngIf" ng-click="$minModal()"></div>
+<!--!!!!-->
+<div class="dialog-directive">
+    <div class="{{modalClass}}" ng-if="ngIf" style="overflow-y: auto; display: block; left: 0%; margin: 0 auto" ng-class="{'modal-style-min' : max == false}">
+        <!--<div id="{{id}}" class="{{modalClass}} " ng-if="ngIf" style="overflow-y: auto; display: block; left: 0%; margin: 0 auto" ng-class="{'modal-style-min' : max == false}">-->
+        <div id="Div1" class="modal-style" ng-if="ngIf">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" id="closeDialog" class="close" ng-click="$modalCancel()">&times;</button> 
+                        <button type="button" id="Button1" class="close" ng-show="max" ng-click="$minModal()" style="margin-left: 16px; line-height: 16px">_ </button>
+                        <button type="button" id="Button2" class="close" ng-show="!max" ng-click="$maxModal()" style="margin-left: 16px; line-height: 1px">_</button>
+                        <span class="dialog-title">{{title}}</span>
+                        <span ng-class="image" class="pull-right"></span>&nbsp&nbsp&nbsp
+                        <span class="dialog-title dialog-comment">{{comment}}</span>
+                    </div>
+                    <div ng-show="max" class="modal-body" ng-transclude></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
