@@ -6,3 +6,4 @@
 *.cache
 *.suo
 Client/bin/Client.dll
+.vs
