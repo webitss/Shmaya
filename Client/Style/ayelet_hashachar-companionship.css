@@ -95,7 +95,7 @@ a {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #02BCE3;
+    border-bottom:1px solid #3b173c;
 }
 
     .nav-tabs > li.disabled > a {
@@ -103,15 +103,15 @@ a {
     }
 
     .nav-tabs > li > a {
-        border-color: #02BCE3;
+        border-color: #3b173c;
         border-radius: 0;
         background-color: white;
         margin-right: 0px;
     }
 
         .nav-tabs > li > a:hover {
-            border-color: #23859a;
-            background-color: #02bce3;
+            border-color: #5d3f5dba;
+            background-color: #3b173cde;
             color: white;
         }
 
@@ -330,10 +330,7 @@ input {
     background-color: lightyellow;
 }
 
-.color-yellow {
-    background: #5e005f;
-    border-color: #310131;
-}
+
 
 .color-sagol {
     background: #732699 !important;
@@ -341,7 +338,7 @@ input {
 }
 
     .color-sagol:hover {
-        background: #50166c!important;
+        background: #50166c !important;
         border-color: #4d207d;
     }
 
@@ -352,15 +349,19 @@ input {
 
     .color-blue:hover {
         /*AC2EAF*/
-        background-color: darkblue!important;
+        background-color: darkblue !important;
         border-color: #74842c;
     }
 
-
-.color-yellow:hover {
-    background: #49004a;
-    border-color: #350035;
+.color-yellow {
+    background: #792c7b;
+    border-color: #4d1c4e;
 }
+
+    .color-yellow:hover {
+        background: #5b215d;
+        border-color: #5a225d;
+    }
 
 .color-text-white {
     color: white !important;
@@ -382,13 +383,13 @@ input {
 }
 
 .color-grn {
-    background: #792c7b;
-    border-color: #4d1c4e;
+    background: #5e005f;
+    border-color: #310131;
 }
 
     .color-grn:hover {
-        background: #5b215d;
-        border-color: #5a225d;
+        background: #49004a;
+        border-color: #350035;
     }
 
 .color-gray {
@@ -858,7 +859,7 @@ menu-item-div-one:focus {
 
 .b-login {
     width: 100%;
-     background-color: #816c83;
+    background-color: #816c83;
     color: white;
 }
 
@@ -896,7 +897,7 @@ a-link {
     background: #f5f5f5;
 }
 
-.highlight-row, .highlight-row:hover{
+.highlight-row, .highlight-row:hover {
     /*background: #f7d9ee !important;*/
     background: #e3f6f7 !important;
 }
@@ -1479,8 +1480,8 @@ footer {
 }
 
 .modal-body {
-    height: calc(100% - 14px);
-    padding: 0;
+    /*height: calc(100% - 14px);
+    padding: 0;*/
 }
 
     .modal-body > div {

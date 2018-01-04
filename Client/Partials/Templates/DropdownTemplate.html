@@ -22,11 +22,11 @@
                                ng-click="$event.stopPropagation()" placeholder="חפש..."/>
                         <i class="fa fa-search fa-search-disabled"></i>
                     </span>
-                    <span ng-if="clearfilter" class="btn comment-btn clear-btn btn-default no-padding col-md" style="width: 12%"
+                    <span ng-if="clearfilter" class="btn comment-btn clear-btn  no-padding col-md" style="width: 12%"
                           ng-click="clearFilter()">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <span class="glyphicon glyphicon-remove"></span>
                     </span>
-                    <span ng-if="showsubmitbutton" class="btn comment-btn v-btn v-btn btn-default no-padding col-md" style="width: 12%"
+                    <span ng-if="showsubmitbutton" class="btn comment-btn v-btn v-btn  no-padding col-md" style="width: 12%"
                        ng-click="submitcallback()">
                             <img src="Images/v-command.png"/>
                     </span>

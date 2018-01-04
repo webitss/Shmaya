@@ -439,7 +439,7 @@
 }
 
 .day_item {
-    width: calc(14% - 0px);
+    width: calc(100% / 7);
     padding: 15px;
     border: 1px solid rgb(88, 129, 63);
     height: 29px;
