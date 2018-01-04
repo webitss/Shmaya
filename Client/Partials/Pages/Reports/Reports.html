@@ -1,19 +1,20 @@
 ﻿<div ng-controller="ReportsCtrl">
-	<div class="row">
-		<form id="formReport1" name="formReport1" novalidate>
+	<div  class="container container-message ">
+		<form id="formReport1" name="formReport1" novalidate >
 			<form-field span-text="בחר חודש" class="col-md-6">
 				<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required ng-change="prepareData();prepareData2();prepareData3()"></form-dropdown>
 			</form-field>
 		</form>
-		<button type="button" class="btn btn-default pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="exportToExcel()">
-			<div class="glyphicon glyphicon-list color-text-white"></div>
-			<span class="color-text-white">הפק דו"ח</span>
-		</button>
-		
+       
+            <button type="button" class="btn btn-default pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="exportToExcel()">
+                <div class="glyphicon glyphicon-list color-text-white"></div>
+                <span class="color-text-white">הפק דו"ח</span>
+            </button>
+
 	</div>
 	<div ng-show="1==2" >
 		<wait></wait>
-		<div class="container">
+	<div class="container container-message">
 			<div class="row">
 				<div class="commands menu-klaly">
 					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity1}}"></grid-pager>
@@ -30,8 +31,7 @@
 				</div>
 			</div>
 
-
-	<div class="container">
+	<div class="container container-message">
 		<div class="row">
 			<div class="commands menu-klaly">
 				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container container-message">
 		<div class="row">
 			<div class="commands menu-klaly">
 				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity3}}"></grid-pager>

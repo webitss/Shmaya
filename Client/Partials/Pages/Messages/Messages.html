@@ -8,17 +8,22 @@
             </button>
             <div class="clear"></div>
             <div class="line-in-message">
-                <span>סוג הודעה</span><br />
-					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="1"> Mail<br />
-					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="2"> SMS<br>
+                <span>סוג הודעה</span>
+					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="1" />
+                    <span>Mail</span>
+					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="2" />
+                    <span>SMS</span>
             </div>
-			<div ng-show="newMessage1!=true&&newMessage2!=true">
-				<span>אל</span><br />
-				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="2"> לקוחות<br />
-				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="3"> נותני שירות<br />
-				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="1"> כולם<br>
-				<span>{{len}} נבחרו</span>
-			</div>
+            <div ng-show="newMessage1!=true&&newMessage2!=true" class="line-in-message">
+                <span>אל</span>
+                <input type="radio" name="messageTo" ng-model="sendTo" ng-value="2" />
+                <span>לקוחות</span>
+                <input type="radio" name="messageTo" ng-model="sendTo" ng-value="3" />
+                <span>נותני שירות </span>
+                <input type="radio" name="messageTo" ng-model="sendTo" ng-value="1" />
+                <span>{{len}} כולם נבחרו</span>
+
+            </div>
             <div  class="line-in-message ">
                 <span>נושא</span>
 
