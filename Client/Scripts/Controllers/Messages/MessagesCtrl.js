@@ -83,10 +83,12 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	}
 	$scope.sendSumMessage = function ()
 	{
-		connect.post(true, 'SendSumMessage', { folderName: "sumMessage", url:"PdfToProviders ? iUserId=12&dtDateBegin=01-01-2017&dtDateEnd=01-01-08"},
+		connect.post(true, 'SendSumMessage', { folderName: "sumMessage", url:"PdfToProviders?iUserId=12&dtDateBegin=01-01-2017&dtDateEnd=01-01-08"},
 			function (result) {
-				if (result)
-					alert("succese");
+				if (result) {
+					console.log(result);
+					alert(result);
+				}
 				else
 					alert("not succese")
 			});

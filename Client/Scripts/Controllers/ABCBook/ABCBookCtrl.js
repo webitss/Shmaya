@@ -33,16 +33,6 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					sort: false
 				},
 				{
-					title: 'שליחת הודעה',
-					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
-					addMemberToMessage: function (item) {
-						$scope.messageList(item);
-					},
-					weight: 0.5,
-					filter: false,
-					sort: false
-				},
-				{
 					fieldName: 'iUserId',
 					title: 'מחיקה',
 					//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
@@ -52,6 +42,16 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 							$scope.deleteCustomer(item);
 						}, function () {
 						});
+					},
+					weight: 0.5,
+					filter: false,
+					sort: false
+				},
+				{
+					title: 'בחירה',
+					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+					addMemberToMessage: function (item) {
+						$scope.messageList(item);
 					},
 					weight: 0.5,
 					filter: false,
@@ -83,25 +83,25 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					sort: false
 				},
 				{
-					title: 'שליחת הודעה',
-					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
-					addMemberToMessage: function (item) {
-						$scope.messageList(item);
+					fieldName: 'iUserId',
+					title: 'מחיקה',
+					//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
+					template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteACustomer(item)\'></div>',
+					deleteACustomer: function (item) {
+						alerts.confirm('האם להפוך נותן שירות זה ללא פעיל? ', alerts.titles.message, function () {
+							$scope.deleteCustomer(item);
+						}, function () {
+						});
 					},
 					weight: 0.5,
 					filter: false,
 					sort: false
 				},
 				{
-					fieldName: 'iUserId',
-					title: 'מחיקה',
-					//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
-					template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteACustomer(item)\'></div>',
-					deleteACustomer: function (item) {
-						alerts.confirm('האם להפוך לקוח זה ללא פעיל? ', alerts.titles.message, function () {
-							$scope.deleteCustomer(item);
-						}, function () {
-						});
+					title: 'בחירה',
+					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+					addMemberToMessage: function (item) {
+						$scope.messageList(item);
 					},
 					weight: 0.5,
 					filter: false,
@@ -135,25 +135,25 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 						sort: false
 					},
 					{
-						title: 'שליחת הודעה',
-						template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
-						addMemberToMessage: function (item) {
-							$scope.messageList(item);
+						fieldName: 'iUserId',
+						title: 'מחיקה',
+						//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
+						template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAAdministrator(item)\'></div>',
+						deleteAAdministrator: function (item) {
+							alerts.confirm('האם להפוך מנהל זה ללא פעיל? ', alerts.titles.message, function () {
+								$scope.deleteAdministrator(item);
+							}, function () {
+							});
 						},
 						weight: 0.5,
 						filter: false,
 						sort: false
 					},
 					{
-						fieldName: 'iUserId',
-						title: 'מחיקה',
-						//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
-						template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAAdministrator(item)\'></div>',
-						deleteAAdministrator: function (item) {
-							alerts.confirm('האם להפוך לקוח זה ללא פעיל? ', alerts.titles.message, function () {
-								$scope.deleteAdministrator(item);
-							}, function () {
-							});
+						title: 'בחירה',
+						template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+						addMemberToMessage: function (item) {
+							$scope.messageList(item);
 						},
 						weight: 0.5,
 						filter: false,

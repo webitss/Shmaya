@@ -168,7 +168,7 @@ namespace GanimWS.Entities
 				var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
 				sFileName = "דוח שעות" + sFileName;
 				File.WriteAllBytes(System.Configuration.ConfigurationManager.AppSettings["ReportFiles"] + folderName + sFileName + ".pdf", pdfBytes);
-				return sFileName;
+				return filePath;
 			}
 			catch (Exception ex)
 			{
