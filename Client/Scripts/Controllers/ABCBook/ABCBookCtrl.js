@@ -22,7 +22,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{
 					fieldName: 'iUserId',
 					title: 'עריכה',
-					template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user) {
 						$scope.isEdit = true;
 						user.dialogIsOpen = true;
@@ -72,7 +72,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{
 					fieldName: 'iUserId',
 					title: 'עריכה',
-					template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user) {
 						$scope.isEdit = true;
 						user.dialogIsOpen = true;
@@ -124,7 +124,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					{
 						fieldName: 'iUserId',
 						title: 'עריכה',
-						template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                        template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 						clickEvent: function (user) {
 							$scope.isEdit = true;
 							user.dialogIsOpen = true;
@@ -161,12 +161,12 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					},
 					{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
-					{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.5 },
+					{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.7 },
 					{ title: 'כתובת', fieldName: 'nvAdress' },
 					{ title: 'טלפון', fieldName: 'nvPhoneNum' },
-					{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
-					{ title: 'מייל', fieldName: 'nvEmail' },
-					{ title: 'סוג עובד', fieldName: 'nvWorkerType', weight: 0.8 }
+                    { title: 'טלפון נייד', fieldName: 'nvMobileNum'  ,weight: 0.7 },
+                    { title: 'מייל', fieldName: 'nvEmail', weight: 1.2 },
+					{ title: 'סוג עובד', fieldName: 'nvWorkerType', weight: 0.7 }
 				];
 		};
 
