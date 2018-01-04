@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6A437DFF-3AC8-4CD8-AE66-1C70D11DC952}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Client</RootNamespace>
+    <AssemblyName>Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\excel-icon.png" />
+    <Content Include="Images\logo[1].jpg" />
+    <Content Include="Images\phone-plus.png" />
+    <Content Include="Images\phone-under.png" />
+    <Content Include="Images\save-icon.png" />
+    <Content Include="Images\shmayaLogo.png" />
+    <Content Include="Images\user-blue.png" />
+    <Content Include="Images\user-green.png" />
+    <Content Include="Images\user-white.png" />
+    <Content Include="Images\v-command.png" />
+    <Content Include="Images\webit_logo.png" />
+    <Content Include="Images\x-command.png" />
+    <Content Include="LICENSE\angular-animate.txt" />
+    <Content Include="Partials\Pages\ABCBook\ABCBook.html" />
+    <Content Include="Partials\Pages\ABCBook\ABCBookDetailes.html" />
+    <Content Include="Partials\Pages\ABCBook\ABCBookTabs.html" />
+    <Content Include="Partials\Pages\EditCustomer\EditCustomer.html" />
+    <Content Include="Partials\Pages\Conversations.html" />
+    <Content Include="Partials\Pages\EditCustomer\Connections.html" />
+    <Content Include="Partials\Pages\EditCustomer\MessagesCust.html" />
+    <Content Include="Partials\Pages\EditCustomer\PrivateDetails.html" />
+    <Content Include="Partials\Pages\EditCustomer\Refunds.html" />
+    <Content Include="Partials\Pages\EditCustomer\Remarks.html" />
+    <Content Include="Partials\Pages\Messages\Messages.html" />
+    <Content Include="Partials\Pages\Messages\PdfToProviders.html" />
+    <Content Include="Partials\Pages\Orders\AddNewOrder.html" />
+    <Content Include="Partials\Pages\Orders\Orders.html" />
+    <Content Include="Partials\Pages\Orders\OrdersBoard.html" />
+    <Content Include="Partials\Pages\Orders\OrdersTabs.html" />
+    <Content Include="Partials\Pages\Reports\Reports.html" />
+    <Content Include="Partials\Pages\Reports\ReportsCustomer.html" />
+    <Content Include="Partials\Pages\Reports\ReportsProduct.html" />
+    <Content Include="Partials\Pages\Reports\ReportsTabs.html" />
+    <Content Include="Partials\Pages\Settings\CommunicationBasket.html" />
+    <Content Include="Partials\Pages\Settings\EligibilityTable.html" />
+    <Content Include="Partials\Pages\Settings\Month.html" />
+    <Content Include="Partials\Pages\Settings\Payments.html" />
+    <Content Include="Partials\Pages\Settings\Products.html" />
+    <Content Include="Partials\Pages\Settings\SettingsTabs.html" />
+    <Content Include="Partials\Templates\AlertTemplate.html" />
+    <Content Include="Partials\Templates\CalendarTemplate.html" />
+    <Content Include="Partials\Templates\ConfirmTemplate.html" />
+    <Content Include="Partials\Templates\CreateDialogTemplate.html" />
+    <Content Include="Partials\Templates\CustomTemplate.html" />
+    <Content Include="Partials\Templates\DischargeCompanionship.html" />
+    <Content Include="Partials\Templates\DropdownTemplate.html" />
+    <Content Include="Partials\Templates\FormDropdownTemplate.html" />
+    <Content Include="Partials\Templates\GridPagingTemplate.html" />
+    <Content Include="Partials\Templates\multiFormDropdownTemplate.html" />
+    <Content Include="Partials\Templates\SearchTemplate.html" />
+    <Content Include="Partials\Templates\TableCodeDetailsTemplate.html" />
+    <Content Include="Scripts\Constant\CodeTablesId.js" />
+    <Content Include="Scripts\Controllers\ABCBook\ABCBookCtrl.js" />
+    <Content Include="Scripts\Controllers\ABCBook\ABCBookDetailesCtrl.js" />
+    <Content Include="Scripts\Controllers\ABCBook\ABCBookTabsCtrl.js" />
+    <Content Include="Scripts\Controllers\Conversations\ConversationsCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\ConnectionsCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\EditCustomerCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\MessagesCustCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\PrivateDetailsCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\RefundsCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\RemarksCtrl.js" />
+    <Content Include="Scripts\Controllers\Messages\MessagesCtrl.js" />
+    <Content Include="Scripts\Controllers\Messages\PdfToProvidersCtrl.js" />
+    <Content Include="Scripts\Controllers\Orders\AddNewOrderCtrl.js" />
+    <Content Include="Scripts\Controllers\Orders\OrdersCtrl.js" />
+    <Content Include="Scripts\Controllers\Orders\OrdersBoardCtrl.js" />
+    <Content Include="Scripts\Controllers\Orders\OrdersTabsCtrl.js" />
+    <Content Include="Scripts\Controllers\Reports\ReportsCtrl.js" />
+    <Content Include="Scripts\Controllers\Reports\ReportsCustomerCtrl.js" />
+    <Content Include="Scripts\Controllers\Reports\ReportsProductCtrl.js" />
+    <Content Include="Scripts\Controllers\Reports\ReportsTabsCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\CommunicationBasketCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\EligibilityTableCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\MonthCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\PaymentsCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\ProductsCtrl.js" />
+    <Content Include="Scripts\Controllers\Settings\SettingTabsCtrl.js" />
+    <Content Include="Scripts\Directives\angular-file-upload.js" />
+    <Content Include="Scripts\Directives\CalendarDirective.js" />
+    <Content Include="Scripts\Directives\CreateDialogDir.js" />
+    <Content Include="Scripts\Directives\DateRtl.js" />
+    <Content Include="Scripts\Directives\DropdownDirective.js" />
+    <Content Include="Scripts\Directives\FormDropdown.js" />
+    <Content Include="Scripts\Directives\FormField.js" />
+    <Content Include="Scripts\Directives\FormValidation.js" />
+    <Content Include="Scripts\Directives\GooglePlacesDirective.js" />
+    <Content Include="Scripts\Directives\MultiFormDropdown.js" />
+    <Content Include="Scripts\Directives\ngAutocomplete.js" />
+    <Content Include="Scripts\Directives\SearchDirective.js" />
+    <Content Include="Scripts\Directives\TooltipsTargetDirective.js" />
+    <Content Include="Scripts\Directives\WaitDirective.js" />
+    <Content Include="Scripts\Factories\Alerts.js" />
+    <Content Include="Scripts\Factories\changesAlert.js" />
+    <Content Include="Scripts\Factories\Connect.js" />
+    <Content Include="Scripts\Factories\createDialogFactory.js" />
+    <Content Include="Scripts\Factories\ForceLogOut.js" />
+    <Content Include="Scripts\Filters\Abs.js" />
+    <Content Include="Scripts\Directives\GridPagingDirective.js" />
+    <Content Include="Partials\Templates\GridTemplate.html" />
+    <Content Include="Partials\Pages\Login.html" />
+    <Content Include="Partials\Pages\menu\Header.html" />
+    <Content Include="Partials\Pages\menu\Menu.html" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\Controllers\Menu\HeaderCtrl.js" />
+    <Content Include="Scripts\Controllers\LoginCtrl.js" />
+    <Content Include="Scripts\Controllers\Menu\MenuCtrl.js" />
+    <Content Include="Scripts\Directives\GridDirective.js" />
+    <Content Include="Scripts\Factories\ExcelFactory2.js" />
+    <Content Include="Scripts\Filters\HebrewDateFilter.js" />
+    <Content Include="Scripts\Libraries\angular-animate.min.js" />
+    <Content Include="Scripts\Libraries\angular-resource.min.js" />
+    <Content Include="Scripts\Libraries\angular-route.min.js" />
+    <Content Include="Scripts\Libraries\angular.min.js" />
+    <Content Include="Scripts\Libraries\createDialog.js" />
+    <Content Include="Scripts\Libraries\fullcalendar.js" />
+    <Content Include="Scripts\Libraries\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\Libraries\jquery-ui.min.js" />
+    <Content Include="Scripts\Libraries\moment.min.js" />
+    <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.4.0.min.js" />
+    <Content Include="Style\directives-style.css" />
+    <Content Include="Style\directives-style1.css" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\Libraries\bootstrap\js\npm.js" />
+    <Content Include="Scripts\Libraries\jquery.flip.min.js" />
+    <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.3.1.min.js" />
+    <Content Include="Scripts\Filters\Floor.js" />
+    <Content Include="Scripts\Factories\ScreenHeight.js" />
+    <Content Include="Style\bootstrap-flipped.css" />
+    <Content Include="Style\bootstrap-flipped.min.css" />
+    <Content Include="Style\bootstrap-rtl.css" />
+    <Content Include="Style\bootstrap-rtl.min.css" />
+    <Content Include="Style\bootstrap-theme.css" />
+    <Content Include="Style\bootstrap-theme.min.css" />
+    <Content Include="Style\bootstrap.css" />
+    <Content Include="Style\bootstrap.min.css" />
+    <Content Include="Style\fonts\OFL.txt" />
+    <Content Include="Style\grid-style.css" />
+    <Content Include="Style\jquery-ui.css" />
+    <Content Include="Style\jquery-ui.min.css" />
+    <Content Include="Style\jquery-ui.structure.css" />
+    <Content Include="Style\jquery-ui.structure.min.css" />
+    <Content Include="Style\jquery-ui.theme.css" />
+    <Content Include="Style\jquery-ui.theme.min.css" />
+    <Content Include="LICENSE\LICENSE.txt" />
+    <Content Include="Style\ayelet_hashachar-companionship.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Style\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Style\package.json" />
+    <Content Include="Style\bootstrap-theme.min.css.map" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Style\fonts\RUBIK-LIGHT.TTF" />
+    <Content Include="Style\fonts\RUBIK-MEDIUM.TTF" />
+    <Content Include="Style\fonts\RUBIK-REGULAR.TTF" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

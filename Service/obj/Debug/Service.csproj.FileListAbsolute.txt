@@ -1,0 +1,38 @@
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\bin\Service.dll
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\bin\Service.pdb
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\obj\Debug\Service.dll
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Service\obj\Debug\Service.pdb
+C:\Users\User\Desktop\AyeletHashachar\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\AyeletHashachar\Service\obj\Debug\Service.dll
+C:\Users\User\Desktop\AyeletHashachar\Service\obj\Debug\Service.pdb
+C:\Users\User\Desktop\AyeletHashachar\Service\bin\Service.dll
+C:\Users\User\Desktop\AyeletHashachar\Service\bin\Service.pdb
+C:\AngularDEVs\AyeletHashachar\Service\bin\Service.dll
+C:\AngularDEVs\AyeletHashachar\Service\bin\Service.pdb
+C:\AngularDEVs\AyeletHashachar\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\AngularDEVs\AyeletHashachar\Service\obj\Debug\Service.dll
+C:\AngularDEVs\AyeletHashachar\Service\obj\Debug\Service.pdb
+C:\Dev\AyeletHashachar\Service\obj\Debug\Service.dll
+C:\Dev\AyeletHashachar\Service\obj\Debug\Service.pdb
+C:\Dev\AyeletHashachar\Service\bin\Service.dll
+C:\Dev\AyeletHashachar\Service\bin\Service.pdb
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Service\bin\Service.dll
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Service\bin\Service.pdb
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Service\obj\Debug\Service.dll
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Service\obj\Debug\Service.pdb
+C:\git.dev\shmayaCrm\Service\bin\Service.dll.config
+C:\git.dev\shmayaCrm\Service\bin\Service.dll
+C:\git.dev\shmayaCrm\Service\bin\Service.pdb
+C:\git.dev\shmayaCrm\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\git.dev\shmayaCrm\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+C:\git.dev\shmayaCrm\Service\obj\Debug\Service.dll
+C:\git.dev\shmayaCrm\Service\obj\Debug\Service.pdb
+C:\git.dev\Shmaya\Service\bin\Service.dll.config
+C:\git.dev\Shmaya\Service\bin\Service.dll
+C:\git.dev\Shmaya\Service\bin\Service.pdb
+C:\git.dev\Shmaya\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+C:\git.dev\Shmaya\Service\obj\Debug\Service.dll
+C:\git.dev\Shmaya\Service\obj\Debug\Service.pdb
+C:\git.dev\Shmaya\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
