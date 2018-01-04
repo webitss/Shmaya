@@ -1,0 +1,8 @@
+*.pdb
+*.dll
+*.pdb
+*.txt
+*.cache
+*.suo
+Client/bin/Client.dll
+.vs
