@@ -1,4 +1,5 @@
-﻿using Service.Entities;
+﻿using GanimWS.Entities;
+using Service.Entities;
 using Service.Utilities;
 using System;
 using System.Collections.Generic;
@@ -687,6 +688,19 @@ namespace Service
 		{
 			return MessageToProvider.GetMessageToProvider(iUserId, dtBeginDate, dtEndDate);
 		}
+
+		[OperationContract]
+		[WebInvoke(
+	   Method = "POST",
+	   UriTemplate = "SendSumMessage",
+	   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	   ResponseFormat = WebMessageFormat.Json)]
+		public string SendSumMessage(string folderName, string url)
+		{
+			return MessageToProvider.SendSumMessage(folderName, url);
+		}
+
 		#endregion
+
 	}
 }

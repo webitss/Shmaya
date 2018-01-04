@@ -1,4 +1,5 @@
-﻿using Service.Utilities;
+﻿using GanimWS.Entities;
+using Service.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -42,6 +43,19 @@ namespace Service.Entities
 			catch (Exception ex)
 			{
 				Log.ExceptionLog(ex.Message, "GetMessageToProvider");
+				return null;
+			}
+		}
+
+		public static string SendSumMessage(string folderName, string url)
+		{
+			try
+			{
+				return FileManageCtrl.GenerateAttendanceReport(folderName, url);
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "SendSumMessage");
 				return null;
 			}
 		}

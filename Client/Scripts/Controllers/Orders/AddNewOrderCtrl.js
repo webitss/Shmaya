@@ -4,6 +4,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 		$scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
 		$scope.defDate = new Date();
 		$scope.defYear = (new Date()).getFullYear();
+		$scope.defMonth = (new Date()).getMonth();
 		$scope.testTime = new Date();
 		//$scope.order.timeTranslation = $filter('date')($scope.order.timeTranslation, 'HH:mm');
 		//$scope.order.dtDateTraslation = new Date();
@@ -33,10 +34,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					console.log(Orderinsert_update+":" + result);
 					var savingStatus = "השינויים נשמרו בהצלחה";
 					$rootScope.notification(savingStatus);
-					if ($scope.isEdit == true)
-						$scope.order.dialogIsOpen = false;
-					else
-						$scope.newOrder = false;
+					$scope.prepareData();
 				}
 				else
 				{

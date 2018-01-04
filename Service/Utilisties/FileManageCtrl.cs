@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Web;
+using NReco.PdfGenerator;
 using Service.Utilities;
 
 namespace GanimWS.Entities
@@ -145,5 +146,35 @@ namespace GanimWS.Entities
             mSmallImage.Dispose();
             return mSmallImage.ToArray();
         }
-    }
+
+
+		public static string GenerateAttendanceReport(string folderName, string url)
+		{
+			try
+			{
+				NReco.PdfGenerator.HtmlToPdfConverter pdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+				pdf.Margins = new NReco.PdfGenerator.PageMargins();
+				pdf.Margins.Top = 1;
+				pdf.Margins.Bottom = 5;
+				pdf.Margins.Right = 1;
+				pdf.Margins.Left = 1;
+				pdf.Size = PageSize.A4;
+				pdf.Orientation = PageOrientation.Landscape;
+
+				string sFileName = DateTime.Now.ToFileTime().ToString();
+
+				string filePath = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"]+url;
+
+				var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
+				sFileName = "דוח שעות" + sFileName;
+				File.WriteAllBytes(System.Configuration.ConfigurationManager.AppSettings["ReportFiles"] + folderName + sFileName + ".pdf", pdfBytes);
+				return sFileName;
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "GenerateAttendanceReport");
+				return null;
+			}
+		}
+	}
 }
