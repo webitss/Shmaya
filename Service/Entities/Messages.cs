@@ -1,4 +1,5 @@
-﻿using Service.Entities;
+﻿using GanimWS.Entities;
+using Service.Entities;
 using Service.Utilities;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Service.Entities
 
 		#endregion
 
-		#region Functions
+		#region methods
 
 		public static bool SendEmailToOne( Messages message)
 		{
@@ -193,7 +194,9 @@ namespace Service.Entities
 				return szResult;
 			}
 		}
-		
+
+	
+
 		#endregion
 	}
 	

@@ -83,20 +83,25 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	}
 	$scope.sendSumMessage = function ()
 	{
-		//$scope.dtStartDate;
-		//$scope.dtEndDate;
+		connect.post(true, 'SendSumMessage', { folderName: "sumMessage", url:"PdfToProviders ? iUserId=12&dtDateBegin=01-01-2017&dtDateEnd=01-01-08"},
+			function (result) {
+				if (result)
+					alert("succese");
+				else
+					alert("not succese")
+			});
 	}
 
 
-	//$scope.getData = function (num)
-	//{
+	$scope.getData = function ()
+	{
 		
-	//		$scope.userType = num;
-	//		connect.post(true, 'GetUsers',
-	//			{ iUserType: num },
-	//			function (result) {
-	//				$scope.userList = result;
-	//			});
-	//};
+			$scope.userType = 3;
+			connect.post(true, 'GetUsers',
+				{ iUserType: 3 },
+				function (result) {
+					$scope.providersList = result;
+				});
+	};
 
 }]);

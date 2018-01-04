@@ -53,7 +53,7 @@ namespace Service.Entities
 
 
 		#endregion
-		#region functions
+		#region methods
 		public static List<Refund> GetRefunds(int iUserId)
 		{
 			try
