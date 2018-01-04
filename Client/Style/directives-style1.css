@@ -247,12 +247,7 @@
     margin: 8px 0 0px 0;
 }
 
-.month-name {
-    display: inline-block;
-    width: 115px;
-    text-align: center;
-    color: #7ec0c4;
-}
+
 
 .month-div span {
     font-weight: bold;
@@ -400,7 +395,8 @@
     display: inline-block;
     width: 115px;
     text-align: center;
-    color: #7ec0c4;
+    color: #3b173c;
+
 }
 
 .month-div span {
