@@ -3,15 +3,17 @@
 	<wait></wait>
 	<div class="container">
 		<div class="row">
-			<div class="nav pull-left">
-				<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="AddNewRefund()">
-					<div class="user-class-white"></div>
+			<div class="pull-left">
+				<button type="button" class=" btn color-yellow btn-ayelet" ng-click="AddNewRefund()">
+				<i class="glyphicon glyphicon-plus-sign"></i>
 					<span class="color-text-white">הוספה</span>
 				</button>
 		</div>
-			<span>סך החזר {{sumRefunds}}</span>
-			<span> | סך יתרה {{sumBalance}}</span>
-			<span> | תאריך התחדשות {{DateOfRenewal}}</span>
+            <div>
+                <span class="span-nav-tabs">סך החזר {{sumRefunds}}</span>
+                <span class="span-nav-tabs"> סך יתרה {{sumBalance}}</span>
+                <span class="span-nav-tabs"> תאריך התחדשות {{DateOfRenewal}}</span>
+            </div>
 				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
 			</div>
 		<br />
