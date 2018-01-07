@@ -7,7 +7,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 			if (!$scope.formDetails.$valid) {
 				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
-				//return;
+				return;
 			}
 
 			//$scope.lTempLanguage = $scope.user.lLanguage;
@@ -47,7 +47,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 						var savingStatus = "השינויים נשמרו בהצלחה";
 						$rootScope.notification(savingStatus);
 						$scope.prepareData();
-						$scope.user.dialogIsOpen = false;
+						$scope.newUser1 = false;
 					}
 					else {
 						alert('ארעה שגיאה בלתי צפויה');

@@ -1,9 +1,9 @@
-﻿<div ng-controller="MonthCtrl">
+﻿<div ng-controller="MonthCtrl" class="container container-message">
 	<div class="row margin-top-double">
 		<div class="pull-left col-md-6">
 			<div class="row">
 				<div class="col-md-10">
-					<button class="btn btn-default btn-ayelet color-yellow pull-left" ng-click="saveDate()">
+					<button class="btn  btn-ayelet color-yellow pull-left" ng-click="saveDate()">
 						<div class="save-btn-ayelet"></div>
 						<span>שמירה</span>
 					</button>
@@ -11,7 +11,7 @@
 			</div>
 		</div>
 	</div>
-		<form id="formOrder" name="formMonth" novalidate>
+	<form id="formOrder" name="formMonth" novalidate>
 			<div class="row">
 				<form-field span-text="בחר חודש" class="col-md-6">
 					<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required></form-dropdown>

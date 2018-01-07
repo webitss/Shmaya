@@ -2,14 +2,14 @@
 companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeTablesId', function ($scope, $location, $rootScope, codeTablesId) {
     $scope.isLogin = false;
     $scope.index = 0;
-    $scope.active = 0;
+	$scope.active = 0;
+	
 
     $scope.tabs =
          [
 			{
                 text: 'הזמנות',
-                url: '/OrdersTabs',
-                disabled :false
+                url: '/OrdersTabs'
             },
             {
                 text: 'אלפון',
@@ -27,7 +27,8 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
                 text: 'דוחות',
                 url: '/ReportsTabs'
 			}
-         ];
+		];
+
 
     $scope.notification = function (alert) {
         $rootScope.notificationAlert = alert;

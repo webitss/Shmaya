@@ -1,89 +1,105 @@
 ﻿<div>
     <wait></wait>
     <div ng-controller="MessagesCtrl">
-        <form id="massegeForm" name="massegeForm" class="container container-message" >
-            <button type="submit" class="btn btn-default pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="massegeForm.$invalid" ng-click="sendMessage();$index = 0;">
-                <div class="glyphicon glyphicon-send color-text-white"></div>
-                <span class="color-text-white"> שלח הודעה</span>
-            </button>
-            <div class="clear"></div>
-            <div class="line-in-message">
-                <span>סוג הודעה</span><br />
-					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="1"> Mail<br />
-					<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="2"> SMS<br>
-            </div>
-			<div ng-show="newMessage1!=true&&newMessage2!=true">
-				<span>אל</span><br />
-				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="2"> לקוחות<br />
-				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="3"> נותני שירות<br />
-				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="1"> כולם<br>
-				<span>{{len}} נבחרו</span>
+		<form id="massegeForm" name="massegeForm" class="container container-message">
+			<button type="submit" class="btn  pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="massegeForm.$invalid" ng-click="sendMessage();$index = 0;">
+				<div class="glyphicon glyphicon-send color-text-white"></div>
+				<span class="color-text-white"> שלח הודעה</span>
+			</button>
+			<div class="clear"></div>
+			<div class="line-in-message">
+				<span>סוג הודעה</span>
+				<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="1" />
+				<span>Mail</span>
+				<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="2" />
+				<span>SMS</span>
 			</div>
-            <div  class="line-in-message ">
-                <span>נושא</span>
+			<div ng-show="newMessage1!=true&&newMessage2!=true" class="line-in-message">
+				<span>אל</span>
+				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="2" />
+				<span>לקוחות</span>
+				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="3" />
+				<span>נותני שירות </span>
+				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="1" />
+				<span>{{len}} כולם נבחרו</span>
 
-                <div class="in-message-div">
-                    <input ng-model="messageToSend.nvSubject" />
-                </div>
-            </div>
+			</div>
+			<div class="line-in-message ">
+				<span>נושא</span>
 
-            <div class="line-in-message">
-                <span>*תוכן</span>
+				<div class="in-message-div">
+					<input ng-model="messageToSend.nvSubject" />
+				</div>
+			</div>
 
-                <div class="in-message-div">
-                    <textarea style="vertical-align: text-top; resize: none;" required ng-model="messageToSend.nvMessage" />
-                </div>
+			<div class="line-in-message">
+				<span>*תוכן</span>
 
-                <div class="line-in-message">
-                    <span></span>
-                    <div ng-if="typeSelect==2" class="in-message-div">
-                        <section ng-if="messageToSend.nvMessage" class="sms-message-length">מספר תווים: <b>{{messageToSend.nvMessage.length}}</b></section>
-                        <section ng-if="typeSelect==2" class="sms-message-length">כל 69 תווים בעברית נחשבים כהודעה, יש לשכתב את ההודעה בהתאם!</section>
-                    </div>
+				<div class="in-message-div">
+					<textarea style="vertical-align: text-top; resize: none;" required ng-model="messageToSend.nvMessage" />
+				</div>
 
-                </div>
+				<div class="line-in-message">
+					<span></span>
+					<div ng-if="typeSelect==2" class="in-message-div">
+						<section ng-if="messageToSend.nvMessage" class="sms-message-length">מספר תווים: <b>{{messageToSend.nvMessage.length}}</b></section>
+						<section ng-if="typeSelect==2" class="sms-message-length">כל 69 תווים בעברית נחשבים כהודעה, יש לשכתב את ההודעה בהתאם!</section>
+					</div>
+
+				</div>
 
 
-            </div>
+			</div>
 
 
-            <div class="line-in-message ">
-                <span class="vertical-align-super">*מאת</span>
+			<div class="line-in-message ">
+				<span class="vertical-align-super">*מאת</span>
 
-                <div class="in-message-div row vertical-align-sub">
-                    <div ng-if="typeSelect==2" class="col-md-4 ">
-                        <div class="row">
-                            <div class="col-md"><span class="vertical-baseline-middle">מספר לחזרה</span></div>
+				<div class="in-message-div row vertical-align-sub">
+					<div ng-if="typeSelect==2" class="col-md-4 ">
+						<div class="row">
+							<div class="col-md"><span class="vertical-baseline-middle">מספר לחזרה</span></div>
 
-                            <div class="col-md-10">
-                                <input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
-                            </div>
-                        </div>
-                    </div>
+							<div class="col-md-10">
+								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
+							</div>
+						</div>
+					</div>
 
-                    <div ng-if="typeSelect==1" class="col-md-6 ">
-                        <div class="row">
-                            <div class="col-md "><span class="vertical-baseline-middle">מייל לתוצאות</span></div>
+					<div ng-if="typeSelect==1" class="col-md-6 ">
+						<div class="row">
+							<div class="col-md "><span class="vertical-baseline-middle">מייל לתוצאות</span></div>
 
-                            <div class="col-md-12">
-                                <input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
-                            </div>
-                        </div>
-                    </div>
+							<div class="col-md-12">
+								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
+							</div>
+						</div>
+					</div>
 
-                </div>
-				
-            </div>
-        </form>
+				</div>
+
+			</div>
+			<br /><br /><br /><br />
+		</form>
 		<div ng-show="newMessage1!=true&&newMessage2!=true">
-			<form id="sumMassegeForm" name="sumMassegeForm" class="container container-message">
-				<span>מתאריך</span><input class="form-control" type="date" ng-model="dtStartDate" required />
-				<span>עד תאריך</span><input class="form-control" type="date" ng-model="dtEndDate" required />
-				<button type="submit" class="btn btn-default pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="sumMassegeForm.$invalid" ng-click="sendSumMessage()">
-					<div class="glyphicon glyphicon-send color-text-white"></div>
-					<span class="color-text-white"> שליחת הודעת סיכום חודשי</span>
-				</button>
-			</form>
+            <form id="sumMassegeForm" name="sumMassegeForm" class="container container-message ">
+                <div class="line-in-message ">
+                    <span>מתאריך</span>
+                    <div class="in-message-div">
+                        <input class="form-control" type="date" ng-model="dtStartDate" required />
+                    </div>
+                </div>
+                <div class="line-in-message ">
+                    <span>עד תאריך</span>
+                    <div class="in-message-div">
+                        <input class="form-control" type="date" ng-model="dtEndDate" required />
+                    </div>
+                    </div>
+                    <button type="submit" class="btn  pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="sumMassegeForm.$invalid" ng-click="sendSumMessage()">
+                        <div class="glyphicon glyphicon-send color-text-white"></div>
+                        <span class="color-text-white"> שליחת הודעת סיכום חודשי</span>
+                    </button>
+            </form>
 		</div>
 
         <div ng-if="!canSend" class="container">

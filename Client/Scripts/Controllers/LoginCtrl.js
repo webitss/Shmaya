@@ -24,7 +24,7 @@ companionApp.controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'aler
                     $rootScope.userName = $scope.userName;
                     localStorage.setItem('AyeletHashacharCompanionship', JSON.stringify($rootScope.user));
                     $rootScope.isLogin = false;
-					$location.path('/Orders/Orders.html');
+					$location.path('/OrdersTabs');
                 }
             });
         }

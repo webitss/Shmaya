@@ -28,8 +28,7 @@ companionApp.factory('alerts', ['$rootScope', '$uibModal', function ($rootScope,
                 // $log.info('Modal dismissed at: ' + new Date());
             });
         },
-
-
+		
         confirm: function (message, title, OKcallback, cancelCallback, okText, cancelText) {
             var modalInstance = $uibModal.open({
                 animation: true,

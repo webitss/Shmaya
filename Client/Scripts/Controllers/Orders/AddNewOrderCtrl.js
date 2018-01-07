@@ -22,6 +22,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				$rootScope.notification(savingStatus);
 				return;
 			}
+			//if ($scope.order.iCityId == 0)
+			//	$scope.order.iCityId = null;
 			$scope.orderToSend = angular.copy($scope.order);
 			$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 			$scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
@@ -34,6 +36,10 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					console.log(Orderinsert_update+":" + result);
 					var savingStatus = "השינויים נשמרו בהצלחה";
 					$rootScope.notification(savingStatus);
+					if ($scope.isEdit)
+						$scope.order.dialogIsOpen = false;
+					else
+						$scope.newOrder = false;
 					$scope.prepareData();
 				}
 				else

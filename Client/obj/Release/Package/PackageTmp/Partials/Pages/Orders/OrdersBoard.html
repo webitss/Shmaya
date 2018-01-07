@@ -1,16 +1,15 @@
 ﻿<div class="container" ng-controller="OrdersBoardCtrl">
 	<div class="container">
-		<div class="nav pull-left">
-			<button type="button" class="col-md btn btn-default pass color-grn btn-ayelet" ng-click="addNewOrder()">
+		<div class="nav pull-left row">
+			<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="addNewOrder()">
 				<div class="user-class-white"></div>
 				<span class="color-text-white">הוספת חדש</span>
 			</button>
-			<button class="btn btn-default pass btn-ayelet color-yellow exportToExcel pull-left" title="ייצוא לאקסל" ng-click="exportToExcel()">
+			<button class="btn  pass btn-ayelet color-yellow exportToExcel pull-left" title="ייצוא לאקסל" ng-click="exportToExcel()">
 				<span class=""></span>
 			</button>
 		</div>
-		<br /><br />
-		<my-calendar time-availablity="schedulesAsTable" ><!--job-status-type="0" type="large" field-active="bWorkerOfferedJobTimeAvailablity"-->
+		<my-calendar time-availablity="schedulesAsTable" type="large" field-active="dtDateTraslation"><!--job-status-type="0" type="large" field-active="bWorkerOfferedJobTimeAvailablity"-->
 		</my-calendar>
 		<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
 

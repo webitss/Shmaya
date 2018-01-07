@@ -95,7 +95,7 @@ a {
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #02BCE3;
+    border-bottom:1px solid #3b173c;
 }
 
     .nav-tabs > li.disabled > a {
@@ -103,15 +103,15 @@ a {
     }
 
     .nav-tabs > li > a {
-        border-color: #02BCE3;
+        border-color: #3b173c;
         border-radius: 0;
         background-color: white;
         margin-right: 0px;
     }
 
         .nav-tabs > li > a:hover {
-            border-color: #23859a;
-            background-color: #02bce3;
+            border-color: #5d3f5dba;
+            background-color: #3b173cde;
             color: white;
         }
 
@@ -120,8 +120,8 @@ a {
     .nav-tabs > li.active > a:focus {
         color: #fff;
         cursor: pointer;
-        background-color: #02BCE3;
-        border: 1px solid #02BCE3;
+        background-color: #3a173c;
+        border: 1px solid #3b173c;
     }
 /*end nav-tab*/
 
@@ -276,7 +276,7 @@ input {
     input:focus,
     .input-solid:focus,
     .dropdown-template .btn.btn-dropdown.dropdown-toggle:focus {
-        background-color: rgba(2, 188, 227, 0.16) !important;
+        background-color: rgba(154, 137, 155, 0.22) !important;
         outline: none;
     }
 
@@ -306,7 +306,7 @@ input {
 
 /*colors*/
 .color-text-lb {
-    color: #02BCE3 !important;
+    color: #792d7a;
 }
 
 .seriousness-very {
@@ -330,10 +330,7 @@ input {
     background-color: lightyellow;
 }
 
-.color-yellow {
-    background: #FFB300 !important;
-    border-color: #d59500;
-}
+
 
 .color-sagol {
     background: #732699 !important;
@@ -341,7 +338,7 @@ input {
 }
 
     .color-sagol:hover {
-        background: #50166c!important;
+        background: #50166c !important;
         border-color: #4d207d;
     }
 
@@ -352,15 +349,19 @@ input {
 
     .color-blue:hover {
         /*AC2EAF*/
-        background-color: darkblue!important;
+        background-color: darkblue !important;
         border-color: #74842c;
     }
 
-
-.color-yellow:hover {
-    background: #f4ac02 !important;
-    border-color: #d59500;
+.color-yellow {
+    background: #792c7b;
+    border-color: #4d1c4e;
 }
+
+    .color-yellow:hover {
+        background: #5b215d;
+        border-color: #5a225d;
+    }
 
 .color-text-white {
     color: white !important;
@@ -382,15 +383,14 @@ input {
 }
 
 .color-grn {
-    background: #9FB53C !important;
-    border-color: #74842c;
+    background: #5e005f;
+    border-color: #310131;
 }
 
     .color-grn:hover {
-        background: #809329 !important;
-        border-color: #74842c;
+        background: #49004a;
+        border-color: #350035;
     }
-
 
 .color-gray {
     color: #606060 !important;
@@ -670,8 +670,8 @@ margin-bottom: 15px;*/
 .menu-item-div.tab-selected,
 .menu-item-div:hover,
 .menu-item-div:focus {
-    background-color: #02BCE3 !important;
-    color: white !important;
+    background-color: #3a173c;
+    color: white;
 }
 
 .tooltip {
@@ -698,8 +698,8 @@ menu-item-div-one:focus {
 
 .menu-item-div /*,
 .menu-item-div:checked*/ {
-    color: #02BCE3 !important;
-    background-color: white !important;
+    color: #3b173c;
+    background-color: white;
     padding-top: 25px;
     height: 75px;
     text-align: center;
@@ -727,7 +727,7 @@ menu-item-div-one:focus {
     height: 100%;
     width: 100%;
     display: inline-block;
-    box-shadow: 0px 2px 0px #02BCE3;
+    box-shadow: 0px 2px 0px #3b173c;
     background-color: white;
 }
 
@@ -780,7 +780,7 @@ menu-item-div-one:focus {
 }
 
 .form-control {
-    border-color: #02BCE3;
+    border-color: #af75b1;
 }
 /*.has-error {
     background-color: rgba(199, 63, 63, 0.14) !important;
@@ -799,7 +799,7 @@ menu-item-div-one:focus {
 }
 
 .font {
-    color: #006088 !important;
+    color: #115154 !important;
 }
 
 /* login */
@@ -810,8 +810,9 @@ menu-item-div-one:focus {
 }
 
 .d-enter-logo {
-    height: 350px;
-    box-shadow: 0px 1.5px 0px #02BCE3;
+    height: 30vh;
+    box-shadow: 0px 1.5px 0px #3a173c;
+    margin-bottom: 10vh;
 }
 
 .spidometer-div img {
@@ -858,7 +859,7 @@ menu-item-div-one:focus {
 
 .b-login {
     width: 100%;
-    background-color: #02BCE3;
+    background-color: #816c83;
     color: white;
 }
 
@@ -896,7 +897,7 @@ a-link {
     background: #f5f5f5;
 }
 
-.highlight-row, .highlight-row:hover{
+.highlight-row, .highlight-row:hover {
     /*background: #f7d9ee !important;*/
     background: #e3f6f7 !important;
 }
@@ -1418,9 +1419,9 @@ footer {
     }
 
 .popup-ayelet .nav-tabs {
-    margin-top: -21px;
+    margin-top: -25px;
     padding: 22px 42px 0 0;
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
 }
 
 
@@ -1479,8 +1480,8 @@ footer {
 }
 
 .modal-body {
-    height: calc(100% - 14px);
-    padding: 0;
+    /*height: calc(100% - 14px);
+    padding: 0;*/
 }
 
     .modal-body > div {
@@ -1691,13 +1692,13 @@ footer {
 }
 
 .btn.color-gray-message {
-    background: #dd1b5e !important;
-    border-color: #a8033c !important;
+    background: #115154;
+    border-color: #0a3f42;
 }
 
 .btn-ayelet.color-gray-message:hover {
-    background: #b01349 !important;
-    border-color: #6a0c2c !important;
+    background: #0c383a;
+    border-color: #062021;
 }
 
 .disable-selection {
@@ -1917,4 +1918,10 @@ textarea {
     padding: 7px 13px;
     border-radius: 4px;
     border: 1px solid #02bce3;
+}
+
+
+#massegeForm input[type="radio"], input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0;
 }

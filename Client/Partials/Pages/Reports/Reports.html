@@ -6,65 +6,65 @@
 			</form-field>
 		</form>
        
-            <button type="button" class="btn  pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="exportToExcel()">
+            <button type="button" class="btn  pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="checkValidation()">
                 <div class="glyphicon glyphicon-list color-text-white"></div>
                 <span class="color-text-white">הפק דו"ח</span>
             </button>
 
 	</div>
-	<div ng-show="1==2" >
+	<div ng-show="1==2">
 		<wait></wait>
-	<div class="container container-message">
+		<div class="container container-message">
 			<div class="row">
 				<div class="commands menu-klaly">
 					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity1}}"></grid-pager>
 				</div>
 			</div>
-				<br /><br />
-				<div class="row">
-					<grid columns="columns1"
-						  data="ReportsList1"
-						  class="color-gray"
-						  is-data-loaded="isDataLoaded1"
-						  footer-text="דוח מתרגמים"
-						  grid-identity="{{gridIdentity1}}"></grid>
+			<br /><br />
+			<div class="row">
+				<grid columns="columns1"
+					  data="ReportsList1"
+					  class="color-gray"
+					  is-data-loaded="isDataLoaded1"
+					  footer-text="דוח מתרגמים"
+					  grid-identity="{{gridIdentity1}}"></grid>
+			</div>
+		</div>
+
+		<div class="container container-message">
+			<div class="row">
+				<div class="commands menu-klaly">
+					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>
 				</div>
 			</div>
-
-	<div class="container container-message">
-		<div class="row">
-			<div class="commands menu-klaly">
-				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>
+			<br /><br />
+			<div class="row">
+				<grid columns="columns2"
+					  data="ReportsList2"
+					  class="color-gray"
+					  is-data-loaded="isDataLoaded2"
+					  footer-text="דוח מתמללים"
+					  grid-identity="{{gridIdentity2}}"></grid>
 			</div>
 		</div>
-		<br /><br />
-		<div class="row">
-			<grid columns="columns2"
-				  data="ReportsList2"
-				  class="color-gray"
-				  is-data-loaded="isDataLoaded2"
-				  footer-text="דוח מתמללים"
-				  grid-identity="{{gridIdentity2}}"></grid>
-		</div>
-	</div>
 
-	<div class="container container-message">
-		<div class="row">
-			<div class="commands menu-klaly">
-				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity3}}"></grid-pager>
+		<div class="container container-message">
+			<div class="row">
+				<div class="commands menu-klaly">
+					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity3}}"></grid-pager>
+				</div>
+			</div>
+			<br /><br />
+			<div class="row">
+				<grid columns="columns3"
+					  data="ReportsList3"
+					  class="color-gray"
+					  is-data-loaded="isDataLoaded3"
+					  footer-text="דוח מתמללים"
+					  grid-identity="{{gridIdentity3}}"></grid>
 			</div>
 		</div>
-		<br /><br />
-		<div class="row">
-			<grid columns="columns3"
-				  data="ReportsList3"
-				  class="color-gray"
-				  is-data-loaded="isDataLoaded3"
-				  footer-text="דוח מתמללים"
-				  grid-identity="{{gridIdentity3}}"></grid>
-		</div>
 	</div>
-</div>
 
 
 </div>

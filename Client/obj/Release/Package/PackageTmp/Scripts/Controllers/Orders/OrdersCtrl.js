@@ -48,7 +48,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'סוג הזמנה', fieldName: 'typeOrder' },
 				{ title: 'סוג תרגום', fieldName: 'typeTranslation' },
 				{ title: 'איזור', fieldName: 'area' },
-				{ title: 'כתובת', fieldName: 'nvStreet' },
+				{ title: 'עיר', fieldName: 'nvStreet' },
 				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation',type:'date'},
 				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
 				{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation', type:'time'},

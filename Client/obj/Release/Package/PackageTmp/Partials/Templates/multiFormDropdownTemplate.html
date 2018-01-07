@@ -19,13 +19,14 @@
 						   ng-click="$event.stopPropagation()" placeholder="חפש..." />
 					<i class="fa fa-search fa-search-disabled"></i>
 				</span>
-				<span class=" col-md-2 col-lg-2 col-md-1-5 col-lg-1-5 btn btn-default comment-btn clear-btn  "
+				<span class=" col-md-2 col-lg-2 col-md-1-5 col-lg-1-5 btn  comment-btn clear-btn  "
 					  ng-click="clearFilter()">
-					<img src="Images/x-command.png" />
+                    <span class="glyphicon glyphicon-remove"></span>
+                   
 				</span>
-				<span style="height: 30px;" class="col-md-2 col-lg-2 col-md-1-5 col-lg-1-5 btn btn-default comment-btn v-btn  "
+				<span style="height: 30px;" class=" col-md-2 col-lg-2 col-md-1-5 col-lg-1-5 btn  comment-btn v-btn  "
 					  ng-click="submit()">
-					<img src="Images/v-command.png" />
+                    <span class="glyphicon glyphicon-ok"></span>
 				</span>
 			</li>
 			<div ng-style="{'maxHeight' : screenHeight}" class="dropdown-content">

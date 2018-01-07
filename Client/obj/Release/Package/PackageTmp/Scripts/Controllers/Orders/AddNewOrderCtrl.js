@@ -4,6 +4,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 		$scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
 		$scope.defDate = new Date();
 		$scope.defYear = (new Date()).getFullYear();
+		$scope.defMonth = (new Date()).getMonth();
 		$scope.testTime = new Date();
 		//$scope.order.timeTranslation = $filter('date')($scope.order.timeTranslation, 'HH:mm');
 		//$scope.order.dtDateTraslation = new Date();
@@ -21,6 +22,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				$rootScope.notification(savingStatus);
 				return;
 			}
+			//if ($scope.order.iCityId == 0)
+			//	$scope.order.iCityId = null;
 			$scope.orderToSend = angular.copy($scope.order);
 			$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 			$scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
@@ -33,10 +36,11 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					console.log(Orderinsert_update+":" + result);
 					var savingStatus = "השינויים נשמרו בהצלחה";
 					$rootScope.notification(savingStatus);
-					if ($scope.isEdit == true)
+					if ($scope.isEdit)
 						$scope.order.dialogIsOpen = false;
 					else
 						$scope.newOrder = false;
+					$scope.prepareData();
 				}
 				else
 				{
