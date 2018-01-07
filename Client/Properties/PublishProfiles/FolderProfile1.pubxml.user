@@ -6,14 +6,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMWS\201801031252</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMFront\201801041738</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Client.dll">
-      <publishTime>01/03/2018 12:19:31</publishTime>
+      <publishTime>01/04/2018 12:58:43</publishTime>
     </File>
     <File Include="bin/Client.pdb">
-      <publishTime>01/03/2018 12:19:31</publishTime>
+      <publishTime>01/04/2018 12:58:43</publishTime>
     </File>
     <File Include="ClassDiagram1.cd">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -64,7 +64,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 10:02:51</publishTime>
     </File>
     <File Include="Partials/Pages/ABCBook/ABCBook.html">
-      <publishTime>12/27/2017 11:55:08</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/ABCBook/ABCBookDetailes.html">
       <publishTime>12/17/2017 10:06:24</publishTime>
@@ -73,118 +73,118 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2017 09:13:44</publishTime>
     </File>
     <File Include="Partials/Pages/Conversations.html">
-      <publishTime>12/19/2017 09:12:26</publishTime>
+      <publishTime>01/04/2018 13:51:10</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Connections.html">
       <publishTime>01/02/2018 11:21:04</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/EditCustomer.html">
-      <publishTime>12/04/2017 14:55:45</publishTime>
+      <publishTime>01/04/2018 13:32:42</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/MessagesCust.html">
-      <publishTime>12/26/2017 11:50:05</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/PrivateDetails.html">
-      <publishTime>01/02/2018 12:54:07</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Refunds.html">
-      <publishTime>01/02/2018 15:27:29</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Remarks.html">
-      <publishTime>12/19/2017 11:02:34</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Login.html">
-      <publishTime>12/05/2017 09:44:01</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/menu/Header.html">
       <publishTime>12/05/2017 09:44:01</publishTime>
     </File>
     <File Include="Partials/Pages/menu/Menu.html">
-      <publishTime>12/27/2017 13:11:49</publishTime>
+      <publishTime>01/04/2018 13:28:07</publishTime>
     </File>
     <File Include="Partials/Pages/Messages/Messages.html">
-      <publishTime>01/02/2018 12:53:25</publishTime>
+      <publishTime>01/04/2018 12:34:47</publishTime>
     </File>
     <File Include="Partials/Pages/Messages/PdfToProviders.html">
-      <publishTime>01/02/2018 18:51:50</publishTime>
+      <publishTime>01/04/2018 11:41:39</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/AddNewOrder.html">
-      <publishTime>01/02/2018 12:53:25</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/Orders.html">
-      <publishTime>12/31/2017 15:15:20</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/OrdersBoard.html">
-      <publishTime>12/27/2017 10:20:16</publishTime>
+      <publishTime>01/04/2018 13:15:44</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/OrdersTabs.html">
       <publishTime>12/04/2017 10:03:01</publishTime>
     </File>
     <File Include="Partials/Pages/Reports/Reports.html">
-      <publishTime>01/01/2018 14:57:52</publishTime>
+      <publishTime>01/04/2018 16:25:10</publishTime>
     </File>
     <File Include="Partials/Pages/Reports/ReportsCustomer.html">
-      <publishTime>01/01/2018 14:54:23</publishTime>
+      <publishTime>01/04/2018 16:25:10</publishTime>
     </File>
     <File Include="Partials/Pages/Reports/ReportsProduct.html">
-      <publishTime>12/31/2017 16:55:33</publishTime>
+      <publishTime>01/04/2018 16:25:10</publishTime>
     </File>
     <File Include="Partials/Pages/Reports/ReportsTabs.html">
       <publishTime>12/04/2017 17:36:27</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/CommunicationBasket.html">
-      <publishTime>12/14/2017 12:11:52</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/EligibilityTable.html">
-      <publishTime>12/14/2017 12:05:28</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/Month.html">
-      <publishTime>12/24/2017 16:52:31</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/Payments.html">
-      <publishTime>12/14/2017 12:29:54</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/Products.html">
-      <publishTime>12/14/2017 11:06:17</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/SettingsTabs.html">
-      <publishTime>12/05/2017 10:41:58</publishTime>
+      <publishTime>01/04/2018 11:41:39</publishTime>
     </File>
     <File Include="Partials/Templates/AlertTemplate.html">
-      <publishTime>12/03/2017 09:02:05</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/CalendarTemplate.html">
-      <publishTime>12/03/2017 16:13:35</publishTime>
+      <publishTime>01/04/2018 13:26:38</publishTime>
     </File>
     <File Include="Partials/Templates/ConfirmTemplate.html">
-      <publishTime>12/03/2017 09:02:05</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/CreateDialogTemplate.html">
       <publishTime>12/04/2017 10:02:51</publishTime>
     </File>
     <File Include="Partials/Templates/CustomTemplate.html">
-      <publishTime>12/03/2017 09:02:05</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/DischargeCompanionship.html">
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Partials/Templates/DropdownTemplate.html">
-      <publishTime>12/04/2017 10:02:51</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/FormDropdownTemplate.html">
-      <publishTime>12/04/2017 10:02:51</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/GridPagingTemplate.html">
-      <publishTime>01/02/2018 18:28:31</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/GridTemplate.html">
       <publishTime>12/04/2017 10:02:51</publishTime>
     </File>
     <File Include="Partials/Templates/multiFormDropdownTemplate.html">
-      <publishTime>12/20/2017 15:32:57</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/SearchTemplate.html">
-      <publishTime>12/03/2017 09:02:05</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/TableCodeDetailsTemplate.html">
       <publishTime>12/04/2017 10:02:51</publishTime>
@@ -196,7 +196,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Scripts/Controllers/ABCBook/ABCBookCtrl.js">
-      <publishTime>01/02/2018 15:24:37</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Scripts/Controllers/ABCBook/ABCBookDetailesCtrl.js">
       <publishTime>12/17/2017 10:06:24</publishTime>
@@ -205,61 +205,61 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2017 15:44:10</publishTime>
     </File>
     <File Include="Scripts/Controllers/Conversations/ConversationsCtrl.js">
-      <publishTime>12/19/2017 11:19:24</publishTime>
+      <publishTime>01/04/2018 13:51:46</publishTime>
     </File>
     <File Include="Scripts/Controllers/EditCustomer/ConnectionsCtrl.js">
       <publishTime>01/02/2018 11:34:51</publishTime>
     </File>
     <File Include="Scripts/Controllers/EditCustomer/EditCustomerCtrl.js">
-      <publishTime>12/28/2017 14:40:36</publishTime>
+      <publishTime>01/04/2018 15:20:51</publishTime>
     </File>
     <File Include="Scripts/Controllers/EditCustomer/MessagesCustCtrl.js">
-      <publishTime>12/26/2017 10:54:16</publishTime>
+      <publishTime>01/04/2018 16:42:08</publishTime>
     </File>
     <File Include="Scripts/Controllers/EditCustomer/PrivateDetailsCtrl.js">
-      <publishTime>12/27/2017 11:10:05</publishTime>
+      <publishTime>01/04/2018 15:35:05</publishTime>
     </File>
     <File Include="Scripts/Controllers/EditCustomer/RefundsCtrl.js">
-      <publishTime>01/02/2018 15:29:23</publishTime>
+      <publishTime>01/04/2018 09:58:26</publishTime>
     </File>
     <File Include="Scripts/Controllers/EditCustomer/RemarksCtrl.js">
       <publishTime>12/19/2017 11:02:34</publishTime>
     </File>
     <File Include="Scripts/Controllers/LoginCtrl.js">
-      <publishTime>01/02/2018 16:07:36</publishTime>
+      <publishTime>01/04/2018 13:31:37</publishTime>
     </File>
     <File Include="Scripts/Controllers/Menu/HeaderCtrl.js">
-      <publishTime>12/03/2017 14:39:41</publishTime>
+      <publishTime>01/03/2018 16:02:34</publishTime>
     </File>
     <File Include="Scripts/Controllers/Menu/MenuCtrl.js">
-      <publishTime>01/02/2018 16:50:07</publishTime>
+      <publishTime>01/04/2018 15:20:51</publishTime>
     </File>
     <File Include="Scripts/Controllers/Messages/MessagesCtrl.js">
-      <publishTime>12/28/2017 17:03:53</publishTime>
+      <publishTime>01/04/2018 17:00:49</publishTime>
     </File>
     <File Include="Scripts/Controllers/Messages/PdfToProvidersCtrl.js">
-      <publishTime>01/03/2018 12:13:49</publishTime>
+      <publishTime>01/03/2018 15:28:16</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/AddNewOrderCtrl.js">
-      <publishTime>01/01/2018 12:37:45</publishTime>
+      <publishTime>01/04/2018 17:27:28</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/OrdersBoardCtrl.js">
-      <publishTime>12/27/2017 10:14:29</publishTime>
+      <publishTime>01/04/2018 13:16:49</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/OrdersCtrl.js">
-      <publishTime>01/01/2018 11:33:33</publishTime>
+      <publishTime>01/03/2018 16:16:47</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/OrdersTabsCtrl.js">
       <publishTime>12/28/2017 12:02:34</publishTime>
     </File>
     <File Include="Scripts/Controllers/Reports/ReportsCtrl.js">
-      <publishTime>01/01/2018 14:57:10</publishTime>
+      <publishTime>01/04/2018 16:18:44</publishTime>
     </File>
     <File Include="Scripts/Controllers/Reports/ReportsCustomerCtrl.js">
-      <publishTime>12/31/2017 16:18:49</publishTime>
+      <publishTime>01/04/2018 16:25:10</publishTime>
     </File>
     <File Include="Scripts/Controllers/Reports/ReportsProductCtrl.js">
-      <publishTime>12/31/2017 16:28:49</publishTime>
+      <publishTime>01/04/2018 16:25:10</publishTime>
     </File>
     <File Include="Scripts/Controllers/Reports/ReportsTabsCtrl.js">
       <publishTime>12/26/2017 16:53:07</publishTime>
@@ -268,7 +268,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2017 12:19:48</publishTime>
     </File>
     <File Include="Scripts/Controllers/Settings/EligibilityTableCtrl.js">
-      <publishTime>12/14/2017 11:46:28</publishTime>
+      <publishTime>01/04/2018 11:41:39</publishTime>
     </File>
     <File Include="Scripts/Controllers/Settings/MonthCtrl.js">
       <publishTime>12/24/2017 17:36:02</publishTime>
@@ -286,7 +286,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2017 14:49:49</publishTime>
     </File>
     <File Include="Scripts/Directives/CalendarDirective.js">
-      <publishTime>12/27/2017 16:27:52</publishTime>
+      <publishTime>01/04/2018 13:15:44</publishTime>
     </File>
     <File Include="Scripts/Directives/CreateDialogDir.js">
       <publishTime>12/04/2017 10:02:52</publishTime>
@@ -331,13 +331,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Scripts/Factories/Alerts.js">
-      <publishTime>12/03/2017 09:02:05</publishTime>
+      <publishTime>01/04/2018 13:25:47</publishTime>
     </File>
     <File Include="Scripts/Factories/changesAlert.js">
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Scripts/Factories/Connect.js">
-      <publishTime>12/31/2017 10:19:12</publishTime>
+      <publishTime>01/04/2018 13:48:50</publishTime>
     </File>
     <File Include="Scripts/Factories/createDialogFactory.js">
       <publishTime>12/04/2017 10:02:52</publishTime>
@@ -406,7 +406,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 10:02:53</publishTime>
     </File>
     <File Include="Style/ayelet_hashachar-companionship.css">
-      <publishTime>12/04/2017 10:02:53</publishTime>
+      <publishTime>01/04/2018 13:34:13</publishTime>
     </File>
     <File Include="Style/bootstrap-flipped.css">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -439,7 +439,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Style/directives-style1.css">
-      <publishTime>12/03/2017 16:13:35</publishTime>
+      <publishTime>01/04/2018 13:17:55</publishTime>
     </File>
     <File Include="Style/fonts/glyphicons-halflings-regular.eot">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -469,7 +469,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Style/grid-style.css">
-      <publishTime>12/03/2017 09:02:05</publishTime>
+      <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Style/jquery-ui.css">
       <publishTime>12/04/2017 10:02:53</publishTime>

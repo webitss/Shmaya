@@ -247,12 +247,7 @@
     margin: 8px 0 0px 0;
 }
 
-.month-name {
-    display: inline-block;
-    width: 115px;
-    text-align: center;
-    color: #7ec0c4;
-}
+
 
 .month-div span {
     font-weight: bold;
@@ -385,8 +380,8 @@
     width: 100%;
     background-color: #f4eff5;
     right: 0;
-    height: 26px;
-    line-height: 32px;
+    height: 80px;
+    line-height: 18px;
     text-align: center;
     color: #404041;
     font-weight: 600;
@@ -400,7 +395,8 @@
     display: inline-block;
     width: 115px;
     text-align: center;
-    color: #7ec0c4;
+    color: #3b173c;
+
 }
 
 .month-div span {
@@ -439,7 +435,7 @@
 }
 
 .day_item {
-    width: calc(14% - 0px);
+    width: calc(100% / 7);
     padding: 15px;
     border: 1px solid rgb(88, 129, 63);
     height: 29px;

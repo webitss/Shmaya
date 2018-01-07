@@ -29,22 +29,23 @@
 					<div class="text-center">
 						<button type="submit" ng-click="login()" class="b-login btn btn-lg btn-block btn-login">כניסה</button>
 					</div>
-					<div class="form-group col-lg-2 col-md-6 col-sm-4 ">
+                <br />
+					<div class="form-group ">
 						<a ng-click="resetUser()">שכחתי סיסמא</a>
 					</div>
 				</form>
 				<form id="myForm1" name="forgetPasswordForm" ng-if="var.forgetPassword == true">
-					<div class="form-group row">
-						<input type="email" class="form-control col-md-12 col-lg-2  col-sm-4" id="mail" name="mail" placeholder="*הזן כתובת מייל לשחזור סיסמא"
+					<div class="form-group">
+						<input type="email" class="form-control" id="mail" name="mail" placeholder="*הזן כתובת מייל לשחזור סיסמא"
 							   ng-model="user.nvMail"
 							   required />
 					</div>
 
-					<div class="form-group col-lg-2 col-md-12 col-sm-4 ">
-						<button ng-click="resetPassword()" class="btn  btn-info btn-lg btn-block btn-login ">אישור</button>
+					<div class="form-group">
+						<button ng-click="resetPassword()" class="b-login btn btn-lg btn-block btn-login">אישור</button>
 					</div>
 
-					<div class="form-group col-lg-2 col-md-3 col-sm-4 ">
+					<div class="form-group">
 						<a ng-click="var.forgetPassword=false;resetUser()">כניסה באמצעות שם משתמש וסיסמא</a>
 					</div>
 				</form>

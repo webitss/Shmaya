@@ -2,11 +2,11 @@
 companionApp.controller('OrdersBoardCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId',
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
 		$scope.isDataLoaded = 0;
-
+		$scope.newOrder = { dialogIsOpen: false };
 		$scope.addNewOrder = function () {
 			$scope.isEdit = false;
 			$scope.name = "אלפון";
-			$scope.newOrder = true;
+			$scope.newOrder.dialogIsOpen = true;
 			$rootScope.$broadcast('displayDialog', { id: 'newOrder' });
 		}
 

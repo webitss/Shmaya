@@ -6,17 +6,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMWS\201801031259</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMWS\201801041748</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
+    <File Include="bin/NReco.PdfGenerator.dll">
+      <publishTime>01/02/2018 15:11:34</publishTime>
+    </File>
     <File Include="bin/Service.dll">
-      <publishTime>01/03/2018 12:59:32</publishTime>
+      <publishTime>01/04/2018 13:12:36</publishTime>
     </File>
     <File Include="bin/Service.pdb">
-      <publishTime>01/03/2018 12:59:32</publishTime>
+      <publishTime>01/04/2018 13:12:36</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -25,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/03/2018 12:59:32</publishTime>
+      <publishTime>01/04/2018 13:12:36</publishTime>
     </File>
   </ItemGroup>
 </Project>

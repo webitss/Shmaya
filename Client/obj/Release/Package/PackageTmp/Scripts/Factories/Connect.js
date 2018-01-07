@@ -1,5 +1,5 @@
 ﻿"use strict"
-companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '$timeout', '$log', 'forceLogOut', function ($http, $rootScope, alerts, $location, $timeout, $log, forceLogOut) {
+companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '$timeout', '$log', 'forceLogOut', function ($http, $rootScope, $location, alerts, $timeout, $log, forceLogOut) {
 
     var callQueue = [];
 
@@ -71,11 +71,15 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
             //url +
             $http.post(url + actionName, data)
                 .then
-                (function (result, info) {
-                    if ((result.data == null || result.data == undefined || result.data == -1 || result.data == false))
-                        if (!ErrorFunc)
-                            alerts.alert(alerts.messages.someError, alerts.titles.error);
-                        else ErrorFunc();
+				(function (result, info) {
+					if (result.data.length == 0)
+						SuccessFunc(dateConvectionLoop(result.data, false));
+					else if ((result.data == null || result.data == undefined || result.data == -1 || result.data == false)) {
+						if (ErrorFunc)
+							ErrorFunc();
+					}
+                        //    alerts.alert(alerts.messages.someError, alerts.titles.error);
+                        //else ErrorFunc();
                     else
                         SuccessFunc(dateConvectionLoop(result.data, false));
                 },
@@ -88,7 +92,7 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
                         if (ErrorFunc)
                             ErrorFunc(result);
                         else
-                            alerts.alert(alerts.messages.someError, alerts.titles.error);
+							alerts.alert(alerts.messages.someError, alerts.titles.error);
                     }
                 })
                 .finally(function () {
@@ -126,7 +130,7 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
                     url = "http://ws.webit-track.com/AyeletHashacharService/";
                     break;
                 case 'qa.webit-track.com':
-                    url = "http://qa.webit-track.com/Service/";
+					url = "http://qa.webit-track.com/ShmayaCRMWs/";
                     break;
             }
             return url;

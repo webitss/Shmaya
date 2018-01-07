@@ -2,6 +2,7 @@
 companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId',
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
 
+
 		$scope.prepareData = function () {
 			$scope.$broadcast('show-errors-check-validity');
 			if (!$scope.formReport2.$valid) {
@@ -94,7 +95,18 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					fileName: 'דוח מקבלי שירות'
 				})
 
+		}
+
+
+		$scope.checkValidation = function () {
+			$scope.$broadcast('show-errors-check-validity');
+			if (!$scope.formReport1.$valid) {
+				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+				$rootScope.notification(savingStatus);
+				return;
 			}
+			$scope.exportToExcel()
+		}
 
 
 		

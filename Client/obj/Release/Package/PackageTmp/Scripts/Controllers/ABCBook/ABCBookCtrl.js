@@ -22,21 +22,11 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{
 					fieldName: 'iUserId',
 					title: 'עריכה',
-					template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user) {
 						$scope.isEdit = true;
 						user.dialogIsOpen = true;
 						$rootScope.$broadcast('displayDialog', { id: user.iUserId });
-					},
-					weight: 0.5,
-					filter: false,
-					sort: false
-				},
-				{
-					title: 'שליחת הודעה',
-					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
-					addMemberToMessage: function (item) {
-						$scope.messageList(item);
 					},
 					weight: 0.5,
 					filter: false,
@@ -52,6 +42,16 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 							$scope.deleteCustomer(item);
 						}, function () {
 						});
+					},
+					weight: 0.5,
+					filter: false,
+					sort: false
+				},
+				{
+					title: 'בחירה',
+					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+					addMemberToMessage: function (item) {
+						$scope.messageList(item);
 					},
 					weight: 0.5,
 					filter: false,
@@ -72,21 +72,11 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{
 					fieldName: 'iUserId',
 					title: 'עריכה',
-					template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user) {
 						$scope.isEdit = true;
 						user.dialogIsOpen = true;
 						$rootScope.$broadcast('displayDialog', { id: user.iUserId });
-					},
-					weight: 0.5,
-					filter: false,
-					sort: false
-				},
-				{
-					title: 'שליחת הודעה',
-					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
-					addMemberToMessage: function (item) {
-						$scope.messageList(item);
 					},
 					weight: 0.5,
 					filter: false,
@@ -98,10 +88,20 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
 					template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteACustomer(item)\'></div>',
 					deleteACustomer: function (item) {
-						alerts.confirm('האם להפוך לקוח זה ללא פעיל? ', alerts.titles.message, function () {
+						alerts.confirm('האם להפוך נותן שירות זה ללא פעיל? ', alerts.titles.message, function () {
 							$scope.deleteCustomer(item);
 						}, function () {
 						});
+					},
+					weight: 0.5,
+					filter: false,
+					sort: false
+				},
+				{
+					title: 'בחירה',
+					template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+					addMemberToMessage: function (item) {
+						$scope.messageList(item);
 					},
 					weight: 0.5,
 					filter: false,
@@ -124,21 +124,11 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					{
 						fieldName: 'iUserId',
 						title: 'עריכה',
-						template: '<div class="pass user-class glyphicon glyphicon-user" ng-click="col.clickEvent(item)"></div>',
+                        template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 						clickEvent: function (user) {
 							$scope.isEdit = true;
 							user.dialogIsOpen = true;
 							$rootScope.$broadcast('displayDialog', { id: user.iUserId });
-						},
-						weight: 0.5,
-						filter: false,
-						sort: false
-					},
-					{
-						title: 'שליחת הודעה',
-						template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
-						addMemberToMessage: function (item) {
-							$scope.messageList(item);
 						},
 						weight: 0.5,
 						filter: false,
@@ -150,7 +140,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 						//type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
 						template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAAdministrator(item)\'></div>',
 						deleteAAdministrator: function (item) {
-							alerts.confirm('האם להפוך לקוח זה ללא פעיל? ', alerts.titles.message, function () {
+							alerts.confirm('האם להפוך מנהל זה ללא פעיל? ', alerts.titles.message, function () {
 								$scope.deleteAdministrator(item);
 							}, function () {
 							});
@@ -159,14 +149,24 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 						filter: false,
 						sort: false
 					},
+					{
+						title: 'בחירה',
+						template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+						addMemberToMessage: function (item) {
+							$scope.messageList(item);
+						},
+						weight: 0.5,
+						filter: false,
+						sort: false
+					},
 					{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
-					{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.5 },
+					{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.7 },
 					{ title: 'כתובת', fieldName: 'nvAdress' },
 					{ title: 'טלפון', fieldName: 'nvPhoneNum' },
-					{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
-					{ title: 'מייל', fieldName: 'nvEmail' },
-					{ title: 'סוג עובד', fieldName: 'nvWorkerType', weight: 0.8 }
+                    { title: 'טלפון נייד', fieldName: 'nvMobileNum'  ,weight: 0.7 },
+                    { title: 'מייל', fieldName: 'nvEmail', weight: 1.2 },
+					{ title: 'סוג עובד', fieldName: 'nvWorkerType', weight: 0.7 }
 				];
 		};
 

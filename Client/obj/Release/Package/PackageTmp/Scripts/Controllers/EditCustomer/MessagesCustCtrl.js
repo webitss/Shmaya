@@ -21,6 +21,7 @@
 
 				$scope.openNewMessage = function () {
 
+					$rootScope.userToSend = $scope.user.iUserId;
 					$scope.newMessage1 = true;
 					$rootScope.$broadcast('displayDialog', { id: 'newMessage1' });
 

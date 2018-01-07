@@ -1,15 +1,10 @@
 ﻿"use strict"
 companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId',
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
+	
 
 		$scope.prepareData = function () {
-			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport3.$valid)
-			{
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				return;
-			}
+
 			$scope.isDataLoaded1 = 0;
 			$scope.gridIdentity1 = 'ReportsList1';
 			$scope.columns1 = [
@@ -81,6 +76,17 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 					fileName: 'דוח מוצרים'
 				})
 			}
+
+
+		$scope.checkValidation = function () {
+			$scope.$broadcast('show-errors-check-validity');
+			if (!$scope.formReport1.$valid) {
+				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+				$rootScope.notification(savingStatus);
+				return;
+			}
+			$scope.exportToExcel()
+		}
 
 	
 

@@ -9,7 +9,7 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
         //$scope.date = $filter('date')($scope.date, 'dd-MM-yyyy');
         $scope.showNewConversation = false;
         $scope.isCollapse = false;
-		$scope.allConversations = ['stam'];
+		//$scope.allConversations = ['stam'];
         
         //$scope.conversation = {
         //    nvSubject: undefined,
@@ -30,8 +30,8 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
 		$scope.getAllConversations = function () {
 			connect.post(true, 'GetConversations', { iUserId: $scope.user.iUserId }, function (result) {
 				$scope.allConversations = result;
-				if (result.lengh == 0)
-					$scope.noConversation = 'לא התבצעו שיחות עם חבר זה';
+				if ($scope.allConversations.length == 0)
+					$scope.noConversation = 'לא התבצעו שיחות עם לקוח זה';
 			});
 		}
 		$scope.getAllConversations();
@@ -56,7 +56,8 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
 
 			connect.post(true, 'CreateNewConversation', { conversation: $scope.newConversation/*, iCreateUserId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId*/ }, function (result) {
                 $scope.bIsNewConversationOpen = false;
-                $scope.newConversation = {};
+				$scope.newConversation = {};
+				$scope.noConversation = null;
                 var savingStatus = "שיחה נוספה בהצלחה"
                 $rootScope.notification(savingStatus);
                 $scope.getAllConversations();

@@ -3,17 +3,17 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
 	
 
-	$scope.index = -1;
+	$scope.index = 0;
 
 
 	$scope.loadCodeTablesList = false;
 	if ($scope.showCustomer) {
 		$scope.tabs = [
 			{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
-			{ title: 'החזרים  ללקוח', content: 'Partials/Pages/EditCustomer/Refunds.html' },//|| $scope.selectedMember.iCompanionshipStatusType != codeTablesId.companionship.noCompanionship 
+			{ title: 'החזרים  ללקוח', content: 'Partials/Pages/EditCustomer/Refunds.html' },
 			{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
-			{ title: 'הזמנות ללקוח', content: 'Partials/Pages/EditCustomer/Connections.html' },//|| $scope.selectedMember.iCompanionshipStatusType == codeTablesId.companionship.noCompanionship 
-			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },// || $scope.selectedMember.iStatusType == codeTablesId.statusType.newMember || $scope.selectedMember.iStatusType == codeTablesId.statusType.waitToNew 
+			{ title: 'הזמנות ללקוח', content: 'Partials/Pages/EditCustomer/Connections.html' }, 
+			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
 			{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
 		];
 	}
@@ -21,8 +21,8 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 		$scope.tabs = [
 			{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
 			{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
-			{ title: 'הזמנות', content: 'Partials/Pages/EditCustomer/Connections.html' },//|| $scope.selectedMember.iCompanionshipStatusType == codeTablesId.companionship.noCompanionship 
-			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },// || $scope.selectedMember.iStatusType == codeTablesId.statusType.newMember || $scope.selectedMember.iStatusType == codeTablesId.statusType.waitToNew 
+			{ title: 'הזמנות', content: 'Partials/Pages/EditCustomer/Connections.html' },
+			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
 			{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
 		];
 	}

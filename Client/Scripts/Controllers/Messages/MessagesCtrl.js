@@ -15,7 +15,6 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	
 	$scope.sendMessage = function ()
 	{
-		
 		//אם השליחה היא לקבוצה
 		if ($scope.newMessage1 != true && $rootScope.listToSend == undefined) {
 			if ($scope.sendTo == 1)
@@ -57,6 +56,13 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 					$scope.userList.push(user);
 				})
 			}
+
+			if ($scope.newMessage1 == true)
+			{
+				$scope.userList = [];
+				$scope.userList.push($scope.user);
+			}
+				console.log("qwesqwedqweds122222222" + $rootScope.userToSend + "@@@@@@@@@" + $scope.user)
 			
 			//  אם נבחרה הודעת מייל
 			if ($scope.typeSelect == 1 ) {
