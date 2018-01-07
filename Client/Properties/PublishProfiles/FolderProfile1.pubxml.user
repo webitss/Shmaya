@@ -6,14 +6,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMFront\201801041738</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMFront\201801071326</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Client.dll">
-      <publishTime>01/04/2018 12:58:43</publishTime>
+      <publishTime>01/07/2018 13:26:25</publishTime>
     </File>
     <File Include="bin/Client.pdb">
-      <publishTime>01/04/2018 12:58:43</publishTime>
+      <publishTime>01/07/2018 13:26:25</publishTime>
     </File>
     <File Include="ClassDiagram1.cd">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -55,7 +55,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>01/02/2018 18:05:00</publishTime>
+      <publishTime>01/07/2018 13:18:57</publishTime>
     </File>
     <File Include="LICENSE/angular-animate.txt">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -85,7 +85,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/PrivateDetails.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 09:48:21</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Refunds.html">
       <publishTime>01/04/2018 12:08:04</publishTime>
@@ -109,13 +109,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 11:41:39</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/AddNewOrder.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 12:10:53</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/Orders.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 11:45:24</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/OrdersBoard.html">
-      <publishTime>01/04/2018 13:15:44</publishTime>
+      <publishTime>01/07/2018 12:06:59</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/OrdersTabs.html">
       <publishTime>12/04/2017 10:03:01</publishTime>
@@ -124,7 +124,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 16:25:10</publishTime>
     </File>
     <File Include="Partials/Pages/Reports/ReportsCustomer.html">
-      <publishTime>01/04/2018 16:25:10</publishTime>
+      <publishTime>01/07/2018 11:45:24</publishTime>
     </File>
     <File Include="Partials/Pages/Reports/ReportsProduct.html">
       <publishTime>01/04/2018 16:25:10</publishTime>
@@ -241,13 +241,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/03/2018 15:28:16</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/AddNewOrderCtrl.js">
-      <publishTime>01/04/2018 17:27:28</publishTime>
+      <publishTime>01/07/2018 13:25:24</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/OrdersBoardCtrl.js">
-      <publishTime>01/04/2018 13:16:49</publishTime>
+      <publishTime>01/07/2018 11:57:09</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/OrdersCtrl.js">
-      <publishTime>01/03/2018 16:16:47</publishTime>
+      <publishTime>01/07/2018 12:12:16</publishTime>
     </File>
     <File Include="Scripts/Controllers/Orders/OrdersTabsCtrl.js">
       <publishTime>12/28/2017 12:02:34</publishTime>
@@ -310,7 +310,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 10:02:52</publishTime>
     </File>
     <File Include="Scripts/Directives/GridDirective.js">
-      <publishTime>01/02/2018 18:42:51</publishTime>
+      <publishTime>01/07/2018 09:48:21</publishTime>
     </File>
     <File Include="Scripts/Directives/GridPagingDirective.js">
       <publishTime>01/02/2018 18:42:57</publishTime>
@@ -440,6 +440,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Style/directives-style1.css">
       <publishTime>01/04/2018 13:17:55</publishTime>
+    </File>
+    <File Include="Style/fine-work.css">
+      <publishTime>01/04/2018 12:28:21</publishTime>
     </File>
     <File Include="Style/fonts/glyphicons-halflings-regular.eot">
       <publishTime>12/03/2017 09:02:05</publishTime>

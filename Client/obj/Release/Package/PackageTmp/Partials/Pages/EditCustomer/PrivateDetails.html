@@ -28,7 +28,7 @@
 				<input class="form-control" type="text" ng-model="user.nvId" ng-minlength="9" ng-maxlength="9" ng-pattern="/^[0-9]{9}$/" required  />
 			</form-field>
 			<form-field span-text="תאריך לידה" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtBirthDate"  />
+				<input class="form-control" type="date" ng-model="user.dtBirthDate"/>
 			</form-field>
 		</div>
 		<div class="row">
@@ -72,7 +72,7 @@
 		</div>
 		<div class="row" ng-show="showCustomer&&!showAdmin">
 			<form-field span-text="תאריך הצטרפות" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtBirthDate"/>
+				<input class="form-control" type="date" ng-model="user.dtCreateDate"/>
 			</form-field>
 		</div>
 		<div class="row" ng-show="showCustomer&&!showAdmin&&!showAdmin">

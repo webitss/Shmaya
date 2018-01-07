@@ -1,6 +1,6 @@
 ﻿"use strict"
-companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId',
-	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
+companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', '$window',
+	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId, $window) {
 		$scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
 		$scope.defDate = new Date();
 		$scope.defYear = (new Date()).getFullYear();
@@ -31,15 +31,16 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			
 			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId }, function (result)
 			{
-				if (result && result > 0)
-				{
-					console.log(Orderinsert_update+":" + result);
+				if (result && result > 0) {
+					console.log(Orderinsert_update + ":" + result);
 					var savingStatus = "השינויים נשמרו בהצלחה";
 					$rootScope.notification(savingStatus);
 					if ($scope.isEdit)
 						$scope.order.dialogIsOpen = false;
-					else
-						$scope.newOrder = false;
+					else {
+						$scope.newOrder.dialogIsOpen = false;
+						$scope.getData();
+					}
 					$scope.prepareData();
 				}
 				else
@@ -61,7 +62,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					{ iUserType: 3 },
 					function (result)
 					{
-						$scope.ABCBookProviders = result;
+					    $scope.ABCBookProviders = result;
+                        
 					});
 		};
 		$scope.getData();
