@@ -136,7 +136,7 @@
 				scope.dataLength = $filter('number')(data.length);
 				angular.forEach(scope.columns, function (col) {
 					if (col.doSum)
-						col['sumByField'] = $filter('number')($filter('sumByField')(data, col.fieldName));
+						col['sumByField'] = $filter('number')($filter('sumByField')(data,col.fieldName));
 				});
 				$rootScope.$broadcast('updateDataLength', {
 					id: scope.gridIdentity,

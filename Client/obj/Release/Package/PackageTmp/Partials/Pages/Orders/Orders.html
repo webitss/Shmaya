@@ -37,7 +37,7 @@
 			</div>
 
 
-			<create-dialog ng-if="newOrder" id="newOrder" cancel="true">
+			<create-dialog ng-if="newOrder.dialogIsOpen" id="newOrder" cancel="true">
 				<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'הזמנה חדשה'}}"-->
 				<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 			</create-dialog>

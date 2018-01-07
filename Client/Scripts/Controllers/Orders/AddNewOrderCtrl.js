@@ -20,7 +20,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			{
 				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
-				//return;
+				return;
 			}
 			//if ($scope.order.iCityId == 0)
 			//	$scope.order.iCityId = null;
