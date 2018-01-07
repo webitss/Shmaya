@@ -19,3 +19,7 @@ Client/bin/Client.dll
 *.dll
 *.pdb
 *.CopyComplete
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.dll
+*.pdb
+*.cache
