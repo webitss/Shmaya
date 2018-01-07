@@ -26,3 +26,11 @@ Client/bin/Client.dll
 .vs/AyeletHashacharCompanionship/v15/.suo
 *.dll
 *.pdb
+*.dll
+*.dll
+*.pdb
+*.suo
+*.cache
+*.txt
+*.user
+*.csproj
