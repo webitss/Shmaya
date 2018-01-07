@@ -13,3 +13,9 @@ Client/bin/Client.dll
 *.cs
 *.config
 *.config
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.ide-shm
+*.ide-wal
+*.dll
+*.pdb
+*.CopyComplete
