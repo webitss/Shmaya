@@ -55,7 +55,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					{ iUserType: 3 },
 					function (result)
 					{
-						$scope.ABCBookProviders = result;
+					    $scope.ABCBookProviders = result;
+                        
 					});
 		};
 		$scope.getData();
