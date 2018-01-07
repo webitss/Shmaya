@@ -4,7 +4,8 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	    $scope.isEdit = false;
 	    $scope.prepareData = function () {
 	        $scope.isDataLoaded = 0;
-	        $scope.gridIdentity = 'OrdersList';
+			$scope.gridIdentity = 'OrdersList';
+			$scope.newOrder = { dialogIsOpen: false };
 	        $scope.columns = [
 				{
 				    fieldName: 'iOrderId',
@@ -103,7 +104,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	    $scope.addNewOrder = function () {
 	        $scope.isEdit = false;
 	        $scope.name = "אלפון";
-	        $scope.newOrder = true;
+			$scope.newOrder.dialogIsOpen = true;
 	        $rootScope.$broadcast('displayDialog', { id: 'newOrder' });
 	    }
 	    $scope.deleteOrder = function (item) {
