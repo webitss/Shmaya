@@ -1,0 +1,42 @@
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\bin\Client.dll
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\bin\Client.pdb
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\obj\Debug\Client.dll
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\obj\Debug\Client.pdb
+C:\Users\User\Desktop\AyeletHashachar\Client\bin\Client.dll
+C:\Users\User\Desktop\AyeletHashachar\Client\bin\Client.pdb
+C:\Users\User\Desktop\AyeletHashachar\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\AyeletHashachar\Client\obj\Debug\Client.dll
+C:\Users\User\Desktop\AyeletHashachar\Client\obj\Debug\Client.pdb
+C:\AngularDEVs\AyeletHashachar\Client\bin\Client.dll
+C:\AngularDEVs\AyeletHashachar\Client\bin\Client.pdb
+C:\AngularDEVs\AyeletHashachar\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\AngularDEVs\AyeletHashachar\Client\obj\Debug\Client.dll
+C:\AngularDEVs\AyeletHashachar\Client\obj\Debug\Client.pdb
+C:\Dev\AyeletHashachar\Client\bin\Client.dll
+C:\Dev\AyeletHashachar\Client\bin\Client.pdb
+C:\Dev\AyeletHashachar\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\Dev\AyeletHashachar\Client\obj\Debug\Client.dll
+C:\Dev\AyeletHashachar\Client\obj\Debug\Client.pdb
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Client\bin\Client.dll
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Client\bin\Client.pdb
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Client\obj\Debug\Client.dll
+C:\DEV\איילת השחר\AyeletHashacharBB\AyeletHashachar\Client\obj\Debug\Client.pdb
+C:\git.dev\shmayaCrm\Client\bin\Client.dll.config
+C:\git.dev\shmayaCrm\Client\bin\Client.dll
+C:\git.dev\shmayaCrm\Client\bin\Client.pdb
+C:\git.dev\shmayaCrm\Client\obj\Debug\AyeletHashachaClient.csproj.CoreCompileInputs.cache
+C:\git.dev\shmayaCrm\Client\obj\Debug\Client.dll
+C:\git.dev\shmayaCrm\Client\obj\Debug\Client.pdb
+C:\git.dev\shmayaCrm\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
+C:\git.dev\Shmaya\Client\bin\Client.dll.config
+C:\git.dev\Shmaya\Client\bin\Client.dll
+C:\git.dev\Shmaya\Client\bin\Client.pdb
+C:\git.dev\Shmaya\Client\obj\Debug\AyeletHashachaClient.csprojResolveAssemblyReference.cache
+C:\git.dev\Shmaya\Client\obj\Debug\AyeletHashachaClient.csproj.CoreCompileInputs.cache
+=======
+>>>>>>> dbe0b6c5db30400dd00596859a90f0bd5b1107ea
+C:\git.dev\Shmaya\Client\obj\Debug\Client.dll
+C:\git.dev\Shmaya\Client\obj\Debug\Client.pdb

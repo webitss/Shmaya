@@ -47,7 +47,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 						var savingStatus = "השינויים נשמרו בהצלחה";
 						$rootScope.notification(savingStatus);
 						$scope.prepareData();
-						$scope.user.dialogIsOpen = false;
+						$scope.newUser1 = false;
 					}
 					else {
 						alert('ארעה שגיאה בלתי צפויה');

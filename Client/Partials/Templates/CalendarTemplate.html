@@ -1,16 +1,15 @@
 ﻿<div id="calendar-directive">
-    <div class="row" >
+    <div class="row">
         <div ng-class="{'col-md-4': type == 'large', 'col-md-6': type == 'small'}">
             <!--ng-class="{'col-md-6': type == 'large', 'col-md-12': type == 'small'}"-->
             <div class="month-div">
                 <span ng-click="prevMonth()"><</span>
                 <div class="month-name">{{ currentMonth.toLocaleString("he-iw", { month: "long" }) }} {{ currentMonth.getFullYear() }}</div>
-                <span ng-click="nextMonth()">></span>               
+                <span ng-click="nextMonth()">></span>
             </div>
         </div>
 
-         <div class="col-md-4 month-hebrew-name" >
-            <!--ng-class="{'col-md-6': type == 'large', 'col-md-12': type == 'small'}"-->
+        <div class="col-md-4 month-hebrew-name">
             <div class="month-div">
                 <div>
                     <span>{{lMonthDays[0].dDayDate | hebrewDate: 'hebrewMonth'}}</span>
@@ -19,11 +18,11 @@
                 </div>
             </div>
         </div>
-
-        <div ng-if="!inPrintingProcess" class="col-md-4">
-            <!--<div ng-click="printCalendar()" ng-show="!inPrintingProcess" class="btn btn-default command-btn add-site pull-left" title="הדפסת הלוח">
-              <span class="glyphicon glyphicon-print"></span>
-            </div>-->
+        <br />
+        <div ng-if="!inPrintingProcess" class="col-md-4"><!---->
+            <div ng-click="printCalendar()" ng-show="!inPrintingProcess" class="btn btn-default command-btn add-site pull-left" title="הדפסת הלוח">
+                <img src="Images/print.png" />
+            </div>
             <div class="col-md-6" ng-if="type == 'large' && jobStatusType == 98 && timeAvailablity.length > 1">
                 <div class="chose-all">
                     <div class="active-day-table" ng-class="{ 'choose': chooseAll }" ng-click="activeAllDate()"><span></span></div>
@@ -32,7 +31,6 @@
             </div>
         </div>
     </div>
-
     <div id="myCalendar" class="row">
         <div class="calendar_header">
             <div class="day_item pull-right text-center" ng-repeat="day in lWeekDays">{{::day}}</div>
@@ -43,20 +41,22 @@
             ng-click="chooseDate(this, day.dDayDate); " onclick="this.blur();">
             <span class="hebrew-date pull-left" ng-class="{ 'margin-t-6': day.bIsActive }">{{day.dDayDate | hebrewDate: 'hebrewDay'}}</span>
             <span class="hebrew-date pull-right" ng-class="{ 'margin-t-6': day.bIsActive }">{{day.day}}</span>
-
-
+            
             <div ng-if="day.dDayDate.getMonth() == currentMonth.getMonth() && !inPrintingProcess" ng-click="openCommentPage(day)" class="bbtn btn-default pull-left glyphicon glyphicon-edit"
                 title="הערות">
-                <!--glyphicon-comment-->
             </div>
-
+            
+            <br />
             <div class="comment-message" ng-repeat="comment in day.commentList">
                 {{comment.nvComment}}
                 <br />
             </div>
 
             <div ng-if="type == 'large' && day.nvTitle" class="time-in-table">
-                <span class="advancedStudy-name">{{day.nvTitle}}</span>
+                <span class="advancedStudy-name">{{day.nvTitle}}</span><br />
+                שעת התחלה: <span class="advancedStudy-name">{{day.time}}</span><br />
+                מתרגם: <span class="advancedStudy-name">{{day.soplier}}</span><br />
+                לקוח: <span class="advancedStudy-name">{{day.customer}}</span>
             </div>
         </div>
     </div>

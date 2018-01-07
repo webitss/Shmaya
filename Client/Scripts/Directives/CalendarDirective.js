@@ -13,8 +13,8 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
         templateUrl: 'Partials/Templates/CalendarTemplate.html',
 
         link: function (scope, element, attrs) {
-			var notChangeTimeAvailablity = false;
-			scope.currentMonth = new Date();
+            var notChangeTimeAvailablity = false;
+            scope.currentMonth = new Date();
             scope.ngModel = angular.isDefined(scope.ngModel) ? scope.ngModel : new Date();
             //!!
             scope.fieldActive = angular.isDefined(scope.fieldActive) ? scope.fieldActive : 'bWorkerOfferedJobTimeAvailablity';
@@ -46,28 +46,32 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
 
                 var index = -1000;
                 while (scope.currentMonth.getMonth() == loopDate.getMonth() || scope.lMonthDays.length == 0 || scope.lMonthDays.length % 7 != 0) {
-                    var isActive = false, nvTitle = '', nvComment = '', isToday = false/*, isAvailable = false*/, commentList = [];
+                    var isActive = false, nvTitle = '', nvComment = '', isToday = false/*, isAvailable = false*/, commentList = [],time='',customer='',soplier = '';
                     // nvComment = '',
                     var arr = $filter('filter')(scope.timeAvailablity, function (item) {
-						if (item.dtTimeBegin)
-							return item.dtTimeBegin.getTime() == loopDate.getTime();
-						else if (item.dtTimeBegin)
-							return $filter('dateFromServer')(item.dtTimeBegin).getTime() == loopDate.getTime();
-					});
-				
-					if (arr != undefined)
-						{
-						if (arr.length > 0) {
-							isActive = true;
-							angular.forEach(arr, function (item, index) {
-								nvTitle += item.nvName;
-								if (arr.length > 0 && index < (arr.length - 1))
-									nvTitle += ', '
-							});
-						}
+                        if (item.dtTimeBegin)
+                            return item.dtDateTraslation.getTime() == loopDate.getTime();
+                        else if (item.dtTimeBegin)
+                            return $filter('dateFromServer')(item.dtTimeBegin).getTime() == loopDate.getTime();
+                    });
+
+                    scope.arr = arr;
+                    scope.loopDate = loopDate;
+                    if (arr != undefined) {
+                        if (arr.length > 0) {
+                            isActive = true;
+                            angular.forEach(arr, function (item, index) {
+                                nvTitle = item.typeOrder;
+                                time = item.dtTimeBegin.getHours() + ':' + item.dtTimeBegin.getMinutes();
+                                soplier = item.nameTranslator;
+                                customer = item.nameCustomer;
+                                if (arr.length > 0 && index < (arr.length - 1))
+                                    nvTitle += ', '
+                            });
+                        }
                         //isAvailable = arr[0][scope.fieldActive];
                     }
-                     if (loopDate.getTime() == new Date().setHours(0, 0, 0, 0)) {
+                    if (loopDate.getTime() == new Date().setHours(0, 0, 0, 0)) {
                         //scope.dayInFocus.date = angular.copy(loopDate);
                         //scope.ngModel = scope.dayInFocus.date;
                         isToday = true;
@@ -78,9 +82,12 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                         bActive: true,
                         day: loopDate.getDate(),
                         bIsActive: isActive,
-                       // bWorkerOfferedJobTimeAvailablity: isAvailable,
+                        // bWorkerOfferedJobTimeAvailablity: isAvailable,
                         bIsToday: isToday,
-                        nvTitle: nvTitle
+                        nvTitle: nvTitle,
+                        time: time,
+                        customer: customer,
+                        soplier: soplier
                     });
                     loopDate = new Date(loopDate.setDate(loopDate.getDate() + 1));
                 };
@@ -112,7 +119,7 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                     day.bWorkerOfferedJobTimeAvailablity = !day.bWorkerOfferedJobTimeAvailablity;
                     for (var i = 0; i < scope.timeAvailablity.length; i++) {
                         //!!
-						if ($filter('dateFromServer')(scope.timeAvailablity[i].dtTimeBegin).getTime() == day.dDayDate.getTime()) {
+                        if ($filter('dateFromServer')(scope.timeAvailablity[i].dtTimeBegin).getTime() == day.dDayDate.getTime()) {
                             scope.timeAvailablity[i][scope.fieldActive] = day.bWorkerOfferedJobTimeAvailablity;
                             notChangeTimeAvailablity = true;
                             break;
@@ -134,7 +141,7 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                 for (var i = 0; i < scope.timeAvailablity.length; i++) {
                     scope.timeAvailablity[i][scope.fieldActive] = scope.chooseAll;
                     var arr = $filter('filter')(scope.lMonthDays, function (item) {
-						return item.dDayDate.getTime() == scope.timeAvailablity[i].dtTimeBegin.getTime();
+                        return item.dDayDate.getTime() == scope.timeAvailablity[i].dtTimeBegin.getTime();
                     });
                     if (arr && arr.length) {
                         arr[0][scope.fieldActive] = scope.chooseAll;
@@ -143,83 +150,83 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                 notChangeTimeAvailablity = true;
             };
 
-            //scope.openCommentPage = function (day) {
-            //    scope.calendar.openCommentDialog = true;
-            //    scope.calendar.selectedDay = day;
-            //    scope.initNewComment();
-            //    scope.openCommentDialog();
-            //}
+            scope.openCommentPage = function (day) {
+                scope.calendar.openCommentDialog = true;
+                scope.calendar.selectedDay = day;
+                scope.initNewComment();
+                scope.openCommentDialog();
+            }
 
-            //scope.openCommentDialog = function () {
-            //    scope.newComment.dCommentDate = scope.calendar.selectedDay.dDayDate;
-            //    createDialog({
-            //        id: 'DayCommentsDialog',
-            //        templateUrl: 'Partials/AdvancedStudy/Comments.html',
-            //        title: "הערות",
-            //        scope: scope,
-            //        backdrop: true,
-            //        modalClass: "modal modalAlert"
-            //    });
-            //}
+            scope.openCommentDialog = function () {
+                scope.newComment.dCommentDate = scope.calendar.selectedDay.dDayDate;
+                createDialog({
+                    id: 'DayCommentsDialog',
+                    templateUrl: 'Partials/Templates/Comments.html',
+                    title: "הערות",
+                    scope: scope,
+                    backdrop: true,
+                    modalClass: "modal modalAlert"
+                });
+            }
 
-            //scope.getDayComments = function (day) {
-            //    day.commentList = [];
-            //    var data = {
-            //        day: day.dDayDate,
-            //        nvGuide: $rootScope.user.nvGuide
-            //    }
-            //    connect.post(true, 'GetDayComments', data, function (result) {
-            //        day.commentList = result;
-            //        angular.forEach(day.commentList, function (comment) {
-            //            comment.isEdit = false;
-            //        });
-            //    });
-            //}
+            scope.getDayComments = function (day) {
+                day.commentList = [];
+                var data = {
+                    day: day.dDayDate,
+                    nvGuide: $rootScope.user.nvGuide
+                }
+                connect.post(true, 'GetDayComments', data, function (result) {
+                    day.commentList = result;
+                    angular.forEach(day.commentList, function (comment) {
+                        comment.isEdit = false;
+                    });
+                });
+            }
 
-            //scope.deleteComment = function (comment) {
-            //    var data = {
-            //        iCommentId: comment.iCommentId,
-            //        iUserId: $rootScope.user.iUserId,
-            //        nvGuide: $rootScope.user.nvGuide
-            //    }
+            scope.deleteComment = function (comment) {
+                var data = {
+                    iCommentId: comment.iCommentId,
+                    iUserId: $rootScope.user.iUserId,
+                    nvGuide: $rootScope.user.nvGuide
+                }
 
-            //    connect.post(true, 'DeleteDayComment', data, function (result) {
-            //        if (result == true) {
-            //            scope.displayAlert('הערה נמחקה');
-            //            scope.getDayComments(scope.calendar.selectedDay);
-            //        }
-            //        else {
-            //            scope.displayAlert('ארעה שגיאה, הפעולה לא בוצעה');
-            //        }
-            //    })
-            //}
+                connect.post(true, 'DeleteDayComment', data, function (result) {
+                    if (result == true) {
+                        scope.displayAlert('הערה נמחקה');
+                        scope.getDayComments(scope.calendar.selectedDay);
+                    }
+                    else {
+                        scope.displayAlert('ארעה שגיאה, הפעולה לא בוצעה');
+                    }
+                })
+            }
 
-            //scope.saveComment = function (commentToEdit) {
-            //    var comment = {
-            //        iCommentId: commentToEdit.iCommentId,
-            //        nvComment: commentToEdit.nvComment,
-            //        dCommentDate: scope.calendar.selectedDay.dDayDate
-            //    }
-            //    connect.post(true, 'DayCommentInsertUpdate', {
-            //        dayComment: comment,
-            //        UserId: $rootScope.user.iUserId,
-            //        nvGuide: $rootScope.user.nvGuide
-            //    },
-            //    function (result) {
-            //        if (result > 0) {
-            //            scope.displayAlert('הערה נשמרה');
-            //            scope.getDayComments(scope.calendar.selectedDay);
-            //        }
-            //        else {
-            //            scope.displayAlert('ארעה שגיאה, ההערה לא נשמרה');
-            //        }
-            //        if (commentToEdit == scope.newComment) {
-            //            scope.initNewComment();
-            //        }
-            //        else
-            //            commentToEdit.isEdit = false;
-            //    })
-            //}
+            scope.saveComment = function (commentToEdit) {
+                var comment = {
+                    iCommentId: commentToEdit.iCommentId,
+                    nvComment: commentToEdit.nvComment,
+                    dCommentDate: scope.calendar.selectedDay.dDayDate
+                }
+                connect.post(true, 'DayCommentInsertUpdate', {
+                    dayComment: comment,
+                    UserId: $rootScope.user.iUserId,
+                    nvGuide: $rootScope.user.nvGuide
+                },
+                function (result) {
+                    if (result > 0) {
+                        scope.displayAlert('הערה נשמרה');
+                        scope.getDayComments(scope.calendar.selectedDay);
+                    }
+                    else {
+                        scope.displayAlert('ארעה שגיאה, ההערה לא נשמרה');
+                    }
+                    if (commentToEdit == scope.newComment) {
+                        scope.initNewComment();
+                    }
+                    else
+                        commentToEdit.isEdit = false;
+                })
+            }
 
             scope.initCalendar = function () {
                 if (scope.type == 'large') {

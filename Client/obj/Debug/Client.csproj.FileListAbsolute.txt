@@ -1,0 +1,5 @@
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\bin\Client.dll
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\bin\Client.pdb
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\obj\Debug\Client.dll
+D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\Client\obj\Debug\Client.pdb
