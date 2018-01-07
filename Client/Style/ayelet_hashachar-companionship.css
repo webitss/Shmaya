@@ -1419,9 +1419,14 @@ footer {
     }
 
 .popup-ayelet .nav-tabs {
+
     margin: -16px 0 18px 0;
     padding: 22px 32px 0 0;
     background-color: #f2f2f2;
+
+    margin-top: -25px;
+    padding: 22px 42px 0 0;
+
 }
 
 .span-nav-tabs {

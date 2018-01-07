@@ -42,9 +42,9 @@
             <span class="hebrew-date pull-left" ng-class="{ 'margin-t-6': day.bIsActive }">{{day.dDayDate | hebrewDate: 'hebrewDay'}}</span>
             <span class="hebrew-date pull-right" ng-class="{ 'margin-t-6': day.bIsActive }">{{day.day}}</span>
             
-            <div ng-if="day.dDayDate.getMonth() == currentMonth.getMonth() && !inPrintingProcess" ng-click="openCommentPage(day)" class="bbtn btn-default pull-left glyphicon glyphicon-edit"
+            <!--<div ng-if="day.dDayDate.getMonth() == currentMonth.getMonth() && !inPrintingProcess" ng-click="openCommentPage(day)" class="bbtn btn-default pull-left glyphicon glyphicon-edit"
                 title="הערות">
-            </div>
+            </div>-->
             
             <br />
             <div class="comment-message" ng-repeat="comment in day.commentList">
