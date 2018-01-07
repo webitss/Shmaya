@@ -28,3 +28,14 @@ Client/bin/Client.dll
 *.cache
 *.txt
 *.user
+*.suo
+*.dll
+*.pdb
+*.cache
+*.cache
+*.config
+*.pdb
+*.dll
+*.cache
+*.txt
+*.cache
