@@ -80,7 +80,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 
 		$scope.checkValidation = function () {
 			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport1.$valid) {
+			if (!$scope.formReport3.$valid) {
 				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				return;

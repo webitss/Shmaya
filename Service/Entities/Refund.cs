@@ -94,7 +94,8 @@ namespace Service.Entities
 		{
 			try
 			{
-				refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+				if(refund.nvDocPath!=null)
+					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
 
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));

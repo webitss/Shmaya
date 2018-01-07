@@ -236,7 +236,7 @@ a {
 .conversation-icon-b {
     height: 49px;
     width: 59px;
-    background: #ffb300 !important;
+    background: #792d7a;
 }
 
     .conversation-icon-b span {
@@ -736,8 +736,7 @@ menu-item-div-one:focus {
     }
 
 .logo {
-    margin: 5px 0;
-    height: 50px;
+    margin-top: 5px;
 }
 
 .enter-logo {
@@ -1419,9 +1418,18 @@ footer {
     }
 
 .popup-ayelet .nav-tabs {
-    margin-top: -25px;
-    padding: 22px 42px 0 0;
-    /*background-color: #f2f2f2;*/
+
+    margin: -16px 0 18px 0;
+    padding: 22px 32px 0 0;
+    background-color: #f2f2f2;
+
+}
+
+.span-nav-tabs {
+    background: #f2f2f2;
+    padding: 10px 15px;
+    display: inline-block;
+    color: #5e015e;
 }
 
 
@@ -1497,8 +1505,8 @@ footer {
     }
 
     .popup-ayelet .tab-content {
-        height: 84%;
-        overflow: auto;
+        /*height: 84%;
+        overflow: auto;*/
     }
 
 .new-phone-btn {
@@ -1533,7 +1541,8 @@ footer {
 .link-icon {
     height: 49px;
     width: 59px;
-    /*background: #02bce3 !important;*/
+    background: #3b173c !important;
+    color: white;
 }
 
 .green-background {
@@ -1544,11 +1553,16 @@ footer {
     background-color: #02bce3;
 }
 
-.conversation-icon span {
-    content: url(../Images/phone-under.png);
+.conversation-icon-span {
+   content: url(../Images/phone-under.png);
     width: 33px;
     margin: auto;
-    margin-top: 17px;
+}
+    .conversation-icon span
+
+{
+    margin-top: 14px;
+    font-size: 18px;
 }
 
 .link {
@@ -1566,7 +1580,7 @@ footer {
 .phone-wrap-div,
 .link-wrap-div {
     /*width: 79%;*/
-    margin-top: 21px;
+    /*margin-top: 21px;*/
 }
 
 .phone-info,
@@ -1588,6 +1602,7 @@ footer {
         .phone-info span:last-child,
         .link-info span:last-child {
             width: 3%;
+            float: left;
         }
 
 .line-list-open {
@@ -1603,7 +1618,7 @@ footer {
 }
 
     .list-ayelet-line .panel-collapse.in .panel-body {
-        border: 1px solid #02bce3;
+        border: 1px solid #3b173c;
         margin-bottom: 4px;
     }
 
@@ -1925,3 +1940,10 @@ textarea {
     vertical-align: middle;
     margin: 0;
 }
+
+.btn-ayelet i.glyphicon {
+    color: white;
+    vertical-align: middle;
+    font-size: 16px;
+}
+

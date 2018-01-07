@@ -14,7 +14,7 @@
 				<input type="radio" name="typeMessage" ng-model="typeSelect" ng-value="2" />
 				<span>SMS</span>
 			</div>
-			<div ng-show="newMessage1!=true&&newMessage2!=true" class="line-in-message">
+			<div ng-show="newMessage1.dialogIsOpen!=true&&newMessage2!=true" class="line-in-message">
 				<span>אל</span>
 				<input type="radio" name="messageTo" ng-model="sendTo" ng-value="2" />
 				<span>לקוחות</span>
@@ -81,7 +81,7 @@
 			</div>
 			<br /><br /><br /><br />
 		</form>
-		<div ng-show="newMessage1!=true&&newMessage2!=true">
+		<div ng-show="newMessage1.dialogIsOpen!=true&&newMessage2!=true">
             <form id="sumMassegeForm" name="sumMassegeForm" class="container container-message ">
                 <div class="line-in-message ">
                     <span>מתאריך</span>

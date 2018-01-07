@@ -5,14 +5,14 @@
 				<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required ng-change="prepareData();prepareData2()"></form-dropdown>
 			</form-field>
 		</form>
-		<button type="button" class="btn  pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="checkValidation">
+		<button type="button" class="btn  pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="checkValidation()">
 			<div class="glyphicon glyphicon-list color-text-white"></div>
 			<span class="color-text-white">הפק דו"ח</span>
 		</button>
 
 	</div>
-	<div>
-		<!--ng-show="1==2"-->
+	<div ng-show="1==2">
+
 		<wait></wait>
 		<div class="container">
 			<div class="row">

@@ -1,9 +1,9 @@
 ﻿
 	<div class="container phone-wrap-div" ng-controller="RemarksCtrl">
-		<br />
+	
 		<div class="conversation-buttons">
 			<button type="button" ng-click="openNewRemark()" class="btn  btn-ayelet color-yellow" ng-show="!bIsNewRemarkOpen==true">
-				<div class="new-phone-btn"></div>
+				<i class="glyphicon glyphicon-asterisk"></i>
 				<span>הערה חדשה</span>
 			</button>
 
@@ -22,7 +22,7 @@
 		<div class="new-conversation" ng-hide="!bIsNewRemarkOpen">
 			<div class="row new-con-title cancel-left-margin cancel-right-margin">
 				<span class="conversation-icon-b col-md-1 color-yellow color-text-white">
-					<span></span>
+                    <i class="glyphicon glyphicon-asterisk"></i>
 				</span>
 				<div class="phone-info">
 					<span class="">
@@ -61,7 +61,7 @@
 					<!--כותרת האקורדיון-->
 					<uib-accordion-heading>
 						<span class="col-md conversation-icon" ng-class="{'green-background' : remark1.iVolunteerId, 'blue-background': remark1.iStudentId}">
-							<span class=""></span>
+                            <span class="glyphicon glyphicon-asterisk"></span>
 						</span>
 						<div class="phone-info">
 							<span class="col-md conversation"><b>תאריך הזנה: </b>{{remark1.dtCreateDate | date: "dd-MM-yyyy"}}</span>

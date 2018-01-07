@@ -4,10 +4,10 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 
 		$scope.saveDetails = function () {
 			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formDetails.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				return;
+			//if (!$scope.formDetails.$valid) {
+			//	var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+			//	$rootScope.notification(savingStatus);
+			//	return;
 			}
 
 			//$scope.lTempLanguage = $scope.user.lLanguage;

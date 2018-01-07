@@ -13,7 +13,7 @@ companionApp.directive('multiFormDropdown', function ($timeout, $window, $filter
 			identityfield: '@',
 			submit: '&',
 			disabled: '=',
-			//enablesearch: '=',
+			enablesearch: '=',
 			multiselecttext: '@'
 		},
 		link: function (scope, elem, attr, ngModel) {
@@ -56,6 +56,7 @@ companionApp.directive('multiFormDropdown', function ($timeout, $window, $filter
 			);
 
 			scope.focusInput = function () {
+			    scope.aaa = !scope.aaa;
 				$timeout(function () {
 					elem[0].querySelector('#searchText').focus();
 				});

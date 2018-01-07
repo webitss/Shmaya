@@ -12,14 +12,11 @@ Client/bin/Client.dll
 *.cs
 *.cs
 *.config
-*.config
 .vs/AyeletHashacharCompanionship/v15/.suo
-<<<<<<< HEAD
 *.pdb
 *.dll
 *.cache
 *.csproj
-=======
 *.ide-shm
 *.ide-wal
 *.dll
@@ -27,9 +24,18 @@ Client/bin/Client.dll
 *.CopyComplete
 .vs/AyeletHashacharCompanionship/v15/.suo
 *.dll
-*.pdb
+*.suo
 *.cache
-.vs/AyeletHashacharCompanionship/v15/.suo
+*.txt
+*.user
+*.suo
 *.dll
 *.pdb
->>>>>>> e80d460150ff6551a5365e834d30b452a001e958
+*.cache
+*.cache
+*.config
+*.pdb
+*.dll
+*.cache
+*.txt
+*.cache

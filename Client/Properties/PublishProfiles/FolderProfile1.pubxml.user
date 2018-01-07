@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMFront\201801071326</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMFront\201801071345</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Client.dll">
@@ -34,7 +34,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/03/2017 09:02:05</publishTime>
     </File>
     <File Include="Images/shmayaLogo.png">
-      <publishTime>12/05/2017 09:44:01</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Images/user-blue.png">
       <publishTime>12/03/2017 09:02:05</publishTime>
@@ -64,7 +64,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 10:02:51</publishTime>
     </File>
     <File Include="Partials/Pages/ABCBook/ABCBook.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/ABCBook/ABCBookDetailes.html">
       <publishTime>12/17/2017 10:06:24</publishTime>
@@ -73,7 +73,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2017 09:13:44</publishTime>
     </File>
     <File Include="Partials/Pages/Conversations.html">
-      <publishTime>01/04/2018 13:51:10</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Connections.html">
       <publishTime>01/02/2018 11:21:04</publishTime>
@@ -82,16 +82,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 13:32:42</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/MessagesCust.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/PrivateDetails.html">
       <publishTime>01/07/2018 09:48:21</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Refunds.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/EditCustomer/Remarks.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Login.html">
       <publishTime>01/04/2018 12:08:04</publishTime>
@@ -112,10 +112,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2018 12:10:53</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/Orders.html">
-      <publishTime>01/07/2018 11:45:24</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/OrdersBoard.html">
-      <publishTime>01/07/2018 12:06:59</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Orders/OrdersTabs.html">
       <publishTime>12/04/2017 10:03:01</publishTime>
@@ -133,19 +133,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 17:36:27</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/CommunicationBasket.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/EligibilityTable.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/Month.html">
       <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/Payments.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/Products.html">
-      <publishTime>01/04/2018 12:08:04</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Pages/Settings/SettingsTabs.html">
       <publishTime>01/04/2018 11:41:39</publishTime>
@@ -154,7 +154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2018 12:08:04</publishTime>
     </File>
     <File Include="Partials/Templates/CalendarTemplate.html">
-      <publishTime>01/04/2018 13:26:38</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Partials/Templates/ConfirmTemplate.html">
       <publishTime>01/04/2018 12:08:04</publishTime>
@@ -406,7 +406,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/04/2017 10:02:53</publishTime>
     </File>
     <File Include="Style/ayelet_hashachar-companionship.css">
-      <publishTime>01/04/2018 13:34:13</publishTime>
+      <publishTime>01/07/2018 13:44:03</publishTime>
     </File>
     <File Include="Style/bootstrap-flipped.css">
       <publishTime>12/03/2017 09:02:05</publishTime>
