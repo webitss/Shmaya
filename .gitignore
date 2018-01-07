@@ -6,3 +6,10 @@
 *.suo
 Client/bin/Client.dll
 .vs
+*.ide
+*.js
+*.cs
+*.cs
+*.cs
+*.config
+*.config

@@ -75,18 +75,9 @@ namespace Service.Entities
 		[NoSendToSQL]
 		public int iWorkerType { get; set; }
 
-
 		[DataMember]
 		[NoSendToSQL]
-
-
-
-
-		public string 
-			
-			
-			
-			nvWorkerType { get; set; }
+		public string nvWorkerType { get; set; }
 
 		[DataMember]
 		[NoSendToSQL]
