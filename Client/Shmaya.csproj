@@ -182,6 +182,7 @@
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.4.0.min.js" />
     <Content Include="Style\directives-style.css" />
     <Content Include="Style\directives-style1.css" />
+    <Content Include="Style\fine-work.css" />
     <Content Include="Style\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.min.js" />

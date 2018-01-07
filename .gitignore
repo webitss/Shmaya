@@ -13,3 +13,8 @@ Client/bin/Client.dll
 *.cs
 *.config
 *.config
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.pdb
+*.dll
+*.cache
+*.csproj
