@@ -19,7 +19,10 @@
     font-style: normal;
 }
 
-
+.sub-class
+{
+    height: 45vh !important;
+}
 
 body {
     height: 100%;

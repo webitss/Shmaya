@@ -16,6 +16,7 @@
 			rowClass: '@?',
 			footerText: '@?',
 			fixedHeight: '@?',
+			isSub: '@?',
 			//required when 2 grids in one page
 			gridIdentity: '@?',
 			showAll : '=?'
@@ -104,10 +105,14 @@
 			};
 
 			window.onresize = function () {
-				$timeout(function () {
-					screenHeight.getScreenHeight('.gridBody', 90, function (result) {
-						scope.screenHeight = scope.fixedHeight ? scope.fixedHeight : result;
-					});
+			    $timeout(function () {
+			        if (scope.isSub == "true") {
+			            scope.screenHeight = null;
+			            return;
+			        }
+			        screenHeight.getScreenHeight('.gridBody', 90, function (result) {
+			            scope.screenHeight = scope.fixedHeight ? scope.fixedHeight : result;
+			        });
 				});
 			};
 			window.onresize();

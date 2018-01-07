@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="gridBody" ng-style="{height : screenHeight}">
+    <div class="gridBody" ng-class="{'sub-class' : isSub == true}" ng-style="{height : screenHeight}">
         <div ng-repeat="item in filteredData" ng-class="{{rowClass}}">
             <div class="gridRow rowBody"
                 ng-class="{'{{expandedrowclass}}' : item.rowIsOpened}">

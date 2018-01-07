@@ -119,8 +119,8 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
                 case 'localhost':
                     //D:\Dev\AyeletHashachar\AyeletHashacharCompanionship\AyeletHashacharService
                     //url = 'http://localhost:57982/AyeletHashachar/AyeletHashacharCompanionship/Service/';
-					url = "http://localhost:47963/";
-
+					//url = "http://localhost:47963/";
+					url='http://localhost/Service/'
                     //url = "http://localhost/AyeletService/"
                     break;
                 case '10.0.0.109':
