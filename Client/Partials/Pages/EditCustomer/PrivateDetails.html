@@ -74,32 +74,35 @@
 			<form-field span-text="תאריך הצטרפות" class="col-md-6">
 				<input class="form-control" type="date" ng-model="user.dtResetCommunication" />
 			</form-field>
-		</div>
+        </div>
 
 		<div class="row" ng-show="showCustomer&&!showAdmin&&!showAdmin">
 			<form-field span-text="תאריך תחילת זכאות" class="col-md-6">
 				<input class="form-control" type="date" ng-model="user.dtResetHours" />
 			</form-field>
+        </div>
 
-			<form-field span-text="סוג זכאות" class="col-md-6">
-				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
+
+        <div class="row" ng-show="showCustomer&&!showAdmin">
+            <form-field span-text="סל תקשורת" class="col-md-6">
+				<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart"></form-dropdown>
 			</form-field>
-		</div>
-		<div class="row" ng-show="showCustomer&&!showAdmin">
-			<form-field span-text="מספר שעות זכאות" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nNumHours" />
+            <form-field span-text="סוג זכאות" class="col-md-6">
+				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
 			</form-field>
-			<form-field span-text="בנק שעות" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nBankHours" />
+        </div>
+
+        <div class="row" ng-show="showCustomer&&!showAdmin">
+            <form-field span-text="מספר שעות זכאות" class="col-md-6">
+				<input class="form-control" type="text" disabled ng-model="user.nNumHours"  />
 			</form-field>
-		</div>
-		<div class="row" ng-show="showCustomer&&!showAdmin">
-			<form-field span-text="סל תקשורת" class="col-md-6">
-				<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" identityfield="iCommunicationCart" datafield="nvCommunicationCart"></form-dropdown>
+            <form-field span-text="בנק שעות" class="col-md-6">
+				<input class="form-control" type="text" disabled ng-model="user.nBankHours"/>
 			</form-field>
-		</div>
-		<div class="row" ng-show="!showCustomer&&!showAdmin">
-			<form-field span-text="סוג שירות" class="col-md-6">
+        </div>
+
+        <div class="row" ng-show="!showCustomer&&!showAdmin">
+            <form-field span-text="סוג שירות" class="col-md-6">
 				<!--<form-dropdown ng-model="user.iTypeOrder" enablesearch="false" data="orderTypeList"></form-dropdown>-->
 				<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList"></multi-form-dropdown>
 			</form-field>
