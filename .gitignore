@@ -47,3 +47,7 @@ Client/bin/Client.dll
 *.txt
 *.dll
 *.config
+*.dll
+*.dll
+*.pdb
+*.suo
