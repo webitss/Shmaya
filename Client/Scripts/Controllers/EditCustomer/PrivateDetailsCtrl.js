@@ -2,7 +2,6 @@
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 
-<<<<<<< HEAD
 	    $scope.saveDetails = function () {
 	        $scope.$broadcast('show-errors-check-validity');
 	        if (!$scope.formDetails.$valid) {
@@ -10,16 +9,6 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        	$rootScope.notification(savingStatus);
 	        	//return;
 	        }
-=======
-		$scope.saveDetails = function () {
-			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formDetails.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				//return;
-			}
-
->>>>>>> b0ff4ef6b9ce1c790dfcac68685c68e65d468a7c
 
 	        //$scope.lTempLanguage = $scope.user.lLanguage;
 	        //$scope.user.lLanguage = {};
