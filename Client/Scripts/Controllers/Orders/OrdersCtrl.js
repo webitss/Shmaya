@@ -39,8 +39,12 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 
 				},
 				{
-				    title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
-				        alert("לשנות בשרת")
+					title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
+						console.log("לשנות בשרת")
+						//connect.post(true, 'ChangeStatus', { iStatusId: $scope.order.iStatusId, iOrderId: $scope.order.iOrderId },
+						//	function (result) {
+						//		console.log("change");
+						//	});
 				    }
 				},
 				{ title: 'מספר הזמנה', fieldName: 'iOrderId' },

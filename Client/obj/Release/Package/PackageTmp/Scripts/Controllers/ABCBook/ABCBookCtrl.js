@@ -10,6 +10,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 		$scope.userType;
 		$scope.user = {};
 		$rootScope.listToSend = [];
+		$scope.newUser = { dialogIsOpen: false };
 
 		
 
@@ -295,12 +296,12 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 		$scope.AddNewABCBook=function()
 		{
 			$scope.name = "אלפון";
-			$scope.newUser1 = true;
+			$scope.newUser.dialogIsOpen = true;
+			console.log($scope.newUser.dialogIsOpen);
 			$scope.isEdit = false;
 			$scope.user = {};
-			$rootScope.$broadcast('displayDialog', { id: 'newUser1' })
+			$rootScope.$broadcast('displayDialog', { id: 'newUser' })
 		}
-
 
 		$scope.prepareData();
 	}]);

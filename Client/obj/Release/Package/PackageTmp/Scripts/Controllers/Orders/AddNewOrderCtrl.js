@@ -22,8 +22,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				$rootScope.notification(savingStatus);
 				return;
 			}
-			//if ($scope.order.iCityId == 0)
-			//	$scope.order.iCityId = null;
 			$scope.orderToSend = angular.copy($scope.order);
 			$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 			$scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
@@ -66,6 +64,10 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
                         
 					});
 		};
+		$scope.func = function ()
+		{
+			console.log("hi@@@@@@@@@@@");
+		}
 		$scope.getData();
 
 	}]);

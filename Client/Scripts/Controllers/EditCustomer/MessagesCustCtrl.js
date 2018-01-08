@@ -1,14 +1,15 @@
 ﻿"use strict"
 		companionApp.controller('MessagesCustCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter',
 			function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter) {
-				$scope.newMessage1 = { dialogIsOpen: false };
+				$rootScope.newMessage1 = { dialogIsOpen: false };
+				$rootScope.messageFromCust = false;
 				//לא התבצעו שיחות 
 				$scope.noMessage = null;
 
 				$scope.bIsNewMessageOpen = false;
 				$scope.showNewMessage = false;
 				$scope.isCollapse = false;
-				$scope.allMessages = ['stam'];
+				$scope.allMessages = null;
 
 
 				$scope.getAllMessages = function () {
@@ -23,7 +24,8 @@
 				$scope.openNewMessage = function () {
 
 					$rootScope.userToSend = $scope.user.iUserId;
-					$scope.newMessage1.dialogIsOpen = true;
+					$rootScope.messageFromCust = true;
+					$rootScope.newMessage1.dialogIsOpen = true;
 					$rootScope.$broadcast('displayDialog', { id: 'newMessage1' });
 
 					$scope.bIsNewMessageOpen = true;

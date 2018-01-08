@@ -74,11 +74,13 @@
             <form-field span-text="תאריך הצטרפות" class="col-md-6">
 				<input class="form-control" type="date" ng-model="user.dtCreateDate"/>
 			</form-field>
-        </div>
-        <div class="row" ng-show="showCustomer&&!showAdmin&&!showAdmin">
-            <form-field span-text="תאריך תחילת זכאות" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtBirthDate"/>
+		</div>
+
+		<div class="row" ng-show="showCustomer&&!showAdmin&&!showAdmin">
+			<form-field span-text="תאריך תחילת זכאות" class="col-md-6">
+				<input class="form-control" type="date" ng-model="user.dtResetCommunication"/>
 			</form-field>
+
             <form-field span-text="סוג זכאות" class="col-md-6">
 				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
 			</form-field>

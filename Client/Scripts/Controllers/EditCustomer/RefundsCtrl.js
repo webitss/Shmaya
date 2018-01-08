@@ -1,23 +1,21 @@
 ﻿"use strict"
 companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId', 'alerts',
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
-		$scope.prepareData = function () {
-			$scope.isDataLoaded = 0;
-			$scope.sumRefunds = 0;
-			$scope.sumBalance = 0;
-			$scope.isEdit = false;
-			$scope.isReference = false;
-			if ($scope.user.dtCreateDate != null) {
-				$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtCreateDate.getFullYear()) % 4);
-				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtCreateDate.getMonth(), $scope.user.dtCreateDate.getDay());
-			}
-			if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
-				$scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
-			$scope.refund2 = {};
-			$scope.newRefund = {};
-			$scope.flagFax = 0;
-			$scope.gridIdentity = 'RefundsList';
-			$scope.columns = [
+	    $scope.prepareData = function () {
+	        $scope.isDataLoaded = 0;
+	        $scope.sumRefunds = 0;
+	        $scope.sumBalance = 0;
+	        $scope.isEdit = false;
+	        $scope.isReference = false;
+	        $scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtCreateDate.getFullYear()) % 4);
+	        $scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtCreateDate.getMonth(), $scope.user.dtCreateDate.getDay());
+	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
+	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
+	        $scope.refund2 = {};
+	        $scope.newRefund = {};
+	        $scope.flagFax = 0;
+	        $scope.gridIdentity = 'RefundsList';
+	        $scope.columns = [
 				{
 				    fieldName: 'iId',
 				    title: 'עריכה',

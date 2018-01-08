@@ -21,7 +21,6 @@
 					</div>
 				</div>
 			</div>
-
 			<br />
 			<div class="row" ng-if="showCustomer">
 				<grid columns="columnsCustomers"
@@ -81,15 +80,13 @@
 						<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>
 					</create-dialog>
 				</div>
-				<div>
-						<create-dialog ng-if="newUser1" id="newUser1" is-sub="true" cancel="true">
-							<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
-							<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>
-						</create-dialog>
-					</div>
-					
-					
-			
+
+				<create-dialog ng-if="newUser.dialogIsOpen" id="newUser" cancel="true">
+					<!--is-sub="true"-->
+					<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
+					<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>
+				</create-dialog>
+
+			</div>
 		</div>
-	</div>
 </div>
