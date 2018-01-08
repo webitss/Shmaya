@@ -34,10 +34,15 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 				    if ($scope.typeSelect == 1) {
 				        connect.post(true, 'SendEmailToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 							function (result) {
+<<<<<<< HEAD
 							    $scope.res = result;
 							    $scope.getAllMessages();
 							    if ($rootScope.messageFromCust == true)
 							        $rootScope.newMessage1.dialogIsOpen = false;
+=======
+								$scope.res = result;
+								$scope.getAllMessages();
+>>>>>>> fb5e2a3e10996a286738778d5140d59becd49223
 							});
 				    }
 				        //sms אם נבחרה הודעת 
@@ -71,6 +76,7 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
             if ($scope.typeSelect == 1) {
                 connect.post(true, 'SendEmailToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
+<<<<<<< HEAD
 					    $scope.res = result;
 					    $scope.getAllMessages();
 					    if ($rootScope.messageFromCust == true)
@@ -78,6 +84,13 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 					    alerts.alert('ההודעה נשלחה בהצלחה')
 					}, function () {
 					    alerts.alert('השליחה נככשלה');
+=======
+						$scope.res = result;
+						if ($rootScope.messageFromCust == true)
+							$scope.getAllMessages();
+						if ($rootScope.messageFromCust != true)
+							$rootScope.newMessage1.dialogIsOpen = false;
+>>>>>>> fb5e2a3e10996a286738778d5140d59becd49223
 					});
             }
                 //sms אם נבחרה הודעת 

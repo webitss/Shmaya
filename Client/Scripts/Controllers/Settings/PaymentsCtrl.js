@@ -60,6 +60,7 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 							console.log('PaymentInsert:' + result);
 							var savingStatus = "השינויים נשמרו בהצלחה";
 							$rootScope.notification(savingStatus);
+							$scope.newPayment = {};
 							//$scope.newEligibility.dialogIsOpen = false;
 							$scope.getData();
 						}

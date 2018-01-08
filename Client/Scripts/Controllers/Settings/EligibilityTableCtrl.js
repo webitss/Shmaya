@@ -68,6 +68,7 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 							var savingStatus = "השינויים נשמרו בהצלחה";
 							$rootScope.notification(savingStatus);
 							$scope.newEligibility.dialogIsOpen = false;
+							$scope.newEligibility = {}
 							$scope.getData();
 						}
 						else {

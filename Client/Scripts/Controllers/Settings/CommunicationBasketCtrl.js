@@ -60,6 +60,7 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 							console.log('CommunicationInsert:' + result);
 							var savingStatus = "השינויים נשמרו בהצלחה";
 							$rootScope.notification(savingStatus);
+							$scope.newCommunication = {};
 							//$scope.newEligibility.dialogIsOpen = false;
 							$scope.getData();
 						}

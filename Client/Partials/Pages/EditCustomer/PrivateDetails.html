@@ -14,73 +14,74 @@
     </div>
 
     <br />
-    <form id="formDetails" name="formDetails" novalidate>
-        <div class="row">
-            <form-field span-text="שם פרטי" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvFirstName" required  />
+	<form id="formDetails" name="formDetails" novalidate>
+		<div class="row">
+			<form-field span-text="שם פרטי" class="col-md-6">
+				<input class="form-control" type="text" ng-model="user.nvFirstName" required />
 			</form-field>
-            <form-field span-text="שם משפחה" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvLastName" required  />
+			<form-field span-text="שם משפחה" class="col-md-6">
+				<input class="form-control" type="text" ng-model="user.nvLastName" required />
 			</form-field>
-        </div>
-        <div class="row">
-            <form-field span-text="ת.ז." class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvId" ng-minlength="9" ng-maxlength="9" ng-pattern="/^[0-9]{9}$/" required  />
+		</div>
+		<div class="row">
+			<form-field span-text="ת.ז." class="col-md-6">
+				<input class="form-control" type="text" ng-model="user.nvId" ng-minlength="9" ng-maxlength="9" ng-pattern="/^[0-9]{9}$/" required />
 			</form-field>
-            <form-field span-text="תאריך לידה" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtBirthDate"/>
+			<form-field span-text="תאריך לידה" class="col-md-6">
+				<input class="form-control" type="date" ng-model="user.dtBirthDate" />
 			</form-field>
-        </div>
-        <div class="row">
-            <form-field span-text="מגדר" class="col-md-6">
-				<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList" ></form-dropdown>
+		</div>
+		<div class="row">
+			<form-field span-text="מגדר" class="col-md-6">
+				<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList"></form-dropdown>
 			</form-field>
-            <form-field span-text="מייל" class="col-md-6">
+			<form-field span-text="מייל" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-zA-Z0-9._]+@[a-zA-Z0-9-_]+\.[a-zA-Z.]{2,5}$/" />
 			</form-field>
-        </div>
-        <div class="row">
-            <form-field span-text="כתובת" class="col-md-6">
+		</div>
+		<div class="row">
+			<form-field span-text="כתובת" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvAdress" />
 			</form-field>
-            <form-field span-text="טלפון" class="col-md-6">
+			<form-field span-text="טלפון" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvPhoneNum" ng-pattern="/^[0-9*#]{3,10}$/" required />
 			</form-field>
-        </div>
-        <div class="row">
-            <form-field span-text="נייד" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvMobileNum" ng-minlength="10" ng-maxlength="10"  ng-pattern="/^0+[0-9]{9}$/" required />
+		</div>
+		<div class="row">
+			<form-field span-text="נייד" class="col-md-6">
+				<input class="form-control" type="text" ng-model="user.nvMobileNum" ng-minlength="10" ng-maxlength="10" ng-pattern="/^0+[0-9]{9}$/" required />
 			</form-field>
-            <form-field span-text="פקס" class="col-md-6">
+			<form-field span-text="פקס" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvFaxNum" />
 			</form-field>
-        </div>
-        <div class="row">
-            <form-field span-text="סיסמא" class="col-md-6">
+		</div>
+		<div class="row">
+			<form-field span-text="סיסמא" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvPassword" />
 			</form-field>
-            <div ng-show="showCustomer&&!showAdmin">
-                <form-field span-text="האם עובד" class="col-md-6" ng-show="showCustomer">
+			<div ng-show="showCustomer&&!showAdmin">
+				<form-field span-text="האם עובד" class="col-md-6" ng-show="showCustomer">
 					<form-dropdown ng-model="user.isWorker" enablesearch="false" data="isWorkerList"></form-dropdown>
 				</form-field>
-            </div>
-            <div ng-show="showAdmin">
-                <form-field span-text="סוג עובד" class="col-md-6">
+			</div>
+			<div ng-show="showAdmin">
+				<form-field span-text="סוג עובד" class="col-md-6">
 					<form-dropdown ng-model="user.iWorkerType" enablesearch="false" data="workerTypeList"></form-dropdown>
 				</form-field>
-            </div>
-        </div>
-        <div class="row" ng-show="showCustomer&&!showAdmin">
-            <form-field span-text="תאריך הצטרפות" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtCreateDate"/>
+			</div>
+		</div>
+		<div class="row" ng-show="showCustomer&&!showAdmin">
+			<form-field span-text="תאריך הצטרפות" class="col-md-6">
+				<input class="form-control" type="date" ng-model="user.dtResetCommunication" />
 			</form-field>
         </div>
 
-        <div class="row" ng-show="showCustomer&&!showAdmin&&!showAdmin">
-            <form-field span-text="תאריך תחילת זכאות" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtResetCommunication"/>
+		<div class="row" ng-show="showCustomer&&!showAdmin&&!showAdmin">
+			<form-field span-text="תאריך תחילת זכאות" class="col-md-6">
+				<input class="form-control" type="date" ng-model="user.dtResetHours" />
 			</form-field>
         </div>
+
 
         <div class="row" ng-show="showCustomer&&!showAdmin">
             <form-field span-text="סל תקשורת" class="col-md-6">
@@ -105,18 +106,18 @@
 				<!--<form-dropdown ng-model="user.iTypeOrder" enablesearch="false" data="orderTypeList"></form-dropdown>-->
 				<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList"></multi-form-dropdown>
 			</form-field>
-            <form-field span-text="איזור" class="col-md-6">
+			<form-field span-text="איזור" class="col-md-6">
 				<form-dropdown ng-model="user.iAreaId" enablesearch="false" data="areaList"></form-dropdown>
 			</form-field>
-        </div>
-        <div class="row" ng-show="!showCustomer&&!showAdmin">
-            <form-field span-text="שעות עבודה" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nBankHours"/>
+		</div>
+		<div class="row" ng-show="!showCustomer&&!showAdmin">
+			<form-field span-text="שעות עבודה" class="col-md-6">
+				<input class="form-control" type="text" ng-model="user.nBankHours" />
 			</form-field>
-            <form-field span-text="שפות תרגום" class="col-md-6">
+			<form-field span-text="שפות תרגום" class="col-md-6">
 				<!--<form-dropdown ng-model="user.iLanguageId" enablesearch="false" data="languageList"></form-dropdown>-->
-				<multi-form-dropdown  ng-model="user.lLanguage" filter="false" enablesearch="false" data="languageList"></multi-form-dropdown>
+				<multi-form-dropdown ng-model="user.lLanguage" filter="false" enablesearch="false" data="languageList"></multi-form-dropdown>
 			</form-field>
-        </div>
-    </form>
+		</div>
+	</form>
 </div>
