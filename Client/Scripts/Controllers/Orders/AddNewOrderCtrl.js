@@ -12,7 +12,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 		if ($scope.isEdit)
 			var Orderinsert_update = 'OrderUpdate';
 		else
-			var Orderinsert_update = 'OrderInsert';
+		    var Orderinsert_update = 'OrderInsert';
+
 		$scope.saveOrders = function ()
 		{
 			$scope.$broadcast('show-errors-check-validity');
@@ -47,6 +48,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				}
 			});
 		}
+
 		$scope.getData = function ()
 		{
 				connect.post(true, 'GetUsers',
@@ -64,10 +66,24 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
                         
 					});
 		};
+
 		$scope.func = function ()
 		{
 			console.log("hi@@@@@@@@@@@");
 		}
+
+		$scope.calculateTimeEnd = function () {
+		    if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;
+		    var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation_original.getHours();
+		    var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation_original.getMinutes();
+		    if (minutes >= 60) {
+		        minutes -= 60;
+		        hours += 1;
+		    }
+		    $scope.order.dtTimeEndComputed = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
+
+		};
+
 		$scope.getData();
 
 	}]);

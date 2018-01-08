@@ -48,10 +48,10 @@
 		</div>
 		<div class="row">
 			<form-field span-text="זמן התחלה" class="col-md-6">
-				<input class="form-control" type="time" ng-model="order.dtTimeBegin_original" />
+				<input class="form-control" type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()" />
 			</form-field>
 			<form-field span-text="זמן תרגום" class="col-md-6">
-				<input class="form-control" type="time" ng-model="order.dtTimeTranslation_original" />
+				<input class="form-control" type="time" ng-model="order.dtTimeTranslation_original" ng-blur="calculateTimeEnd()" />
 			</form-field>
 		</div>
 		<div class="row">
