@@ -228,7 +228,22 @@ namespace Service.Entities
 			}
 		}
 
-
+		public static int? ChangeStatus(int iStatusId,int iOrderId)
+		{
+			try
+			{
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iStatusId", iStatusId));
+				parameters.Add(new SqlParameter("iOrderId", iOrderId));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TChangeStatus_UPD");
+				return int.Parse(ds.Tables[0].Rows[0][0].ToString());
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "ChangeStatus");
+				return -1;
+			}
+		}
 
 		#endregion
 

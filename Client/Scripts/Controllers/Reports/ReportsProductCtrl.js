@@ -1,10 +1,7 @@
 ﻿"use strict"
-companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId',
-	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
-	
-
+companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId','alerts',
+	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
 		$scope.prepareData = function () {
-
 			$scope.isDataLoaded1 = 0;
 			$scope.gridIdentity1 = 'ReportsList1';
 			$scope.columns1 = [
@@ -26,12 +23,6 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		};
 
 		$scope.prepareData2 = function () {
-			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport3.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				return;
-			}
 			$scope.isDataLoaded2 = 0;
 			$scope.gridIdentity2 = 'ReportsList2';
 			$scope.columns2 = [
@@ -51,7 +42,6 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 			$scope.getData2();
 
 		};
-
 
 		$scope.getData = function () {
 			connect.post(true, 'GetReportsProduct', { iMonthId: $scope.iMonthId },
@@ -81,8 +71,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		$scope.checkValidation = function () {
 			$scope.$broadcast('show-errors-check-validity');
 			if (!$scope.formReport3.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
+				alerts.alert('יש לבחור חודש!', 'שגיאה');
 				return;
 			}
 			$scope.exportToExcel()

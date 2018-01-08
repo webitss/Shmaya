@@ -4,10 +4,10 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 
 		$scope.saveDetails = function () {
 			$scope.$broadcast('show-errors-check-validity');
-			//if (!$scope.formDetails.$valid) {
-			//	var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-			//	$rootScope.notification(savingStatus);
-			//	return;
+			if (!$scope.formDetails.$valid) {
+				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+				$rootScope.notification(savingStatus);
+				return;
 			}
 
 			//$scope.lTempLanguage = $scope.user.lLanguage;
@@ -47,7 +47,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 						var savingStatus = "השינויים נשמרו בהצלחה";
 						$rootScope.notification(savingStatus);
 						$scope.prepareData();
-						$scope.newUser1 = false;
+						$scope.newUser.dialogIsOpen = false;
 					}
 					else {
 						alert('ארעה שגיאה בלתי צפויה');

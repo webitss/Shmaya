@@ -16,7 +16,7 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	$scope.sendMessage = function ()
 	{
 		//אם השליחה היא לקבוצה
-		if ($scope.newMessage1 != true && $rootScope.listToSend == undefined) {
+		if ($rootScope.messageFromCust != true && $rootScope.listToSend == undefined) {
 			if ($scope.sendTo == 1)
 				$scope.sendTo = null;
 			$scope.userType = $scope.sendTo;
@@ -31,7 +31,8 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 							function (result) {
 								$scope.res = result;
 								$scope.getAllMessages();
-								$scope.newMessage1 = false;
+								if ($rootScope.messageFromCust == true)
+									$rootScope.newMessage1.dialogIsOpen = false;
 							});
 					}
 					//sms אם נבחרה הודעת 
@@ -40,7 +41,8 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 							function (result) {
 								$scope.res = result;
 								$scope.getAllMessages();
-								$scope.newMessage1 = false;
+								if ($rootScope.messageFromCust == true)
+									$rootScope.newMessage1.dialogIsOpen = false;
 							});
 					}
 
@@ -57,12 +59,11 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 				})
 			}
 
-			if ($scope.newMessage1 == true)
+			if ($rootScope.messageFromCust== true)
 			{
 				$scope.userList = [];
 				$scope.userList.push($scope.user);
 			}
-				console.log("qwesqwedqweds122222222" + $rootScope.userToSend + "@@@@@@@@@" + $scope.user)
 			
 			//  אם נבחרה הודעת מייל
 			if ($scope.typeSelect == 1 ) {
@@ -70,7 +71,8 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 					function (result) {
 						$scope.res = result;
 						$scope.getAllMessages();
-						$scope.newMessage1 = false;
+						if ($rootScope.messageFromCust == true)
+							$rootScope.newMessage1.dialogIsOpen = false;
 					});
 			}
 			//sms אם נבחרה הודעת 
@@ -79,7 +81,8 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 					function (result) {
 						$scope.res = result;
 						$scope.getAllMessages();
-						$scope.newMessage1 = false;
+						if ($rootScope.messageFromCust == true)
+							$rootScope.newMessage1.dialogIsOpen = false;
 					});
 			}
 		}

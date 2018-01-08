@@ -1,15 +1,9 @@
 ﻿"use strict"
-companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId',
-	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
+companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId','alerts',
+	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
 
 
 		$scope.prepareData = function () {
-			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport2.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				return;
-			}
 			$scope.isDataLoaded1 = 0;
 			$scope.gridIdentity1 = 'ReportsList1';
 			$scope.columns1 = [
@@ -25,12 +19,6 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 
 
 		$scope.prepareData2 = function () {
-			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport2.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				return;
-			}
 			$scope.isDataLoaded2 = 0;
 			$scope.gridIdentity2 = 'ReportsList2';
 			$scope.columns2 = [
@@ -45,12 +33,6 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		};
 
 		$scope.prepareData3 = function () {
-			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport2.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
-				return;
-			}
 			$scope.isDataLoaded3 = 0;
 			$scope.gridIdentity3 = 'ReportsList2';
 			$scope.columns3 = [
@@ -101,13 +83,11 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		$scope.checkValidation = function () {
 			$scope.$broadcast('show-errors-check-validity');
 			if (!$scope.formReport2.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
+				alerts.alert('יש לבחור חודש!', 'שגיאה');
 				return;
 			}
 			$scope.exportToExcel()
 		}
-
 
 
 		

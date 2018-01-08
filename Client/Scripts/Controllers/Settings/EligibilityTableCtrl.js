@@ -16,7 +16,7 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 							$scope.eligibility2 = eligibility.item;
 							$scope.pop = '<label>סוג זכאות</label><input type="text" class="form-control" required ng-model="eligibility2.nvEntitlementType" required/>' +
 								'<label>מספר שעות</label><input type="text" class="form-control" required ng-model="eligibility2.nNumHours" required/>';
-							alerts.custom($scope.pop, ' עריכת ערך ' + eligibility.nvEntitlementType, $scope,
+							alerts.custom($scope.pop, ' עריכת ערך ', $scope,
 								function () {
 									connect.post(true, 'EligibilityUpdate', { eligibility: $scope.eligibility2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 										if (result && result > 0) {

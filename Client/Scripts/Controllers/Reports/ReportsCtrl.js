@@ -1,6 +1,6 @@
 ﻿"use strict"
-companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId',
-	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId) {
+companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId','alerts',
+	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
 
 		$scope.prepareData = function () {
 			
@@ -81,7 +81,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		};
 
-		$scope.exportToExcel = function () {
+		$scope.exportToExcel = function ()
+		{
 			$scope.$broadcast('exportToExcel',
 				{
 					id: $scope.gridIdentity1,
@@ -92,11 +93,12 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 
 
-		$scope.checkValidation = function () {
+		$scope.checkValidation = function ()
+		{
 			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport1.$valid) {
-				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
+			if (!$scope.formReport1.$valid)
+			{
+				alerts.alert('יש לבחור חודש!', 'שגיאה');
 				return;
 			}
 			$scope.exportToExcel()
