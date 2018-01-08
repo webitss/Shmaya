@@ -19,11 +19,6 @@
     font-style: normal;
 }
 
-.sub-class {
-    max-height: 30vh !important;
-    background-color: red;
-}
-
 body {
     height: 100%;
     background-color: #FFFFFF !important;

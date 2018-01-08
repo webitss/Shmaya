@@ -186,6 +186,19 @@ namespace Service
 		{
 			return Orders.OrderInsert(order, iUserManagerId);
 		}
+
+		[OperationContract]
+		[WebInvoke(
+		  Method = "POST",
+		  UriTemplate = "ChangeStatus",
+		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		  ResponseFormat = WebMessageFormat.Json)]
+		public int? ChangeStatus(int iStatusId,int iOrderId)
+		{
+			return Orders.ChangeStatus(iStatusId, iOrderId);
+		}
+
+		
 		#endregion
 
 		#region conversations

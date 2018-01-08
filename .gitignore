@@ -47,7 +47,15 @@ Client/bin/Client.dll
 *.txt
 *.dll
 *.config
-*.dll
+Client/obj/Debug/Client.pdb
+*.pdb
+Client/Scripts/Controllers/EditCustomer/PrivateDetailsCtrl.js
+Client/Scripts/Directives/MultiFormDropdown.js
+Service/bin/Service.dll
+Client/obj/Debug/Client.pdb
 *.dll
 *.pdb
-*.suo
+*.dll
+*.pdb
+*.dll
+*.pdb

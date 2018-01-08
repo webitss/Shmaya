@@ -55,12 +55,12 @@ companionApp.directive('multiFormDropdown', function ($timeout, $window, $filter
             }
 			);
 
-            scope.focusInput = function () {
-                scope.aaa = !scope.aaa;
-                $timeout(function () {
-                    elem[0].querySelector('#searchText').focus();
-                });
-            };
+			scope.focusInput = function () {
+			    scope.isOpen = !scope.isOpen;
+				$timeout(function () {
+					elem[0].querySelector('#searchText').focus();
+				});
+			};
 
             scope.valueChange = function (val) {
                 scope.searchText = '';

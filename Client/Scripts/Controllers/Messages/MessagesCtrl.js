@@ -73,6 +73,9 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 						$scope.getAllMessages();
 						if ($rootScope.messageFromCust == true)
 							$rootScope.newMessage1.dialogIsOpen = false;
+						alert.alerts('ההודעה נשלחה בהצלחה')
+					}, function () {
+						alert.alert('השליחה נככשלה');
 					});
 			}
 			//sms אם נבחרה הודעת 
