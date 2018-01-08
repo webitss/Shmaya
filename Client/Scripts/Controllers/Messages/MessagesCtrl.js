@@ -31,8 +31,6 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 							function (result) {
 								$scope.res = result;
 								$scope.getAllMessages();
-								if ($rootScope.messageFromCust == true)
-									$rootScope.newMessage1.dialogIsOpen = false;
 							});
 					}
 					//sms אם נבחרה הודעת 
@@ -70,12 +68,10 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 				connect.post(true, 'SendEmailToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
 						$scope.res = result;
-						$scope.getAllMessages();
 						if ($rootScope.messageFromCust == true)
+							$scope.getAllMessages();
+						if ($rootScope.messageFromCust != true)
 							$rootScope.newMessage1.dialogIsOpen = false;
-						alert.alerts('ההודעה נשלחה בהצלחה')
-					}, function () {
-						alert.alert('השליחה נככשלה');
 					});
 			}
 			//sms אם נבחרה הודעת 

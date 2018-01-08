@@ -61,6 +61,7 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 									var savingStatus = "השינויים נשמרו בהצלחה";
 									$rootScope.notification(savingStatus);
 									$scope.newProduct.dialogIsOpen = false;
+									$scope.newProduct = {};
 									$scope.getData();
 								}
 								else {
