@@ -1,13 +1,12 @@
 ﻿'use strict'
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
-
 	    $scope.saveDetails = function () {
 	        $scope.$broadcast('show-errors-check-validity');
 	        if (!$scope.formDetails.$valid) {
-	        	var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-	        	$rootScope.notification(savingStatus);
-	        	//return;
+	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+	            $rootScope.notification(savingStatus);
+	            //return;
 	        }
 
 	        //$scope.lTempLanguage = $scope.user.lLanguage;
@@ -46,7 +45,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	                    var savingStatus = "השינויים נשמרו בהצלחה";
 	                    $rootScope.notification(savingStatus);
 	                    $scope.prepareData();
-	                    $scope.newUser1 = false;
+	                    $scope.newUser.dialogIsOpen = false;
 	                }
 	                else {
 	                    alert('ארעה שגיאה בלתי צפויה');
@@ -70,6 +69,13 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	    //	$scope.user.lLanguage.push(language)
 	    //})
 
+	    $scope.calculateNumHours = function (iCommunicationCart) {
+	        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: iCommunicationCart }, true)[0].nTariff;
+	    };
+
+	    $scope.calculateBankHours = function (iEntitlementTypeId) {
+	        $scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+	    };
 
 	    $scope.getData = function () {
 	        connect.post(true, 'GetEligibiltyTable', {},
@@ -79,6 +85,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        connect.post(true, 'GetCommunicationCart', {},
 				function (result) {
 				    $scope.CommunicationCartList = result;
+				    //$scope.user.iCommunicationCart = 1;
+				    //$scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				});
 	        $scope.userTypeList.splice(0, 2);
 
