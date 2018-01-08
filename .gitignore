@@ -39,3 +39,11 @@ Client/bin/Client.dll
 *.cache
 *.txt
 *.cache
+*.sln
+*.suo
+*.dll
+*.pdb
+*.cache
+*.txt
+*.dll
+*.config
