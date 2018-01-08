@@ -1,9 +1,9 @@
 ﻿<div ng-controller="EditCustomerCtrl" class="popup-ayelet">
-	<uib-tabset active="index">
+    <uib-tabset active="index">
 		<uib-tab ng-repeat="tab in tabs" heading="{{tab.title}}" class="uibtab-color">
 			<div ng-if="index == $index">
 				<wait></wait>
-				<div ng-include="tab.content+$root.appVersionParameter" ng-init="whom=item.iPersonId"></div>
+				<div ng-include="tab.content+$root.appVersionParameter"></div>
 			</div>
 		</uib-tab>
 	</uib-tabset>
