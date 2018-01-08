@@ -56,7 +56,7 @@ companionApp.directive('multiFormDropdown', function ($timeout, $window, $filter
 			);
 
 			scope.focusInput = function () {
-			    scope.aaa = !scope.aaa;
+			    scope.isOpen = !scope.isOpen;
 				$timeout(function () {
 					elem[0].querySelector('#searchText').focus();
 				});

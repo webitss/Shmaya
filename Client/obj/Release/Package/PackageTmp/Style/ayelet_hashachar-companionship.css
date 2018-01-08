@@ -19,8 +19,6 @@
     font-style: normal;
 }
 
-
-
 body {
     height: 100%;
     background-color: #FFFFFF !important;
@@ -95,7 +93,7 @@ a {
 }
 
 .nav-tabs {
-    border-bottom:1px solid #3b173c;
+    border-bottom: 1px solid #3b173c;
 }
 
     .nav-tabs > li.disabled > a {
@@ -1418,11 +1416,9 @@ footer {
     }
 
 .popup-ayelet .nav-tabs {
-
     margin: -16px 0 18px 0;
     padding: 22px 32px 0 0;
     background-color: #f2f2f2;
-
 }
 
 .span-nav-tabs {
@@ -1554,13 +1550,12 @@ footer {
 }
 
 .conversation-icon-span {
-   content: url(../Images/phone-under.png);
+    content: url(../Images/phone-under.png);
     width: 33px;
     margin: auto;
 }
-    .conversation-icon span
 
-{
+.conversation-icon span {
     margin-top: 14px;
     font-size: 18px;
 }
@@ -1946,4 +1941,3 @@ textarea {
     vertical-align: middle;
     font-size: 16px;
 }
-

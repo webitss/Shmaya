@@ -31,6 +31,12 @@
     font-size: 14px;
 }
 
+
+.sub-class {
+    max-height: 30vh !important;
+    background-color: red;
+}
+
     .gridBody::-webkit-scrollbar {
     }
 
