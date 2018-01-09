@@ -3,3 +3,5 @@ C:\git.dev\Shmaya\Client\bin\Client.pdb
 C:\git.dev\Shmaya\Client\obj\Debug\Client.dll
 C:\git.dev\Shmaya\Client\obj\Debug\Client.pdb
 C:\git.dev\Shmaya\Client\obj\Debug\Shmaya.csprojResolveAssemblyReference.cache
+C:\git.dev\Shmaya\Client\bin\Client.dll.config
+C:\git.dev\Shmaya\Client\obj\Debug\Shmaya.csproj.CoreCompileInputs.cache
