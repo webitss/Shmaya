@@ -65,3 +65,9 @@ Client/obj/Debug/Client.pdb
 *.rar
 *.txt
 *.cache
+*.suo
+*.dll
+*.pdb
+*.cache
+*.csproj
+*.txt
