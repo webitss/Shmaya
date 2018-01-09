@@ -34,3 +34,5 @@ C:\git.dev\Shmaya\Service\bin\Service.pdb
 C:\git.dev\Shmaya\Service\obj\Debug\Service.dll
 C:\git.dev\Shmaya\Service\obj\Debug\Service.pdb
 C:\git.dev\Shmaya\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\git.dev\Shmaya\Service\bin\Service.dll.config
+C:\git.dev\Shmaya\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
