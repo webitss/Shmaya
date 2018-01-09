@@ -36,43 +36,43 @@ pInk1000-->
 
 <body ng-app="companionApp" class="disable-selection">
 	<div>
-        <div ng-include="'Partials/Pages/menu/Header.html'+ $root.appVersionParameter" ng-if="!isLogin" ng-controller="HeaderCtrl" class="header-wrapper"></div>
-    </div>
-    <div class="ng-view-changed-by-me">
-        <div ng-view></div>
-    </div>
-    <footer ng-if="!isLogin">
-        <!--        <div class="container">-->
-        <a href="http://www.webit-sys.com/" target="_blank">
-            <img src="Images/webit_logo.png" /><i class="glyphicon glyphicon-copyright-mark"></i>Webit LTD Software Systems & Apps</a>
-        <!--        </div>-->
-    </footer>
-    <!--</div>-->
-    <!-- Scripts -->
-    <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
-    <script src="Scripts/Libraries/jquery-ui.min.js"></script>
-    <script src="Scripts/Libraries/jquery.flip.min.js"></script>
-    <script src="Scripts/Libraries/angular.min.js"></script>
-    <script src="Scripts/Libraries/angular-route.min.js"></script>
-    <script src="Scripts/Libraries/angular-animate.min.js"></script>
-    <script src="Scripts/Libraries/createDialog.js"></script>
-    <script src="Scripts/Libraries/bootstrap/js/bootstrap.min.js"></script>
-    <script src="Scripts/Libraries/angular-bootstrap-multiselect.js"></script>
-    <script src="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
-    <script src="Scripts/Libraries/moment.min.js"></script>
-    <script src="Scripts/Libraries/fullcalendar.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyCk6odCSTvkvjr77DyodTAHP9NIJscyZl4"></script>
-    <script src="Scripts/app.js"></script>
-    <!-- end Scripts -->
-
-    <!-- Controllers -->
-    <script src="Scripts/Controllers/LoginCtrl.js"></script>
-    <script src="Scripts/Controllers/Menu/HeaderCtrl.js"></script>
-    <script src="Scripts/Controllers/Menu/MenuCtrl.js"></script>
-    <script src="Scripts/Controllers/ABCBook/ABCBookCtrl.js"></script>
-    <script src="Scripts/Controllers/Conversations/ConversationsCtrl.js"></script>
-    <script src="Scripts/Controllers/Settings/SettingTabsCtrl.js"></script>
-    <script src="Scripts/Controllers/Messages/MessagesCtrl.js"></script>
+		<div ng-include="'Partials/Pages/menu/Header.html'+ $root.appVersionParameter" ng-if="!isLogin" ng-controller="HeaderCtrl" class="header-wrapper"></div>
+	</div>
+	<div class="ng-view-changed-by-me">
+		<div ng-view></div>
+	</div>
+	<footer ng-if="!isLogin">
+		<!--        <div class="container">-->
+		<a href="http://www.webit-sys.com/" target="_blank">
+			<img src="Images/webit_logo.png" /><i class="glyphicon glyphicon-copyright-mark"></i>Webit LTD Software Systems & Apps
+		</a>
+		<!--        </div>-->
+	</footer>
+	<!--</div>-->
+	<!-- Scripts -->
+	<script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
+	<script src="Scripts/Libraries/jquery-ui.min.js"></script>
+	<script src="Scripts/Libraries/jquery.flip.min.js"></script>
+	<script src="Scripts/Libraries/angular.min.js"></script>
+	<script src="Scripts/Libraries/angular-route.min.js"></script>
+	<script src="Scripts/Libraries/angular-animate.min.js"></script>
+	<script src="Scripts/Libraries/createDialog.js"></script>
+	<script src="Scripts/Libraries/bootstrap/js/bootstrap.min.js"></script>
+	<script src="Scripts/Libraries/angular-bootstrap-multiselect.js"></script>
+	<script src="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
+	<script src="Scripts/Libraries/moment.min.js"></script>
+	<script src="Scripts/Libraries/fullcalendar.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyCk6odCSTvkvjr77DyodTAHP9NIJscyZl4"></script>
+	<script src="Scripts/app.js"></script>
+	<!-- end Scripts -->
+	<!-- Controllers -->
+	<script src="Scripts/Controllers/LoginCtrl.js"></script>
+	<script src="Scripts/Controllers/Menu/HeaderCtrl.js"></script>
+	<script src="Scripts/Controllers/Menu/MenuCtrl.js"></script>
+	<script src="Scripts/Controllers/ABCBook/ABCBookCtrl.js"></script>
+	<script src="Scripts/Controllers/Conversations/ConversationsCtrl.js"></script>
+	<script src="Scripts/Controllers/Settings/SettingTabsCtrl.js"></script>
+	<script src="Scripts/Controllers/Messages/MessagesCtrl.js"></script>
 	<script src="Scripts/Controllers/Orders/OrdersTabsCtrl.js"></script>
 	<script src="Scripts/Controllers/Orders/OrdersCtrl.js"></script>
 	<script src="Scripts/Controllers/Orders/OrdersBoardCtrl.js"></script>
@@ -94,41 +94,42 @@ pInk1000-->
 	<script src="Scripts/Controllers/Reports/ReportsCustomerCtrl.js"></script>
 	<script src="Scripts/Controllers/Reports/ReportsProductCtrl.js"></script>
 	<script src="Scripts/Controllers/Messages/PdfToProvidersCtrl.js"></script>
-    <!-- end Controllers -->
-    <!-- Factories -->
-    <script src="Scripts/Factories/Connect.js"></script>
-    <script src="Scripts/Factories/ForceLogOut.js"></script>
-    <script src="Scripts/Factories/ScreenHeight.js"></script>
-    <script src="Scripts/Factories/ExcelFactory2.js"></script>
-    <script src="Scripts/Factories/Alerts.js"></script>
-    <script src="Scripts/Factories/changesAlert.js"></script>
-    <script src="Scripts/Factories/createDialogFactory.js"></script>
-    <!-- end Factories -->
-    <!-- Directives -->
-    <script src="Scripts/Directives/GridDirective.js"></script>
-    <script src="Scripts/Directives/GridPagingDirective.js"></script>
-    <script src="Scripts/Directives/TooltipsTargetDirective.js"></script>
-    <script src="Scripts/Directives/FormField.js"></script>
-    <script src="Scripts/Directives/FormDropdown.js"></script>
-    <script src="Scripts/Directives/MultiFormDropdown.js"></script>
-    <script src="Scripts/Directives/FormValidation.js"></script>
-    <script src="Scripts/Directives/WaitDirective.js"></script>
-    <script src="Scripts/Directives/SearchDirective.js"></script>
-    <script src="Scripts/Directives/ngAutocomplete.js"></script>
-    <script src="Scripts/Directives/CreateDialogDir.js"></script>
+	<!-- end Controllers -->
+	<!-- Factories -->
+	<script src="Scripts/Factories/Connect.js"></script>
+	<script src="Scripts/Factories/ForceLogOut.js"></script>
+	<script src="Scripts/Factories/ScreenHeight.js"></script>
+	<script src="Scripts/Factories/ExcelFactory2.js"></script>
+	<script src="Scripts/Factories/Alerts.js"></script>
+	<script src="Scripts/Factories/changesAlert.js"></script>
+	<script src="Scripts/Factories/createDialogFactory.js"></script>
+	<!-- end Factories -->
+	<!-- Directives -->
+	<script src="Scripts/Directives/GridDirective.js"></script>
+	<script src="Scripts/Directives/GridPagingDirective.js"></script>
+	<script src="Scripts/Directives/TooltipsTargetDirective.js"></script>
+	<script src="Scripts/Directives/FormField.js"></script>
+	<script src="Scripts/Directives/FormDropdown.js"></script>
+	<script src="Scripts/Directives/MultiFormDropdown.js"></script>
+	<script src="Scripts/Directives/FormValidation.js"></script>
+	<script src="Scripts/Directives/WaitDirective.js"></script>
+	<script src="Scripts/Directives/SearchDirective.js"></script>
+	<script src="Scripts/Directives/ngAutocomplete.js"></script>
+	<script src="Scripts/Directives/CreateDialogDir.js"></script>
 	<script src="Scripts/Directives/CalendarDirective.js"></script>
 	<script src="Scripts/Directives/DateRtl.js"></script>
 	<script src="Scripts/Directives/angular-file-upload.js"></script>
-    <!--<script src="Scripts/Directives/GooglePlacesDirective.js"></script>-->
-    <!-- end Directives -->
-    <!-- Filters -->
-    <script src="Scripts/Filters/Floor.js"></script>
-    <script src="Scripts/Filters/Abs.js"></script>
+	<script src="Scripts/Directives/ValidationsDirective.js"></script>
+	<!--<script src="Scripts/Directives/GooglePlacesDirective.js"></script>-->
+	<!-- end Directives -->
+	<!-- Filters -->
+	<script src="Scripts/Filters/Floor.js"></script>
+	<script src="Scripts/Filters/Abs.js"></script>
 	<script src="Scripts/Filters/HebrewDateFilter.js"></script>
-    <script src="Scripts/Filters/SumByField.js"></script>
-    <!-- end Filters -->
-    <!--Constant-->
-    <script src="Scripts/Constant/CodeTablesId.js"></script>
-    <!-- end Constant -->
+	<script src="Scripts/Filters/SumByField.js"></script>
+	<!-- end Filters -->
+	<!--Constant-->
+	<script src="Scripts/Constant/CodeTablesId.js"></script>
+	<!-- end Constant -->
 </body>
 </html>

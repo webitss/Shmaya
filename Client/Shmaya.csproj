@@ -150,6 +150,7 @@
     <Content Include="Scripts\Directives\ngAutocomplete.js" />
     <Content Include="Scripts\Directives\SearchDirective.js" />
     <Content Include="Scripts\Directives\TooltipsTargetDirective.js" />
+    <Content Include="Scripts\Directives\ValidationsDirective.js" />
     <Content Include="Scripts\Directives\WaitDirective.js" />
     <Content Include="Scripts\Factories\Alerts.js" />
     <Content Include="Scripts\Factories\changesAlert.js" />

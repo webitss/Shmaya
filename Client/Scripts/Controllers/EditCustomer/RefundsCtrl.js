@@ -34,7 +34,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
 							    if ($scope.checkRefund($scope.refund2) == false)
-							        return
+									return
+								console.log(JSON.stringify($scope.refund2));
+								$scope.refund2.dtCreateDate = null;
 							    connect.post(true, 'RefundUpdate', { refund: $scope.refund2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 							        if (result) {
 							            console.log('RefundUpdate:');
@@ -62,10 +64,14 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    fieldName: 'iRefundId',
 				    title: 'אסמכתא',
 				    //template: '<div class="pass user-class glyphicon glyphicon-list"  ng-click="col.clickEvent(item)"></div>',
-					template: '<a href="{{item.nvDocPath}}" ng-if="item.nvDocName" target="_blank">מסמך אסמכתא</a>',
-				    clickEvent: function (refund) {
-				        alert(nvDocPath);
-				    },
+					template: '<a href="{{item.nvDocPath}}" id="ref" ng-if="item.nvDocName" target="_blank"></a>' +
+					'<div class="pass user-class glyphicon glyphicon-file" ng-click="clickEvent(item)"></div>',
+					clickEvent: function (item) {
+						if (item.item.nvDocPath)
+							document.getElementById("ref").click();
+						else
+							alert("לא נבחרה אסמכתא");
+					},
 				    weight: 0.5,
 				    filter: false,
 				    sort: false
