@@ -61,7 +61,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
                 { iUserType: 3 },
                 function (result) {
                     $scope.ABCBookProviders = result;
-                    $scope.order.iSelectedTranslator = $scope.ABCBookProviders[$scope.order.iSelectedTranslator].iUserId;
+                    if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
+                        $scope.order.iSelectedTranslator = $filter('filter')($scope.ABCBookProviders, { iUserId: $scope.order.iSelectedTranslator }, true)[0].iUserId;
                 });
 	    };
 

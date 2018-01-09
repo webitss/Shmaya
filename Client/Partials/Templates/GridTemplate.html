@@ -79,7 +79,7 @@
             <span class="rows-sum">מציג {{dataLength}} {{footerText}}</span>
             <!--<div ng-repeat="col in columns" class="gridCell" ng-style="{width : col.width}" style="height:40px;" ng-if="col.type!='hidden'">-->
             <div ng-repeat="col in columns" class="gridCell {{col.type}}" ng-style="{width : columnsWidth[$index]}" style="height: 40px;">
-                <span ng-show="$index > 0 && col.doSum == true && col.type!='hidden'">{{col.sumByField}}</span>
+                <span ng-show="$index > 0 && col.doSum == true && col.type!='hidden'" title="סה''כ: {{col.sumByField}} שעות">סה"כ: {{col.sumByField}} שעות</span>
                 <!--<span  class="grid-footer-sum" ng-show="$index==0 && (columns | filter : {doSum : true}).length > 0">מציג {{(data | filter : filterfields).length}} {{footertext}}</span>-->
                 <!--<span class="grid-footer-sum" ng-show="$index==0">מציג {{dataLength}} {{footertext}}</span>-->
             </div>

@@ -140,8 +140,16 @@
                     scope.filteredData = data.slice(scope.start, scope.end);
                 scope.dataLength = $filter('number')(data.length);
                 angular.forEach(scope.columns, function (col) {
-                    if (col.doSum)
-                        col['sumByField'] = $filter('number')($filter('sumByField')(data, col.fieldName));
+                    if (col.doSum) {
+                        var sum = $filter('number')($filter('sumByField')(data, "iTimeTranslation"));
+                        if (sum.indexOf(',') != -1) {
+                            sum = sum.split(',');
+                            sum = sum[0] + sum[1];
+                        }
+                        sum = parseInt(sum,10);
+                        sum /= 60;
+                        col['sumByField'] = sum + '';
+                    }
                 });
                 $rootScope.$broadcast('updateDataLength', {
                     id: scope.gridIdentity,
