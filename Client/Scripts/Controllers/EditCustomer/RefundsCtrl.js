@@ -62,7 +62,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    fieldName: 'iRefundId',
 				    title: 'אסמכתא',
 				    //template: '<div class="pass user-class glyphicon glyphicon-list"  ng-click="col.clickEvent(item)"></div>',
-				    template: '<a href="{{nvDocPath}}" ng-if="refund2.nvDocName" target="_blank">מסמך אסמכתא</a>',
+					template: '<a href="{{item.nvDocPath}}" ng-if="item.nvDocName" target="_blank">מסמך אסמכתא</a>',
 				    clickEvent: function (refund) {
 				        alert(nvDocPath);
 				    },

@@ -95,3 +95,10 @@ Client/obj/Debug/Client.pdb
 *.pdb
 *.cache
 *.csproj
+*.dll
+*.dll
+*.pdb
+*.cache
+*.cs
+*.txt
+*.txt
