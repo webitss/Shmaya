@@ -59,3 +59,13 @@ Client/obj/Debug/Client.pdb
 *.pdb
 *.dll
 *.pdb
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.ide
+*.sqlite
+*.json
+*.dll
+*.pdb
+*.cache
+*.txt
+*.pubxml
+*.user
