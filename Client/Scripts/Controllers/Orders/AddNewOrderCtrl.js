@@ -54,7 +54,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        connect.post(true, 'GetUsers',
                 { iUserType: 2 },
                 function (result) {
-                    $scope.ABCBookCustomers = result;
+					$scope.ABCBookCustomers = result;
+					$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
                 }
             );
 	        connect.post(true, 'GetUsers',

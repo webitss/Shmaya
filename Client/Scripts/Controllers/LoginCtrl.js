@@ -47,13 +47,13 @@ companionApp.controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'aler
 	$scope.resetPassword = function () {
 		connect.post(true, 'ResetUserPassword', { nvMail: $scope.user.nvMail }, function (result) {
 			if (result == 1) {
-				$scope.openDialog("הסיסמא נשלחה לכתובת מייל שהזנת");
+				alerts.alert("הסיסמא נשלחה לכתובת מייל שהזנת");
 				$scope.var.forgetPassword = false;
 			}
 			if (result == -1)
-				$scope.openDialog("ארעה שגיאה בלתי צפויה, נסה שנית");
+				alerts.alert("ארעה שגיאה בלתי צפויה, נסה שנית");
 			if (result == -2)
-				$scope.openDialog("כתובת המייל לא נמצאה במערכת");
+				alerts.alert("כתובת המייל לא נמצאה במערכת");
 			$scope.resetUser();
 		});
 	};

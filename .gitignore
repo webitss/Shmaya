@@ -70,21 +70,28 @@ Client/obj/Debug/Client.pdb
 *.pubxml
 *.csproj
 *.user
-
-*.suo
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.ide
 *.rar
 *.txt
 *.cache
-<<<<<<< HEAD
 *.suo
 *.dll
 *.pdb
 *.cache
 *.csproj
 *.txt
-=======
->>>>>>> 900a6c92a50e0496483a83f16b2edd6ac1847dc7
->>>>>>> 2ebec8959cd25e14f7bc6e50d85384af90d1384b
+.vs/AyeletHashacharCompanionship/v15/.suo
+.vs/AyeletHashacharCompanionship/v15/Server/sqlite3/storage.ide
 *.suo
 *.txt
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.dll
+*.pdb
 *.cache
+*.csproj
+*.dll
+*.dll
+*.pdb
+*.cache
+*.cs
