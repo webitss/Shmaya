@@ -45,7 +45,6 @@ namespace Service.Entities
 		[DataMember]
 		public int iGenderId { get; set; }
 		[DataMember]
-		[NoSendToSQL]
 		public double nBankHours { get; set; }
 		[DataMember]
 		public int? iEntitlementTypeId { get; set; }
@@ -58,10 +57,8 @@ namespace Service.Entities
 		[DataMember]
 		public bool isWorker { get; set; }
 		[DataMember]
-		[NoSendToSQL]
 		public double nNumHours { get; set; }
 		[DataMember]
-		[NoSendToSQL]
 		public int iCommunicationCart { get; set; }
 		[DataMember]
 		[NoSendToSQL]

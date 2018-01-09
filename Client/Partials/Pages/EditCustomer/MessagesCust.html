@@ -71,16 +71,16 @@
                     <div class="phone-info">
                         <span class="col-md conversation"><b>תאריך שליחה: </b>{{Message1.dtCreateDate | date: "dd-MM-yyyy"}}</span>
                         <span class="col-md conversation"><b>משתמש שולח: </b>{{Message1.nvCreateUser}}</span>
-                        <span class="col-md conversation"><b>נושא: </b>{{Message1.nvSubject}}</span>
+                        <span title="{{Message1.nvSubject}}" class="col-md conversation"><b>נושא: </b>{{Message1.nvSubject}}</span>
                         <!--<span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': isCollapse, 'glyphicon glyphicon-menu-right': !isCollapse}"></span>-->
                         <span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': Message1.isCollapse, 'glyphicon glyphicon-menu-left': !Message1.isCollapse}"></span>
                     </div>
                 </uib-accordion-heading>
                 <!--תוכן האקורדיון- ההרחבה-->
                 <div class="panel-default line-list-open">
-                    <div class="text-align-right big-text row form-group" show-errors>
+                    <div class="text-align-right big-text row form-group">
                         <label class="col-md-3">תוכן השיחה:</label>
-                        <span class="col-md-7">{{Message1.nvComment}}</span>
+                        <span title="{{Message1.nvComment}}" class="col-md-7">{{Message1.nvComment}}</span>
                     </div>
                 </div>
             </div>
@@ -90,9 +90,6 @@
     <div>
         <create-dialog ng-if="newMessage1.dialogIsOpen" id="newMessage1" cancel="true">
             <!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
-            
-
-            nc
             <div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter"></div>
         </create-dialog>
     </div>

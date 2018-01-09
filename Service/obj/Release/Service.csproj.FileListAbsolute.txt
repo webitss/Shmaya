@@ -1,7 +1,5 @@
-C:\git.dev\Shmaya\Service\bin\Service.dll.config
 C:\git.dev\Shmaya\Service\bin\Service.dll
 C:\git.dev\Shmaya\Service\bin\Service.pdb
 C:\git.dev\Shmaya\Service\obj\Release\Service.csprojResolveAssemblyReference.cache
-C:\git.dev\Shmaya\Service\obj\Release\Service.csproj.CoreCompileInputs.cache
 C:\git.dev\Shmaya\Service\obj\Release\Service.dll
 C:\git.dev\Shmaya\Service\obj\Release\Service.pdb

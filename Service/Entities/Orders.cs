@@ -12,7 +12,7 @@ namespace Service.Entities
 	[DataContract]
 	public class Orders
 	{
-	#region members
+	    #region members
 		[DataMember]
 		/**/public int iOrderId { get; set; }
 		[DataMember]
@@ -50,7 +50,7 @@ namespace Service.Entities
 		/**/public int iCityId { get; set; }
 		[DataMember]
 		[NoSendToSQL]
-		public string nvStreet { get; set; }
+        public string nvStreet { get; set; }
 		[DataMember]
 		[NoSendToSQL]
 		public string nvNumberHouse { get; set; }
@@ -116,6 +116,7 @@ namespace Service.Entities
 		public int iYearId { get; set; }
 
 		#endregion
+
 		#region methods
 
 		public static List<Orders> GetOrders()

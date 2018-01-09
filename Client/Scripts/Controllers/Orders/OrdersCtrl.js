@@ -4,8 +4,8 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	    $scope.isEdit = false;
 	    $scope.prepareData = function () {
 	        $scope.isDataLoaded = 0;
-			$scope.gridIdentity = 'OrdersList';
-			$scope.newOrder = { dialogIsOpen: false };
+	        $scope.gridIdentity = 'OrdersList';
+	        $scope.newOrder = { dialogIsOpen: false };
 	        $scope.columns = [
 				{
 				    fieldName: 'iOrderId',
@@ -39,12 +39,12 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 
 				},
 				{
-					title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
-						console.log("לשנות בשרת")
-						//connect.post(true, 'ChangeStatus', { iStatusId: $scope.order.iStatusId, iOrderId: $scope.order.iOrderId },
-						//	function (result) {
-						//		console.log("change");
-						//	});
+				    title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
+				        console.log("לשנות בשרת")
+				        //connect.post(true, 'ChangeStatus', { iStatusId: $scope.order.iStatusId, iOrderId: $scope.order.iOrderId },
+				        //	function (result) {
+				        //		console.log("change");
+				        //	});
 				    }
 				},
 				{ title: 'מספר הזמנה', fieldName: 'iOrderId' },
@@ -108,9 +108,10 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	    $scope.addNewOrder = function () {
 	        $scope.isEdit = false;
 	        $scope.name = "אלפון";
-			$scope.newOrder.dialogIsOpen = true;
+	        $scope.newOrder.dialogIsOpen = true;
 	        $rootScope.$broadcast('displayDialog', { id: 'newOrder' });
 	    }
+
 	    $scope.deleteOrder = function (item) {
 	        $rootScope.delete = true;
 	        connect.post(true, "DeleteOrder", { 'iOrderId': item.iOrderId }, function (result) {
