@@ -54,6 +54,11 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			connect.post(true, 'GetReports', { iMonthId: $scope.iMonthId, iTypeOrder:22 },
 				function (result)
 				{
+					if (result.length == 0)
+					{
+						alerts.alert('אין נתונים להצגה בדוח מתרגמים');
+						return;
+					}
 					$scope.ReportsList1 = result;
 					$scope.isDataLoaded1++;
 				
@@ -63,7 +68,12 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		$scope.getData2 = function () {
 			connect.post(true, 'GetReports', { iMonthId: $scope.iMonthId, iTypeOrder: 23 },
-				function (result) {
+				function (result)
+				{
+					if (result.length == 0) {
+						alerts.alert('אין נתונים להצגה בדוח מתמללים')
+						return
+					}
 					$scope.ReportsList2 = result;
 					$scope.isDataLoaded2++;
 
@@ -74,6 +84,10 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 		$scope.getData3 = function () {
 			connect.post(true, 'GetReports', { iMonthId: $scope.iMonthId, iTypeOrder: 24 },
 				function (result) {
+					if (result.length == 0) {
+						alerts.alert('אין נתונים להצגה בדוח משעתקים')
+						return
+					}
 					$scope.ReportsList3 = result;
 					$scope.isDataLoaded3++;
 

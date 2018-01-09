@@ -25,12 +25,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    clickEvent: function (refund) {
 				        $scope.refund2 = refund.item;
 				        $scope.isEdit = true;
-				        $scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='refund2.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
+						$scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='refund2.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
 							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase' required/>" +
 							"<label>שיוך לחודש</label><form-dropdown ng-model='refund2.iMonthId' enablesearch='false' data='monthList' identityfield='iId' datafield='nvName'></form-dropdown>" +
 							"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='refund2.nPayment' required/>" +
-							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />' +
-							'<a href="{{refund2.nvDocPath}}" ng-if="refund2.nvDocName" target="_blank">מסמך אסמכתא</a>';
+							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
 							    if ($scope.checkRefund($scope.refund2) == false)
@@ -67,7 +66,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					template: '<a href="{{item.nvDocPath}}" id="ref" ng-if="item.nvDocName" target="_blank"></a>' +
 					'<div class="pass user-class glyphicon glyphicon-file" ng-click="clickEvent(item)"></div>',
 					clickEvent: function (item) {
-						if (item.item.nvDocPath)
+						if (item.item.nvDocName)
 							document.getElementById("ref").click();
 						else
 							alert("לא נבחרה אסמכתא");

@@ -8,3 +8,5 @@ Service/Files
 Client/obj
 Client/bin/Client.dll
 Client/bin/Client.pdb
+*.csproj
+*.csproj

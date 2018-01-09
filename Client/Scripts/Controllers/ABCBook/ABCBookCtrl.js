@@ -11,7 +11,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 		$scope.user = {};
 		$rootScope.listToSend = [];
 		$scope.newUser = { dialogIsOpen: false };
-
+		$rootScope.newMessage2 = { dialogIsOpen: false };
+		$scope.messageFromSelect = false
 		
 
 		$scope.prepareData = function () {
@@ -206,7 +207,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				alerts.alert('יש לבחור נמענים לשליחת הודעה!', 'שגיאה');
 				return;
 			}
-			$scope.newMessage2 = true;
+			$scope.newMessage2.dialogIsOpen = true;
+			$scope.messageFromSelect = true;
 			$rootScope.$broadcast('displayDialog', { id: 'sendMassege' });
 		};
 

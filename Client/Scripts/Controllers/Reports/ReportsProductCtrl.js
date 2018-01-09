@@ -46,6 +46,10 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		$scope.getData = function () {
 			connect.post(true, 'GetReportsProduct', { iMonthId: $scope.iMonthId },
 				function (result) {
+					if (result.length == 0) {
+						alerts.alert('אין נתונים להצגה בדוח מוצרים');
+						return;
+					}
 					$scope.ReportsList1 = result;
 					$scope.isDataLoaded1++;
 				});
@@ -53,6 +57,10 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 			$scope.getData2 = function () {
 				connect.post(true, 'GetReportscryingDetector', { iMonthId: $scope.iMonthId },
 					function (result) {
+						if (result.length == 0) {
+							alerts.alert('אין נתונים להצגה בדוח גלאי בכי');
+							return;
+						}
 						$scope.ReportsList2 = result;
 						$scope.isDataLoaded2++;
 					});
