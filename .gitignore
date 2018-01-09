@@ -97,18 +97,40 @@ Client/obj/Debug/Client.pdb
 =======
 >>>>>>> 2ebec8959cd25e14f7bc6e50d85384af90d1384b
 >>>>>>> 048c8858e440ac31d85e30939f8208b8a8c189cb
+<<<<<<< HEAD
+=======
 >>>>>>> 8d025acae2b8cf83bde907686c26035e386e08ac
+.vs/AyeletHashacharCompanionship/v15/.suo
+>>>>>>> f3730f746564dcd21cb2d49611be48d3552ae504
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.dll
+*.pdb
+*.cache
+<<<<<<< HEAD
+*.csproj
+*.dll
+*.dll
+*.pdb
+*.cache
+*.cs
+*.txt
+=======
+Service/Files/13158943994540293918280txt
+Service/Files/13158944042581314918280txt
+Service/Files/13158945525487768818280txt
+>>>>>>> f3730f746564dcd21cb2d49611be48d3552ae504
+*.txt
 .vs/AyeletHashacharCompanionship/v15/.suo
 .vs/AyeletHashacharCompanionship/v15/.suo
 *.dll
 *.pdb
 *.cache
-Service/Files/13158943994540293918280txt
-Service/Files/13158944042581314918280txt
-Service/Files/13158945525487768818280txt
-*.txt
+*.csproj
 .vs/AyeletHashacharCompanionship/v15/.suo
-.vs/AyeletHashacharCompanionship/v15/.suo
+Client/bin/Client.dll
+Client/bin/Client.pdb
+Client/Images/logo[1].jpg
+Client/obj/Debug/Client.dll
 *.dll
 *.pdb
 *.cache

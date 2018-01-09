@@ -1,11 +1,11 @@
-﻿<div class="main-header title-high" style="height:75px;">
+﻿<div class="main-header title-high" style="height:70px;">
     <div class="container">
         <div class="row">
             <div class="col-md-2 pull-right">
                 <img class="pass logo" src="Images/shmayaLogo.png" ng-click="logOut()" />
             </div>
-            <div class="col-md-8 center-block" ng-include="'Partials/Pages/menu/Menu.html'+ $root.appVersionParameter" ng-if="!isLogin" ng-controller="MenuCtrl"></div>
-            <div class="col-md-2 pull-left header-user-div">
+            <div class="col-md-7 center-block" ng-include="'Partials/Pages/menu/Menu.html'+ $root.appVersionParameter" ng-if="!isLogin" ng-controller="MenuCtrl"></div>
+            <div class="col-md-3 pull-left header-user-div">
                 <span class="color-text-lb"><b>שלום {{userName}}</b></span>
                 <span class="color-text-lb" style="margin: 0 10px;">|</span>
                 <span ng-click="logOut()" class="pass color-text-lb">התנתק</span>

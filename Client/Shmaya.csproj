@@ -60,10 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\excel-icon.png" />
-    <Content Include="Images\logo[1].jpg" />
     <Content Include="Images\phone-plus.png" />
     <Content Include="Images\phone-under.png" />
     <Content Include="Images\save-icon.png" />
+    <Content Include="Images\shmaya-Logo.ico" />
     <Content Include="Images\shmayaLogo.png" />
     <Content Include="Images\user-blue.png" />
     <Content Include="Images\user-green.png" />
