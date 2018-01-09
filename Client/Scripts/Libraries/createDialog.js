@@ -75,7 +75,7 @@ angular.module('fundoo.services', []).factory('createDialog', ["$document", "$co
                 '    <div class="modal-content">' +
                 '      <div class="modal-header">' +
                 '        <button type="button" id="closeDialog" class="close" ng-click="$modalCancel()">&times;</button>' +
-                '        <h2>{{$title}}</h2>' +
+                '        <h2><b>{{$title}}</b></h2>' +
                 '      </div>' +
                 modalBody +
                 footerTemplate +
