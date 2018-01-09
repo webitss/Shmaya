@@ -45,6 +45,7 @@ namespace Service.Entities
 		[DataMember]
 		public int iGenderId { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public double nBankHours { get; set; }
 		[DataMember]
 		public int? iEntitlementTypeId { get; set; }
@@ -57,8 +58,10 @@ namespace Service.Entities
 		[DataMember]
 		public bool isWorker { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public double nNumHours { get; set; }
 		[DataMember]
+		[NoSendToSQL]
 		public int iCommunicationCart { get; set; }
 		[DataMember]
 		[NoSendToSQL]
@@ -158,8 +161,8 @@ namespace Service.Entities
 				if (ds.Tables[0].Rows.Count > 0)
 				{
 					User user = ObjectGenerator<User>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
-					string body = user.nvFirstName + " " + user.nvLastName + "<br/>" +
-								 "שם המשתמש שלך הוא:" + " " + user.nvUserName + "<br/>" +
+					string body = user.nvFirstName + " " + user.nvLastName + "\n" +
+								 "שם המשתמש שלך הוא:" + " " + user.nvUserName + "\n" +
 								 "הסיסמה שלך היא:" + " " + user.nvPassword;
 					Messages message = new Messages();
 					message.nvMessage = body;
