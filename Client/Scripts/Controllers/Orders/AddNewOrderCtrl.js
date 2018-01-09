@@ -3,14 +3,14 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId, $window) {
 	    $scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
 	    $scope.defDate = new Date();
-	    $scope.defYear = (new Date()).getFullYear();
-	    $scope.defMonth = (new Date()).getMonth();
+	    $scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].iId;//(new Date()).getFullYear();
+	    $scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
 	    $scope.testTime = new Date();
-	    $scope.order =
-	    {
-	        iMonthId: $scope.monthList[(new Date().getMonth()) + 1].iId,
-	        iYearId : $filter('filter')($scope.yearList, { nvName: new Date().getFullYear()+'' }, true)[0].iId
-	    }
+	    //$scope.order =
+	    //{
+	    //    iMonthId: $scope.monthList[(new Date().getMonth()) + 1].iId,
+	    //    iYearId : $filter('filter')($scope.yearList, { nvName: new Date().getFullYear()+'' }, true)[0].iId
+	    //}
 	    //$scope.order.timeTranslation = $filter('date')($scope.order.timeTranslation, 'HH:mm');
 	    //$scope.order.dtDateTraslation = new Date();
 	    $scope.Orderinsert_update;
