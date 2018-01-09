@@ -59,3 +59,13 @@ Client/obj/Debug/Client.pdb
 *.pdb
 *.dll
 *.pdb
+*.dll
+*.suo
+*.pdb
+*.cache
+*.asax
+*.txt
+*.config
+*.pubxml
+*.csproj
+*.user
