@@ -18,6 +18,17 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 								"<label>תעריף</label><input type='text' class='form-control' required ng-model='comm.nTariff' required/>";
 							alerts.custom($scope.pop, 'הוספת ערך', $scope,
 								function () {
+								    if ($scope.comm.nTariff.length > 15) {
+								        createDialog({
+								            id: 'eligibility2',
+								            template: "<div><span>מספר שעות גדול מידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+								            title: "שגיאה",
+								            scope: $rootScope,
+								            backdrop: true,
+								            modalClass: "modal modalAlert"
+								        });
+								        return;
+								    }
 									connect.post(true, 'CommunicationUpdate', { comm: $scope.comm, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 										if (result && result > 0) {
 											console.log('CommunicationUpdate:' + result);
@@ -55,6 +66,17 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 				"<label>תעריף</label><input type='text' class='form-control' required ng-model='newCommunication.nTariff' required/>";
 			alerts.custom($scope.pop, 'הוספת ערך', $scope,
 				function () {
+				    if ($scope.newCommunication.nTariff.length > 15) {
+				        createDialog({
+				            id: 'eligibility2',
+				            template: "<div><span>מספר שעות גדול מידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+				            title: "שגיאה",
+				            scope: $rootScope,
+				            backdrop: true,
+				            modalClass: "modal modalAlert"
+				        });
+				        return;
+				    }
 					connect.post(true, 'CommunicationInsert', { comm: $scope.newCommunication, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 						if (result && result > 0) {
 							console.log('CommunicationInsert:' + result);

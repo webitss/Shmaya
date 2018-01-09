@@ -70,43 +70,25 @@ Client/obj/Debug/Client.pdb
 *.pubxml
 *.csproj
 *.user
-
-<<<<<<< HEAD
 .vs/AyeletHashacharCompanionship/v15/.suo
 *.ide
-=======
-*.suo
 *.rar
 *.txt
 *.cache
-<<<<<<< HEAD
 *.suo
 *.dll
 *.pdb
 *.cache
 *.csproj
 *.txt
-=======
->>>>>>> 900a6c92a50e0496483a83f16b2edd6ac1847dc7
-<<<<<<< HEAD
-.vs/AyeletHashacharCompanionship/v15/.suo
 .vs/AyeletHashacharCompanionship/v15/.suo
 .vs/AyeletHashacharCompanionship/v15/Server/sqlite3/storage.ide
-*.dll
-*.pdb
-=======
->>>>>>> 2ebec8959cd25e14f7bc6e50d85384af90d1384b
->>>>>>> 048c8858e440ac31d85e30939f8208b8a8c189cb
-<<<<<<< HEAD
-=======
->>>>>>> 8d025acae2b8cf83bde907686c26035e386e08ac
-.vs/AyeletHashacharCompanionship/v15/.suo
->>>>>>> f3730f746564dcd21cb2d49611be48d3552ae504
+*.suo
+*.txt
 .vs/AyeletHashacharCompanionship/v15/.suo
 *.dll
 *.pdb
 *.cache
-<<<<<<< HEAD
 *.csproj
 *.dll
 *.dll
@@ -114,11 +96,6 @@ Client/obj/Debug/Client.pdb
 *.cache
 *.cs
 *.txt
-=======
-Service/Files/13158943994540293918280txt
-Service/Files/13158944042581314918280txt
-Service/Files/13158945525487768818280txt
->>>>>>> f3730f746564dcd21cb2d49611be48d3552ae504
 *.txt
 .vs/AyeletHashacharCompanionship/v15/.suo
 .vs/AyeletHashacharCompanionship/v15/.suo
