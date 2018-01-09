@@ -438,7 +438,7 @@
     width: calc(100% / 7);
     padding: 15px;
     border: 1px solid rgb(88, 129, 63);
-    height: 11vh;
+    /*height: 11vh;*/
     line-height: 7px;
     background-color: #58813f;
     color: white;
@@ -447,7 +447,7 @@
 .day_item_inner {
     background-color: white;
     color: #9e9e9f;
-    height: 115px;
+    height: 14vh;
     position: relative;
 }
 

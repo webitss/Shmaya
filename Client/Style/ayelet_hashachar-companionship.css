@@ -18,7 +18,9 @@
     font-weight: normal;
     font-style: normal;
 }
-
+html {
+    height: 100%;
+}
 body {
     height: 100%;
     background-color: #FFFFFF !important;
@@ -29,6 +31,12 @@ body {
         font-family: RUBIK-LIGHT;
         font-size: 15px;
     }
+
+.height-main {
+
+height: calc(100% - 100px);
+overflow: auto;}
+
 
 .trash {
     top: 30px;
@@ -546,7 +554,7 @@ footer {
 }
 
 .nav {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 /*ScrollBar*/
@@ -698,7 +706,7 @@ menu-item-div-one:focus {
 .menu-item-div:checked*/ {
     color: #3b173c;
     background-color: white;
-    height: 75px;
+    height: 70px;
     text-align: center;
     display: inline-block;
     float: right;
@@ -883,11 +891,11 @@ a-link {
 
 /*GRID*/
 .grid-paging-style {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .grid-paging-style-b {
-    margin-top: 39px;
+    margin-top: 50px;
 }
 
 
@@ -1757,6 +1765,7 @@ textarea {
 
 .container-message {
     width: 65%;
+    top: 50px;
 }
 
 
@@ -1866,8 +1875,12 @@ textarea {
 .second-menu {
     padding: 0px 16% 0px 0;
     background-color: #eee;
-    margin-top: 7px;
+    margin-top: 2px;
     margin-bottom: 15px;
+    position: fixed;
+    width: 100%;
+    height: 37px !important;
+    z-index: 100;
 }
 
 .second-menu-item {

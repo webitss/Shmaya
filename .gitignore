@@ -90,3 +90,8 @@ Client/obj/Debug/Client.pdb
 >>>>>>> 900a6c92a50e0496483a83f16b2edd6ac1847dc7
 >>>>>>> 2ebec8959cd25e14f7bc6e50d85384af90d1384b
 >>>>>>> 048c8858e440ac31d85e30939f8208b8a8c189cb
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.dll
+*.pdb
+*.cache
+*.csproj
