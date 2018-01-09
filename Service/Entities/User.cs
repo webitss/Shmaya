@@ -49,10 +49,8 @@ namespace Service.Entities
 		[DataMember]
 		public int? iEntitlementTypeId { get; set; }
 		[DataMember]
-		[NoSendToSQL]
 		public DateTime? dtResetHours { get; set; }
 		[DataMember]
-		[NoSendToSQL]
 		public DateTime? dtResetCommunication { get; set; }
 		[DataMember]
 		public DateTime? dtBirthDate { get; set; }
@@ -224,10 +222,10 @@ namespace Service.Entities
 					{
 						user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
 					}
-
 					lUsers.Add(user);
 				}
-			return lUsers;
+				//Log.ExceptionLog(lUsers.Count + "", "GetUsers");
+				return lUsers;
 		}
 		catch (Exception ex)
 		{

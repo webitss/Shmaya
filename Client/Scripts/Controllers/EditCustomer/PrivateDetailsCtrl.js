@@ -88,7 +88,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        connect.post(true, 'GetCommunicationCart', {},
 				function (result) {
 				    $scope.CommunicationCartList = result;
-				    if ($scope.user)
+				    if ($scope.user && $scope.user.iCommunicationCart)
 				        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				    //$scope.user.iCommunicationCart = 1;
 				    //$scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;

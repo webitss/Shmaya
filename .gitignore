@@ -53,6 +53,16 @@ Client/Scripts/Controllers/EditCustomer/PrivateDetailsCtrl.js
 Client/Scripts/Directives/MultiFormDropdown.js
 Service/bin/Service.dll
 Client/obj/Debug/Client.pdb
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.ide
+*.sqlite
+*.json
+*.dll
+*.pdb
+*.cache
+*.txt
+*.pubxml
+*.user
 *.cache
 *.asax
 *.txt
@@ -61,5 +71,22 @@ Client/obj/Debug/Client.pdb
 *.csproj
 *.user
 
+<<<<<<< HEAD
 .vs/AyeletHashacharCompanionship/v15/.suo
 *.ide
+=======
+*.suo
+*.rar
+*.txt
+*.cache
+<<<<<<< HEAD
+*.suo
+*.dll
+*.pdb
+*.cache
+*.csproj
+*.txt
+=======
+>>>>>>> 900a6c92a50e0496483a83f16b2edd6ac1847dc7
+>>>>>>> 2ebec8959cd25e14f7bc6e50d85384af90d1384b
+>>>>>>> 048c8858e440ac31d85e30939f8208b8a8c189cb

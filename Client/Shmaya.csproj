@@ -170,6 +170,7 @@
     <Content Include="Scripts\Directives\GridDirective.js" />
     <Content Include="Scripts\Factories\ExcelFactory2.js" />
     <Content Include="Scripts\Filters\HebrewDateFilter.js" />
+    <Content Include="Scripts\Filters\SumByField.js" />
     <Content Include="Scripts\Libraries\angular-animate.min.js" />
     <Content Include="Scripts\Libraries\angular-resource.min.js" />
     <Content Include="Scripts\Libraries\angular-route.min.js" />
