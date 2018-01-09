@@ -698,9 +698,11 @@ menu-item-div-one:focus {
 .menu-item-div:checked*/ {
     color: #3b173c;
     background-color: white;
-    padding-top: 25px;
     height: 75px;
     text-align: center;
+    display: inline-block;
+    float: right;
+    padding: 25px;
 }
 
 .menu-item-div-bottom {
@@ -843,6 +845,8 @@ menu-item-div-one:focus {
     .login .form-container {
         height: 100%;
         padding-top: 71px;
+        width: 17%;
+        margin: auto;
     }
 
 .divLogin-login {
@@ -1481,6 +1485,7 @@ footer {
 
 .modal-content {
     height: 100%;
+    overflow-y: auto;
 }
 
 .modal-body {

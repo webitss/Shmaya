@@ -53,15 +53,6 @@ Client/Scripts/Controllers/EditCustomer/PrivateDetailsCtrl.js
 Client/Scripts/Directives/MultiFormDropdown.js
 Service/bin/Service.dll
 Client/obj/Debug/Client.pdb
-*.dll
-*.pdb
-*.dll
-*.pdb
-*.dll
-*.pdb
-*.dll
-*.suo
-*.pdb
 *.cache
 *.asax
 *.txt
@@ -69,3 +60,4 @@ Client/obj/Debug/Client.pdb
 *.pubxml
 *.csproj
 *.user
+
