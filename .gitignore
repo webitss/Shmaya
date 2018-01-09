@@ -61,3 +61,5 @@ Client/obj/Debug/Client.pdb
 *.csproj
 *.user
 
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.ide
