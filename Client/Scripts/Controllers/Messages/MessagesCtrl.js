@@ -21,8 +21,8 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
             if ($scope.sendTo == 1)
                 $scope.sendTo = null;
             $scope.userType = $scope.sendTo;
-            connect.post(true, 'GetUsers',
-				{ iUserType: $scope.sendTo },
+			connect.post(true, 'GetUsers',
+				{ iUserType: $scope.sendTo, iStatusId:1 },
 				function (result) {
 				    $scope.userList1 = result;
 				    $scope.userList = [];
@@ -77,10 +77,12 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 			if ($scope.typeSelect == 1) {
                 connect.post(true, 'SendEmailToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
-					    $scope.res = result;
-						$scope.getAllMessages();
-						if ($scope.newMessage1.dialogIsOpen == true)
+						$scope.res = result;
+						if ($rootScope.messageFromCust == true) {
+							$rootScope.messageFromCust = false;
+							$scope.getAllMessages();
 							$scope.newMessage1.dialogIsOpen = false;
+						}
 						if ($scope.newMessage2.dialogIsOpen == true)
 							$scope.newMessage2.dialogIsOpen = false;
 					    alerts.alert('ההודעה נשלחה בהצלחה')
@@ -96,8 +98,11 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
             else {
                 connect.post(true, 'SendSMSToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
-					    $scope.res = result;
-						$scope.getAllMessages();
+						$scope.res = result;
+						if ($rootScope.messageFromCust == true)
+						{
+							$scope.getAllMessages();
+						}
 						if ($rootScope.messageFromCust == true)
 							$scope.newMessage1.dialogIsOpen = false;
 					});
@@ -124,7 +129,7 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 
         $scope.userType = 3;
         connect.post(true, 'GetUsers',
-            { iUserType: 3 },
+            { iUserType: 3, iStatusId: 1 },
             function (result) {
                 $scope.providersList = result;
             });

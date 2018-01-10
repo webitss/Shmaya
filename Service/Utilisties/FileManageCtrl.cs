@@ -11,7 +11,7 @@ using Service.Utilities;
 namespace GanimWS.Entities
 {
     public class FileManageCtrl
-    {
+	{
 		public void DeleteFile(string sPath)
 		{
 			try
@@ -20,9 +20,11 @@ namespace GanimWS.Entities
 			}
 			catch (Exception ex)
 			{
+				Log.ExceptionLog("DeleteFile", "Exception: " + ex.Message);
 
 			}
 		}
+
 		public string SaveFileClient(string sFolder, string sFile, string sFileType, int size, int index)
 		{
 			try

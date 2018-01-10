@@ -8,3 +8,4 @@ Client/bin/Client.dll
 Client/bin/Client.pdb
 *.suo
 
+*.pubxml

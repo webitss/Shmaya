@@ -23,9 +23,9 @@ namespace Service
 		   UriTemplate = "GetUsers",
 		   BodyStyle = WebMessageBodyStyle.WrappedRequest,
 		   ResponseFormat = WebMessageFormat.Json)]
-		public List<User> GetUsers(int? iUserType)
+		public List<User> GetUsers(int? iUserType,int iStatusId)
 		{
-			return User.GetUsers(iUserType);
+			return User.GetUsers(iUserType, iStatusId);
 		}
 
 		[OperationContract]
@@ -502,9 +502,9 @@ namespace Service
 		  UriTemplate = "RefundUpdate",
 		  BodyStyle = WebMessageBodyStyle.WrappedRequest,
 		  ResponseFormat = WebMessageFormat.Json)]
-		public string RefundUpdate(Refund refund, int iUserManagerId)
+		public string RefundUpdate(Refund refund, int iUserManagerId, bool isDelete)
 		{
-			return Refund.RefundUpdate(refund, iUserManagerId);
+			return Refund.RefundUpdate(refund, iUserManagerId, isDelete);
 		}
 
 		[OperationContract]

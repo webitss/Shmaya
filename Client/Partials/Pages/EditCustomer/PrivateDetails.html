@@ -17,14 +17,14 @@
 	<form id="formDetails" name="formDetails" novalidate class="row">
 
 			<form-field span-text="שם פרטי" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvFirstName" required />
+				<input class="form-control" type="text" ng-model="user.nvFirstName" ng-pattern="[^0-9]"/>
 			</form-field>
 			<form-field span-text="שם משפחה" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvLastName" required />
+				<input class="form-control" type="text" ng-model="user.nvLastName" ng-pattern="[^0-9]"/>
 			</form-field>
 
 			<form-field span-text="ת.ז." class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvId" identitynum required />
+				<input class="form-control" type="text" ng-model="user.nvId" identitynum />
 			</form-field>
 			<form-field span-text="תאריך לידה" class="col-md-6">
 				<input class="form-control" type="date" ng-model="user.dtBirthDate" />
@@ -35,21 +35,21 @@
 				<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList"></form-dropdown>
 			</form-field>
 			<form-field span-text="מייל" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-zA-Z0-9._]+@[a-zA-Z0-9-_]+\.[a-zA-Z.]{2,5}$/" />
+				<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"/>
 			</form-field>
 		
 			<form-field span-text="כתובת" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvAdress" />
 			</form-field>
 			<form-field span-text="טלפון" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvPhoneNum" ng-pattern="/^[0-9*#]{3,10}$/" required />
+				<input class="form-control" type="text" ng-model="user.nvPhoneNum" phone/>
 			</form-field>
 		
 			<form-field span-text="נייד" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvMobileNum" ng-minlength="10" ng-maxlength="10" ng-pattern="/^0+[0-9]{9}$/" required />
+				<input class="form-control" type="text" ng-model="user.nvMobileNum" phone/>
 			</form-field>
 			<form-field span-text="פקס" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvFaxNum" />
+				<input class="form-control" type="text" ng-model="user.nvFaxNum" phone/>
 			</form-field>
 		
 			<form-field span-text="סיסמא" class="col-md-6">
@@ -77,22 +77,21 @@
 				<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart"></form-dropdown>
 			</form-field>
             <form-field span-text="סוג זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
+				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType"></form-dropdown>
 			</form-field>
 
 
 
             <form-field span-text="מספר שעות זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<input class="form-control" type="text" disabled ng-model="user.nNumHours"  />
+				<input class="form-control" type="text" disabled ng-model="user.nNumHours"/>
 			</form-field>
 
             <form-field span-text="בנק שעות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<input class="form-control" type="text" disabled ng-model="user.nBankHours"/>
+				<input class="form-control" type="text" disabled ng-model="user.nBankHours" number/>
 			</form-field>
 
 
             <form-field span-text="סוג שירות" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<!--<form-dropdown ng-model="user.iTypeOrder" enablesearch="false" data="orderTypeList"></form-dropdown>-->
 				<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList"></multi-form-dropdown>
 			</form-field>
 			<form-field span-text="איזור" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
@@ -103,7 +102,6 @@
 				<input class="form-control" type="text" ng-model="user.nBankHours" />
 			</form-field>
 			<form-field span-text="שפות תרגום" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<!--<form-dropdown ng-model="user.iLanguageId" enablesearch="false" data="languageList"></form-dropdown>-->
 				<multi-form-dropdown ng-model="user.lLanguage" filter="false" enablesearch="false" data="languageList"></multi-form-dropdown>
 			</form-field>
 

@@ -73,12 +73,20 @@ namespace Service.Entities
 			}
 		}
 
-		public static string RefundUpdate(Refund refund, int iUserManagerId)
+		public static string RefundUpdate(Refund refund, int iUserManagerId, bool isDelete)
 		{
 			try
 			{
-				refund.nvDocPath = new FileManageCtrl().SaveFile( refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1),iUserManagerId);
+				//refund.nvDocPath = new FileManageCtrl();
+				//אם יש לצור את הקובץ
+				if (isDelete == false)
+					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+				//אם יש למחוק את הקובץ
+				//else
+				//{
 
+					//refund.nvDocPath.DeleteFile()
+				//}
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TRefund_UPD", parameters);
@@ -95,9 +103,7 @@ namespace Service.Entities
 		{
 			try
 			{
-				if(refund.nvDocPath!=null)
-					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
-
+				refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				parameters.Add(new SqlParameter("iUserId", iUserId));

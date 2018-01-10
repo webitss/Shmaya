@@ -52,24 +52,20 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 
 	    $scope.getData = function () {
 	        connect.post(true, 'GetUsers',
-                { iUserType: 2 },
+				{ iUserType: 2, iStatusId: 0},
                 function (result) {
 					$scope.ABCBookCustomers = result;
 					$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
                 }
             );
 	        connect.post(true, 'GetUsers',
-                { iUserType: 3 },
+                { iUserType: 3 ,iStatusId:0},
                 function (result) {
                     $scope.ABCBookProviders = result;
                     if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
                         $scope.order.iSelectedTranslator = $filter('filter')($scope.ABCBookProviders, { iUserId: $scope.order.iSelectedTranslator }, true)[0].iUserId;
                 });
 	    };
-
-	    $scope.func = function () {
-	        console.log("hi@@@@@@@@@@@");
-	    }
 
 	    $scope.calculateTimeEnd = function () {
 	        if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;

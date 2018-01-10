@@ -216,7 +216,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 			if ($scope.showCustomer) {
 				$scope.userType = 2;
 				connect.post(true, 'GetUsers',
-					{ iUserType: 2 },
+					{ iUserType: 2, iStatusId:1 },
 					function (result) {
 						$scope.ABCBookCustomers = result;
 						$scope.isDataLoadedCustomers++;
@@ -225,7 +225,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 			else if (!$scope.showCustomer) {
 				$scope.userType = 3;
 				connect.post(true, 'GetUsers',
-					{ iUserType: 3 },
+					{ iUserType: 3, iStatusId:1 },
 					function (result) {
 						$scope.ABCBookProviders = result;
 						//$scope.ABCBookProviders.forEach(function (user)
@@ -264,7 +264,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 			 {
 				 $scope.userType = 1;
 					connect.post(true, 'GetUsers',
-						{ iUserType: 1 },
+						{ iUserType: 1,iStatusId: 1 },
 						function (result) {
 							$scope.ABCBookAdministrator = result;
 							$scope.isDataLoaded++;

@@ -189,12 +189,15 @@ namespace Service.Entities
 		}
 
 
-	public static List<User> GetUsers(int? iUserType)
+	public static List<User> GetUsers(int? iUserType,int iStatusId)
 	{
 		try
 		{
-			//data set שולף אוסף של טבלאות
-			DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT", new SqlParameter("iUserType", iUserType));
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("iUserType", iUserType));
+				parameters.Add(new SqlParameter("iStatusId", iStatusId));
+				//data set שולף אוסף של טבלאות
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT");
 			
 			List<User> lUsers = new List<User>();
 			DataView dv;

@@ -5,7 +5,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        $scope.isDataLoaded = 0;
 	        $scope.sumRefunds = 0;
 	        $scope.sumBalance = 0;
-	        $scope.isEdit = false;
+			$scope.isEdit = false;
+			$scope.isDelete = false;
 			$scope.isReference = false;
 			if ($scope.user.dtCreateDate != null) {
 				$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtCreateDate.getFullYear()) % 4);
@@ -29,14 +30,15 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase' required/>" +
 							"<label>שיוך לחודש</label><form-dropdown ng-model='refund2.iMonthId' enablesearch='false' data='monthList' identityfield='iId' datafield='nvName'></form-dropdown>" +
 							"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='refund2.nPayment' required/>" +
-							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />';
+							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />' +
+							'<button ng-click="deleteFile()">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
 							    if ($scope.checkRefund($scope.refund2) == false)
 									return
 								console.log(JSON.stringify($scope.refund2));
 								$scope.refund2.dtCreateDate = null;
-							    connect.post(true, 'RefundUpdate', { refund: $scope.refund2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
+								connect.post(true, 'RefundUpdate', { refund: $scope.refund2, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
 							        if (result) {
 							            console.log('RefundUpdate:');
 							            var savingStatus = "השינויים נשמרו בהצלחה";
@@ -155,7 +157,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	    }
 
 
-	    $scope.docFileSelect = function ($files, number) {
+		$scope.docFileSelect = function ($files, number) {
+			$scope.isDelete = false;
 	        $scope.isReference = false;
 	        var fileType = $files[0].name.substring($files[0].name.indexOf('.') + 1, $files[0].name.length);
 	        var fileMedia = $files[0].type.substring(0, $files[0].type.indexOf('/'));
@@ -175,7 +178,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	                });
 	            }
 	        }
-	    };
+		};
+		$scope.deleteFile()
+		{
+			$scope.isDelete = true;
+		}
 	    $scope.prepareData();
 
 
