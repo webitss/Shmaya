@@ -49,6 +49,11 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		$scope.getData = function () {
 			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iTypeOrder: 22 },
 				function (result) {
+					if (result.length == 0)
+					{
+						alerts.alert('אין נתונים להצגה בדוח תרגום');
+						return;
+					}
 					$scope.ReportsList1 = result;
 					$scope.isDataLoaded1++;
 				});
@@ -57,6 +62,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		$scope.getData2 = function () {
 			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iTypeOrder: 23 },
 				function (result) {
+					if (result.length == 0) {
+						alerts.alert('אין נתונים להצגה בדוח תמלול');
+						return;
+					}
 					$scope.ReportsList2 = result;
 					$scope.isDataLoaded2++;
 				});
@@ -65,6 +74,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		$scope.getData3 = function () {
 			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iTypeOrder: 24 },
 				function (result) {
+					if (result.length == 0) {
+						alerts.alert('אין נתונים להצגה בדוח שעתוק');
+						return;
+					}
 					$scope.ReportsList3 = result;
 					$scope.isDataLoaded3++;
 				});

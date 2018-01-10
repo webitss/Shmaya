@@ -246,7 +246,7 @@ namespace Service.Entities
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter("iStatusId", iStatusId));
                 parameters.Add(new SqlParameter("iOrderId", iOrderId));
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TChangeStatus_UPD");
+                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TChangeStatus_UPD",parameters);
                 return int.Parse(ds.Tables[0].Rows[0][0].ToString());
             }
             catch (Exception ex)

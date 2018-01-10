@@ -25,7 +25,7 @@
 
 					$rootScope.userToSend = $scope.user.iUserId;
 					$rootScope.messageFromCust = true;
-					$rootScope.newMessage1.dialogIsOpen = true;
+					$scope.newMessage1.dialogIsOpen = true;
 					$rootScope.$broadcast('displayDialog', { id: 'newMessage1' });
 
 					$scope.bIsNewMessageOpen = true;

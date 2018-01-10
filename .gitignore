@@ -3,9 +3,8 @@ Service/obj
 Service/bin/Service.dll
 Service/bin/Service.pdb
 Service/Files
-
-
 Client/obj
 Client/bin/Client.dll
 Client/bin/Client.pdb
 *.suo
+

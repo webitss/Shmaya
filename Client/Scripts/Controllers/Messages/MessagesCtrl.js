@@ -2,7 +2,7 @@
 companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'alerts', 'codeTablesId',
     function ($scope, $rootScope, $routeParams, connect, $location, $filter, $timeout, codeTablesName, alerts, codeTablesId) {
     $scope.typeSelect = 1;
-    $rootScope.listToSend = undefined;
+   // $rootScope.listToSend = undefined;
     $scope.sendTo = 2;
     $scope.userList = [];
     $scope.userList.push($scope.user)
@@ -15,9 +15,9 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	    iCreateUserId: $rootScope.user.iUserId
 	}
 
-    $scope.sendMessage = function () {
-        //אם השליחה היא לקבוצה
-        if ($rootScope.messageFromCust != true && $rootScope.listToSend == undefined) {
+	$scope.sendMessage = function () {
+		//אם השליחה היא לקבוצה
+		if ($rootScope.messageFromCust != true && $rootScope.listToSend == undefined /*&& scope.messageFromSelect != true*/) {
             if ($scope.sendTo == 1)
                 $scope.sendTo = null;
             $scope.userType = $scope.sendTo;
@@ -36,9 +36,11 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 				        connect.post(true, 'SendEmailToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 							function (result) {
 							    $scope.res = result;
-							    $scope.getAllMessages();
-							    if ($rootScope.messageFromCust == true)
-							        $rootScope.newMessage1.dialogIsOpen = false;
+								$scope.getAllMessages();
+								alerts.alert('ההודעה נשלחה בהצלחה')
+							},
+							function () {
+								alerts.alert('השליחה נכשלה');
 							});
 				    }
 				        //sms אם נבחרה הודעת 
@@ -46,14 +48,17 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 				        connect.post(true, 'SendSMSToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 							function (result) {
 							    $scope.res = result;
-							    $scope.getAllMessages();
-							    if ($rootScope.messageFromCust == true)
-							        $rootScope.newMessage1.dialogIsOpen = false;
+								$scope.getAllMessages();
+								alerts.alert('ההודעה נשלחה בהצלחה')
+							},
+							function () {
+								alerts.alert('השליחה נכשלה');
 							});
 				    }
 
 				});
-        }
+		}
+
             //אם השליחה היא ללקוח בודד
         else {
             if ($rootScope.listToSend) {
@@ -63,22 +68,28 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
                 })
             }
 
-            if ($rootScope.messageFromCust == true) {
+			if ($rootScope.messageFromCust == true) {
                 $scope.userList = [];
                 $scope.userList.push($scope.user);
             }
 
             //  אם נבחרה הודעת מייל
-            if ($scope.typeSelect == 1) {
+			if ($scope.typeSelect == 1) {
                 connect.post(true, 'SendEmailToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
 					    $scope.res = result;
-					    $scope.getAllMessages();
-					    if ($rootScope.messageFromCust == true)
-					        $rootScope.newMessage1.dialogIsOpen = false;
+						$scope.getAllMessages();
+						if ($scope.newMessage1.dialogIsOpen == true)
+							$scope.newMessage1.dialogIsOpen = false;
+						if ($scope.newMessage2.dialogIsOpen == true)
+							$scope.newMessage2.dialogIsOpen = false;
 					    alerts.alert('ההודעה נשלחה בהצלחה')
 					}, function () {
-					    alerts.alert('השליחה נככשלה');
+						alerts.alert('השליחה נכשלה');
+						if ($scope.newMessage2.dialogIsOpen == true)
+							$scope.newMessage2.dialogIsOpen = false;
+						if ($rootScope.newMessage1.dialogIsOpen == true)
+							$scope.newMessage1.dialogIsOpen = false;
 					});
             }
                 //sms אם נבחרה הודעת 
@@ -86,9 +97,9 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
                 connect.post(true, 'SendSMSToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
 					    $scope.res = result;
-					    $scope.getAllMessages();
-					    if ($rootScope.messageFromCust == true)
-					        $rootScope.newMessage1.dialogIsOpen = false;
+						$scope.getAllMessages();
+						if ($rootScope.messageFromCust == true)
+							$scope.newMessage1.dialogIsOpen = false;
 					});
             }
         }
