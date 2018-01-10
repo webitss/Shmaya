@@ -216,10 +216,10 @@ namespace Service.Entities
 				parameters.Add(new SqlParameter("iUserType", iUserType));
 				parameters.Add(new SqlParameter("iStatusId", iStatusId));
 				//data set שולף אוסף של טבלאות
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT");
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT",parameters);
 			
 			List<User> lUsers = new List<User>();
-			DataView dv;
+				DataView dv;
 				//מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
@@ -237,19 +237,18 @@ namespace Service.Entities
 					{
 						user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
 					}
-                    dv = new DataView(ds.Tables[2],
-                     "iUserId = " + user.iUserId.ToString(),
-                     "", DataViewRowState.CurrentRows);
-                    user.lOrderType = new List<int>();
-                    //הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
-                    for (int j = 0; j < dv.Count; j++)
-                    {
-                        user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
-                    }
-                    lUsers.Add(user);
-                }
-                //Log.ExceptionLog(lUsers.Count + "", "GetUsers");
-                return lUsers;
+					dv = new DataView(ds.Tables[2],
+					 "iUserId = " + user.iUserId.ToString(),
+					 "", DataViewRowState.CurrentRows);
+					user.lOrderType = new List<int>();
+					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
+					for (int j = 0; j < dv.Count; j++)
+					{
+						user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
+					}
+					lUsers.Add(user);
+				}
+				return lUsers;
             }
             catch (Exception ex)
             {
