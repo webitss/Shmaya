@@ -8,3 +8,6 @@ Client/bin/Client.dll
 Client/bin/Client.pdb
 *.suo
 
+*.csproj
+*.suo
+AyeletHashacharCompanionship.v11.suo

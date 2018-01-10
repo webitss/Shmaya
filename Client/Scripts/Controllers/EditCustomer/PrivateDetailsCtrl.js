@@ -2,7 +2,17 @@
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 
-	    
+	    $scope.checkIdentity = function () {
+	        if (!$scope.isEdit) {
+	            if (!$scope.user.nvId) return;
+	            connect.post(true, 'CheckIdentity', { 'nvIdentity': $scope.user.nvId }, function (result) {
+	                if (result && result > 0) {
+	                    alerts.alert('מספר זהות קיים במערכת');
+	                    $scope.user.nvId = '';
+	                }
+	            });
+	        }
+	    };
 
 	    $scope.saveDetails = function () {
 	        $scope.$broadcast('show-errors-check-validity');
@@ -90,8 +100,6 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				    $scope.CommunicationCartList = result;
 				    if ($scope.user && $scope.user.iCommunicationCart)
 				        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
-				    //$scope.user.iCommunicationCart = 1;
-				    //$scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				});
 	        $scope.userTypeList.splice(0, 2);
 

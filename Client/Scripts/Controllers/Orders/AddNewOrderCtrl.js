@@ -65,6 +65,16 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
                     if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
                         $scope.order.iSelectedTranslator = $filter('filter')($scope.ABCBookProviders, { iUserId: $scope.order.iSelectedTranslator }, true)[0].iUserId;
                 });
+	        if ($scope.order && $scope.order.dtTimeBegin_original && $scope.order.dtTimeEndComputed && !$scope.order.dtTimeTranslation_original)
+	        {
+	            var hours = new Date($scope.order.dtTimeEndComputed).getHours() - new Date($scope.order.dtTimeBegin_original).getHours();
+	            var minutes = new Date($scope.order.dtTimeEndComputed).getMinutes() - new Date($scope.order.dtTimeBegin_original).getMinutes();
+	            if (minutes < 0) {
+	                minutes += 60;
+	                hours -= 1;
+	            }
+	            $scope.order.dtTimeTranslation_original = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
+	        }
 	    };
 
 	    $scope.func = function () {

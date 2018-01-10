@@ -24,7 +24,7 @@
 			</form-field>
 
 			<form-field span-text="ת.ז." class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvId" identitynum required />
+				<input class="form-control" type="text" ng-model="user.nvId" ng-blur="checkIdentity()" identitynum required />
 			</form-field>
 			<form-field span-text="תאריך לידה" class="col-md-6">
 				<input class="form-control" type="date" ng-model="user.dtBirthDate" />
