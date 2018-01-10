@@ -208,35 +208,35 @@ namespace Service.Entities
             }
         }
 
-	public static List<User> GetUsers(int? iUserType,int iStatusId)
-	{
-		try
-		{
-				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iUserType", iUserType));
-				parameters.Add(new SqlParameter("iStatusId", iStatusId));
-				//data set שולף אוסף של טבלאות
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT");
-			
-			List<User> lUsers = new List<User>();
-			DataView dv;
-				//מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
-				foreach (DataRow dr in ds.Tables[0].Rows)
-				{
-					User user = new User();
-					//הפיכת כל יוזר לפריט בליסט
-					user = ObjectGenerator<User>.GeneratFromDataRow(dr);
-					//יצירת הטבלה השניה כדינאמית שמחזירה רק שורות התואמות לתנאי מסוים
-					dv = new DataView(ds.Tables[1],
-					 "iUserId = " + user.iUserId.ToString(),
-					 "", DataViewRowState.CurrentRows);
-					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
-					//user.lLanguage = ObjectGenerator<int>.GeneratListFromDataRowCollection(dv.ToTable().Rows);
-					user.lLanguage = new List<int>();
-					for (int j = 0; j < dv.Count; j++)
-					{
-						user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
-					}
+        public static List<User> GetUsers(int? iUserType, int iStatusId)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("iUserType", iUserType));
+                parameters.Add(new SqlParameter("iStatusId", iStatusId));
+                //data set שולף אוסף של טבלאות
+                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT");
+
+                List<User> lUsers = new List<User>();
+                DataView dv;
+                //מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    User user = new User();
+                    //הפיכת כל יוזר לפריט בליסט
+                    user = ObjectGenerator<User>.GeneratFromDataRow(dr);
+                    //יצירת הטבלה השניה כדינאמית שמחזירה רק שורות התואמות לתנאי מסוים
+                    dv = new DataView(ds.Tables[1],
+                     "iUserId = " + user.iUserId.ToString(),
+                     "", DataViewRowState.CurrentRows);
+                    //הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
+                    //user.lLanguage = ObjectGenerator<int>.GeneratListFromDataRowCollection(dv.ToTable().Rows);
+                    user.lLanguage = new List<int>();
+                    for (int j = 0; j < dv.Count; j++)
+                    {
+                        user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
+                    }
                     dv = new DataView(ds.Tables[2],
                      "iUserId = " + user.iUserId.ToString(),
                      "", DataViewRowState.CurrentRows);
