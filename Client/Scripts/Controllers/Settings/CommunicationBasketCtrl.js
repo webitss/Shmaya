@@ -13,6 +13,7 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 						title: 'עריכה',
 						template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 						clickEvent: function (comm) {
+						    if (comm.item == undefined) return;
 							$scope.comm = comm.item;
 							$scope.pop = "<label>סוג זכאות</label><input type='text' class='form-control' required ng-model='comm.nvCommunicationCart' required/>" +
 								"<label>תעריף</label><input type='text' class='form-control' required ng-model='comm.nTariff' required/>";

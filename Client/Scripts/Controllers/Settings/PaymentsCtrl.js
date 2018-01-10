@@ -13,6 +13,7 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 						title: 'עריכה',
 						template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 						clickEvent: function (payment) {
+						    if (payment.item == undefined) return;
 							$scope.payment2 = payment.item;
 							$scope.pop = "<label>סוג שעה</label><input type='text' class='form-control' required ng-model='payment2.nvPaymentType' required/>" +
 								"<label>מחיר לשעה</label><input type='text' class='form-control' required ng-model='payment2.nTariff' required/>";

@@ -13,6 +13,7 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 					    title: 'עריכה',
 					    template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 					    clickEvent: function (eligibility) {
+					        if (eligibility.item == undefined) return;
 					        $scope.eligibility2 = eligibility.item;
 					        $scope.pop = '<label>סוג זכאות</label><input type="text" class="form-control" required ng-model="eligibility2.nvEntitlementType" required/>' +
 								'<label>מספר שעות</label><input type="text" class="form-control" required ng-model="eligibility2.nNumHours" required/>';

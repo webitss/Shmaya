@@ -13,6 +13,7 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 						title: 'עריכה',
 						template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 						clickEvent: function (product) {
+						    if (product.item == undefined) return;
 							$scope.product2 = product.item;
 							$scope.pop = "<label>סוג מוצר</label><form-dropdown ng-model='product2.iProductTypeId' enablesearch='false' data='productTypeList' identityfield='iId' datafield='nvName'></form-dropdown>" +
 								"<label>שם מוצר</label><input type='text' class='form-control' required ng-model='product2.nvPruductName' required/>";
