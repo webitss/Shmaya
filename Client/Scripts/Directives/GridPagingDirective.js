@@ -73,6 +73,8 @@
 
             //return array pages count length for "while" repeat
             scope.getPagesCountArray = function (num) {
+                if (scope.length % scope.count == 0)
+                    return new Array(num - 1);
                 return new Array(num);
             };
 
