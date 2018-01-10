@@ -77,16 +77,10 @@ namespace Service.Entities
 		{
 			try
 			{
-				//refund.nvDocPath = new FileManageCtrl();
-				//אם יש לצור את הקובץ
-				if (isDelete == false)
+				if(isDelete == false)
 					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
-				//אם יש למחוק את הקובץ
-				//else
-				//{
-
-					//refund.nvDocPath.DeleteFile()
-				//}
+				else
+					new FileManageCtrl().DeleteFile(refund.nvDocPath);
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TRefund_UPD", parameters);

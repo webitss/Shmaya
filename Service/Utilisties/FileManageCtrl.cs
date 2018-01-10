@@ -12,6 +12,19 @@ namespace GanimWS.Entities
 {
     public class FileManageCtrl
 	{
+		//public void DeleteFile(string sPath)
+		//{
+		//	try
+		//	{
+		//		File.Delete(AppDomain.CurrentDomain.BaseDirectory + sPath);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		Log.ExceptionLog("DeleteFile", "Exception: " + ex.Message);
+
+		//	}
+		//}
+
 		public void DeleteFile(string sPath)
 		{
 			try

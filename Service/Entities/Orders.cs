@@ -32,8 +32,10 @@ namespace Service.Entities
         [NoSendToSQL]
         public string area { get; set; }
         [DataMember]
-        public string dtTimeTranslation { get; set; }
-        [DataMember]
+        public DateTime? dtTimeTranslation { get; set; }
+		[DataMember][NoSendToSQL]
+		public string nvTimeTranslation { get; set; }
+		[DataMember]
         [NoSendToSQL]
         public int iTimeTranslation { get; set; }
         [DataMember]
@@ -226,7 +228,7 @@ namespace Service.Entities
         {
             try
             {
-
+				//order.dtTimeTranslation = new DateTime(order.dtTimeTranslation);
                 List<SqlParameter> parameters = ObjectGenerator<Orders>.GetSqlParametersFromObject(order);
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
                 DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_INS", parameters);
