@@ -74,7 +74,7 @@ namespace Service.Entities
 			{
 				if (lMember[i].nvEmail != null && lMember[i].nvEmail != "")
 					//To ליסט של כתובות מייל
-					mailMessage.To.Add(new MailAddress(lMember[i].nvEmail));
+					mailMessage.Bcc.Add(new MailAddress(lMember[i].nvEmail));
 			}
 			try
 			{
