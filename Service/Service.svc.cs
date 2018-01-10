@@ -17,6 +17,17 @@ namespace Service
 
 		#region User
 
+        [OperationContract]
+        [WebInvoke(
+           Method = "POST",
+           UriTemplate = "CheckIdentity",
+           BodyStyle = WebMessageBodyStyle.WrappedRequest,
+           ResponseFormat = WebMessageFormat.Json)]
+        public int CheckIdentity(string nvIdentity)
+        {
+            return User.CheckIdentity(nvIdentity);
+        }
+
 		[OperationContract]
 		[WebInvoke(
 		   Method = "POST",
@@ -39,8 +50,6 @@ namespace Service
 			return User.GetUserCodeTables(iUserId);
 		}
 
-
-
 		[OperationContract]
 		[WebInvoke(
 		   Method = "POST",
@@ -51,7 +60,6 @@ namespace Service
 		{
 			return User.ResetUserPassword(nvMail);
 		}
-
 
 		[OperationContract]
         [WebInvoke(
@@ -75,7 +83,6 @@ namespace Service
         //    return UserDetailes.getUsers(iUserType);
         //}
 
-
         [OperationContract]
         [WebInvoke(
            Method = "POST",
@@ -86,7 +93,6 @@ namespace Service
         {
             return User.DeleteUser(iUserId);
         }
-
 
 		[OperationContract]
 		[WebInvoke(
@@ -120,9 +126,11 @@ namespace Service
 		{
 			return User.UserUpdate(user, iUserManagerId);
 		}
+
 		#endregion
 
 		#region Order
+
 		[OperationContract]
 		[WebInvoke(
 		   Method = "POST",
@@ -133,6 +141,7 @@ namespace Service
 		{
 			return Orders.GetOrders();
 		}
+
 		[OperationContract]
 		[WebInvoke(
 		   Method = "POST",
@@ -165,6 +174,7 @@ namespace Service
 		{
 			return Orders.DeleteOrder(iOrderId);
 		}
+
 		[OperationContract]
 		[WebInvoke(
 	  Method = "POST",
@@ -715,5 +725,24 @@ namespace Service
 
 		#endregion
 
-	}
+        #region VideoTranslation
+
+        [OperationContract]
+        [WebGet(
+            ResponseFormat = WebMessageFormat.Json)]
+        public double GetNumHours(string nvIdentity)
+        {
+            return VideoTranslation.GetNumHours(nvIdentity);
+        }
+
+        [OperationContract]
+        [WebGet(
+            ResponseFormat = WebMessageFormat.Json)]
+        public int NewVideoTranslation(DateTime dtTimeBegin, DateTime dtTimeTranslation, string nvTranslatorIdentity, string nvUserIdentity)
+        {
+            return VideoTranslation.NewVideoTranslation(dtTimeBegin, dtTimeTranslation, nvTranslatorIdentity, nvUserIdentity);
+        }
+
+        #endregion VideoTranslation
+    }
 }

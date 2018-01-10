@@ -9,3 +9,7 @@ Client/bin/Client.pdb
 *.suo
 
 *.pubxml
+AyeletHashacharCompanionship.v11.suo
+Service/Service.csproj
+*.csproj
+*.suo

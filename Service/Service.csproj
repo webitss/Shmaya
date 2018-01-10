@@ -95,6 +95,7 @@
     <Compile Include="Entities\User.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\VideoTranslation.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
