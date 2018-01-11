@@ -34,7 +34,7 @@ namespace Service.Entities
         [DataMember]
         public DateTime? dtTimeTranslation { get; set; }
 		[DataMember][NoSendToSQL]
-		public string nvTimeTranslation { get; set; }
+        public string nvTimeTranslation { get; set; }
 		[DataMember]
         [NoSendToSQL]
         public int iTimeTranslation { get; set; }

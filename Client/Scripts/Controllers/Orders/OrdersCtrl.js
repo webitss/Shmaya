@@ -40,10 +40,10 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				},
 				{
 				    title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
-						console.log("לשנות בשרת" + item.iStatusId + "-----" + item.iOrderId)
-						connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
+				        console.log("לשנות בשרת" + item.iStatusId + "-----" + item.iOrderId)
+				        connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
 				        	function (result) {
-				        		console.log("change");
+				        	    console.log("change");
 				        	});
 				    }
 				},
@@ -57,7 +57,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation', type: 'date' },
 				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
 				{
-					title: 'זמן תרגום', fieldName: 'nvTimeTranslation', doSum: true
+				    title: 'זמן תרגום', fieldName: 'nvTimeTranslation', doSum: true
 				},
 				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin', type: 'time' },
 				{ title: 'משתמש מזין', fieldName: 'nvCreateUserId' },
