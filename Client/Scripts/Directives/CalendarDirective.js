@@ -49,10 +49,10 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                     var isActive = false, nvTitle = '', nvComment = '', isToday = false/*, isAvailable = false*/, commentList = [],time='',customer='',soplier = '';
                     // nvComment = '',
                     var arr = $filter('filter')(scope.timeAvailablity, function (item) {
-                        if (item.dtTimeBegin)
+                        if (item.dtTimeBegin && item.dtDateTraslation)
                             return item.dtDateTraslation.getTime() == loopDate.getTime();
                         else if (item.dtTimeBegin)
-                            return $filter('dateFromServer')(item.dtTimeBegin).getTime() == loopDate.getTime();
+                            return item.dtTimeBegin.getTime() == loopDate.getTime();
                     });
 
                     scope.arr = arr;
