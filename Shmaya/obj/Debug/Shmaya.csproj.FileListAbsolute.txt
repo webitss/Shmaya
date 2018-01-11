@@ -3,3 +3,8 @@ C:\git.dev\Shmaya\Shmaya\Shmaya\bin\Shmaya.pdb
 C:\git.dev\Shmaya\Shmaya\Shmaya\obj\Debug\Shmaya.csprojResolveAssemblyReference.cache
 C:\git.dev\Shmaya\Shmaya\Shmaya\obj\Debug\Shmaya.dll
 C:\git.dev\Shmaya\Shmaya\Shmaya\obj\Debug\Shmaya.pdb
+C:\git.dev\Shmaya\Shmaya\bin\Shmaya.dll
+C:\git.dev\Shmaya\Shmaya\bin\Shmaya.pdb
+C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.csprojResolveAssemblyReference.cache
+C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.dll
+C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.pdb

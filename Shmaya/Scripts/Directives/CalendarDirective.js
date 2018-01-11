@@ -62,7 +62,7 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                             isActive = true;
                             angular.forEach(arr, function (item, index) {
                                 nvTitle = item.typeOrder;
-                                time = item.dtTimeBegin.getHours() + ':' + item.dtTimeBegin.getMinutes();
+                                time = (item.dtTimeBegin.getHours() < 10 ? '0' + item.dtTimeBegin.getHours() : item.dtTimeBegin.getHours()) + ':' + (item.dtTimeBegin.getMinutes() < 10 ? '0' + item.dtTimeBegin.getMinutes() : item.dtTimeBegin.getMinutes());
                                 soplier = item.nameTranslator;
                                 customer = item.nameCustomer;
                                 if (arr.length > 0 && index < (arr.length - 1))
@@ -119,7 +119,7 @@ companionApp.directive('myCalendar', ['$timeout', '$filter', '$rootScope', 'crea
                     day.bWorkerOfferedJobTimeAvailablity = !day.bWorkerOfferedJobTimeAvailablity;
                     for (var i = 0; i < scope.timeAvailablity.length; i++) {
                         //!!
-                        if ($filter('dateFromServer')(scope.timeAvailablity[i].dtTimeBegin).getTime() == day.dDayDate.getTime()) {
+                        if (scope.timeAvailablity[i].dtTimeBegin.getTime() == day.dDayDate.getTime()) {
                             scope.timeAvailablity[i][scope.fieldActive] = day.bWorkerOfferedJobTimeAvailablity;
                             notChangeTimeAvailablity = true;
                             break;

@@ -1,0 +1,11 @@
+
+*.suo
+*.suo
+*.cache
+*.txt
+*.dll
+*.pdb
+*.pdb
+*.pubxml
+*.user
+*.csproj
