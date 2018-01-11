@@ -1,0 +1,6 @@
+C:\git.dev\Shmaya\Shmaya\ShmayaService\bin\ShmayaService.dll
+C:\git.dev\Shmaya\Shmaya\ShmayaService\bin\ShmayaService.pdb
+C:\git.dev\Shmaya\Shmaya\ShmayaService\bin\Newtonsoft.Json.dll
+C:\git.dev\Shmaya\Shmaya\ShmayaService\bin\NReco.PdfGenerator.dll
+C:\git.dev\Shmaya\Shmaya\ShmayaService\obj\Release\ShmayaService.dll
+C:\git.dev\Shmaya\Shmaya\ShmayaService\obj\Release\ShmayaService.pdb
