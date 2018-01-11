@@ -154,7 +154,12 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	            return false;
 	        }
 	        return true;
-	    }
+		}
+
+		$scope.deleteFile = function()
+		{
+			$scope.isDelete = true;
+		}
 
 
 		$scope.docFileSelect = function ($files, number) {
@@ -179,10 +184,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	            }
 	        }
 		};
-		$scope.deleteFile()
-		{
-			$scope.isDelete = true;
-		}
 	    $scope.prepareData();
 
 

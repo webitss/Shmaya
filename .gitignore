@@ -7,12 +7,10 @@ Client/obj
 Client/bin/Client.dll
 Client/bin/Client.pdb
 *.suo
-
 *.pubxml
 AyeletHashacharCompanionship.v11.suo
 Service/Service.csproj
 *.csproj
 *.suo
 Service/bin/Service.dll.config
-AyeletHashacharCompanionship.v11.suo
-AyeletHashacharCompanionship.v11.suo
+

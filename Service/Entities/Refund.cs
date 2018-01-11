@@ -77,10 +77,14 @@ namespace Service.Entities
 		{
 			try
 			{
-				if(isDelete == false)
+				if (isDelete == false)
 					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
 				else
+				{
+					refund.nvDocPath = refund.nvDocPath.Split('/')[5];
 					new FileManageCtrl().DeleteFile(refund.nvDocPath);
+					refund.nvDocPath = null;
+				}
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TRefund_UPD", parameters);
