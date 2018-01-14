@@ -15,7 +15,7 @@ namespace ShmayaService.Entities
             try
             {
                 DataSet ds = SqlDataAccess.ExecuteDatasetSP("GetNumHours_ByIdentity", new SqlParameter("nvIdentity", nvIdentity));
-                if (ds.Tables[0].Rows.Count > 0)
+                if (ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows[0][0].ToString() != string.Empty)
                 {
                     double iNumHours = double.Parse(ds.Tables[0].Rows[0][0].ToString());
                     return iNumHours;

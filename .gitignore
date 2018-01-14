@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 *.config
 .vs/Shmaya/v15/.suo
 *.lock
@@ -15,5 +16,29 @@ Shmaya/201801111001.rar
 *.txt
 *.CopyComplete
 *.config
+*.pubxml
+*.user
+=======
+*.suo
+*.suo
+*.cache
+*.txt
+*.dll
+*.pdb
+*.pdb
+*.pubxml
+*.user
+*.csproj
+>>>>>>> c543a03a8c4a07ed97bdfafed64fbda38151b3b0
+*.suo
+*.cache
+*.txt
+*.dll
+*.pdb
+*.pdb
+*.cache
+*.txt
+*.dll
+*.cache
 *.pubxml
 *.user
