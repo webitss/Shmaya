@@ -10,9 +10,6 @@ C:\git.dev\Shmaya\Shmaya\bin\Shmaya.pdb
 C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.csprojResolveAssemblyReference.cache
 C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.csproj.CoreCompileInputs.cache
 =======
-C:\git.dev\Shmaya\Shmaya\bin\Shmaya.dll
-C:\git.dev\Shmaya\Shmaya\bin\Shmaya.pdb
-C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.csprojResolveAssemblyReference.cache
 >>>>>>> c543a03a8c4a07ed97bdfafed64fbda38151b3b0
 C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.dll
 C:\git.dev\Shmaya\Shmaya\obj\Debug\Shmaya.pdb
