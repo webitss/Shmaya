@@ -33,9 +33,9 @@ namespace ShmayaService
            UriTemplate = "GetUsers",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public List<User> GetUsers(int? iUserType, int iStatusId)
+        public List<User> GetUsers(int? iUserType, int iStatusId, int? iTypeTranslation)
         {
-            return User.GetUsers(iUserType, iStatusId);
+            return User.GetUsers(iUserType, iStatusId, iTypeTranslation);
         }
 
         [OperationContract]
@@ -521,9 +521,9 @@ namespace ShmayaService
            UriTemplate = "GetReports",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReports(int iMonthId, int iTypeOrder)
+        public List<Report> GetReports(int iMonthId,int iYearId, int iTypeOrder)
         {
-            return Report.GetReports(iMonthId, iTypeOrder);
+            return Report.GetReports(iMonthId,iYearId, iTypeOrder);
         }
 
         [OperationContract]
@@ -532,9 +532,9 @@ namespace ShmayaService
            UriTemplate = "GetReportsCustomer",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReportsCustomer(int iMonthId, int iTypeOrder)
+        public List<Report> GetReportsCustomer(int iMonthId, int iYearId, int iTypeOrder)
         {
-            return Report.GetReportsCustomer(iMonthId, iTypeOrder);
+            return Report.GetReportsCustomer(iMonthId,iYearId, iTypeOrder);
         }
 
         [OperationContract]
@@ -543,9 +543,9 @@ namespace ShmayaService
        UriTemplate = "GetReportsProduct",
        BodyStyle = WebMessageBodyStyle.WrappedRequest,
        ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReportsProduct(int iMonthId)
+        public List<Report> GetReportsProduct(int iMonthId,int iYearId)
         {
-            return Report.GetReportsProduct(iMonthId);
+            return Report.GetReportsProduct(iMonthId, iYearId);
         }
 
         [OperationContract]
@@ -554,9 +554,9 @@ namespace ShmayaService
        UriTemplate = "GetReportscryingDetector",
        BodyStyle = WebMessageBodyStyle.WrappedRequest,
        ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReportscryingDetector(int iMonthId)
+        public List<Report> GetReportscryingDetector(int iMonthId,int iYearId)
         {
-            return Report.GetReportscryingDetector(iMonthId);
+            return Report.GetReportscryingDetector(iMonthId, iYearId);
         }
 
 

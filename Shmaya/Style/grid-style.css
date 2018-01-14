@@ -21,14 +21,18 @@
         color: #000;
     }
 
+
+.gridFooter .gridCell > span {
+	overflow: inherit;
+}
 .gridBody {
-    width: calc(100% + 5px);
-    position: relative;
-    z-index: 10;
-    overflow-y: scroll;
-    background-color: #fff;
-    overflow: auto;
-    font-size: 14px;
+	width: calc(100% + 5px);
+	position: relative;
+	z-index: 10;
+	overflow-y: scroll;
+	background-color: #fff;
+	overflow: auto;
+	font-size: 14px;
 }
 
 

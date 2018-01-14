@@ -84,21 +84,30 @@ namespace ShmayaService.Entities
 			}
 			catch (Exception ex)
 			{
-				Log.ExceptionLog(ex.Message, "sendEmailToGroup, Email");
+				Log.ExceptionLog(ex.Message, "sendEmailToGroup, Email, try1");
 				return false;
 			}
-			foreach (var item in lMember)
+			try
 			{
-				MessageCust messageCust = new MessageCust();
-				messageCust.iCreateUserId = iUserId;
-				messageCust.nvSubject = message.nvSubject;
-				messageCust.nvComment = message.nvMessage;
-				messageCust.iUserId = item.iUserId;
-				bool res = MessageCust.CreateNewMessage(messageCust);
-				if (!res)
-					return res;
+
+				foreach (var item in lMember)
+				{
+					MessageCust messageCust = new MessageCust();
+					messageCust.iCreateUserId = iUserId;
+					messageCust.nvSubject = message.nvSubject;
+					messageCust.nvComment = message.nvMessage;
+					messageCust.iUserId = item.iUserId;
+					bool res = MessageCust.CreateNewMessage(messageCust);
+					if (!res)
+						return res;
+				}
+				return true;
 			}
-			return true;
+			catch(Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "sendEmailToGroup, Email, try1");
+				return false;
+			}
 		}
 
 		public static bool SendSMSToGroup(List<User> lMember, Messages message, int iUserId)

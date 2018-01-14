@@ -17,14 +17,14 @@
 	<form id="formDetails" name="formDetails" novalidate class="row">
 
 			<form-field span-text="שם פרטי" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvFirstName" ng-pattern="[^0-9]"/>
+				<input class="form-control" type="text" ng-model="user.nvFirstName" ng-pattern="[^0-9]" required/>
 			</form-field>
 			<form-field span-text="שם משפחה" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvLastName" ng-pattern="[^0-9]"/>
+				<input class="form-control" type="text" ng-model="user.nvLastName" ng-pattern="[^0-9]" required/>
 			</form-field>
 
 			<form-field span-text="ת.ז." class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvId" ng-blur="checkIdentity()" identitynum />
+				<input class="form-control" type="text" ng-model="user.nvId" ng-blur="checkIdentity()" identitynum required />
 
 			</form-field>
 			<form-field span-text="תאריך לידה" class="col-md-6">
@@ -33,10 +33,10 @@
 
 
 			<form-field span-text="מגדר" class="col-md-6">
-				<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList"></form-dropdown>
+				<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
 			</form-field>
 			<form-field span-text="מייל" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"/>
+				<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="!showCustomer&&!showAdmin"/>
 			</form-field>
 		
 			<form-field span-text="כתובת" class="col-md-6">
@@ -47,14 +47,14 @@
 			</form-field>
 		
 			<form-field span-text="נייד" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvMobileNum" phone/>
+				<input class="form-control" type="text" ng-model="user.nvMobileNum" phone ng-required="!showCustomer"/>
 			</form-field>
 			<form-field span-text="פקס" class="col-md-6">
 				<input class="form-control" type="text" ng-model="user.nvFaxNum" phone/>
 			</form-field>
 		
 			<form-field span-text="סיסמא" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvPassword" />
+				<input class="form-control" type="text" ng-model="user.nvPassword" ng-required="!showCustomer"/>
 			</form-field>
 
 			<form-field span-text="האם עובד" class="col-md-6" ng-show="showCustomer&&!showAdmin" >
@@ -62,8 +62,8 @@
 				</form-field>
 
 
-			<form-field span-text="סוג עובד" class="col-md-6"ng-show="showAdmin">
-					<form-dropdown ng-model="user.iWorkerType" enablesearch="false" data="workerTypeList"></form-dropdown>
+			<form-field span-text="סוג עובד" class="col-md-6"ng-show="!showCustomer">
+					<form-dropdown ng-model="user.iWorkerType" enablesearch="false" data="workerTypeList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
 				</form-field>
 		
 			<form-field span-text="תאריך הצטרפות" class="col-md-6"ng-show="showCustomer&&!showAdmin">
@@ -71,14 +71,14 @@
 			</form-field>
        
 			<form-field span-text="תאריך תחילת זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin&&!showAdmin">
-				<input class="form-control" type="date" ng-model="user.dtResetHours" />
+				<input class="form-control" type="date" ng-model="user.dtResetHours" required/>
 			</form-field>
 
             <form-field span-text="סל תקשורת" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart"></form-dropdown>
+				<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart" required></form-dropdown>
 			</form-field>
             <form-field span-text="סוג זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType"></form-dropdown>
+				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
 			</form-field>
 
 
@@ -96,7 +96,7 @@
 				<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList"></multi-form-dropdown>
 			</form-field>
 			<form-field span-text="איזור" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iAreaId" enablesearch="false" data="areaList"></form-dropdown>
+				<form-dropdown ng-model="user.iAreaId" enablesearch="false" data="areaList" required></form-dropdown>
 			</form-field>
 
 			<form-field span-text="שעות עבודה" class="col-md-6" ng-show="!showCustomer&&!showAdmin">

@@ -1,56 +1,68 @@
 ﻿"use strict"
 companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId','alerts',
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
-
+		$scope.isPrepareData = true;
+		$scope.isPrepareData2 = true;
+		$scope.isPrepareData3 = true;
 
 		$scope.prepareData = function () {
-			$scope.isDataLoaded1 = 0;
-			$scope.gridIdentity1 = 'ReportsList1';
-			$scope.columns1 = [
+			if ($scope.isPrepareData == true && $scope.iYearId && $scope.iMonthId)
+			{
+				$scope.isDataLoaded1 = 0;
+				$scope.gridIdentity1 = 'ReportsList1';
+				$scope.columns1 = [
 
-				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
-				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'מ.ז.', fieldName: 'nvId' },
-				{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-				{ title: 'מספר שעות', fieldName: 'nNumHours' }
-			];
-			$scope.getData();
+					{ title: 'שם פרטי', fieldName: 'nvFirstName' },
+					{ title: 'שם משפחה', fieldName: 'nvLastName' },
+					{ title: 'מ.ז.', fieldName: 'nvId' },
+					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
+					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+				];
+				$scope.getData();
+			}
 		};
 
 
 		$scope.prepareData2 = function () {
-			$scope.isDataLoaded2 = 0;
-			$scope.gridIdentity2 = 'ReportsList2';
-			$scope.columns2 = [
+			if ($scope.isPrepareData2 == true && $scope.iYearId && $scope.iMonthId)
+			{
+				$scope.isDataLoaded2 = 0;
+				$scope.gridIdentity2 = 'ReportsList2';
+				$scope.columns2 = [
 
-				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
-				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'מ.ז.', fieldName: 'nvId' },
-				{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-				{ title: 'מספר שעות', fieldName: 'nNumHours' }
-			];
-			$scope.getData2();
+					{ title: 'שם פרטי', fieldName: 'nvFirstName' },
+					{ title: 'שם משפחה', fieldName: 'nvLastName' },
+					{ title: 'מ.ז.', fieldName: 'nvId' },
+					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
+					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+				];
+				$scope.getData2();
+			}
 		};
 
 		$scope.prepareData3 = function () {
-			$scope.isDataLoaded3 = 0;
-			$scope.gridIdentity3 = 'ReportsList2';
-			$scope.columns3 = [
+			if ($scope.isPrepareData3 == true && $scope.iYearId && $scope.iMonthId)
+			{
+				$scope.isDataLoaded3 = 0;
+				$scope.gridIdentity3 = 'ReportsList2';
+				$scope.columns3 = [
 
-				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
-				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'מ.ז.', fieldName: 'nvId' },
-				{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-				{ title: 'מספר שעות', fieldName: 'nNumHours' }
-			];
-			$scope.getData3();
+					{ title: 'שם פרטי', fieldName: 'nvFirstName' },
+					{ title: 'שם משפחה', fieldName: 'nvLastName' },
+					{ title: 'מ.ז.', fieldName: 'nvId' },
+					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
+					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+				];
+				$scope.getData3();
+			}
 		};
 
 		$scope.getData = function () {
-			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iTypeOrder: 22 },
+			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iYearId:$scope.iYearId, iTypeOrder: 22 },
 				function (result) {
 					if (result.length == 0)
 					{
+						$scope.isPrepareData = false;
 						alerts.alert('אין נתונים להצגה בדוח תרגום');
 						return;
 					}
@@ -60,9 +72,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		};
 
 		$scope.getData2 = function () {
-			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iTypeOrder: 23 },
+			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iYearId: $scope.iYearId, iTypeOrder: 23 },
 				function (result) {
 					if (result.length == 0) {
+						$scope.isPrepareData2 = false;
 						alerts.alert('אין נתונים להצגה בדוח תמלול');
 						return;
 					}
@@ -72,9 +85,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		};
 
 		$scope.getData3 = function () {
-			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iTypeOrder: 24 },
+			connect.post(true, 'GetReportsCustomer', { iMonthId: $scope.iMonthId, iYearId: $scope.iYearId, iTypeOrder: 24 },
 				function (result) {
 					if (result.length == 0) {
+						$scope.isPrepareData3 = false;
 						alerts.alert('אין נתונים להצגה בדוח שעתוק');
 						return;
 					}

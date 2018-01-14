@@ -16,7 +16,7 @@ namespace ShmayaService.Entities
         {
             try
             {
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + sPath);
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + sPath);
             }
             catch (Exception ex)
             {

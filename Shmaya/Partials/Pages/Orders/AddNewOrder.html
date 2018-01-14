@@ -13,29 +13,30 @@
 		</div>
 	</div>
 	<br />
+	<wait></wait>
 	<form id="formOrder" name="formOrder" novalidate>
 		<div class="row">
 			<form-field span-text="סוג הזמנה" class="col-md-6">
-				<form-dropdown ng-model="order.iTypeOrder" enablesearch="false" data="orderTypeList"></form-dropdown>
+				<form-dropdown ng-model="order.iTypeOrder" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></form-dropdown>
 			</form-field>
 			<form-field span-text="תאריך" class="col-md-6">
-				<input class="form-control" type="date" ng-model="order.dtDateTraslation_original" />
+				<input class="form-control" type="date" ng-model="order.dtDateTraslation_original" required />
 			</form-field>
 		</div>
 		<div class="row">
 			<form-field span-text="שם לקוח" class="col-md-6">
-				<form-dropdown ng-model="order.iUserId" enablesearch="true" data="ABCBookCustomers" identityfield="iUserId" datafield="nvFullName"></form-dropdown>
+				<form-dropdown ng-model="order.iUserId" enablesearch="true" data="ABCBookCustomers" identityfield="iUserId" datafield="nvFullName" required></form-dropdown>
 			</form-field>
 			<form-field span-text="שם מתורגמן" class="col-md-6">
-				<form-dropdown ng-model="order.iSelectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName"></form-dropdown>
+				<form-dropdown ng-model="order.iSelectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row" ng-show="isEdit">
 			<form-field span-text="שיוך לחודש" class="col-md-6">
-				<form-dropdown ng-model="order.iMonthId" enablesearch="false" data="monthList"></form-dropdown>
+				<form-dropdown ng-model="order.iMonthId" enablesearch="false" data="monthList" required></form-dropdown>
 			</form-field>
 			<form-field span-text="שיוך לשנה" class="col-md-6">
-				<form-dropdown ng-model="order.iYearId" enablesearch="false" data="yearList"></form-dropdown>
+				<form-dropdown ng-model="order.iYearId" enablesearch="false" data="yearList" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row" ng-show="!isEdit">
@@ -48,10 +49,10 @@
 		</div>
 		<div class="row">
 			<form-field span-text="זמן התחלה" class="col-md-6">
-				<input class="form-control" type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()" />
+				<input class="form-control" type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()" required />
 			</form-field>
 			<form-field span-text="זמן תרגום" class="col-md-6">
-				<input class="form-control" type="time" ng-model="order.dtTimeTranslation_original" ng-blur="calculateTimeEnd()" />
+				<input class="form-control" type="time" ng-model="order.dtTimeTranslation_original" ng-blur="calculateTimeEnd()" required />
 			</form-field>
 		</div>
 		<div class="row">
@@ -67,7 +68,7 @@
 				<input class="form-control" type="time" ng-model="order.dtTimeWaiting" />
 			</form-field>
 			<form-field span-text="סוג תרגום" class="col-md-6">
-				<form-dropdown ng-model="order.iTypeTranslation" enablesearch="false" data="translateTypeList"></form-dropdown>
+				<form-dropdown ng-model="order.iTypeTranslation" enablesearch="false" data="translateTypeList" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row">

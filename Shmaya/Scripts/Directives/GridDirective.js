@@ -131,9 +131,17 @@
                 }
             });
 
-
-            scope.refreshFilteredDate = function () {
-                var data = ($filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
+			scope.refreshFilteredDate = function () {
+				if (scope.filterFields.nBankHours) {
+					var data = [];
+					angular.forEach(scope.data, function (value) {
+						if (value.nBankHours <= parseInt(scope.filterFields.nBankHours))
+							data.push(value);
+					});
+					//var data = scope.data.filter(word => word <= parseInt(scope.filterFields.nBankHours));
+				}
+				else
+					var data = ($filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
                 if (scope.showAll)
                     scope.filteredData = data;
                 else

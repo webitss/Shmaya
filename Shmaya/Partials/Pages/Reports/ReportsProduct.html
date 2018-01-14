@@ -1,9 +1,16 @@
 ﻿<div ng-controller="ReportsProductCtrl" class="popup-ayelet">
 	<div class="container container-message">
 		<form id="formReport3" name="formReport3" novalidate>
-			<form-field span-text="בחר חודש" class="col-md-6">
-				<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required ng-change="prepareData();prepareData2()"></form-dropdown>
-			</form-field>
+			<div class="row">
+				<form-field span-text="בחר שנה" class="col-md-6">
+					<form-dropdown ng-model="iYearId" enablesearch="false" data="yearList" required ng-change="prepareData();prepareData2()"></form-dropdown>
+				</form-field>
+			</div>
+			<div class="row">
+				<form-field span-text="בחר חודש" class="col-md-6">
+					<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required ng-change="prepareData();prepareData2()"></form-dropdown>
+				</form-field>
+			</div>
 		</form>
 		<button type="button" class="btn  pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="checkValidation()">
 			<div class="glyphicon glyphicon-list color-text-white"></div>
@@ -13,7 +20,7 @@
 	</div>
 	<div ng-show="1==2">
 		<wait></wait>
-		<div class="container">
+		<div class="container" ng-if="isPrepareData">
 			<div class="row">
 				<div class="commands menu-klaly">
 					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity1}}"></grid-pager>
@@ -30,7 +37,7 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container" ng-if="isPrepareData2">
 			<div class="row">
 				<div class="commands menu-klaly">
 					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>

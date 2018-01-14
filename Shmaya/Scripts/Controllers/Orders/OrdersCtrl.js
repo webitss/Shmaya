@@ -40,7 +40,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				},
 				{
 				    title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
-				        console.log("לשנות בשרת" + item.iStatusId + "-----" + item.iOrderId)
+				        //console.log("לשנות בשרת" + item.iStatusId + "-----" + item.iOrderId)
 				        connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
 				        	function (result) {
 				        	    console.log("change");

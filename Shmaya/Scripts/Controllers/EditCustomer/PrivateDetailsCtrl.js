@@ -19,7 +19,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        if (!$scope.formDetails.$valid) {
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
-	            return;
+				alerts.alert("יש למלא ערכים תקינים בכל השדות");
+	            //return;
 	        }
 
 	        //$scope.lTempLanguage = $scope.user.lLanguage;

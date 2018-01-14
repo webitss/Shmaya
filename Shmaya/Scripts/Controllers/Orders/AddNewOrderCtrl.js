@@ -5,7 +5,17 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	    $scope.defDate = new Date();
 	    $scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].iId;//(new Date()).getFullYear();
 	    $scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
-	    $scope.testTime = new Date();
+		$scope.testTime = new Date();
+		if (!$scope.order)
+			$scope.typeTranslation = null
+		else
+			if ($scope.order.iTypeOrder == 22)
+				$scope.typeTranslation = 38
+			else
+				if ($scope.order.iTypeOrder == 23)
+					$scope.typeTranslation = 41
+				else
+					$scope.typeTranslation = 42
 	    //$scope.order =
 	    //{
 	    //    iMonthId: $scope.monthList[(new Date().getMonth()) + 1].iId,
@@ -23,8 +33,9 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        $scope.$broadcast('show-errors-check-validity');
 	        if (!$scope.formOrder.$valid) {
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-	            $rootScope.notification(savingStatus);
-	            return;
+				$rootScope.notification(savingStatus);
+				alerts.alert("יש למלא ערכים תקינים בכל השדות");
+	            //return;
 	        }
 	        $scope.orderToSend = angular.copy($scope.order);
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
@@ -59,7 +70,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
                 }
             );
 	        connect.post(true, 'GetUsers',
-                { iUserType: 3 ,iStatusId:0},
+				{ iUserType: 3, iStatusId: 0, iTypeTranslation: $scope.typeTranslation},
                 function (result) {
                     $scope.ABCBookProviders = result;
                     if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
@@ -87,7 +98,25 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        }
 	        $scope.order.dtTimeEndComputed = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 
-	    };
+		};
+
+		$scope.selectTypeTranslation = function () {
+				if ($scope.order.iTypeOrder == 22)
+					$scope.typeTranslation = 38
+				else
+					if ($scope.order.iTypeOrder == 23)
+						$scope.typeTranslation = 41
+					else
+						$scope.typeTranslation = 42
+
+			connect.post(true, 'GetUsers',
+				{ iUserType: 3, iStatusId: 0, iTypeTranslation: $scope.typeTranslation },
+				function (result) {
+					$scope.ABCBookProviders = result;
+					if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
+						$scope.order.iSelectedTranslator = $filter('filter')($scope.ABCBookProviders, { iUserId: $scope.order.iSelectedTranslator }, true)[0].iUserId;
+				});
+		}
 
 	    $scope.getData();
 

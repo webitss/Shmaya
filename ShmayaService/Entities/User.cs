@@ -45,7 +45,6 @@ namespace ShmayaService.Entities
         [DataMember]
         public int iGenderId { get; set; }
         [DataMember]
-        [NoSendToSQL]
         public double nBankHours { get; set; }
         [DataMember]
         public int? iEntitlementTypeId { get; set; }
@@ -58,7 +57,6 @@ namespace ShmayaService.Entities
         [DataMember]
         public bool isWorker { get; set; }
         [DataMember]
-        [NoSendToSQL]
         public double nNumHours { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -208,13 +206,14 @@ namespace ShmayaService.Entities
             }
         }
 
-	public static List<User> GetUsers(int? iUserType,int iStatusId)
+	public static List<User> GetUsers(int? iUserType,int iStatusId, int? iTypeTranslation)
 	{
 		try
 		{
 				List<SqlParameter> parameters = new List<SqlParameter>();
 				parameters.Add(new SqlParameter("iUserType", iUserType));
 				parameters.Add(new SqlParameter("iStatusId", iStatusId));
+				parameters.Add(new SqlParameter("iTypeTranslation", iTypeTranslation));
 				//data set שולף אוסף של טבלאות
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT",parameters);
 			

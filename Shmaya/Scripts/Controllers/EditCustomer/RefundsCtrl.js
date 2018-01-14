@@ -30,15 +30,16 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase' required/>" +
 							"<label>שיוך לחודש</label><form-dropdown ng-model='refund2.iMonthId' enablesearch='false' data='monthList' identityfield='iId' datafield='nvName'></form-dropdown>" +
 							"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='refund2.nPayment' required/>" +
-							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />' +
-							'<button ng-click="deleteFile()">מחק קובץ</button>';
+							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" ng-if="!refund2.nvDocName" />' +
+							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
 							    if ($scope.checkRefund($scope.refund2) == false)
 									return
 								console.log(JSON.stringify($scope.refund2));
-								$scope.refund2.dtCreateDate = null;
-								connect.post(true, 'RefundUpdate', { refund: $scope.refund2, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
+								$scope.refundToSend = angular.copy($scope.refund2);
+								$scope.refundToSend.dtCreateDate = null;
+								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
 							        if (result) {
 							            console.log('RefundUpdate:');
 							            var savingStatus = "השינויים נשמרו בהצלחה";
@@ -88,7 +89,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 	        ];
 	        $scope.getData();
-	        console.log($scope.refund2.nvDocPath);
 	    };
 
 

@@ -17,8 +17,9 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 			connect.post(true, 'MonthUpdate', { iMonthId: $scope.iMonthId,dtGlobalDateBegin: $scope.dtGlobalDateBegin, dtGlobalDateEnd: $scope.dtGlobalDateEnd, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 				if (result && result > 0) {
 					console.log('MontInsert:' + result);
-					var savingStatus = "השינויים נשמרו בהצלחה";
+					var savingStatus = "השינויים נשמרו במערכת";
 					$rootScope.notification(savingStatus);
+					alerts.alert('השינויים נשמרו במערכת')
 					$scope.user.dialogIsOpen = false;
 				}
 				else {
