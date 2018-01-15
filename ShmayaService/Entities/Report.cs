@@ -26,13 +26,12 @@ namespace ShmayaService.Entities
 		public double nRefund { get; set; }
 		public DateTime? dtCreateDate { get; set; }
 
-		public static List<Report> GetReports(int iMonthId,int iYearId ,int iTypeOrder)
+		public static List<Report> GetReports(int iMonthYearId ,int iTypeOrder)
 		{
 			try
 			{
 				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iMonthId", iMonthId));
-				parameters.Add(new SqlParameter("iYearId", iYearId));
+				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
 				parameters.Add(new SqlParameter("iTypeOrder", iTypeOrder));
 				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportProvider_SLCT",parameters).Tables[0];
@@ -47,13 +46,12 @@ namespace ShmayaService.Entities
 			}
 		}
 
-		public static List<Report> GetReportsCustomer(int iMonthId, int iYearId, int iTypeOrder)
+		public static List<Report> GetReportsCustomer(int iMonthYearId, int iTypeOrder)
 		{
 			try
 			{
 				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iMonthId", iMonthId));
-				parameters.Add(new SqlParameter("iYearId", iYearId));
+				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
 				parameters.Add(new SqlParameter("iTypeOrder", iTypeOrder));
 				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportCustomer_SLCT", parameters).Tables[0];
@@ -68,13 +66,12 @@ namespace ShmayaService.Entities
 			}
 		}
 
-		public static List<Report> GetReportsProduct(int iMonthId, int iYearId)
+		public static List<Report> GetReportsProduct(int iMonthYearId)
 		{
 			try
 			{
 				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iMonthId", iMonthId));
-				parameters.Add(new SqlParameter("iYearId", iYearId));
+				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
 				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportProducts_SLCT", parameters).Tables[0];
 				List<Report> lReports = new List<Report>();
@@ -88,13 +85,12 @@ namespace ShmayaService.Entities
 			}
 		}
 
-		public static List<Report> GetReportscryingDetector(int iMonthId, int iYearId)
+		public static List<Report> GetReportscryingDetector(int iMonthYearId)
 		{
 			try
 			{
 				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iMonthId", iMonthId));
-				parameters.Add(new SqlParameter("iYearId", iYearId));
+				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
 				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportcryingDetector_SLCT", parameters).Tables[0];
 				List<Report> lReports = new List<Report>();

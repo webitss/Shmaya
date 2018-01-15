@@ -2,13 +2,8 @@
 	<div  class="container container-message ">
 		<form id="formReport1" name="formReport1" novalidate>
 			<div class="row">
-				<form-field span-text="בחר שנה" class="col-md-6">
-					<form-dropdown ng-model="iYearId" enablesearch="false" data="yearList" required ng-change="prepareData();prepareData2();prepareData3()"></form-dropdown>
-				</form-field>
-			</div>
-			<div class="row">
-				<form-field span-text="בחר חודש" class="col-md-6">
-					<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required ng-change="prepareData();prepareData2();prepareData3()"></form-dropdown>
+				<form-field span-text="בחר חודש ושנה" class="col-md-6">
+					<form-dropdown ng-model="iMonthYearId" enablesearch='false' data="monthYearList" required ng-change="prepareData();prepareData2();prepareData3()"></form-dropdown>
 				</form-field>
 			</div>
 		</form>

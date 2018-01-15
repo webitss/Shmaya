@@ -35,7 +35,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
-	            //return;
+	            return;
 	        }
 	        $scope.orderToSend = angular.copy($scope.order);
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)

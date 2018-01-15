@@ -59,7 +59,6 @@ namespace ShmayaService.Entities
         [DataMember]
         public double nNumHours { get; set; }
         [DataMember]
-        [NoSendToSQL]
         public int iCommunicationCart { get; set; }
         [DataMember]
         [NoSendToSQL]

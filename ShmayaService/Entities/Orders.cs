@@ -114,7 +114,7 @@ namespace ShmayaService.Entities
         public string nvCreateUserId { get; set; }
         [DataMember]
         /**/
-        public int iMonthId { get; set; }
+        public int iMonthYearId { get; set; }
         [DataMember]
         [NoSendToSQL]
         public string nvMonthName { get; set; }
@@ -124,8 +124,6 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public int iTranslatorId { get; set; }
-        [DataMember]
-        public int iYearId { get; set; }
 
         #endregion
 

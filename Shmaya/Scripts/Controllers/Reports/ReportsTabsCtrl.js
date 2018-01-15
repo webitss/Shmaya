@@ -13,6 +13,7 @@ companionApp.controller('ReportsTabsCtrl', ['$scope', '$rootScope', 'connect', '
 		connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
 			$scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
 			$scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
+			$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
 		});
 	}
 

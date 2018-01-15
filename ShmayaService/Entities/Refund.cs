@@ -37,7 +37,7 @@ namespace ShmayaService.Entities
 		[DataMember]
 		public int iProductId { get; set; }
 		[DataMember]
-		public string iMonthId { get; set; }
+		public string iMonthYearId { get; set; }
 		[DataMember]
 		[NoSendToSQL]
 		public string nvMonthName { get; set; }
@@ -103,7 +103,8 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+				if (refund.nvDocPath != null)
+					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				parameters.Add(new SqlParameter("iUserId", iUserId));

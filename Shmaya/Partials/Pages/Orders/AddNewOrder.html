@@ -32,19 +32,13 @@
 			</form-field>
 		</div>
 		<div class="row" ng-show="isEdit">
-			<form-field span-text="שיוך לחודש" class="col-md-6">
-				<form-dropdown ng-model="order.iMonthId" enablesearch="false" data="monthList" required></form-dropdown>
-			</form-field>
-			<form-field span-text="שיוך לשנה" class="col-md-6">
-				<form-dropdown ng-model="order.iYearId" enablesearch="false" data="yearList" required></form-dropdown>
+			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
+				<form-dropdown ng-model="order.monthYearList" enablesearch="false" data="monthList" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row" ng-show="!isEdit">
-			<form-field span-text="שיוך לחודש" class="col-md-6">
-				<form-dropdown ng-model="defMonth" enablesearch="false" data="monthList"></form-dropdown>
-			</form-field>
-			<form-field span-text="שיוך לשנה" class="col-md-6">
-				<form-dropdown ng-model="defYear" enablesearch="false" data="yearList"></form-dropdown>
+			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
+				<form-dropdown ng-model="defMonth" enablesearch="false" data="monthList" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row">

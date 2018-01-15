@@ -12,11 +12,6 @@ C:\git.dev\Shmaya\ShmayaService\bin\Newtonsoft.Json.dll
 C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.csprojResolveAssemblyReference.cache
 C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.csproj.CoreCompileInputs.cache
 =======
-C:\git.dev\Shmaya\ShmayaService\bin\ShmayaService.dll
-C:\git.dev\Shmaya\ShmayaService\bin\ShmayaService.pdb
-C:\git.dev\Shmaya\ShmayaService\bin\Newtonsoft.Json.dll
-C:\git.dev\Shmaya\ShmayaService\bin\NReco.PdfGenerator.dll
-C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.csprojResolveAssemblyReference.cache
 >>>>>>> c543a03a8c4a07ed97bdfafed64fbda38151b3b0
 C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.dll
 C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.pdb

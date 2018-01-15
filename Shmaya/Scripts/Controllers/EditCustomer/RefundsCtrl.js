@@ -23,7 +23,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    fieldName: 'iId',
 				    title: 'עריכה',
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
-				    clickEvent: function (refund) {
+					clickEvent: function (refund) {
+						if (refund.item == undefined) return;
 				        $scope.refund2 = refund.item;
 				        $scope.isEdit = true;
 						$scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='refund2.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +

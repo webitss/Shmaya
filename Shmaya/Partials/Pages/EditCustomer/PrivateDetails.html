@@ -1,110 +1,89 @@
 ﻿<div ng-controller="PrivateDetailsCtrl" class="container">
-    <br />
-    <div class="row margin-top-double">
-        <div class="pull-left col-md-6">
-            <div class="row">
-                <div class="col-md-10">
-                    <button class="btn  btn-ayelet color-yellow pull-left" ng-click="saveDetails()">
-                        <div class="save-btn-ayelet"></div>
-                        <span>שמור</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<br />
+	<div class="row margin-top-double">
+		<div class="pull-left col-md-6">
+			<div class="row">
+				<div class="col-md-10">
+					<button class="btn  btn-ayelet color-yellow pull-left" ng-click="saveDetails()">
+						<div class="save-btn-ayelet"></div>
+						<span>שמור</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <br />
+	<br />
 	<form id="formDetails" name="formDetails" novalidate class="row">
-
-			<form-field span-text="שם פרטי" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvFirstName" ng-pattern="[^0-9]" required/>
-			</form-field>
-			<form-field span-text="שם משפחה" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvLastName" ng-pattern="[^0-9]" required/>
-			</form-field>
-
-			<form-field span-text="ת.ז." class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvId" ng-blur="checkIdentity()" identitynum required />
-
-			</form-field>
-			<form-field span-text="תאריך לידה" class="col-md-6">
-				<input class="form-control" type="date" ng-model="user.dtBirthDate" />
-			</form-field>
-
-
-			<form-field span-text="מגדר" class="col-md-6">
-				<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
-			</form-field>
-			<form-field span-text="מייל" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="!showCustomer&&!showAdmin"/>
-			</form-field>
-		
-			<form-field span-text="כתובת" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvAdress" />
-			</form-field>
-			<form-field span-text="טלפון" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvPhoneNum" phone/>
-			</form-field>
-		
-			<form-field span-text="נייד" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvMobileNum" phone ng-required="!showCustomer"/>
-			</form-field>
-			<form-field span-text="פקס" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvFaxNum" phone/>
-			</form-field>
-		
-			<form-field span-text="סיסמא" class="col-md-6">
-				<input class="form-control" type="text" ng-model="user.nvPassword" ng-required="!showCustomer"/>
-			</form-field>
-
-			<form-field span-text="האם עובד" class="col-md-6" ng-show="showCustomer&&!showAdmin" >
-					<form-dropdown ng-model="user.isWorker" enablesearch="false" data="isWorkerList"></form-dropdown>
-				</form-field>
-
-
-			<form-field span-text="סוג עובד" class="col-md-6"ng-show="!showCustomer">
-					<form-dropdown ng-model="user.iWorkerType" enablesearch="false" data="workerTypeList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
-				</form-field>
-		
-			<form-field span-text="תאריך הצטרפות" class="col-md-6"ng-show="showCustomer&&!showAdmin">
-				<input class="form-control" type="date" ng-model="user.dtResetCommunication" />
-			</form-field>
-       
-			<form-field span-text="תאריך תחילת זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin&&!showAdmin">
-				<input class="form-control" type="date" ng-model="user.dtResetHours" required/>
-			</form-field>
-
-            <form-field span-text="סל תקשורת" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart" required></form-dropdown>
-			</form-field>
-            <form-field span-text="סוג זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
-			</form-field>
-
-
-
-            <form-field span-text="מספר שעות זכאות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<input class="form-control" type="text" disabled ng-model="user.nNumHours"/>
-			</form-field>
-
-            <form-field span-text="בנק שעות" class="col-md-6" ng-show="showCustomer&&!showAdmin">
-				<input class="form-control" type="text" disabled ng-model="user.nBankHours" number/>
-			</form-field>
-
-
-            <form-field span-text="סוג שירות" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList"></multi-form-dropdown>
-			</form-field>
-			<form-field span-text="איזור" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<form-dropdown ng-model="user.iAreaId" enablesearch="false" data="areaList" required></form-dropdown>
-			</form-field>
-
-			<form-field span-text="שעות עבודה" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<input class="form-control" type="text" ng-model="user.nBankHours" />
-			</form-field>
-			<form-field span-text="שפות תרגום" class="col-md-6" ng-show="!showCustomer&&!showAdmin">
-				<multi-form-dropdown ng-model="user.lLanguage" filter="false" enablesearch="false" data="languageList"></multi-form-dropdown>
-			</form-field>
+		<form-field span-text="שם פרטי" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvFirstName" name="nvFirstName" ng-pattern="[^0-9]" required />
+		</form-field>
+		<form-field span-text="שם משפחה" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvLastName" name="nvLastName" ng-pattern="[^0-9]" required />
+		</form-field>
+		<form-field span-text="ת.ז." class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvId" name="nvId" ng-blur="checkIdentity()" identitynum required />
+		</form-field>
+		<form-field span-text="תאריך לידה" class="col-md-6">
+			<input class="form-control" type="date" ng-model="user.dtBirthDate" name="dtBirthDate" />
+		</form-field>
+		<form-field span-text="מגדר" class="col-md-6">
+			<form-dropdown ng-model="user.iGenderId" name="iGenderId" enablesearch="false" data="genderList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
+		</form-field>
+		<form-field span-text="מייל" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvEmail" name="nvEmail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="!showCustomer&&!showAdmin" />
+		</form-field>
+		<form-field span-text="כתובת" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvAdress" name="nvAdress" />
+		</form-field>
+		<form-field span-text="טלפון" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvPhoneNum" name="nvPhoneNum" phone />
+		</form-field>
+		<form-field span-text="נייד" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvMobileNum" name="nvMobileNum" phone ng-required="!showCustomer" />
+		</form-field>
+		<form-field span-text="פקס" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvFaxNum" name="nvFaxNum" phone />
+		</form-field>
+		<form-field span-text="סיסמא" class="col-md-6">
+			<input class="form-control" type="text" ng-model="user.nvPassword" name="nvPassword" ng-required="!showCustomer" />
+		</form-field>
+		<form-field span-text="האם עובד" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<form-dropdown ng-model="user.isWorker" name="isWorker" enablesearch="false" data="isWorkerList"></form-dropdown>
+		</form-field>
+		<form-field span-text="סוג עובד" class="col-md-6" ng-if="!showCustomer">
+			<form-dropdown ng-model="user.iWorkerType" name="iWorkerType" enablesearch="false" data="workerTypeList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
+		</form-field>
+		<form-field span-text="תאריך הצטרפות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<input class="form-control" type="date" ng-model="user.dtResetCommunication" name="dtResetCommunication" />
+		</form-field>
+		<form-field span-text="תאריך תחילת זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin&&!showAdmin">
+			<input class="form-control" type="date" ng-model="user.dtResetHours" name="dtResetHours" required />
+		</form-field>
+		<form-field span-text="סל תקשורת" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<form-dropdown ng-model="user.iCommunicationCart" name="iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart" required></form-dropdown>
+		</form-field>
+		<form-field span-text="סוג זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<form-dropdown ng-model="user.iEntitlementTypeId" name="iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
+		</form-field>
+		<form-field span-text="מספר שעות זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<input class="form-control" type="text" disabled ng-model="user.nNumHours" name="nNumHours" />
+		</form-field>
+		<form-field span-text="בנק שעות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<input class="form-control" type="text" disabled ng-model="nInitBankHours" name="nInitBankHours" number />
+		</form-field>
+		<form-field span-text="סוג שירות" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
+			<multi-form-dropdown ng-model="user.lOrderType" name="lOrderType" filter="false" enablesearch="false" data="userTypeList"></multi-form-dropdown>
+		</form-field>
+		<form-field span-text="איזור" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
+			<form-dropdown ng-model="user.iAreaId" name="iAreaId" enablesearch="false" data="areaList" required></form-dropdown>
+		</form-field>
+		<form-field span-text="שעות עבודה" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
+			<input class="form-control" type="text" ng-model="user.nBankHours" name="nBankHours" />
+		</form-field>
+		<form-field span-text="שפות תרגום" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
+			<multi-form-dropdown ng-model="user.lLanguage" name="lLanguage" filter="false" enablesearch="false" data="languageList"></multi-form-dropdown>
+		</form-field>
 
 	</form>
 </div>

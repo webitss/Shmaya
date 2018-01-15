@@ -496,9 +496,9 @@ namespace ShmayaService
           UriTemplate = "MonthUpdate",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public int? MonthUpdate(int iMonthId, DateTime? dtGlobalDateBegin, DateTime? dtGlobalDateEnd, int iUserManagerId)
+        public int? MonthUpdate(Month month, int iUserManagerId)
         {
-            return Month.MonthUpdate(iMonthId, dtGlobalDateBegin, dtGlobalDateEnd, iUserManagerId);
+            return Month.MonthUpdate(month, iUserManagerId);
         }
 
         [OperationContract]
@@ -507,23 +507,33 @@ namespace ShmayaService
           UriTemplate = "MonthInsert",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public int? MonthInsert(int iMonthId, DateTime? dtGlobalDateBegin, DateTime? dtGlobalDateEnd, int iUserManagerId)
+        public int? MonthInsert(Month month, int iUserManagerId)
         {
-            return Month.MonthInsert(iMonthId, dtGlobalDateBegin, dtGlobalDateEnd, iUserManagerId);
+            return Month.MonthInsert(month, iUserManagerId);
         }
-        #endregion
+		[OperationContract]
+		[WebInvoke(
+	  Method = "POST",
+	  UriTemplate = "GetMonthes",
+	  BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	  ResponseFormat = WebMessageFormat.Json)]
+		public List<Month> GetMonthes()
+		{
+			return Month.GetMonthes();
+		}
+		#endregion
 
-        #region Reports
+		#region Reports
 
-        [OperationContract]
+		[OperationContract]
         [WebInvoke(
            Method = "POST",
            UriTemplate = "GetReports",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReports(int iMonthId,int iYearId, int iTypeOrder)
+        public List<Report> GetReports(int iMonthYearId, int iTypeOrder)
         {
-            return Report.GetReports(iMonthId,iYearId, iTypeOrder);
+            return Report.GetReports(iMonthYearId, iTypeOrder);
         }
 
         [OperationContract]
@@ -532,9 +542,9 @@ namespace ShmayaService
            UriTemplate = "GetReportsCustomer",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReportsCustomer(int iMonthId, int iYearId, int iTypeOrder)
+        public List<Report> GetReportsCustomer(int iMonthYearId, int iTypeOrder)
         {
-            return Report.GetReportsCustomer(iMonthId,iYearId, iTypeOrder);
+            return Report.GetReportsCustomer(iMonthYearId, iTypeOrder);
         }
 
         [OperationContract]
@@ -543,9 +553,9 @@ namespace ShmayaService
        UriTemplate = "GetReportsProduct",
        BodyStyle = WebMessageBodyStyle.WrappedRequest,
        ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReportsProduct(int iMonthId,int iYearId)
+        public List<Report> GetReportsProduct(int iMonthYearId)
         {
-            return Report.GetReportsProduct(iMonthId, iYearId);
+            return Report.GetReportsProduct(iMonthYearId);
         }
 
         [OperationContract]
@@ -554,9 +564,9 @@ namespace ShmayaService
        UriTemplate = "GetReportscryingDetector",
        BodyStyle = WebMessageBodyStyle.WrappedRequest,
        ResponseFormat = WebMessageFormat.Json)]
-        public List<Report> GetReportscryingDetector(int iMonthId,int iYearId)
+        public List<Report> GetReportscryingDetector(int iMonthYearId)
         {
-            return Report.GetReportscryingDetector(iMonthId, iYearId);
+            return Report.GetReportscryingDetector(iMonthYearId);
         }
 
 

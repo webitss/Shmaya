@@ -55,7 +55,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'איזור', fieldName: 'area' },
 				{ title: 'עיר', fieldName: 'nvStreet' },
 				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation', type: 'date' },
-				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
+				{ title: 'שיוך לחודש ושנה', fieldName: 'iMonthYearId' },
 				{
 				    title: 'זמן תרגום', fieldName: 'nvTimeTranslation', doSum: true, weight: 1.2
 				},

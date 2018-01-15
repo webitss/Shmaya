@@ -6,13 +6,12 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 		$scope.isPrepareData3 = true;
 
 		$scope.prepareData = function () {
-			if ($scope.isPrepareData = true && $scope.iYearId && $scope.iMonthId)
+			if ($scope.isPrepareData = true)
 			{
 
 				$scope.isDataLoaded1 = 0;
 				$scope.gridIdentity1 = 'ReportsList1';
 				$scope.columns1 = [
-
 					{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
@@ -25,7 +24,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 
 		$scope.prepareData2 = function () {
-			if ($scope.isPrepareData2 = true && $scope.iYearId && $scope.iMonthId)
+			if ($scope.isPrepareData2 = true)
 			{
 				$scope.isDataLoaded2 = 0;
 				$scope.gridIdentity2 = 'ReportsList2';
@@ -44,7 +43,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 
 		$scope.prepareData3 = function () {
-			if ($scope.isPrepareData3 = true && $scope.iYearId && $scope.iMonthId)
+			if ($scope.isPrepareData3 = true)
 			{
 				$scope.isDataLoaded3 = 0;
 				$scope.gridIdentity3 = 'ReportsList2';
@@ -63,7 +62,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		$scope.getData = function ()
 		{
-			connect.post(true, 'GetReports', { iMonthId: $scope.iMonthId, iYearId: $scope.iYearId, iTypeOrder:22 },
+			connect.post(true, 'GetReports', { iMonthYearId: $scope.iMonthYearId, iTypeOrder:22 },
 				function (result)
 				{
 					if (result.length == 0)
@@ -80,7 +79,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 		};
 
 		$scope.getData2 = function () {
-			connect.post(true, 'GetReports', { iMonthId: $scope.iMonthId, iYearId: $scope.iYearId, iTypeOrder: 23 },
+			connect.post(true, 'GetReports', { iMonthYearId: $scope.iMonthYearId, iTypeOrder: 23 },
 				function (result)
 				{
 					if (result.length == 0) {
@@ -96,7 +95,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 		};
 
 		$scope.getData3 = function () {
-			connect.post(true, 'GetReports', { iMonthId: $scope.iMonthId, iYearId: $scope.iYearId, iTypeOrder: 24 },
+			connect.post(true, 'GetReports', { iMonthYearId: $scope.iMonthYearId, iTypeOrder: 24 },
 				function (result) {
 					if (result.length == 0) {
 						$scope.isPrepareData3 = false;

@@ -20,7 +20,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
-	            //return;
+				console.log(JSON.stringify($scope.formDetails));
+	            return;
 	        }
 
 	        //$scope.lTempLanguage = $scope.user.lLanguage;
@@ -68,33 +69,20 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        }
 	    }
 
-	    //$scope.lTempLanguage = $scope.user.lLanguage;
-	    //$scope.user.lLanguage = {};
-	    //$scope.lTempLanguage.forEach(function (language)
-	    //{
-	    //	if (language.iTypeId != undefined)
-	    //		$scope.iTypeId = language.iTypeId
-	    //	else
-	    //		$scope.iTypeId = language
-	    //	language = {
-	    //		"iTypeId": $scope.iTypeId,
-	    //		"iUserId": $scope.user.iUserId
-	    //	}
-	    //	$scope.user.lLanguage.push(language)
-	    //})
-
 	    $scope.calculateNumHours = function (iCommunicationCart) {
 	        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: iCommunicationCart }, true)[0].nTariff;
 	    };
 
-	    $scope.calculateBankHours = function (iEntitlementTypeId) {
-	        $scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+		$scope.calculateBankHours = function (iEntitlementTypeId) {
+			$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 	    };
 
 	    $scope.getData = function () {
 	        connect.post(true, 'GetEligibiltyTable', {},
 				function (result) {
-				    $scope.EligibilityTableList = result;
+					$scope.EligibilityTableList = result;
+					if ($scope.EligibilityTableList != undefined)
+						$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: $scope.user.iEntitlementTypeId }, true)[0].nNumHours;
 				});
 	        connect.post(true, 'GetCommunicationCart', {},
 				function (result) {

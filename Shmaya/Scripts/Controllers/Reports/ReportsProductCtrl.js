@@ -4,7 +4,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		$scope.isPrepareData = true;
 		$scope.isPrepareData2 = true;
 		$scope.prepareData = function () {
-			if ($scope.isPrepareData == true && $scope.iYearId && $scope.iMonthId)
+			if ($scope.isPrepareData == true )
 			{
 				$scope.isDataLoaded1 = 0;
 				$scope.gridIdentity1 = 'ReportsList1';
@@ -28,7 +28,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		};
 
 		$scope.prepareData2 = function () {
-			if ($scope.isPrepareData2 == true && $scope.iYearId && $scope.iMonthId)
+			if ($scope.isPrepareData2 == true)
 			{
 				$scope.isDataLoaded2 = 0;
 				$scope.gridIdentity2 = 'ReportsList2';
@@ -52,7 +52,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		};
 
 		$scope.getData = function () {
-			connect.post(true, 'GetReportsProduct', { iMonthId: $scope.iMonthId, iYearId:$scope.iYearId },
+			connect.post(true, 'GetReportsProduct', { iMonthYearId: $scope.iMonthYearId },
 				function (result) {
 					if (result.length == 0) {
 						$scope.isPrepareData = false;
@@ -64,7 +64,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 				});
 		}
 			$scope.getData2 = function () {
-				connect.post(true, 'GetReportscryingDetector', { iMonthId: $scope.iMonthId, iYearId: $scope.iYearId, },
+				connect.post(true, 'GetReportscryingDetector', { iMonthYearId: $scope.iMonthYearId },
 					function (result) {
 						if (result.length == 0) {
 							$scope.isPrepareData2 = false;
