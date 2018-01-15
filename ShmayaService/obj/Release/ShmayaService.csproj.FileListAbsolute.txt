@@ -1,7 +1,0 @@
-C:\git.dev\Shmaya\ShmayaService\bin\ShmayaService.dll.config
-C:\git.dev\Shmaya\ShmayaService\bin\ShmayaService.dll
-C:\git.dev\Shmaya\ShmayaService\bin\ShmayaService.pdb
-C:\git.dev\Shmaya\ShmayaService\bin\Newtonsoft.Json.dll
-C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.csproj.CoreCompileInputs.cache
-C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.dll
-C:\git.dev\Shmaya\ShmayaService\obj\Release\ShmayaService.pdb
