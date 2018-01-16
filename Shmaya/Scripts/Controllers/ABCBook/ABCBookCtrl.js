@@ -215,6 +215,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 
 	    $scope.getData = function () {
 	        if ($scope.showCustomer) {
+	            $scope.page = 'לקוח';
 	            $scope.userType = 2;
 	            connect.post(true, 'GetUsers',
 					{ iUserType: 2, iStatusId: 1 },
@@ -224,6 +225,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					});
 	        }
 	        else if (!$scope.showCustomer) {
+	            $scope.page = 'נותן שרות';
 	            $scope.userType = 3;
 	            connect.post(true, 'GetUsers',
 					{ iUserType: 3, iStatusId: 1 },
@@ -261,6 +263,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					});
 	        }
 	        if ($scope.showAdmin) {
+	            $scope.page = 'מנהל';
 	            $scope.userType = 1;
 	            connect.post(true, 'GetUsers',
                     { iUserType: 1, iStatusId: 1 },
