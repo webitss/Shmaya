@@ -124,12 +124,15 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public int iTranslatorId { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public int iGlobalId { get; set; }
 
-        #endregion
+		#endregion
 
-        #region methods
+		#region methods
 
-        public static List<Orders> GetOrders()
+		public static List<Orders> GetOrders()
         {
             try
             {

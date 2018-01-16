@@ -40,7 +40,6 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				},
 				{
 				    title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
-				        //console.log("לשנות בשרת" + item.iStatusId + "-----" + item.iOrderId)
 				        connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
 				        	function (result) {
 				        	    console.log("change");
@@ -62,17 +61,26 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin', type: 'time' },
 				{ title: 'משתמש מזין', fieldName: 'nvCreateUserId' },
 	        ];
-	        $scope.getData();
+			$scope.getData();
 
 
 	    };
-	    $scope.getData = function () {
+		$scope.getData = function ()
+		{
 	        connect.post(true, 'GetOrders', {},
 				function (result) {
-				    $scope.OrdersList = result;
-				    $scope.isDataLoaded++;
+					$scope.OrdersList = result;
+					$scope.isDataLoaded++;
+					$scope.OrdersList.forEach(function (order) {
+						order.iMonthYearId = order.iMonthYearId + ""
+						$scope.tmpDate1 = order.iMonthYearId.substring(0, 4);
+						$scope.tmpDate2 = order.iMonthYearId.substring(4, 6);
+						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+						order.iMonthYearId = $scope.tmpDate
+					})
 				});
-	    };
+		
+		};
 
 	    $scope.EditCust = function () {
 	        $scope.editCustomer = true;

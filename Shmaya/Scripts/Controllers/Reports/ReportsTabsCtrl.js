@@ -14,8 +14,16 @@ companionApp.controller('ReportsTabsCtrl', ['$scope', '$rootScope', 'connect', '
 			$scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
 			$scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
 			$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+			$scope.monthYearList.forEach(function (date) {
+				$scope.tmpDate1 = date.nvName.substring(0, 4);
+				$scope.tmpDate2 = date.nvName.substring(4, 6);
+				$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+				date.nvName = $scope.tmpDate
+			})
 		});
 	}
+
+
 
 	$scope.ordersTabClick = function (index) {
 		$scope.ordersActiveTab = index;

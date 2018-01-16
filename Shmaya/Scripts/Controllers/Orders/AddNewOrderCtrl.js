@@ -2,9 +2,11 @@
 companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', '$window',
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId, $window) {
 	    $scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
-	    $scope.defDate = new Date();
-	    $scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].iId;//(new Date()).getFullYear();
-	    $scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
+		$scope.defDate = new Date();
+		$scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;//(new Date()).getFullYear();
+		$scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
+		$scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
+		//$scope.defMonthYear = parseInt(new Date().getFullYear()) * 100 + parseInt(new Date().getMonth());
 		$scope.testTime = new Date();
 		if (!$scope.order)
 			$scope.typeTranslation = null
@@ -24,12 +26,13 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	    //$scope.order.timeTranslation = $filter('date')($scope.order.timeTranslation, 'HH:mm');
 	    //$scope.order.dtDateTraslation = new Date();
 	    $scope.Orderinsert_update;
-	    if ($scope.isEdit)
-	        var Orderinsert_update = 'OrderUpdate';
-	    else
-	        var Orderinsert_update = 'OrderInsert';
+		if ($scope.isEdit)
+			var Orderinsert_update = 'OrderUpdate';
+		else 
+			var Orderinsert_update = 'OrderInsert';
 
-	    $scope.saveOrders = function () {
+
+		$scope.saveOrders = function () {
 	        $scope.$broadcast('show-errors-check-validity');
 	        if (!$scope.formOrder.$valid) {
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
@@ -40,7 +43,9 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        $scope.orderToSend = angular.copy($scope.order);
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
-	        $scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
+			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
+			if (!$scope.isEdit)
+				$scope.orderToSend.iMonthYearId = $scope.defMonthYear;
 
 	        connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 	            if (result && result > 0) {
@@ -61,7 +66,13 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        });
 	    }
 
-	    $scope.getData = function () {
+		$scope.getData = function () {
+			$scope.OrdersList.forEach(function (order) {
+				$scope.tmpDate2 = order.iMonthYearId.substring(0, 2);
+				$scope.tmpDate1 = order.iMonthYearId.substring(3, 7);
+				$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+				order.iMonthYearId = $scope.tmpDate
+			})
 	        connect.post(true, 'GetUsers',
 				{ iUserType: 2, iStatusId: 0},
                 function (result) {

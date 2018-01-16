@@ -59,7 +59,7 @@ namespace ShmayaService.Entities
         [DataMember]
         public double nNumHours { get; set; }
         [DataMember]
-        public int iCommunicationCart { get; set; }
+        public int? iCommunicationCart { get; set; }
         [DataMember]
         [NoSendToSQL]
         public int iCommunicationFee { get; set; }
@@ -289,6 +289,7 @@ namespace ShmayaService.Entities
                 if (userType == 1)
                 {
                     user.iEntitlementTypeId = null;
+					user.iCommunicationCart = null;
                 }
 
                 DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_INS", parameters);

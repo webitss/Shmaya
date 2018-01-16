@@ -31,14 +31,14 @@
 				<form-dropdown ng-model="order.iSelectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></form-dropdown>
 			</form-field>
 		</div>
-		<div class="row" ng-show="isEdit">
+		<div class="row" ng-if="isEdit">
 			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
-				<form-dropdown ng-model="order.monthYearList" enablesearch="false" data="monthList" required></form-dropdown>
+				<form-dropdown ng-model="order.iMonthYearId" enablesearch="false" data="monthYearList" required></form-dropdown>
 			</form-field>
 		</div>
-		<div class="row" ng-show="!isEdit">
+		<div class="row" ng-if="!isEdit">
 			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
-				<form-dropdown ng-model="defMonth" enablesearch="false" data="monthList" required></form-dropdown>
+				<form-dropdown ng-model="defMonthYear" enablesearch="false" data="monthYearList" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row">
@@ -74,16 +74,16 @@
 			</form-field>
 		</div>
 		<div class="row">
-			<form-field span-text="משתמש מזין" class="col-md-6" ng-show="isEdit">
+			<form-field span-text="משתמש מזין" class="col-md-6" ng-if="isEdit">
 				<input class="form-control" type="text" ng-model="order.nvCreateUserId" disabled />
 			</form-field>
-			<form-field span-text="משתמש מזין" class="col-md-6" ng-show="!isEdit">
+			<form-field span-text="משתמש מזין" class="col-md-6" ng-if="!isEdit">
 				<input class="form-control" type="text" ng-model="defOrder" disabled />
 			</form-field>
-			<form-field span-text="תאריך הזנה" class="col-md-6" ng-show="isEdit">
+			<form-field span-text="תאריך הזנה" class="col-md-6" ng-if="isEdit">
 				<input class="form-control" type="date" ng-model="order.dtCreateDate" disabled />
 			</form-field>
-			<form-field span-text="תאריך הזנה" class="col-md-6" ng-show="!isEdit">
+			<form-field span-text="תאריך הזנה" class="col-md-6" ng-if="!isEdit">
 				<input class="form-control" type="date" ng-model="defDate" disabled />
 			</form-field>
 		</div>
