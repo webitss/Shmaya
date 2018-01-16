@@ -9,3 +9,8 @@ ShmayaService/Files
 Shmaya/obj
 Shmaya/bin/Shmaya.dll
 Shmaya/bin/Shmaya.pdb
+*.png
+*.csproj
+*.dll
+*.csproj
+*.suo

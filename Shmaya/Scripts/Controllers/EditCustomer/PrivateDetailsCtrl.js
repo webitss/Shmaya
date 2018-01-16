@@ -77,7 +77,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 			$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 	    };
 
-	    $scope.getData = function () {
+		$scope.getData = function () {
 	        connect.post(true, 'GetEligibiltyTable', {},
 				function (result) {
 					$scope.EligibilityTableList = result;
@@ -90,6 +90,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				    if ($scope.user && $scope.user.iCommunicationCart)
 				        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				});
+	        $scope.user.dtResetCommunication = new Date();
 	        $scope.userTypeList.splice(0, 2);
 
 	    }

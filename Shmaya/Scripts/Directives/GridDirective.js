@@ -156,7 +156,8 @@
                         }
                         sum = parseInt(sum,10);
                         sum /= 60;
-                        col['sumByField'] = sum + '';
+                        col['sumByField'] = sum;
+                        col['sumByField'] = parseFloat(col['sumByField']).toFixed(2);
                     }
                 });
                 $rootScope.$broadcast('updateDataLength', {
