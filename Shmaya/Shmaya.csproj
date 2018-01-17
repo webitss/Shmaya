@@ -57,8 +57,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bg-shmaya.png" />
     <Content Include="Images\building.jpg" />
     <Content Include="Images\excel-icon.png" />
+    <Content Include="good-icon.png" />
     <Content Include="Images\phone-plus.png" />
     <Content Include="Images\phone-under.png" />
     <Content Include="Images\print.png" />
@@ -74,7 +76,24 @@
     <Content Include="Images\webit_logo.png" />
     <Content Include="Images\x-command.png" />
     <Content Include="index.html" />
+    <Content Include="Shmaya\bootstrap\bootstrap-rtl.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap-rtl.js" />
+    <Content Include="Shmaya\bootstrap\bootstrap-theme-rtl.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap-theme.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap.js" />
+    <Content Include="Shmaya\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap-theme.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap-theme.min.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap.min.css" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\bootstrap.js" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\bootstrap.min.js" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\npm.js" />
+    <Content Include="Shmaya\bootstrap\ui-bootstrap-tpls.min.js" />
     <Content Include="NewOrder.html" />
+    <Content Include="NewOrderApp.js" />
     <Content Include="Partials\Pages\ABCBook\ABCBook.html" />
     <Content Include="Partials\Pages\ABCBook\ABCBookDetailes.html" />
     <Content Include="Partials\Pages\ABCBook\ABCBookTabs.html" />
@@ -151,6 +170,7 @@
     <Content Include="Scripts\Controllers\Settings\SettingTabsCtrl.js" />
     <Content Include="Scripts\Directives\angular-file-upload.js" />
     <Content Include="Scripts\Directives\CalendarDirective.js" />
+    <Content Include="Scripts\Directives\OrderFormDropdown.js" />
     <Content Include="Scripts\Directives\CreateDialogDir.js" />
     <Content Include="Scripts\Directives\DateRtl.js" />
     <Content Include="Scripts\Directives\DropdownDirective.js" />
@@ -169,6 +189,8 @@
     <Content Include="Scripts\Factories\Alerts.js" />
     <Content Include="Scripts\Factories\changesAlert.js" />
     <Content Include="Scripts\Factories\Connect.js" />
+    <Content Include="Scripts\Factories\OrderAlerts.js" />
+    <Content Include="Scripts\Factories\OrderConnect.js" />
     <Content Include="Scripts\Factories\createDialogFactory.js" />
     <Content Include="Scripts\Factories\ExcelFactory2.js" />
     <Content Include="Scripts\Factories\ForceLogOut.js" />
@@ -194,6 +216,7 @@
     <Content Include="Scripts\Libraries\moment.min.js" />
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.3.1.min.js" />
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.4.0.min.js" />
+    <Content Include="shmaya.html" />
     <Content Include="Style\ayelet_hashachar-companionship.css" />
     <Content Include="Style\bootstrap-flipped.css" />
     <Content Include="Style\bootstrap-flipped.min.css" />
@@ -215,6 +238,7 @@
     <Content Include="Style\jquery-ui.structure.min.css" />
     <Content Include="Style\jquery-ui.theme.css" />
     <Content Include="Style\jquery-ui.theme.min.css" />
+    <Content Include="Style\SmayaStyleSheet1.css" />
     <Content Include="Style\StyleSheet.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -231,6 +255,18 @@
     <Content Include="Style\fonts\RUBIK-REGULAR.TTF" />
     <Content Include="Style\bootstrap-theme.min.css.map" />
     <Content Include="Style\package.json" />
+    <Content Include="Shmaya\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Shmaya\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Shmaya\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Shmaya\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap-theme.css.map" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap-theme.min.css.map" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap.css.map" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\css\bootstrap.min.css.map" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -250,7 +286,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>36667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

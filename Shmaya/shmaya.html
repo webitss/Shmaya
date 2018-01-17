@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><!-- ng-app="orderApp"-->
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Shmaya/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="Shmaya/bootstrap/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Shmaya/bootstrap/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="Shmaya/bootstrap/bootstrap-theme-rtl.css" rel="stylesheet" />
+    <link href="Style/SmayaStyleSheet1.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="header-shmaya">
+        <img src="bg-shmaya.png" />
+    </div>
+    <div class="header-form"><span>דוח תרגום</span></div>
+    <form name="orderForm">
+        <div class="form-wrap">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-item row ">
+                        <span class="text col-md-4">סוג הזמנה</span>
+                        <div class="input col-md-7">
+                            <order-form-dropdown ng-model="newOrder.iTypeOrder" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
+                            <!--<select ng-model="newOrder.iTypeOrder" ng-options="table.iSysTableRowId as table.nvValue for table in orderTypeList"></select>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-item row ">
+                        <span class="text col-md-4">סוג תרגום</span>
+                        <div class="input col-md-7">
+                            <order-form-dropdown ng-model="newOrder.iTypeTranslation" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">מספר זהות</span>
+                        <div class="input col-md-7">
+                            <input type="text" ng-model="newOrder.nvIdentity" />
+                        </div>
+                    </div>
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">שם לקוח</span>
+                        <div class="input col-md-7">
+                            <input />
+                        </div>
+                    </div>
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">שם מתורגמן</span>
+                        <div class="input col-md-7">
+                            <order-form-dropdown ng-model="newOrder.iSelectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">תאריך</span>
+                        <div class="input col-md-7">
+                            <p class="input-group custom-date-picker">
+                                <input type="text" datepicker-popup="dd/MM/yyyy" name="dtBirthDate" ng-model="registration.customer.dtBirthDate" is-open="popup.opened"
+                                    min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="X" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">שעת התחלה</span>
+                        <div class="input col-md-7">
+                            <input type="time" ng-model="newOrder.dtTimeBegin" required />
+                        </div>
+                    </div>
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">משך תרגום</span>
+                        <div class="input col-md-7">
+                            <input type="time" ng-model="newOrder.dtTimeTranslation" required />
+                        </div>
+                    </div>
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">איזור</span>
+                        <div class="input col-md-7">
+                            <order-form-dropdown ng-model="newOrder.iArea" enablesearch="false" data="areaList"></order-form-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="form-item row ">
+                        <span class="text col-md-4">עיר</span>
+                        <div class="input col-md-7">
+                            <order-form-dropdown ng-model="newOrder.iCityId" enablesearch="true" data="city"></order-form-dropdown>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <button type="submit" class="end-btn"><span>שלח דוח</span></button>
+
+        </div>
+    </form>
+    <div ng-if="successSend" class="popup-success">
+        <img src="good-icon.png" />
+        <span>הדוח נשלח בהצלחה!</span>
+    </div>
+
+    <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/Libraries/angular.min.js"></script>
+    <script src="Scripts/Libraries/angular-route.min.js"></script>
+    <script src="Scripts/Libraries/angular-animate.min.js"></script>
+    <script src="Scripts/Libraries/bootstrap/js/bootstrap.js"></script>
+    <script src="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
+
+    <script src="NewOrderApp.js"></script>
+    
+    <script src="Scripts/Factories/OrderConnect.js"></script>
+    <script src="Scripts/Factories/OrderAlerts.js"></script>
+
+    <script src="Scripts/Directives/OrderFormDropdown.js"></script>
+    
+    <script src="NewOrderCtrl.js"></script>
+</body>
+</html>

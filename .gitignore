@@ -14,3 +14,5 @@ Shmaya/bin/Shmaya.pdb
 *.dll
 *.csproj
 *.suo
+*.suo
+*.csproj

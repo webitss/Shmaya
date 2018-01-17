@@ -1,24 +1,27 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="orderApp"><!---->
 <head>
     <title>הזמנה חדשה</title>
     <link href="Style/bootstrap-rtl.css" rel="stylesheet" />
     <link href="Style/bootstrap.css" rel="stylesheet" />
-    <link href="Style/ayelet_hashachar-companionship.css" rel="stylesheet" />
+    <link href="Style/SmayaStyleSheet1.css" rel="stylesheet" />
 </head>
 <body>
-    <div ng-controller="NewOrderCtrl">
+    <div><!-- ng-controller="NewOrderCtrl"-->
         <div class="container">
-            <h4>דו"ח תרגום</h4>
+            <h1>דו"ח תרגום</h1>
         </div>
     </div>
     <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
     <script src="Scripts/Libraries/angular.min.js"></script>
     <script src="Scripts/Libraries/angular-route.min.js"></script>
+    <script src="Scripts/Libraries/angular-animate.min.js"></script>
+    <script src="Scripts/Libraries/bootstrap/js/bootstrap.js"></script>
+    <script src="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
 
-    <script src="Scripts/app.js"></script>
-    <script src="Scripts/Factories/Connect.js"></script>
-    <script src="Scripts/Factories/Alerts.js"></script>
+    <script src="NewOrderApp.js"></script>
+    <script src="Scripts/Factories/OrderConnect.js"></script>
+    <script src="Scripts/Factories/OrderAlerts.js"></script>
     <script src="NewOrderCtrl.js"></script>
 
 </body>
