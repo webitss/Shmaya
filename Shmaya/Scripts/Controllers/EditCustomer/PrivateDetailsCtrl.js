@@ -1,7 +1,8 @@
 ﻿'use strict'
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
-
+		$scope.defDtResetHours = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+		$scope.nInitBankHours = null;
 	    $scope.checkIdentity = function () {
 	        if (!$scope.isEdit) {
 	            if (!$scope.user.nvId) return;
@@ -53,7 +54,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	                }
 	            });
 	        }
-	        else {
+			else {
+				$scope.user.dtResetHours = $scope.defDtResetHours;
 	            connect.post(true, 'UserInsert', { user: $scope.user, iUserManagerId: $rootScope.user.iUserId, userType: $scope.userType }, function (result) {
 	                if (result && result > 0) {
 	                    console.log('UserInsert:' + result);
@@ -74,7 +76,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	    };
 
 		$scope.calculateBankHours = function (iEntitlementTypeId) {
-			$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+			if ($scope.user && $scope.user.iEntitlementTypeId)
+				$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 	    };
 
 		$scope.getData = function () {
@@ -82,7 +85,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				function (result) {
 					$scope.EligibilityTableList = result;
 					if ($scope.EligibilityTableList != undefined)
-						$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: $scope.user.iEntitlementTypeId }, true)[0].nNumHours;
+						if ($scope.user && $scope.user.iEntitlementTypeId)
+							$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: $scope.user.iEntitlementTypeId }, true)[0].nNumHours;
 				});
 	        connect.post(true, 'GetCommunicationCart', {},
 				function (result) {

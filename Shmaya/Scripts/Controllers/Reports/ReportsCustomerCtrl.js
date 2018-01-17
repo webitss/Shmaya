@@ -16,7 +16,7 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
 				$scope.getData();
 			}
@@ -34,7 +34,7 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
 				$scope.getData2();
 			}
@@ -51,7 +51,7 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
 				$scope.getData3();
 			}

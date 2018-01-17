@@ -36,7 +36,7 @@ companionApp.controller('ConnectionsCtrl', ['$scope', '$rootScope', 'connect', '
 				{ title: 'סוג הזמנה', fieldName: 'typeOrder' },
 				{ title: 'סוג תרגום', fieldName: 'typeTranslation' },
 				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation' ,type:'date'},
-				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
+				{ title: 'שיוך לחודש', fieldName: 'iMonthYearId' },
 				{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation',type:'time' },
 				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin',type:'time' }
 

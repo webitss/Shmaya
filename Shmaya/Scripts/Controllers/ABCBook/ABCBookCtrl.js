@@ -15,7 +15,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	    $scope.messageFromSelect = false
 
 
-	    $scope.prepareData = function () {
+		$scope.prepareData = function () {
+			$scope.filterFields = [];
 	        $scope.getData();
 	        $scope.isDataLoadedCustomers = 0;
 	        $scope.isDataLoadedProviders = 0;
@@ -168,7 +169,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 { title: 'טלפון', fieldName: 'nvPhoneNum' },
                 { title: 'טלפון נייד', fieldName: 'nvMobileNum', weight: 0.7 },
                 { title: 'מייל', fieldName: 'nvEmail', weight: 1.2 },
-                { title: 'סוג עובד', fieldName: 'nvWorkerType', weight: 0.7 }
+                { title: 'עוסק', fieldName: 'nvWorkerType', weight: 0.7 }
 	        ];
 	    };
 

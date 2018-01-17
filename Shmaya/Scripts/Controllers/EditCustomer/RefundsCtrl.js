@@ -8,9 +8,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isEdit = false;
 			$scope.isDelete = false;
 			$scope.isReference = false;
-			if ($scope.user.dtCreateDate != null) {
-				$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtCreateDate.getFullYear()) % 4);
-				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtCreateDate.getMonth(), $scope.user.dtCreateDate.getDay());
+			if ($scope.user.dtResetHours != null) {
+				$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
 			}
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
@@ -25,11 +25,15 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (refund) {
 						if (refund.item == undefined) return;
-				        $scope.refund2 = refund.item;
-				        $scope.isEdit = true;
+						$scope.refund2 = refund.item;
+						$scope.tmpDate2 = $scope.refund2.iMonthYearId.substring(0, 2);
+						$scope.tmpDate1 = $scope.refund2.iMonthYearId.substring(3, 7);
+						$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+						$scope.refund2.iMonthYearId = $scope.tmpDate
+						$scope.isEdit = true;
 						$scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='refund2.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
-							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase' required/>" +
-							"<label>שיוך לחודש</label><form-dropdown ng-model='refund2.iMonthId' enablesearch='false' data='monthList' identityfield='iId' datafield='nvName'></form-dropdown>" +
+							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase_original' required/>" +
+							"<label>שיוך לחודש ושנה</label><form-dropdown ng-model='refund2.iMonthYearId' enablesearch='false' data='monthYearList' required></form-dropdown>" +
 							"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='refund2.nPayment' required/>" +
 							'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" ng-if="!refund2.nvDocName" />' +
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
@@ -39,7 +43,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									return
 								console.log(JSON.stringify($scope.refund2));
 								$scope.refundToSend = angular.copy($scope.refund2);
-								$scope.refundToSend.dtCreateDate = null;
+								$scope.refundToSend.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
+								$scope.refundToSend.dtCreateDate = angular.copy($scope.refund2.dtCreateDate_original);
 								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
 							        if (result) {
 							            console.log('RefundUpdate:');
@@ -85,7 +90,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				{ title: 'סכום לתשלום', fieldName: 'nPayment' },
 				{ title: 'סך החזר', fieldName: 'nRefund' },
 				{ title: 'תאריך הזנה', fieldName: 'dtCreateDate', type: 'date' },
-				{ title: 'שיוך לחודש', fieldName: 'nvMonthName' },
+				{ title: 'שיוך לחודש', fieldName: 'iMonthYearId' },
 				{ title: 'הוזן ע"י', fieldName: 'nvCreatedByUser' },
 
 	        ];
@@ -98,16 +103,33 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				function (result) {
 				    $scope.RefundsList = result;
 				    $scope.isDataLoaded++;
-				    $scope.RefundsList.forEach(function (refund) {
-				        refund.nvDocName = refund.nvDocPath;
-				        refund.nvDocPath = connect.getFilesUrl() + refund.nvDocPath;
+					$scope.RefundsList.forEach(function (refund) {
+						refund.iMonthYearId = refund.iMonthYearId + ""
+						$scope.tmpDate1 = refund.iMonthYearId.substring(0, 4);
+						$scope.tmpDate2 = refund.iMonthYearId.substring(4, 6);
+						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+						refund.iMonthYearId = $scope.tmpDate
+						if (refund.nvDocPath) {
+							refund.nvDocName = refund.nvDocPath;
+							refund.nvDocPath = connect.getFilesUrl() + refund.nvDocPath;
+						}
 				        $scope.sumRefunds += refund.nRefund;
 				        $scope.sumBalance += (refund.nPayment - refund.nRefund)
 				        //אם נקנה פקס ע"י לקוח זה
 				        if (refund.dtPurchase != undefined && refund.dtPurchase != null && refund.dtPurchase != "")
 				            if (refund.dtPurchase.getFullYear() + 5 > (new Date().getFullYear()) && refund.iProductId == 30)
-				                $scope.flagFax = 1;
-				    })
+								$scope.flagFax = 1;
+					})
+					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+						$scope.codeTables = result;
+						$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+						$scope.monthYearList.forEach(function (date) {
+							$scope.tmpDate1 = date.nvName.substring(0, 4);
+							$scope.tmpDate2 = date.nvName.substring(4, 6);
+							$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+							date.nvName = $scope.tmpDate
+						})
+					});
 				});
 	        connect.post(true, 'GetProduct', {},
                 function (result) {
@@ -118,7 +140,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	    };
 
 	    $scope.AddNewRefund = function () {
-	        $scope.isEdit = false;
+			$scope.isEdit = false;
 	        $scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='newRefund.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
 				"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='newRefund.dtPurchase' required/>" +
 				"<label>שיוך לחודש</label><form-dropdown ng-model='newRefund.iMonthId' enablesearch='false' data='monthList' identityfield='iId' datafield='nvName'></form-dropdown>" +
