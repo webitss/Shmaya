@@ -13,7 +13,7 @@
     <link href="Style/ayelet_hashachar-companionship.css" rel="stylesheet" />
 </head>
 <body ng-app="NOApp" ng-controller="NewOrderCtrl">
-
+    <div class="pos-relative">
     <div class="header-shmaya">
         <img src="bg-shmaya.png" />
     </div>
@@ -119,11 +119,12 @@
             <button type="submit" class="end-btn" ng-click="sendReport()"><span>שלח דוח</span></button>
 
         </div>
-    </form>
-    <div ng-if="successSend" class="popup-success">
+    </form><!-- -->
+    <div ng-if="successSend" class="popup-success-wrap">
+    <div class="popup-success">
         <img src="good-icon.png" />
         <span>הדוח נשלח בהצלחה!</span>
-    </div>
+    </div></div></div>
 
     <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
     <script src="Scripts/Libraries/angular.min.js"></script>
