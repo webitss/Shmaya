@@ -30,6 +30,17 @@ namespace ShmayaService
         [OperationContract]
         [WebInvoke(
            Method = "POST",
+           UriTemplate = "GetUserByIdentity",
+           BodyStyle = WebMessageBodyStyle.WrappedRequest,
+           ResponseFormat = WebMessageFormat.Json)]
+        public Result GetUserByIdentity(string nvIdentity)
+        {
+            return User.GetUserByIdentity(nvIdentity);
+        }
+
+        [OperationContract]
+        [WebInvoke(
+           Method = "POST",
            UriTemplate = "GetUsers",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]

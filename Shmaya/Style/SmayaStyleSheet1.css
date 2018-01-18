@@ -95,10 +95,18 @@ input {
     width: 100%;
 }
 
+.form-item .dropdown-template .btn.btn-dropdown.dropdown-toggle {
+    width:100%;
+}
+.form-item .dropdown-template .btn.btn-dropdown.dropdown-toggle .combo-split {
+float:left;
+}
 
 
 
-  
+
+
+
 
 .end-btn {
     

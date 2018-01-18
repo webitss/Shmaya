@@ -102,6 +102,7 @@
     <Compile Include="Utilisties\Log.cs" />
     <Compile Include="Utilisties\ObjectGenerator.cs" />
     <Compile Include="Utilisties\ProcedureParameter.cs" />
+    <Compile Include="Utilisties\Result.cs" />
     <Compile Include="Utilisties\SysTableRow.cs" />
   </ItemGroup>
   <ItemGroup>

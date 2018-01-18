@@ -57,7 +57,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AlertTemplate.html" />
     <Content Include="bg-shmaya.png" />
+    <Content Include="OrderFormDropdownTemplate.html" />
     <Content Include="Images\building.jpg" />
     <Content Include="Images\excel-icon.png" />
     <Content Include="good-icon.png" />
@@ -76,6 +78,7 @@
     <Content Include="Images\webit_logo.png" />
     <Content Include="Images\x-command.png" />
     <Content Include="index.html" />
+    <Content Include="shmaya-Logo.ico" />
     <Content Include="Shmaya\bootstrap\bootstrap-rtl.css" />
     <Content Include="Shmaya\bootstrap\bootstrap-rtl.js" />
     <Content Include="Shmaya\bootstrap\bootstrap-theme-rtl.css" />
@@ -92,7 +95,6 @@
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\bootstrap.min.js" />
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\npm.js" />
     <Content Include="Shmaya\bootstrap\ui-bootstrap-tpls.min.js" />
-    <Content Include="NewOrder.html" />
     <Content Include="NewOrderApp.js" />
     <Content Include="Partials\Pages\ABCBook\ABCBook.html" />
     <Content Include="Partials\Pages\ABCBook\ABCBookDetailes.html" />
@@ -189,8 +191,8 @@
     <Content Include="Scripts\Factories\Alerts.js" />
     <Content Include="Scripts\Factories\changesAlert.js" />
     <Content Include="Scripts\Factories\Connect.js" />
-    <Content Include="Scripts\Factories\OrderAlerts.js" />
-    <Content Include="Scripts\Factories\OrderConnect.js" />
+    <Content Include="Scripts\Factories\orderAlerts.js" />
+    <Content Include="Scripts\Factories\orderConnect.js" />
     <Content Include="Scripts\Factories\createDialogFactory.js" />
     <Content Include="Scripts\Factories\ExcelFactory2.js" />
     <Content Include="Scripts\Factories\ForceLogOut.js" />

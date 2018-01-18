@@ -1,5 +1,5 @@
 ﻿"use strict"
-orderApp.factory('OrderAlerts', ['$rootScope', '$uibModal', function ($rootScope, $uibModal) {
+NOApp.factory('orderAlerts', ['$rootScope', '$uibModal', function ($rootScope, $uibModal) {
     var $ctrl = this;
     return {
         alert: function (message, title, OKcallback) {
@@ -8,7 +8,7 @@ orderApp.factory('OrderAlerts', ['$rootScope', '$uibModal', function ($rootScope
                 backdrop: false,
                 ariaLabelledBy: 'modal-title-top',
                 ariaDescribedBy: 'modal-body-top',
-                templateUrl: 'Partials/Templates/AlertTemplate.html' + $rootScope.appVersionParameter,
+                templateUrl: 'AlertTemplate.html',
                 //template: temp,
                 controller: function ($scope) {
                     $scope.title = title;

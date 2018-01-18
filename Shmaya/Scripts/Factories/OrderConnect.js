@@ -1,5 +1,5 @@
 ﻿"use strict"
-orderApp.factory("OrderConnect", ['$http', '$rootScope', '$location', 'alerts', '$timeout', '$log', function ($http, $rootScope, $location, alerts, $timeout, $log) {
+NOApp.factory("orderConnect", ['$http', '$rootScope', '$location', 'orderAlerts', '$timeout', '$log', function ($http, $rootScope, $location, orderAlerts, $timeout, $log) {
 
     var callQueue = [];
 
@@ -92,7 +92,7 @@ orderApp.factory("OrderConnect", ['$http', '$rootScope', '$location', 'alerts', 
                         if (ErrorFunc)
                             ErrorFunc(result);
                         else
-							alerts.alert(alerts.messages.someError, alerts.titles.error);
+                            orderAlerts.alert(orderAlerts.messages.someError, orderAlerts.titles.error);
                     }
                 })
                 .finally(function () {
@@ -106,7 +106,7 @@ orderApp.factory("OrderConnect", ['$http', '$rootScope', '$location', 'alerts', 
             $http.post(url + connectObj.functions.Login, data)
                 .then(function (result, info) {
                     if ((result.data == null || result.data == undefined))
-                        alerts.alert(alerts.messages.someError, alerts.titles.error);
+                        orderAlerts.alert(orderAlerts.messages.someError, orderAlerts.titles.error);
                     else
                         SuccessFunc(result.data);
                 }, function (result, err) {

@@ -1,21 +1,25 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><!-- ng-app="orderApp"-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>הזמנה חדשה</title>
+    <link rel="shortcut icon" href="shmaya-Logo.ico" />
     <link href="Shmaya/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="Shmaya/bootstrap/bootstrap-theme.css" rel="stylesheet" />
     <link href="Shmaya/bootstrap/bootstrap-rtl.css" rel="stylesheet" />
     <link href="Shmaya/bootstrap/bootstrap-theme-rtl.css" rel="stylesheet" />
     <link href="Style/SmayaStyleSheet1.css" rel="stylesheet" />
+    <link href="Style/ayelet_hashachar-companionship.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="NOApp" ng-controller="NewOrderCtrl">
 
     <div class="header-shmaya">
         <img src="bg-shmaya.png" />
     </div>
+
     <div class="header-form"><span>דוח תרגום</span></div>
+
     <form name="orderForm">
         <div class="form-wrap">
 
@@ -24,8 +28,7 @@
                     <div class="form-item row ">
                         <span class="text col-md-4">סוג הזמנה</span>
                         <div class="input col-md-7">
-                            <order-form-dropdown ng-model="newOrder.iTypeOrder" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
-                            <!--<select ng-model="newOrder.iTypeOrder" ng-options="table.iSysTableRowId as table.nvValue for table in orderTypeList"></select>-->
+                            <order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
                         </div>
                     </div>
                 </div>
@@ -33,7 +36,7 @@
                     <div class="form-item row ">
                         <span class="text col-md-4">סוג תרגום</span>
                         <div class="input col-md-7">
-                            <order-form-dropdown ng-model="newOrder.iTypeTranslation" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
+                            <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
                         </div>
                     </div>
                 </div>
@@ -45,34 +48,35 @@
                     <div class="form-item row ">
                         <span class="text col-md-4">מספר זהות</span>
                         <div class="input col-md-7">
-                            <input type="text" ng-model="newOrder.nvIdentity" />
+                            <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
                         </div>
                     </div>
 
                     <div class="form-item row ">
                         <span class="text col-md-4">שם לקוח</span>
                         <div class="input col-md-7">
-                            <input />
+                            <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
                         </div>
                     </div>
 
                     <div class="form-item row ">
                         <span class="text col-md-4">שם מתורגמן</span>
                         <div class="input col-md-7">
-                            <order-form-dropdown ng-model="newOrder.iSelectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
+                            <order-form-dropdown ng-model="order.iSelectedTranslator" name="selectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
                         </div>
                     </div>
 
                     <div class="form-item row ">
                         <span class="text col-md-4">תאריך</span>
                         <div class="input col-md-7">
-                            <p class="input-group custom-date-picker">
-                                <input type="text" datepicker-popup="dd/MM/yyyy" name="dtBirthDate" ng-model="registration.customer.dtBirthDate" is-open="popup.opened"
-                                    min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="X" />
+                            <!--<p class="input-group">
+                                <input type="text" uib-datepicker-popup ng-model="order.dtDateTraslation" is-open="popup.opened"
+                                    datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
-                            </p>
+                            </p>-->
+                            <input type="date" ng-model="order.dtDateTraslation_original" required />
                         </div>
                     </div>
 
@@ -84,35 +88,35 @@
                     <div class="form-item row ">
                         <span class="text col-md-4">שעת התחלה</span>
                         <div class="input col-md-7">
-                            <input type="time" ng-model="newOrder.dtTimeBegin" required />
+                            <input type="time" ng-model="order.dtTimeBegin_original" required />
                         </div>
                     </div>
 
                     <div class="form-item row ">
                         <span class="text col-md-4">משך תרגום</span>
                         <div class="input col-md-7">
-                            <input type="time" ng-model="newOrder.dtTimeTranslation" required />
+                            <input type="time" ng-model="order.dtTimeTranslation_original" required />
                         </div>
                     </div>
 
                     <div class="form-item row ">
                         <span class="text col-md-4">איזור</span>
                         <div class="input col-md-7">
-                            <order-form-dropdown ng-model="newOrder.iArea" enablesearch="false" data="areaList"></order-form-dropdown>
+                            <order-form-dropdown ng-model="order.iArea" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
                         </div>
                     </div>
 
                     <div class="form-item row ">
                         <span class="text col-md-4">עיר</span>
                         <div class="input col-md-7">
-                            <order-form-dropdown ng-model="newOrder.iCityId" enablesearch="true" data="city"></order-form-dropdown>
+                            <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <button type="submit" class="end-btn"><span>שלח דוח</span></button>
+            <button type="submit" class="end-btn" ng-click="sendReport()"><span>שלח דוח</span></button>
 
         </div>
     </form>
@@ -129,12 +133,11 @@
     <script src="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
 
     <script src="NewOrderApp.js"></script>
-    
-    <script src="Scripts/Factories/OrderConnect.js"></script>
-    <script src="Scripts/Factories/OrderAlerts.js"></script>
-
-    <script src="Scripts/Directives/OrderFormDropdown.js"></script>
-    
     <script src="NewOrderCtrl.js"></script>
+    <script src="Scripts/Factories/orderConnect.js"></script>
+    <script src="Scripts/Factories/orderAlerts.js"></script>
+    <script src="Scripts/Directives/OrderFormDropdown.js"></script>
+
+
 </body>
 </html>

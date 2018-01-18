@@ -1,17 +1,17 @@
 ﻿"use strict"
-var a = 2;
-var orderApp = angular.module('orderApp', ['ngRoute', 'fundoo.services']);
-orderApp.config(['$routeProvider', '$compileProvider', function ($routeProvider) {
+var NOApp = angular.module('NOApp', ['ngRoute', 'ui.bootstrap']);
+
+NOApp.config(function ($routeProvider, $compileProvider) {
     $routeProvider
-		.when('/', {
-		    templateUrl: 'shmaya.html' + appVersionParameter,
-		    controller: 'NewOrderCtrl'
-		})
-        .when('/shmaya', {
-            templateUrl: 'shmaya.html' + appVersionParameter,
-            controller: 'NewOrderCtrl'
+        .when('/', {
+            //controller: 'NewOrderCtrl',
+            templateUrl: 'shmaya.html'
         })
         .otherwise({
             redirectTo: '/'
         });
-}]);
+});
+
+//NOApp.run(function ($rootScope, $location) {
+//    $location.path('/')
+//});

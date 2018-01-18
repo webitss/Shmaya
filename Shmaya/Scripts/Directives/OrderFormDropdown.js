@@ -1,8 +1,8 @@
-﻿orderApp.directive('OrderFormDropdown', function ($timeout, $window, $filter, $rootScope) {
+﻿NOApp.directive('orderFormDropdown', function ($timeout, $window, $filter, $rootScope) {
         return {
             restrict: 'E',
             require: '^ngModel',
-            templateUrl: 'Partials/Templates/FormDropdownTemplate.html' + $rootScope.appVersionParameter,
+            templateUrl: 'OrderFormDropdownTemplate.html',
             replace: true,
             scope: {
                 ngModel: '=',
