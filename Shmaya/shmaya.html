@@ -23,6 +23,7 @@
         <form name="orderForm" id="orderForm">
             <div class="form-wrap">
 
+<<<<<<< HEAD
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-item row ">
@@ -38,6 +39,22 @@
                             <div class="input col-md-7">
                                 <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
                             </div>
+=======
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-item row ">
+                        <span class="text col-md-3">סוג הזמנה</span>
+                        <div class="input col-md-8">
+                            <order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-item row ">
+                        <span class="text col-md-3">סוג תרגום</span>
+                        <div class="input col-md-8">
+                            <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
                     </div>
                 </div>
@@ -45,32 +62,67 @@
                 <div class="row">
                     <div class="col-md-6">
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">מספר זהות</span>
                             <div class="input col-md-7">
                                 <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">מספר זהות</span>
+                        <div class="input col-md-8">
+                            <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">שם לקוח</span>
                             <div class="input col-md-7">
                                 <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">שם לקוח</span>
+                        <div class="input col-md-8">
+                            <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">שם מתורגמן</span>
                             <div class="input col-md-7">
                                 <order-form-dropdown ng-model="order.iSelectedTranslator" name="selectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">שם מתורגמן</span>
+                        <div class="input col-md-8">
+                            <order-form-dropdown ng-model="order.iSelectedTranslator" name="selectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">תאריך</span>
                             <div class="input col-md-7">
                                 <input type="date" ng-model="order.dtDateTraslation_original" required />
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">תאריך</span>
+                        <div class="input col-md-8">
+                            <!--<p class="input-group">
+                                <input type="text" uib-datepicker-popup ng-model="order.dtDateTraslation" is-open="popup.opened"
+                                    datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>-->
+                            <input type="date" ng-model="order.dtDateTraslation_original" required />
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
 
@@ -78,36 +130,75 @@
 
                     <div class="col-md-6">
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">שעת התחלה</span>
                             <div class="input col-md-7">
                                 <input type="time" ng-model="order.dtTimeBegin_original" required />
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">שעת התחלה</span>
+                        <div class="input col-md-8">
+                            <input type="time" ng-model="order.dtTimeBegin_original" required />
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">משך תרגום</span>
                             <div class="input col-md-7">
                                 <input type="time" ng-model="order.dtTimeTranslation_original" required />
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">משך תרגום</span>
+                        <div class="input col-md-8">
+                            <input type="time" ng-model="order.dtTimeTranslation_original" required />
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">איזור</span>
                             <div class="input col-md-7">
                                 <order-form-dropdown ng-model="order.iArea" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">איזור</span>
+                        <div class="input col-md-8">
+                            <order-form-dropdown ng-model="order.iArea" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
+<<<<<<< HEAD
                         <div class="form-item row ">
                             <span class="text col-md-4">עיר</span>
                             <div class="input col-md-7">
                                 <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
                             </div>
+=======
+                    <div class="form-item row ">
+                        <span class="text col-md-3">עיר</span>
+                        <div class="input col-md-8">
+                            <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
                         </div>
 
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
+            </div>
+             <div class="form-check form-check-inline">
+                        <input class="v-align-b" type="radio" name="logoDisplayed" [value]=true  [(ngModel)]="game.bLogoDisplayed"
+                            formControlName="logoDisplayed">
+                        <span class="v-align-m">   ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין.<br />בכפוף לביצוע התשלום עבור הרכיבים המפורים ב"פרטי העבודה" ולאור מהות ההתקשרות ביני לבין המזמין. התמורה הנ"ל הינה מלאה, סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל. </span>
+                    </div>
+
+
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
 
                 <button type="submit" class="end-btn" ng-click="sendReport()"><span>שלח דוח</span></button>
 
@@ -127,6 +218,7 @@
                 <span>{{noIdentityALert}}</span>
             </div>
         </div>
+<<<<<<< HEAD
         <div ng-if="noValid" class="popup-success-wrap">
             <div class="popup-success">
                 <span class="pass pull-left" ng-click="closePopupValid()">&times</span>
@@ -134,6 +226,18 @@
             </div>
         </div>
     </div>
+=======
+    </form><!--ng-if="successSend" -->
+    <div  class="popup-success-wrap">
+    <div class="popup-success">
+         <div  class="float-left">
+        <button class="close"  >X</button>    
+    </div>
+ 
+        <img src="good-icon.png" />
+        <span>הדוח נשלח בהצלחה!</span>
+    </div></div></div>
+>>>>>>> 30b1432d2c295e26243a7a006c8f466a162bc2ff
 
     <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
     <script src="Scripts/Libraries/angular.min.js"></script>
