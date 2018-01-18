@@ -14,11 +14,13 @@
     <RootNamespace>Shmaya</RootNamespace>
     <AssemblyName>Shmaya</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,6 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\Factories\ConnectForPdf.js" />
     <Content Include="Images\building.jpg" />
     <Content Include="Images\excel-icon.png" />
     <Content Include="Images\phone-plus.png" />
@@ -117,6 +120,7 @@
     <Content Include="Partials\Templates\multiFormDropdownTemplate.html" />
     <Content Include="Partials\Templates\SearchTemplate.html" />
     <Content Include="Partials\Templates\TableCodeDetailsTemplate.html" />
+    <Content Include="SalaraySlipPdf.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\Constant\CodeTablesId.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookCtrl.js" />
@@ -254,7 +258,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>36667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Shmaya</IISUrl>
+          <IISUrl>http://localhost:23943/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
