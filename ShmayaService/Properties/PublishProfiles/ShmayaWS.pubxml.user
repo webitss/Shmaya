@@ -8,7 +8,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMWS\201801151727</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publish\ShmayaCRM\ShmayaCRMWS\201801171310</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Newtonsoft.Json.dll">
@@ -18,10 +18,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/11/2018 11:22:02</publishTime>
     </File>
     <File Include="bin/ShmayaService.dll">
-      <publishTime>01/15/2018 17:27:50</publishTime>
+      <publishTime>01/17/2018 13:10:38</publishTime>
     </File>
     <File Include="bin/ShmayaService.pdb">
-      <publishTime>01/15/2018 17:27:50</publishTime>
+      <publishTime>01/17/2018 13:10:38</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>01/11/2018 11:22:02</publishTime>
@@ -30,7 +30,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/11/2018 11:22:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/15/2018 17:27:50</publishTime>
+      <publishTime>01/15/2018 19:45:24</publishTime>
     </File>
   </ItemGroup>
 </Project>
