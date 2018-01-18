@@ -33,9 +33,10 @@ namespace ShmayaService.Entities
         public string area { get; set; }
         [DataMember]
         public DateTime? dtTimeTranslation { get; set; }
-		[DataMember][NoSendToSQL]
+        [DataMember]
+        [NoSendToSQL]
         public string nvTimeTranslation { get; set; }
-		[DataMember]
+        [DataMember]
         [NoSendToSQL]
         public int iTimeTranslation { get; set; }
         [DataMember]
@@ -124,15 +125,15 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public int iTranslatorId { get; set; }
-		[DataMember]
-		[NoSendToSQL]
-		public int iGlobalId { get; set; }
+        [DataMember]
+        [NoSendToSQL]
+        public int iGlobalId { get; set; }
 
-		#endregion
+        #endregion
 
-		#region methods
+        #region methods
 
-		public static List<Orders> GetOrders()
+        public static List<Orders> GetOrders()
         {
             try
             {
@@ -209,6 +210,7 @@ namespace ShmayaService.Entities
                 return false;
             }
         }
+
         public static int? OrderUpdate(Orders order, int iUserManagerId)
         {
             try
@@ -229,7 +231,7 @@ namespace ShmayaService.Entities
         {
             try
             {
-				//order.dtTimeTranslation = new DateTime(order.dtTimeTranslation);
+                //order.dtTimeTranslation = new DateTime(order.dtTimeTranslation);
                 List<SqlParameter> parameters = ObjectGenerator<Orders>.GetSqlParametersFromObject(order);
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
                 DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_INS", parameters);
@@ -249,7 +251,7 @@ namespace ShmayaService.Entities
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter("iStatusId", iStatusId));
                 parameters.Add(new SqlParameter("iOrderId", iOrderId));
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TChangeStatus_UPD",parameters);
+                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TChangeStatus_UPD", parameters);
                 return int.Parse(ds.Tables[0].Rows[0][0].ToString());
             }
             catch (Exception ex)
@@ -262,6 +264,4 @@ namespace ShmayaService.Entities
         #endregion
 
     }
-
-
 }

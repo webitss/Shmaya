@@ -112,7 +112,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{ title: 'סוג', fieldName: 'nvOrdersType' },
 				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.5 },
+				{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.8 },
 				{ title: 'כתובת', fieldName: 'nvAdress' },
 				{ title: 'טלפון', fieldName: 'nvPhoneNum' },
 				{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },

@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using ShmayaService.Utilities;
 using System.Configuration;
 
+
 namespace ShmayaService.Entities
 {
     [DataContract]
@@ -127,6 +128,47 @@ namespace ShmayaService.Entities
             {
                 Log.ExceptionLog(e.Message, "CheckIdentity");
                 return -1;
+            }
+        }
+
+        public static Result GetUserByIdentity(string nvIdentity)
+        {
+            try
+            {
+                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_SLCT_BY_Identity", new SqlParameter("nvIdentity", nvIdentity));
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int iResult = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+                    Result result = new Result();
+                    //result.iResult = iResult;
+                    if (iResult == 1)
+                    {
+                        string sResult = ds.Tables[2].Rows[0][0].ToString();
+                        result.sResult = sResult;
+                        result.iResult = int.Parse(ds.Tables[1].Rows[0][0].ToString());
+                    }
+                    else if (iResult == 0)
+                    {
+                        result.iResult = 0;
+                        result.sResult = "מספר זהות לא מזוהה, לא ניתן לבצע הזמנה.";
+                    }
+                    else if (iResult > 1)
+                    {
+                        result.iResult = 0;
+                        result.sResult = "מספר זהות מופיע מספר פעמים במערכת, לא ניתן לבצע הזמנה.";
+                    }
+                    return result;
+                }
+                return new Result();
+            }
+            catch (Exception e)
+            {
+                Log.ExceptionLog(e.Message, "CheckIdentity");
+                Result result = new Result();
+                result.iResult = - 1;
+                result.bResult = false;
+                result.sResult = e.Message;
+                return result;
             }
         }
 
