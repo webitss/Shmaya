@@ -24,7 +24,6 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{
 				    fieldName: 'iOrderId',
 				    title: 'ביטול',
-				    //type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
 				    template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAOrder(item)\'></div>',
 				    deleteAOrder: function (item) {
 				        //$scope.someone = item.nvFirstName + ' ' + item.nvLastName;

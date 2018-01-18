@@ -116,8 +116,9 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
         getServiceUrl: function () {
             var url = '';
             switch (document.location.hostname) {
-                case 'localhost':;
-                    url = "http://localhost:24151/";
+				case 'localhost':
+					url = "http://localhost:24151/";
+                    //url = "http://localhost:24151/";
                    // url = 'http://localhost/ShmayaService/'
                     break;
                 case '10.0.0.109':

@@ -27,7 +27,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					clickEvent: function (refund) {
 						if (refund.item == undefined) return;
 						$scope.refund2 = refund.item;
-						if ($scope.refund2.iMonthYearId instanceof String)
+						if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string')
 						{
 							$scope.tmpDate2 = $scope.refund2.iMonthYearId.substring(0, 2);
 							$scope.tmpDate1 = $scope.refund2.iMonthYearId.substring(3, 7);
@@ -65,7 +65,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								$scope.refundToSend = angular.copy($scope.refund2);
 								$scope.refundToSend.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
 								$scope.refundToSend.dtCreateDate = null;
-								if ($scope.refund2.iMonthYearId instanceof String)
+								if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string')
 								{
 									$scope.tmpDate2 = $scope.refundToSend.iMonthYearId.substring(0, 2);
 									$scope.tmpDate1 = $scope.refundToSend.iMonthYearId.substring(3, 7);
@@ -142,11 +142,15 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					$scope.sumRefunds = 0;
 					$scope.RefundsList.forEach(function (refund)
 					{
-						refund.iMonthYearId = refund.iMonthYearId + ""
-						$scope.tmpDate1 = refund.iMonthYearId.substring(0, 4);
-						$scope.tmpDate2 = refund.iMonthYearId.substring(4, 6);
-						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
-						refund.iMonthYearId = $scope.tmpDate
+						if (refund.iMonthYearId != 0) {
+							refund.iMonthYearId = refund.iMonthYearId + ""
+							$scope.tmpDate1 = refund.iMonthYearId.substring(0, 4);
+							$scope.tmpDate2 = refund.iMonthYearId.substring(4, 6);
+							$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+							refund.iMonthYearId = $scope.tmpDate
+						//}
+						else
+							refund.iMonthYearId = null;
 						if (refund.nvDocPath) {
 							refund.nvDocName = refund.nvDocPath;
 							refund.nvDocPath = connect.getFilesUrl() + refund.nvDocPath;
