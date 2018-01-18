@@ -64,7 +64,6 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public int iCommunicationFee { get; set; }
         [DataMember]
-        [NoSendToSQL]
         public double nBankCommunication { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -108,11 +107,11 @@ namespace ShmayaService.Entities
         [DataMember]
         public DateTime? dtCreateDate { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Methods
+		#region Methods
 
-        public static int CheckIdentity(string nvIdentity)
+		public static int CheckIdentity(string nvIdentity)
         {
             try
             {

@@ -26,7 +26,6 @@ namespace ShmayaService.Entities
 		[DataMember]
 		public double nPayment { get; set; }
 		[DataMember]
-		[NoSendToSQL]
 		public double nRefund { get; set; }
 		[DataMember]
 		[NoSendToSQL]
@@ -37,7 +36,7 @@ namespace ShmayaService.Entities
 		[DataMember]
 		public int iProductId { get; set; }
 		[DataMember]
-		public string iMonthYearId { get; set; }
+		public int iMonthYearId { get; set; }
 		[DataMember]
 		[NoSendToSQL]
 		public string nvMonthName { get; set; }

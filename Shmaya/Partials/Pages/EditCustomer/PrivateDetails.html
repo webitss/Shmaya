@@ -64,16 +64,16 @@
 			<input class="form-control" type="date" ng-model="user.dtResetCommunication" required />
 		</form-field>
 		<form-field span-text="סל תקשורת" class="col-md-6" ng-if="showCustomer&&!showAdmin">
-			<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNumHours(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart" required></form-dropdown>
+			<form-dropdown ng-model="user.iCommunicationCart" enablesearch="false" data="CommunicationCartList" ng-change="calculateNBankCommunication(user.iCommunicationCart)" identityfield="iCommunicationCart" datafield="nvCommunicationCart" required></form-dropdown>
 		</form-field>
 		<form-field span-text="סוג זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
 			<form-dropdown ng-model="user.iEntitlementTypeId" enablesearch="false" data="EligibilityTableList" ng-change="calculateBankHours(user.iEntitlementTypeId)" identityfield="iEntitlementTypeId" datafield="nvEntitlementType" required></form-dropdown>
 		</form-field>
-		<form-field span-text="מספר שעות זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
-			<input class="form-control" type="text" disabled ng-model="user.nNumHours" />
+		<form-field span-text="סך החזר" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<input class="form-control" type="text" disabled ng-model="user.nBankCommunication" />
 		</form-field>
-		<form-field span-text="בנק שעות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
-			<input class="form-control" type="text" disabled ng-model="nInitBankHours" number />
+		<form-field span-text="מספר שעות זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
+			<input class="form-control" type="text" ng-model="nInitBankHours" number />
 		</form-field>
 		<form-field span-text="סוג שירות" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
 			<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList" required></multi-form-dropdown>
