@@ -243,6 +243,7 @@
     <Content Include="Style\SmayaStyleSheet1.css" />
     <Content Include="Style\StyleSheet.css" />
     <Content Include="Web.config" />
+    <Content Include="x-command.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

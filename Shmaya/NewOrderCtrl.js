@@ -2,35 +2,12 @@
 NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts',
     function ($scope, orderConnect, $filter, orderAlerts) {
 
+        $scope.order =
+            {
+                dtDateTraslation_original: new Date()
+            }
+
         $scope.successSend = false;
-
-        $scope.maxDate = new Date();
-
-        $scope.showWeeks = false;
-
-        $scope.popup = {
-            opened: false
-        };
-
-        $scope.open = function () {
-            $scope.popup.opened = true;
-        };
-
-        $scope.open2 = function ($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            $scope.popup.opened = true;
-        };
-
-        $scope.disabled = function (date, mode) {
-            return (mode === 'day' && (date.getDay()));
-        };
-
-        $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
 
         $scope.getData = function () {
             orderConnect.post(true, 'GetUserCodeTables', { iUserId: 1 }, function (result) {
@@ -39,6 +16,18 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 $scope.orderTypeList = $filter('filter')(result, { Key: 'orderType' }, true)[0].Value;
                 $scope.areaList = $filter('filter')(result, { Key: 'area' }, true)[0].Value;
                 $scope.city = $filter('filter')(result, { Key: 'city' }, true)[0].Value;
+                $scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
+                $scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
+                $scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+                $scope.monthYearList.forEach(function (date) {
+                    $scope.tmpDate1 = date.nvName.substring(0, 4);
+                    $scope.tmpDate2 = date.nvName.substring(4, 6);
+                    $scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+                    date.nvName = $scope.tmpDate
+                })
+                $scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;
+                $scope.defMonth = $scope.monthList[new Date().getMonth()].iId;
+                $scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
             });
             $scope.getTranslators();
         };
@@ -61,29 +50,62 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                         $scope.order.iUserId = result.iResult;
                     }
                     else if (result.iResult == 0) {
-                        orderAlerts.alert(result.sResult);
+                        $scope.noIdentity = true;
+                        $scope.noIdentityALert = result.sResult;
                         $scope.order.nameCustomer = "";
                         $scope.order.nvIdentity = "";
                     }
-                    else
-                        orderAlerts.alert(result.sResult);
+                    else {
+                        $scope.noIdentity = true;
+                        $scope.noIdentityALert = result.sResult;
+                    }
                 }
-                else
-                    OrderAlerts.alert('ארעה שגיאה בלתי צפויה');
+                else {
+                    $scope.noIdentity = true;
+                    $scope.noIdentityALert = 'ארעה שגיאה בלתי צפויה';
+                }
             });
         };
-        //OrderInsert(Orders order, int iUserManagerId)
+
+        $scope.closePopupSend = function () {
+            $scope.successSend = false;
+        }
+
+        $scope.closePopupIdentity = function () {
+            $scope.noIdentity = false;
+        }
+
+        $scope.closePopupValid = function () {
+            $scope.noValid = false;
+        }
+
+
         $scope.sendReport = function () {
+            if (!$scope.order.iTypeOrder || !$scope.order.iTypeTranslation
+                || !$scope.order.nvIdentity || !$scope.order.nameCustomer
+                || !$scope.order.iSelectedTranslator || !$scope.order.dtDateTraslation_original
+                || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original || !$scope.order.dtTimeWaiting_original
+                || !$scope.order.iArea || !$scope.order.iCityId) {
+                $scope.noValid = true;
+                return;
+            }
+            $scope.order.iMonthYearId = $scope.defMonthYear;
             $scope.order.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
+            $scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
             orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1 }, function (result) {
                 if (result && result > 0) {
-                    $scope.order = [];
+                    $scope.order =
+                    {
+                        dtDateTraslation_original: new Date()
+                    }
                     $scope.successSend = true;
                 }
-                else
-                    OrderAlerts.alert('ארעה שגיאה בלתי צפויה');
+                else {
+                    $scope.noIdentity = true;
+                    $scope.noIdentityALert = 'ארעה שגיאה בלתי צפויה';
+                }
             });
         };
 

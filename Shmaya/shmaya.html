@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>הזמנה חדשה</title>
+    <title>דיווח תרגום</title>
     <link rel="shortcut icon" href="shmaya-Logo.ico" />
     <link href="Shmaya/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="Shmaya/bootstrap/bootstrap-theme.css" rel="stylesheet" />
@@ -14,117 +14,126 @@
 </head>
 <body ng-app="NOApp" ng-controller="NewOrderCtrl">
     <div class="pos-relative">
-    <div class="header-shmaya">
-        <img src="bg-shmaya.png" />
-    </div>
-
-    <div class="header-form"><span>דוח תרגום</span></div>
-
-    <form name="orderForm">
-        <div class="form-wrap">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-item row ">
-                        <span class="text col-md-4">סוג הזמנה</span>
-                        <div class="input col-md-7">
-                            <order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-item row ">
-                        <span class="text col-md-4">סוג תרגום</span>
-                        <div class="input col-md-7">
-                            <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">מספר זהות</span>
-                        <div class="input col-md-7">
-                            <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
-                        </div>
-                    </div>
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">שם לקוח</span>
-                        <div class="input col-md-7">
-                            <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
-                        </div>
-                    </div>
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">שם מתורגמן</span>
-                        <div class="input col-md-7">
-                            <order-form-dropdown ng-model="order.iSelectedTranslator" name="selectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
-                        </div>
-                    </div>
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">תאריך</span>
-                        <div class="input col-md-7">
-                            <!--<p class="input-group">
-                                <input type="text" uib-datepicker-popup ng-model="order.dtDateTraslation" is-open="popup.opened"
-                                    datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                            </p>-->
-                            <input type="date" ng-model="order.dtDateTraslation_original" required />
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">שעת התחלה</span>
-                        <div class="input col-md-7">
-                            <input type="time" ng-model="order.dtTimeBegin_original" required />
-                        </div>
-                    </div>
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">משך תרגום</span>
-                        <div class="input col-md-7">
-                            <input type="time" ng-model="order.dtTimeTranslation_original" required />
-                        </div>
-                    </div>
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">איזור</span>
-                        <div class="input col-md-7">
-                            <order-form-dropdown ng-model="order.iArea" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
-                        </div>
-                    </div>
-
-                    <div class="form-item row ">
-                        <span class="text col-md-4">עיר</span>
-                        <div class="input col-md-7">
-                            <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <button type="submit" class="end-btn" ng-click="sendReport()"><span>שלח דוח</span></button>
-
+        <div class="header-shmaya">
+            <img src="bg-shmaya.png" />
         </div>
-    </form><!-- -->
-    <div ng-if="successSend" class="popup-success-wrap">
-    <div class="popup-success">
-        <img src="good-icon.png" />
-        <span>הדוח נשלח בהצלחה!</span>
-    </div></div></div>
+
+        <div class="header-form"><span>דוח תרגום</span></div>
+
+        <form name="orderForm" id="orderForm">
+            <div class="form-wrap">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-item row ">
+                            <span class="text col-md-4">סוג הזמנה</span>
+                            <div class="input col-md-7">
+                                <order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-item row ">
+                            <span class="text col-md-4">סוג תרגום</span>
+                            <div class="input col-md-7">
+                                <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">מספר זהות</span>
+                            <div class="input col-md-7">
+                                <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
+                            </div>
+                        </div>
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">שם לקוח</span>
+                            <div class="input col-md-7">
+                                <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
+                            </div>
+                        </div>
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">שם מתורגמן</span>
+                            <div class="input col-md-7">
+                                <order-form-dropdown ng-model="order.iSelectedTranslator" name="selectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></order-form-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">תאריך</span>
+                            <div class="input col-md-7">
+                                <input type="date" ng-model="order.dtDateTraslation_original" required />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">שעת התחלה</span>
+                            <div class="input col-md-7">
+                                <input type="time" ng-model="order.dtTimeBegin_original" required />
+                            </div>
+                        </div>
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">משך תרגום</span>
+                            <div class="input col-md-7">
+                                <input type="time" ng-model="order.dtTimeTranslation_original" required />
+                            </div>
+                        </div>
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">איזור</span>
+                            <div class="input col-md-7">
+                                <order-form-dropdown ng-model="order.iArea" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="form-item row ">
+                            <span class="text col-md-4">עיר</span>
+                            <div class="input col-md-7">
+                                <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button type="submit" class="end-btn" ng-click="sendReport()"><span>שלח דוח</span></button>
+
+            </div>
+        </form>
+
+        <div ng-if="successSend" class="popup-success-wrap">
+            <div class="popup-success">
+                <span class="pass pull-left" ng-click="closePopupSend()">&times</span>
+                <img src="good-icon.png" />
+                <span>הדוח נשלח בהצלחה!</span>
+            </div>
+        </div>
+        <div ng-if="noIdentity" class="popup-success-wrap">
+            <div class="popup-success">
+                <span class="pass pull-left" ng-click="closePopupIdentity()">&times</span>
+                <span>{{noIdentityALert}}</span>
+            </div>
+        </div>
+        <div ng-if="noValid" class="popup-success-wrap">
+            <div class="popup-success">
+                <span class="pass pull-left" ng-click="closePopupValid()">&times</span>
+                <span>ערכים נחוצים חסרים</span>
+            </div>
+        </div>
+    </div>
 
     <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
     <script src="Scripts/Libraries/angular.min.js"></script>
