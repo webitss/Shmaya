@@ -51,6 +51,12 @@ body {
     font-size: 17px;
 }
 
+
+.v-align-b  {vertical-align: bottom;
+    
+}
+
+
 input {
     background-color: #F7F7F7;
     border-style: none none solid none;
@@ -71,14 +77,19 @@ input {
 .header-form {
     background-color: #188587;
     text-align: center;
+  
+    padding: 12px;
+}
+.header-form span{
+    
     color: white;
     font-size: 25px;
-    padding: 12px;
+
 }
 
 
 .form-wrap {
-    padding: 39px 18%;
+    padding: 39px 17%;
 }
 
     .form-wrap row {
@@ -135,10 +146,11 @@ input {
 
 
 .popup-success {
+  
     margin: auto;
     width: 300px;
     background-color: #188587;
-    padding: 20px 0;
+    padding: 20px 18px;
     margin-top: 19%;
 }
 
