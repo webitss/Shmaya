@@ -148,7 +148,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							$scope.tmpDate2 = refund.iMonthYearId.substring(4, 6);
 							$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
 							refund.iMonthYearId = $scope.tmpDate
-						//}
+						}
 						else
 							refund.iMonthYearId = null;
 						if (refund.nvDocPath) {

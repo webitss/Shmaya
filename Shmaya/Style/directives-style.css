@@ -19,6 +19,7 @@
 
 .span-dropdown-value {
     white-space: normal;
+    text-align:right !important;
 }
 
 .btn-group .combo-left {

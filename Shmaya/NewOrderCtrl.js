@@ -81,6 +81,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 
 
         $scope.sendReport = function () {
+            if (!$scope.order.bAgree) alert();
             if (!$scope.order.iTypeOrder || !$scope.order.iTypeTranslation
                 || !$scope.order.nvIdentity || !$scope.order.nameCustomer
                 || !$scope.order.iSelectedTranslator || !$scope.order.dtDateTraslation_original
@@ -104,7 +105,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 }
                 else {
                     $scope.noIdentity = true;
-                    $scope.noIdentityALert = 'ארעה שגיאה בלתי צפויה';
+                    $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
             });
         };

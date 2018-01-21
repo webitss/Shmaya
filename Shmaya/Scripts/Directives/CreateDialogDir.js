@@ -17,6 +17,7 @@ companionApp.directive('createDialog', ['$document', '$compile', "$rootScope", "
             backdropCancel: '=?',
             footerTemplate: '=?',
             modalClass: '=?',
+            cancelFn: '=?',
             css: '=?',
             draggable: '=?',
             width: '@?',
@@ -75,6 +76,8 @@ companionApp.directive('createDialog', ['$document', '$compile', "$rootScope", "
 
             var closeFn = function () {
                 scope.ngIf = false;
+                if (scope.cancelFn)
+                    scope.cancelFn();
                 //if (scope.ngIf.indexOf('Confirm.bConfirm') != -1)
                 //    $rootScope.Confirm.bConfirm = false;
                 //else
