@@ -1,6 +1,6 @@
 ﻿"use strict"
-companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter',
-	function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter) {
+companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter','alerts',
+	function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter, alerts) {
 		//לא התבצעו שיחות 
         $scope.noConversation = null;
 
@@ -52,8 +52,10 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
         
 		$scope.saveConversation = function () {
             $scope.$broadcast('show-errors-check-validity');
-            if (!$scope.form.newConversationForm.$valid) return;
-
+            if (!$scope.form.newConversationForm.$valid) {
+                alerts.alert('ערכים נחוצים חסרים או שגויים');
+                return;
+            }
 			connect.post(true, 'CreateNewConversation', { conversation: $scope.newConversation/*, iCreateUserId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId*/ }, function (result) {
                 $scope.bIsNewConversationOpen = false;
 				$scope.newConversation = {};
