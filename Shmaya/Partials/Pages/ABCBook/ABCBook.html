@@ -53,35 +53,35 @@
 
 			<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
 
-				<create-dialog ng-if="editCustomer" id="editCustomer" is-sub="true" title="{{'כרטיס לקוח- שם לקוח'}}" cancel="true">
+				<create-dialog ng-if="editCustomer" id="editCustomer" is-sub="true" close-func="getData()" title="{{'כרטיס לקוח- שם לקוח'}}" cancel="true">
 					<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 
-				<create-dialog ng-if="newMessage2.dialogIsOpen" id="sendMassege" is-sub="true" cancelFn="hello()" image="glyphicon glyphicon-send color-gray-message" title="{{'שליחת הודעה'}}" cancel="true">
+				<create-dialog ng-if="newMessage2.dialogIsOpen" id="sendMassege" is-sub="true" image="glyphicon glyphicon-send color-gray-message" title="{{'שליחת הודעה'}}" cancel="true">
 					<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter" ng-init="whom='#';list=listToSend"></div>
 				</create-dialog>
 
 				<div ng-repeat="user in ABCBookCustomers">
-					<create-dialog ng-if="user.dialogIsOpen" is-sub="true" item="user" image="glyphicon glyphicon-user"
+					<create-dialog ng-if="user.dialogIsOpen" is-sub="true" item="user" close-func="getData()" image="glyphicon glyphicon-user"
 								   title="{{user.nvFirstName+' '+user.nvLastName}}" id="{{item.iUserId}}" cancel="true">
 						<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
 					</create-dialog>
 				</div>
 
 				<div ng-repeat="user in ABCBookProviders">
-					<create-dialog ng-if="user.dialogIsOpen" item="user" is-sub="true" image="glyphicon glyphicon-user"
+					<create-dialog ng-if="user.dialogIsOpen" item="user" is-sub="true" close-func="getData()" image="glyphicon glyphicon-user"
 								   title="{{user.nvFirstName+' '+user.nvLastName}}" id="{{user.iUserId}}" cancel="true">
 						<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
 					</create-dialog>
 				</div>
 				<div ng-repeat="user in ABCBookAdministrator">
-					<create-dialog ng-if="user.dialogIsOpen" item="user" is-sub="true" image="glyphicon glyphicon-user"
+					<create-dialog ng-if="user.dialogIsOpen" item="user" is-sub="true" close-func="getData()" image="glyphicon glyphicon-user"
 								   title="{{user.nvFirstName+' '+user.nvLastName}}" id="{{user.iUserId}}" cancel="true">
 						<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>
 					</create-dialog>
 				</div>
 
-				<create-dialog ng-if="newUser.dialogIsOpen" id="newUser" cancel="true">
+				<create-dialog ng-if="newUser.dialogIsOpen" id="newUser" close-func="getData()" cancel="true">
 					<!--is-sub="true"-->
 					<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
 					<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>

@@ -26,28 +26,34 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 								            title: "שגיאה",
 								            scope: $rootScope,
 								            backdrop: true,
+								            css: 'z-index: 2500;',
 								            modalClass: "modal modalAlert"
 								        });
-								        return;
+								        return false;
 								    }
-								    connect.post(true, 'EligibilityUpdate', { eligibility: $scope.eligibility2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
-								        if (result && result > 0) {
-								            console.log($scope.eligibility.iEntitlementTypeId,
-												$scope.eligibility.nvEntitlementType,
-												$scope.eligibility.nNumHours,
-												$rootScope.user.iUserId
-											)
+								    else {
+								        connect.post(true, 'EligibilityUpdate', { eligibility: $scope.eligibility2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
+								            if (result && result > 0) {
+								                console.log($scope.eligibility.iEntitlementTypeId,
+                                                    $scope.eligibility.nvEntitlementType,
+                                                    $scope.eligibility.nNumHours,
+                                                    $rootScope.user.iUserId
+                                                )
 
-								            console.log('EligibilityUpdate:' + result);
-								            var savingStatus = "השינויים נשמרו בהצלחה";
-								            $rootScope.notification(savingStatus);
-								            $scope.user.dialogIsOpen = false;
-								        }
-								        else {
-								            alert('ארעה שגיאה בלתי צפויה');
-								        }
-								    });
-								}, function () { }
+								                console.log('EligibilityUpdate:' + result);
+								                var savingStatus = "השינויים נשמרו בהצלחה";
+								                $rootScope.notification(savingStatus);
+								                $scope.user.dialogIsOpen = false;
+								            }
+								            else {
+								                alert('ארעה שגיאה בלתי צפויה');
+								            }
+								        });
+								        return true;
+								    }
+								}, function () {
+								    $scope.getData();
+								}
 
 							);
 					    },
@@ -81,24 +87,30 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 				            title: "שגיאה",
 				            scope: $rootScope,
 				            backdrop: true,
+				            css: 'z-index: 2500;',
 				            modalClass: "modal modalAlert"
 				        });
-				        return;
+				        return false;
 				    }
-				    connect.post(true, 'EligibilityInsert', { eligibility: $scope.newEligibility, iUserManagerId: $rootScope.user.iUserId }, function (result) {
-				        if (result && result > 0) {
-				            console.log('EligibilityInsert:' + result);
-				            var savingStatus = "השינויים נשמרו בהצלחה";
-				            $rootScope.notification(savingStatus);
-				            $scope.newEligibility.dialogIsOpen = false;
-				            $scope.newEligibility = {}
-				            $scope.getData();
-				        }
-				        else {
-				            alert('ארעה שגיאה בלתי צפויה');
-				        }
-				    });
-				}, function () { }
+				    else {
+				        connect.post(true, 'EligibilityInsert', { eligibility: $scope.newEligibility, iUserManagerId: $rootScope.user.iUserId }, function (result) {
+				            if (result && result > 0) {
+				                console.log('EligibilityInsert:' + result);
+				                var savingStatus = "השינויים נשמרו בהצלחה";
+				                $rootScope.notification(savingStatus);
+				                $scope.newEligibility.dialogIsOpen = false;
+				                $scope.newEligibility = {}
+				                $scope.getData();
+				            }
+				            else {
+				                alert('ארעה שגיאה בלתי צפויה');
+				            }
+				        });
+				        return true;
+				    }
+				}, function () {
+				    $scope.getData();
+				}
 
 			);
 	    }

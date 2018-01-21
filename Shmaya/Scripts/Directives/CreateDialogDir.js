@@ -17,7 +17,7 @@ companionApp.directive('createDialog', ['$document', '$compile', "$rootScope", "
             backdropCancel: '=?',
             footerTemplate: '=?',
             modalClass: '=?',
-            cancelFn: '=?',
+            closeFunc: '&?',
             css: '=?',
             draggable: '=?',
             width: '@?',
@@ -46,6 +46,7 @@ companionApp.directive('createDialog', ['$document', '$compile', "$rootScope", "
             scope.comment = angular.isDefined(scope.comment) ? scope.comment : '';
             scope.image = angular.isDefined(scope.image) ? scope.image : '';
             scope.backdrop = angular.isDefined(scope.backdrop) ? scope.backdrop : true;
+            scope.closeFunc = angular.isDefined(scope.closeFunc) ? scope.closeFunc : null;
             scope.success = angular.isDefined(scope.success) ? scope.success : { label: 'OK', fn: null };
             scope.cancel = angular.isDefined(scope.cancel) ? scope.cancel : { label: 'Close', fn: null };
             scope.backdropClass = angular.isDefined(scope.backdropClass) ? scope.backdropClass : "modal-backdrop";
@@ -76,8 +77,6 @@ companionApp.directive('createDialog', ['$document', '$compile', "$rootScope", "
 
             var closeFn = function () {
                 scope.ngIf = false;
-                if (scope.cancelFn)
-                    scope.cancelFn();
                 //if (scope.ngIf.indexOf('Confirm.bConfirm') != -1)
                 //    $rootScope.Confirm.bConfirm = false;
                 //else
@@ -109,6 +108,8 @@ companionApp.directive('createDialog', ['$document', '$compile', "$rootScope", "
             //x button
             scope.$modalCancel = function () {
                 var callFn = scope.cancel.fn || closeFn;
+                if (scope.closeFunc)
+                    scope.closeFunc();
                 callFn.call(this);
                 scope.$modalClose();
                 scope.listToSend = [];

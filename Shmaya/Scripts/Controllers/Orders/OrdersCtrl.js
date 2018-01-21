@@ -2,6 +2,11 @@
 companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 	    $scope.isEdit = false;
+
+	    $scope.hello = function () {
+	        alert("hello");
+	    }
+
 	    $scope.prepareData = function () {
 	        $scope.isDataLoaded = 0;
 	        $scope.gridIdentity = 'OrdersList';
