@@ -137,6 +137,13 @@ input {
         background-color: #136466;
     }
 
+    .end-btn[disabled] {
+    background-color: #92cfd1;
+   cursor:not-allowed;
+}
+
+
+
 .popup-success-wrap {
     position: absolute;
     top: 0;
