@@ -43,25 +43,25 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-item row ">
-                            <span class="text col-md-3">סוג הזמנה</span>
+                            <span class="text col-md-3">סוג הזמנה<span ng-if="!order.iTypeOrder" style="color:red">*</span></span>
                             <div style="text-align:right" class="input col-md-8">
                                 <order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">מספר זהות</span>
+                            <span class="text col-md-3">מספר זהות<span ng-if="!order.nvIdentity" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">שם לקוח</span>
+                            <span class="text col-md-3">שם לקוח<span ng-if="!order.nameCustomer" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">שם מתורגמן</span>
+                            <span class="text col-md-3">שם מתורגמן<span ng-if="!order.iSelectedTranslator" style="color:red">*</span></span>
                             <div style="text-align:right" class="input col-md-8">
                                 <order-form-dropdown
                                     ng-model="order.iSelectedTranslator"
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="form-item row ">
-                            <span class="text col-md-3">תאריך</span>
+                            <span class="text col-md-3">תאריך<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <input type="date" ng-model="order.dtDateTraslation_original" required />
                             </div>
@@ -85,19 +85,19 @@
 
                     <div class="col-md-6">
                         <div class="form-item row ">
-                            <span class="text col-md-3">סוג תרגום</span>
+                            <span class="text col-md-3">סוג תרגום<span ng-if="!order.iTypeTranslation" style="color:red">*</span></span>
                             <div style="text-align:right" class="input col-md-8">
                                 <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required></order-form-dropdown>
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">שעת התחלה</span>
+                            <span class="text col-md-3">שעת התחלה<span ng-if="!order.dtTimeBegin_original" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <input type="time" ng-model="order.dtTimeBegin_original" required />
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">משך תרגום</span>
+                            <span class="text col-md-3">משך תרגום<span ng-if="!order.dtTimeTranslation_original" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <input type="time" ng-model="order.dtTimeTranslation_original" required />
                             </div>
@@ -105,17 +105,17 @@
                         <div class="form-item row ">
                             <span class="text col-md-3">זמן המתנה</span>
                             <div class="input col-md-8">
-                                <input type="time" ng-model="order.dtTimeWaiting_original" required />
+                                <input type="time" ng-model="order.dtTimeWaiting_original"/>
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">איזור</span>
+                            <span class="text col-md-3">איזור<span ng-if="!order.iArea" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <order-form-dropdown ng-model="order.iArea" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
                             </div>
                         </div>
                         <div class="form-item row ">
-                            <span class="text col-md-3">עיר</span>
+                            <span class="text col-md-3">עיר<span ng-if="!order.iCityId" style="color:red">*</span></span>
                             <div class="input col-md-8">
                                 <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
                             </div>

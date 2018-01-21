@@ -14,8 +14,11 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	    $rootScope.newMessage2 = { dialogIsOpen: false };
 	    $scope.messageFromSelect = false
 
+	    $scope.hello = function () {
+	        alert("hello");
+	    }
 
-		$scope.prepareData = function () {
+	    $scope.prepareData = function () {
 	        $scope.getData();
 	        $scope.isDataLoadedCustomers = 0;
 	        $scope.isDataLoadedProviders = 0;
