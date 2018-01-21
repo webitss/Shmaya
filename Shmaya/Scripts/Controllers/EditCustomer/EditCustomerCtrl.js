@@ -44,6 +44,7 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 			$scope.languageList = $filter('filter')(result, { Key: 'language' }, true)[0].Value;
 			$scope.isWorkerList = $filter('filter')(result, { Key: 'isWorker' }, true)[0].Value;
 			$scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
+			$scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
 			$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
 			//$scope.monthYearList.forEach(function (date) {
 			//	$scope.tmpDate1 = date.nvName.substring(0, 4);
