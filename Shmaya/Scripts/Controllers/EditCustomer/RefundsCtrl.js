@@ -9,15 +9,16 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isDelete = false;
 			$scope.vat = 17;
 			$scope.isReference = false;
-			//if ($scope.user.dtResetHours != null) {
-			//	$scope.DateOfRenewal = $scope.user.dtResetHours.getFullYear();
-			//	//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-			//	//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-			//	while (($scope.DateOfRenewal) < (new Date().getFullYear()))
-			//	{
-			//		$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear()+4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-			//	}
-			//}
+			if ($scope.user.dtResetHours != null) {
+				$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
+				//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+				//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+				while (($scope.YearOfRenewal) < (new Date().getFullYear()))
+				{
+					$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear() + 4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+					$scope.YearOfRenewal += 4;
+				}
+			}
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
@@ -242,15 +243,17 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			);
 	    }
 		$scope.checkRefund = function (refund) {
-			if ((refund.iProductId == 1 && $scope.user.iBuyCryingDetector == 1 /*&& $scope.chngProd == true*/) || (refund.iProductId == 1 && refund.nPayment > 1075 /*&& $scope.chngProd == true*/)) {
-				alerts.alert("לא ניתן לרכוש את המוצר");
-				$scope.refund2 = {};
-				$scope.newRefund = {};
-				//$scope.chngProd = false;
-				$scope.flagChange = false;
-	            return false;
-	        }
-			if (refund.iProductId == 30 && $scope.flagFax == 1 && $scope.chngProd==true) {
+			if ((refund.iProductId == 1 && $scope.user.iBuyCryingDetector == 1 && ($scope.chngProd == true || $scope.chngProd == undefined))) 
+				if(refund.iProductId == 1 && refund.nPayment > 1075 && ($scope.chngProd == true || $scope.chngProd == undefined))
+				{
+					alerts.alert("לא ניתן לרכוש את המוצר");
+					$scope.refund2 = {};
+					$scope.newRefund = {};
+					$scope.chngProd = false;
+					$scope.flagChange = false;
+					return false;
+				}
+			if (refund.iProductId == 30 && $scope.flagFax == 1 && ($scope.chngProd == true || $scope.chngProd == undefined)) {
 				alerts.alert("לא ניתן לקבל החזר על המוצר");
 				$scope.refund2 = {};
 				$scope.newRefund = {};
