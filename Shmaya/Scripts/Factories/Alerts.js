@@ -81,7 +81,7 @@ companionApp.factory('alerts', ['$rootScope', '$uibModal', function ($rootScope,
                         //$rootScope.$modalClose();
                         if (OKcallback)
                             var res = OKcallback();
-                        if(res)
+                        if(res == true || res == undefined)
                             modalInstance.close();
                     };
                     $scope.cancel = function () {
