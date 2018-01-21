@@ -115,7 +115,10 @@ input {
 
 
 
-
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
 
 
 

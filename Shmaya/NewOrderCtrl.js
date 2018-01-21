@@ -105,7 +105,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 }
                 else {
                     $scope.noIdentity = true;
-                    $scope.noIdentityALert = 'ארעה שגיאה בלתי צפויה';
+                    $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
             });
         };

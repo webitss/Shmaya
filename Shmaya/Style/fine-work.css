@@ -2767,7 +2767,7 @@ md-datepicker {
 	text-overflow: ellipsis;
 	display: inline-block;
 	width: 92%;
-	text-align: right;
+	text-align: right !important;
 }
 
 .form-combo .dropdown-content li.active-li, .form-combo .dropdown-content li:active {
