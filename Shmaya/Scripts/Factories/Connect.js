@@ -116,9 +116,10 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
         getServiceUrl: function () {
             var url = '';
             switch (document.location.hostname) {
-                case 'localhost':;
+				case 'localhost':
+					url = "http://localhost:24151/";
                     //url = "http://localhost:24151/";
-                    url = 'http://localhost/ShmayaService/'
+                   // url = 'http://localhost/ShmayaService/'
                     break;
                 case '10.0.0.109':
                     url = 'http://10.0.0.109/AyeletService/';

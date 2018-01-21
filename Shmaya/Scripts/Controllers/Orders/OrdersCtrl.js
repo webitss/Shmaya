@@ -24,7 +24,6 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{
 				    fieldName: 'iOrderId',
 				    title: 'ביטול',
-				    //type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
 				    template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAOrder(item)\'></div>',
 				    deleteAOrder: function (item) {
 				        //$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
@@ -75,8 +74,8 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 						order.iMonthYearId = order.iMonthYearId + ""
 						$scope.tmpDate1 = order.iMonthYearId.substring(0, 4);
 						$scope.tmpDate2 = order.iMonthYearId.substring(4, 6);
-						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
-						order.iMonthYearId = $scope.tmpDate
+						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1;
+						order.iMonthYearId = $scope.tmpDate;
 					})
 				});
 		

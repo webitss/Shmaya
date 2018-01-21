@@ -71,8 +71,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        }
 	    }
 
-	    $scope.calculateNumHours = function (iCommunicationCart) {
-	        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: iCommunicationCart }, true)[0].nTariff;
+		$scope.calculateNBankCommunication = function (iCommunicationCart) {
+			$scope.user.nBankCommunication = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: iCommunicationCart }, true)[0].nTariff;
 	    };
 
 		$scope.calculateBankHours = function (iEntitlementTypeId) {
@@ -92,7 +92,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				function (result) {
 				    $scope.CommunicationCartList = result;
 				    if ($scope.user && $scope.user.iCommunicationCart)
-				        $scope.user.nNumHours = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
+						$scope.user.nBankCommunication = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				});
 	        $scope.user.dtResetCommunication = new Date();
 	        $scope.userTypeList.splice(0, 2);

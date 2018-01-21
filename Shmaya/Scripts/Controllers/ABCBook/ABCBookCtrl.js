@@ -16,7 +16,6 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 
 
 		$scope.prepareData = function () {
-			$scope.filterFields = [];
 	        $scope.getData();
 	        $scope.isDataLoadedCustomers = 0;
 	        $scope.isDataLoadedProviders = 0;

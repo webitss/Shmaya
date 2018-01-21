@@ -25,7 +25,6 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 									$scope.monthToSend = angular.copy($scope.month2);
 									$scope.monthToSend.dtGlobalDateBegin = angular.copy($scope.month2.dtGlobalDateBegin_original);
 									$scope.monthToSend.dtGlobalDateEnd = angular.copy($scope.month2.dtGlobalDateEnd_original);
-									console.log(JSON.stringify($scope.monthToSend));
 									$scope.tmpDate2 = $scope.monthToSend.iMonthYearId.substring(0, 2);
 									$scope.tmpDate1 = $scope.monthToSend.iMonthYearId.substring(3, 7);
 									$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
@@ -80,6 +79,10 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 				"<label>עד תאריך</label><input type='date' class='form-control' required ng-model='newMonth.dtGlobalDateEnd' required/>";
 			alerts.custom($scope.pop, 'הוספת ערך', $scope,
 				function () {
+					$scope.tmpDate2 = $scope.newMonth.iMonthYearId.substring(0, 2);
+					$scope.tmpDate1 = $scope.newMonth.iMonthYearId.substring(3, 7);
+					$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+					$scope.newMonth.iMonthYearId = $scope.tmpDate
 					connect.post(true, 'monthInsert', { month: $scope.newMonth, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 						if (result && result > 0) {
 							console.log('monthInsert:' + result);

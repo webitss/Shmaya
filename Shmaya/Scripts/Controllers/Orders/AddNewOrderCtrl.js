@@ -32,15 +32,22 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			var Orderinsert_update = 'OrderInsert';
 
 
-		$scope.saveOrders = function () {
+		$scope.saveOrders = function ()
+		{
 	        $scope.$broadcast('show-errors-check-validity');
 	        if (!$scope.formOrder.$valid) {
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
 	            return;
-	        }
-	        $scope.orderToSend = angular.copy($scope.order);
+			}
+			$scope.orderToSend = angular.copy($scope.order);
+			if ($scope.orderToSend.iMonthYearId instanceof String || typeof $scope.orderToSend.iMonthYearId === 'string') {
+				$scope.tmpDate2 = $scope.orderToSend.iMonthYearId.substring(0, 2);
+				$scope.tmpDate1 = $scope.orderToSend.iMonthYearId.substring(3, 7);
+				$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+				$scope.orderToSend.iMonthYearId = $scope.tmpDate
+			}
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
@@ -63,15 +70,17 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	            else {
 	                alert('ארעה שגיאה בלתי צפויה');
 	            }
-	        });
+			});
+			$scope.getData();
 	    }
-
 		$scope.getData = function () {
 			$scope.OrdersList.forEach(function (order) {
-				$scope.tmpDate2 = order.iMonthYearId.substring(0, 2);
-				$scope.tmpDate1 = order.iMonthYearId.substring(3, 7);
-				$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
-				order.iMonthYearId = $scope.tmpDate
+				if (order.iMonthYearId instanceof String || typeof order.iMonthYearId === 'string') {
+					$scope.tmpDate2 = order.iMonthYearId.substring(0, 2);
+					$scope.tmpDate1 = order.iMonthYearId.substring(3, 7);
+					$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+					order.iMonthYearId = $scope.tmpDate
+				}
 			})
 	        connect.post(true, 'GetUsers',
 				{ iUserType: 2, iStatusId: 0},

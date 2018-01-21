@@ -25,7 +25,6 @@
 			<div class="row" ng-if="showCustomer">
 				<grid columns="columnsCustomers"
 					  data="ABCBookCustomers"
-					  filter-fields="filterFields"
 					  class="color-gray"
 					  is-data-loaded="isDataLoadedCustomers"
 					  footer-text="ערכים"
@@ -35,7 +34,6 @@
 			<div class="row" ng-if="!showCustomer&&!showAdmin">
 				<grid columns="columnsProviders"
 					  data="ABCBookProviders"
-					  filter-fields="filterFields"
 					  class="color-gray"
 					  is-data-loaded="isDataLoadedProviders"
 					  footer-text="ערכים"
@@ -45,7 +43,6 @@
 			<div class="row" ng-if="showAdmin">
 				<grid columns="columns"
 					  data="ABCBookAdministrator"
-					  filter-fields="filterFields"
 					  class="color-gray"
 					  is-data-loaded="isDataLoaded"
 					  footer-text="ערכים"
