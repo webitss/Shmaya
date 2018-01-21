@@ -1,6 +1,6 @@
 "use strict";
 appMessagePdf.factory("ConnectForPdf", ['$http', function ($http) {
-    var urlBase = 'http://localhost/ShmayaService/Service.svc/';
+    var urlBase = 'http://qa.webit-track.com/ShmayaCRMWs/Service.svc/';
     //qa
     //  var urlBase = 'http://qa.webit-track.com/FWSalryWS/Service1.svc/';
 
