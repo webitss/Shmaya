@@ -71,7 +71,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	                alert('ארעה שגיאה בלתי צפויה');
 	            }
 			});
-			$scope.getData();
 	    }
 		$scope.getData = function () {
 			$scope.OrdersList.forEach(function (order) {

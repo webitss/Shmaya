@@ -78,6 +78,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 		$scope.calculateBankHours = function (iEntitlementTypeId) {
 			if ($scope.user && $scope.user.iEntitlementTypeId)
 				$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+			$scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 	    };
 
 		$scope.getData = function () {

@@ -1,36 +1,135 @@
 <!DOCTYPE html>
-<html ng-app="SalaraySlipPdf">
+<html ng-app="appMessagePdf">
 <head>
-    <link href="Style/bootstrap.min.css" rel="stylesheet" />
-    <link href="Style/bootstrap-rtl.min.css" rel="stylesheet" />
-    <link href="Style/StyleSheet.css" rel="stylesheet" />
-    <link href="Style/font-awesome.min.css" rel="stylesheet" />
+	<link href="Style/bootstrap.min.css" rel="stylesheet" />
+	<link href="Style/bootstrap-rtl.min.css" rel="stylesheet" />
+	<link href="Style/StyleSheet.css" rel="stylesheet" />
+	<link href="Style/FWManagement.css" rel="stylesheet" />
+	<link href="Style/font-awesome.min.css" rel="stylesheet" />
 </head>
-<body ng-controller="SalaraySlipPdfCtrl" id="SalaraySlipPdf">
- <div class="SlipPdfPadding">
-     <div class="row">
-         <div class="col-md-6"></div>
-         <div class="col-md-2"></div>
-         <div class="col-md-4"></div>
-     </div>
 
- </div>   
+<body ng-controller="MessageInPdfCtrl" id="OrderForm">
+	<div>
+		<div class="container" id="pdf">
+			<wait></wait>
+
+			<style>
+				.grid-paging {
+					display: none;
+				}
+
+				.gridRow.headerFilter {
+					display: none;
+				}
+
+				.gridBody {
+					height: inherit !important;
+					overflow: hidden;
+					border-left: 1px solid lightgray;
+					width: 100%;
+				}
+
+				.headerRow .glyphicon-menu-down, .headerRow .glyphicon-menu-up {
+					display: none;
+				}
+
+				.headerRow .glyphicon-menu-down, .headerRow .glyphicon-menu-up {
+					display: none;
+				}
+			</style>
+			<div class="container">
+				<div class="row">
+					<div class="commands menu-klaly">
+						<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+					</div>
+				</div>
+				<br /><br />
+				<div class="row">
+					<grid columns="columns"
+						  data="OrdersList"
+						  class="color-gray"
+						  is-data-loaded="isDataLoaded"
+						  footer-text="הזמנות"
+						  grid-identity="{{gridIdentity}}"></grid>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="commands menu-klaly">
+						<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>
+					</div>
+				</div>
+				<br /><br />
+				<div class="row">
+					<grid columns="columns2"
+						  data="CustomersList"
+						  class="color-gray"
+						  is-data-loaded="isDataLoaded2"
+						  footer-text="לקוחות"
+						  grid-identity="{{gridIdentity2}}"
+						  show-all="true"></grid>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.7/angular.js"></script>
+	<script type="text/javascript">
+		var appMessagePdf = angular.module('appMessagePdf', []);
+	</script>
+	<script src="Scripts/Factories/ConnectForPdf.js"></script>
+	<script type="text/javascript">
+		appMessagePdf.controller('MessageInPdfCtrl', ['$scope', '$rootScope', '$timeout', '$window', 'ConnectForPdf',
+			function ($scope, $rootScope, $timeout, $window, ConnectForPdf) {
+				$scope.prepareData = function () {
+					$scope.UserId = parseInt($location.search().iUserId);
+					$scope.dateBegin = new Date($location.search().dtDateBegin);
+					$scope.dateEnd = new Date($location.search().dtDateEnd);
+					$scope.isDataLoaded = 0;
+					$scope.gridIdentity = 'OrdersList';
+					$scope.columns = [
+						{ title: 'שם לקוח', fieldName: 'nameCustomer' },
+						{ title: 'שם מתורגמן', fieldName: 'nameTranslator' },
+						{ title: 'סוג הזמנה', fieldName: 'typeOrder' },
+						{ title: 'סוג תרגום', fieldName: 'typeTranslation' },
+						{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation', type: 'date' },
+						{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation', type: 'time' }],
+
+						$scope.isDataLoaded2 = 0;
+					$scope.gridIdentity2 = 'CustomersList';
+					$scope.columns2 = [
+						{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation', type: 'time' },
+						{ title: 'סה"כ לתשלום', fieldName: 'nSumPayment' },
+						{ title: 'תשלום שעה ראשונה', fieldName: 'nTariffToFirst' },
+						{ title: 'תשלום שעה שניה', fieldName: 'nTariffToSecond' }
+					];
+
+					$scope.getData1();
+					$scope.getData2();
+
+
+				};
+				$scope.getData1 = function () {
+					connect.post(true, 'GetOrdersByStatus', { iUserId: $scope.UserId },
+						function (result) {
+							$scope.OrdersList = result;
+							$scope.isDataLoaded++;
+						});
+				};
+				$scope.getData2 = function () {
+					connect.post(true, 'GetMessageToProvider', { iUserId: $scope.UserId, dtBeginDate: $scope.dateBegin, dtEndDate: $scope.dateEnd },
+						function (result) {
+							$scope.CustomersList = result;
+							$scope.isDataLoaded2++;
+						});
+				};
+				$scope.prepareData();
+			}]);
+	</script>
+
 </body>
-<!--Libraries-->
-<script src="Script/Libraries/jquery.min.js"></script>
-<script src="Script/Libraries/angular.min.js"></script>
-<script src="Script/Libraries/angular-route.min.js"></script>
-<script src="Script/Libraries/angular-resource.min.js"></script>
 
-<!--App-->
-<script src="Script/orderFormApp.js"></script>
-
-<!--Factory-->
-<!--<script src="Script/Dal/Factories/ReportConnect.js"></script>-->
-<script src="Script/Dal/Factories/OrderConnect.js"></script>
-<script src="Script/Libraries/createDialog.js"></script>
-
-<!--Controller-->
-<script src="Script/Controllers/OrderFormCtrl.js"></script>
 </html>
 
