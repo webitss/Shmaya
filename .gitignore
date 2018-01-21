@@ -31,3 +31,8 @@ Shmaya.v11.suo
 Shmaya.v11.suo
 ShmayaService/Properties/PublishProfiles/ShmayaWS.pubxml.user
 Shmaya.v11.suo
+ShmayaService/ShmayaService.csproj
+*.exe
+*.user
+*.csproj
+Shmaya.v11.suo
