@@ -55,7 +55,7 @@ companionApp.factory('createDialogFactory', ["$document", "$compile", "$rootScop
       })();
       //We don't have the scope we're gonna use yet, so just get a compile function for modal
       var modalEl = angular.element(
-                '<div class="' + options.modalClass + ' fade"' + idAttr + ' style="display: block;">' +
+                '<div class="' + options.modalClass + ' fade"' + idAttr + ' style="display: block; z-index: 2500 !important;">' +
                     '  <div class="modal-dialog">' +
                     '    <div class="modal-content">' +
                     '      <div class="modal-header modal-header-c">' +
