@@ -13,7 +13,14 @@ Shmaya/bin/Shmaya.pdb
 *.csproj
 *.dll
 *.csproj
+*.suo
+*.suo
+*.csproj
 Shmaya.v11.suo
+*.csproj
+*.csproj
+*.suo
+*.suo
 *.rar
 *.pubxml
 *.user
@@ -22,12 +29,6 @@ Shmaya.v11.suo
 *.user
 *.user
 *.suo
-Shmaya.v11.suo
-*.csproj
-*.user
-*.suo
-*.suo
-Shmaya.v11.suo
 Shmaya.v11.suo
 ShmayaService/Properties/PublishProfiles/ShmayaWS.pubxml.user
 Shmaya.v11.suo

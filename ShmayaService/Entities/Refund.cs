@@ -48,6 +48,8 @@ namespace ShmayaService.Entities
 		[DataMember]
 		[NoSendToSQL]
 		public string nvDocName { get; set; }
+		[DataMember]
+		public int? iBuyCryingDetector { get; set; }
 
 
 		#endregion
