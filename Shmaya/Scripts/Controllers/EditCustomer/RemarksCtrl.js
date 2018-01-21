@@ -1,7 +1,7 @@
 ﻿
 	"use strict"
-companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter',
-		function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter) {
+companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter','alerts',
+		function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter,alerts) {
 			//לא התבצעו שיחות 
 			$scope.noRemark = null;
 
@@ -53,8 +53,10 @@ companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'code
 
 			$scope.saveRemark = function () {
 				$scope.$broadcast('show-errors-check-validity');
-				if (!$scope.form.newRemarkForm.$valid) return;
-
+				if (!$scope.form.newRemarkForm.$valid) {
+				    alerts.alert('ערכים נחוצים חסרים או שגויים');
+				    return;
+				}
 				connect.post(true, 'CreateNewRemark', { remark: $scope.newRemark/*, iCreateUserId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId*/ }, function (result) {
 					$scope.bIsNewRemarkOpen = false;
 					$scope.newRemark = {};

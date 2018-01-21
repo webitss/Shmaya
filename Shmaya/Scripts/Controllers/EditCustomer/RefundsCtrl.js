@@ -1,6 +1,6 @@
 ﻿"use strict"
-companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId', 'alerts',
-	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
+companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId', 'alerts','createDialog',
+	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts, createDialog) {
 	    $scope.prepareData = function () {
 	        $scope.isDataLoaded = 0;
 	        $scope.sumRefunds;
@@ -179,6 +179,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
 						$scope.codeTables = result;
 						$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+						$scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
 						$scope.monthYearList.forEach(function (date) {
 							$scope.tmpDate1 = date.nvName.substring(0, 4);
 							$scope.tmpDate2 = date.nvName.substring(4, 6);
@@ -196,6 +197,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	    };
 
 	    $scope.AddNewRefund = function () {
+	        $scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;//(new Date()).getFullYear();
+	        $scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
+	        $scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
+	        $scope.newRefund.iMonthYearId = $scope.defMonthYear;
+	        $scope.newRefund.dtPurchase = new Date();
 			$scope.isEdit = false;
 	        $scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='newRefund.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
 				"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='newRefund.dtPurchase' required/>" +
@@ -204,6 +210,32 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />';
 	        alerts.custom($scope.pop, 'הוספת רכישה', $scope,
 				function () {
+				    if (!(!isNaN(parseInt($scope.newRefund.nPayment)) && angular.isNumber(parseInt($scope.newRefund.nPayment)))) {
+				        createDialog({
+				            id: 'newRefund',
+				            template: "<div><span>יש להכניס סכום בספרות בלבד!</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+				            title: "שגיאה",
+				            scope: $rootScope,
+				            backdrop: true,
+				            css: 'z-index: 2500;',
+				            modalClass: "modal modalAlert"
+				        });
+				        $scope.newRefund.nPayment = '';
+				        return false;
+				    }
+				    if ($scope.fileTypeError == true)
+				    {
+				        createDialog({
+				            id: 'fileType',
+				            template: "<div><span>ניתן להכניס רק קבצי PDF או תמונות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+				            title: "שגיאה",
+				            scope: $rootScope,
+				            backdrop: true,
+				            css: 'z-index: 2500;',
+				            modalClass: "modal modalAlert"
+				        });
+				        return false;
+				    }
 					if (($scope.newRefund.iProductId == 30 && $scope.flagChange == true) || ($scope.newRefund.iProductId == 1 && $scope.flagChange == true))
 						$scope.chngProd = true
 				    if ($scope.checkRefund($scope.newRefund) == false)
@@ -275,6 +307,21 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isDelete = false;
 	        $scope.isReference = false;
 	        var fileType = $files[0].name.substring($files[0].name.indexOf('.') + 1, $files[0].name.length);
+	        var ext = fileType.toLowerCase();
+	        if (jQuery.inArray(ext, ['pdf', 'png', 'jpg', 'jpeg']) == -1) {
+	            createDialog({
+	                id: 'fileType',
+	                template: "<div><span>ניתן להכניס רק קבצי PDF או תמונות!</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+	                title: "שגיאה",
+	                scope: $rootScope,
+	                backdrop: true,
+	                css: 'z-index: 2500;',
+	                modalClass: "modal modalAlert"
+	            });
+	            $scope.fileTypeError = true;
+	            return false;
+	        }
+	        $scope.fileTypeError = false;
 	        var fileMedia = $files[0].type.substring(0, $files[0].type.indexOf('/'));
 	        if (window.FileReader) {
 	            var url = '';

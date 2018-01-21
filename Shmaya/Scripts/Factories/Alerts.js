@@ -5,6 +5,7 @@ companionApp.factory('alerts', ['$rootScope', '$uibModal', function ($rootScope,
         alert: function (message, title, OKcallback) {
             var modalInstance = $uibModal.open({
                 animation: true,
+                //css: 'z-index:2000 !important;',
                 backdrop: false,
                 ariaLabelledBy: 'modal-title-top',
                 ariaDescribedBy: 'modal-body-top',
