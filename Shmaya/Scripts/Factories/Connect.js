@@ -119,7 +119,7 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
 				case 'localhost':
 					url = "http://localhost:27786/";
                     //url = "http://localhost:24151/";
-                   // url = 'http://localhost/ShmayaService/'
+                    //url = 'http://localhost/ShmayaService/'
                     break;
                 case '10.0.0.109':
                     url = 'http://10.0.0.109/AyeletService/';
