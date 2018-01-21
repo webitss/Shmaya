@@ -9,10 +9,15 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isDelete = false;
 			$scope.vat = 17;
 			$scope.isReference = false;
-			if ($scope.user.dtResetHours != null) {
-				$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-			}
+			//if ($scope.user.dtResetHours != null) {
+			//	$scope.DateOfRenewal = $scope.user.dtResetHours.getFullYear();
+			//	//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+			//	//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+			//	while (($scope.DateOfRenewal) < (new Date().getFullYear()))
+			//	{
+			//		$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear()+4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+			//	}
+			//}
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
@@ -49,7 +54,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									return
 								//חישוב סך החזר עבור גלאי בכי
 								if ($scope.refund2.iProductId == 1)
+								{
 									$scope.refund2.nRefund = 1075;
+									$scope.refund2.iBuyCryingDetector = 1;
+									$scope.user.iBuyCryingDetector = 1
+								}
 								//חישוב סך החזר עבור פקס
 								else
 									if ($scope.refund2.iProductId == 30)
@@ -77,7 +86,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									{
 							            console.log('RefundUpdate:');
 										var savingStatus = "השינויים נשמרו בהצלחה";
-										//חישוב סך החזר עבור גלאי בכי
 							            $scope.getData();
 							            $rootScope.notification(savingStatus);
 							            //$scope.nvDocPath = connect.getFilesUrl() + result;
@@ -108,7 +116,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						if (item.item.nvDocName)
 							document.getElementById("ref").click();
 						else
-							alert("לא נבחרה אסמכתא");
+							alerts.alert("לא נבחרה אסמכתא");
 					},
 				    weight: 0.5,
 				    filter: false,
@@ -200,7 +208,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return
 					//חישוב סך החזר עבור גלאי בכי
 					if ($scope.newRefund.iProductId == 1)
+					{
 						$scope.newRefund.nRefund = 1075;
+						$scope.newRefund.iBuyCryingDetector = 1;
+						$scope.user.iBuyCryingDetector = 1;
+					}
 					//חישוב סך החזר עבור פקס
 					else
 						if ($scope.newRefund.iProductId == 30)
@@ -218,10 +230,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				            console.log('RefundInsert:' + result);
 				            var savingStatus = "השינויים נשמרו בהצלחה";
 							$rootScope.notification(savingStatus);
+							$scope.newRefund = {};
 				            $scope.getData();
 				        }
 				        else {
-				            alert('ארעה שגיאה בלתי צפויה');
+				            alerts.alert('ארעה שגיאה בלתי צפויה');
 				        }
 				    });
 				}, function () { }
@@ -229,11 +242,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			);
 	    }
 		$scope.checkRefund = function (refund) {
-			if ((refund.iProductId == 1 && $scope.user.iBuyCryingDetector == 1 && $scope.chngProd == true) || (refund.iProductId == 1 && refund.nPayment > 1075 && $scope.chngProd == true)) {
+			if ((refund.iProductId == 1 && $scope.user.iBuyCryingDetector == 1 /*&& $scope.chngProd == true*/) || (refund.iProductId == 1 && refund.nPayment > 1075 /*&& $scope.chngProd == true*/)) {
 				alerts.alert("לא ניתן לרכוש את המוצר");
 				$scope.refund2 = {};
 				$scope.newRefund = {};
-				$scope.chngProd = false;
+				//$scope.chngProd = false;
 				$scope.flagChange = false;
 	            return false;
 	        }
