@@ -125,39 +125,39 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							    if (($scope.refund2.iProductId == 30 && $scope.flagChange == true) || ($scope.refund2.iProductId == 1 && $scope.flagChange == true))
 							        $scope.chngProd = true
 							    if ($scope.checkRefund($scope.refund2) == false)
-									return
-								//חישוב סך החזר עבור גלאי בכי
-								if ($scope.refund2.iProductId == 1)
-								{
-									$scope.refund2.nRefund = 1075;
-									$scope.refund2.iBuyCryingDetector = 1;
-									$scope.user.iBuyCryingDetector = 1
-								}
-								//חישוב סך החזר עבור פקס
-								else
-									if ($scope.refund2.iProductId == 30)
-										$scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
-									else {
-										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
-											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
-										else
-											$scope.refund2.nRefund = $scope.sumBalance;
-										$scope.sumRefunds += $scope.refund2.nRefund;
-										$scope.sumBalance -= $scope.refund2.nRefund;
-									}
-								$scope.refundToSend = angular.copy($scope.refund2);
-								$scope.refundToSend.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
-								$scope.refundToSend.dtCreateDate = null;
-								if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string')
-								{
-									$scope.tmpDate2 = $scope.refundToSend.iMonthYearId.substring(0, 2);
-									$scope.tmpDate1 = $scope.refundToSend.iMonthYearId.substring(3, 7);
-									$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
-									$scope.refundToSend.iMonthYearId = $scope.tmpDate
-								}
-								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
-									if (result)
-									{
+							        return
+							    //חישוב סך החזר עבור גלאי בכי
+							    if ($scope.refund2.iProductId == 1)
+							    {
+							        $scope.refund2.nRefund = 1075;
+							        $scope.refund2.iBuyCryingDetector = 1;
+							        $scope.user.iBuyCryingDetector = 1
+							    }
+							        //חישוב סך החזר עבור פקס
+							    else
+							        if ($scope.refund2.iProductId == 30)
+							            $scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
+							        else {
+							            if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
+							                $scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
+							            else
+							                $scope.refund2.nRefund = $scope.sumBalance;
+							            $scope.sumRefunds += $scope.refund2.nRefund;
+							            $scope.sumBalance -= $scope.refund2.nRefund;
+							        }
+							    $scope.refundToSend = angular.copy($scope.refund2);
+							    $scope.refundToSend.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
+							    $scope.refundToSend.dtCreateDate = null;
+							    if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string')
+							    {
+							        $scope.tmpDate2 = $scope.refundToSend.iMonthYearId.substring(0, 2);
+							        $scope.tmpDate1 = $scope.refundToSend.iMonthYearId.substring(3, 7);
+							        $scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+							        $scope.refundToSend.iMonthYearId = $scope.tmpDate
+							    }
+							    connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
+							        if (result)
+							        {
 							            console.log('RefundUpdate:');
 							            var savingStatus = "השינויים נשמרו בהצלחה";
 							            $scope.getData();
@@ -332,31 +332,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    if (($scope.newRefund.iProductId == 30 && $scope.flagChange == true) || ($scope.newRefund.iProductId == 1 && $scope.flagChange == true))
 				        $scope.chngProd = true
 				    if ($scope.checkRefund($scope.newRefund) == false)
-<<<<<<< HEAD
-						return
-					//חישוב סך החזר עבור גלאי בכי
-					if ($scope.newRefund.iProductId == 1)
-					{
-						$scope.newRefund.nRefund = 1075;
-						$scope.newRefund.iBuyCryingDetector = 1;
-						$scope.user.iBuyCryingDetector = 1;
-					}
-					//חישוב סך החזר עבור פקס
-					else
-						if ($scope.newRefund.iProductId == 30)
-							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ( $rootScope.vat / 100);
-						else {
-							if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
-								$scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;
-							else
-								$scope.newRefund.nRefund = $scope.sumBalance;
-							$scope.sumRefunds += $scope.newRefund.nRefund;
-							$scope.sumBalance -= $scope.newRefund.nRefund;
-						}
-=======
-				        return
+				        <<<<<<< HEAD
+				    return
 				    //חישוב סך החזר עבור גלאי בכי
-				    if ($scope.newRefund.iProductId == 1) {
+				    if ($scope.newRefund.iProductId == 1)
+				    {
 				        $scope.newRefund.nRefund = 1075;
 				        $scope.newRefund.iBuyCryingDetector = 1;
 				        $scope.user.iBuyCryingDetector = 1;
@@ -364,7 +344,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				        //חישוב סך החזר עבור פקס
 				    else
 				        if ($scope.newRefund.iProductId == 30)
-				            $scope.newRefund.nRefund = $scope.newRefund.nPayment * ((100 - $rootScope.vat) / 100);
+				            $scope.newRefund.nRefund = $scope.newRefund.nPayment * ( $rootScope.vat / 100);
 				        else {
 				            if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
 				                $scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;
@@ -373,6 +353,26 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				            $scope.sumRefunds += $scope.newRefund.nRefund;
 				            $scope.sumBalance -= $scope.newRefund.nRefund;
 				        }
+				    =======
+                                            return
+				    //חישוב סך החזר עבור גלאי בכי
+                                        if ($scope.newRefund.iProductId == 1) {
+                                            $scope.newRefund.nRefund = 1075;
+                                            $scope.newRefund.iBuyCryingDetector = 1;
+                                            $scope.user.iBuyCryingDetector = 1;
+                                        }
+				    //חישוב סך החזר עבור פקס
+				else
+				        if ($scope.newRefund.iProductId == 30)
+				    $scope.newRefund.nRefund = $scope.newRefund.nPayment * ((100 - $rootScope.vat) / 100);
+				else {
+				            if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
+				    $scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;
+				else
+				                $scope.newRefund.nRefund = $scope.sumBalance;
+				    $scope.sumRefunds += $scope.newRefund.nRefund;
+				    $scope.sumBalance -= $scope.newRefund.nRefund;
+				}
 >>>>>>> fbeaa3bc7b01cdb6c564402a6727633a726a00b0
 				    connect.post(true, 'RefundInsert', { refund: $scope.newRefund, iUserManagerId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId }, function (result) {
 				        if (result && result > 0) {
@@ -386,10 +386,10 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				            alerts.alert('ארעה שגיאה בלתי צפויה');
 				        }
 				    });
-				}, function () { }
+	    }, function () { }
 
 			);
-	    }
+	}
 	    $scope.checkRefund = function (refund) {
 	        if ((refund.iProductId == 1 && $scope.user.iBuyCryingDetector == 1 && ($scope.chngProd == true || $scope.chngProd == undefined)))
 	            if (refund.iProductId == 1 && refund.nPayment > 1075 && ($scope.chngProd == true || $scope.chngProd == undefined)) {
@@ -411,48 +411,48 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        return true;
 	    }
 
-	    $scope.deleteFile = function () {
-	        $scope.isDelete = true;
-	    }
+$scope.deleteFile = function () {
+    $scope.isDelete = true;
+}
 
 
-	    $scope.docFileSelect = function ($files, number) {
-	        $scope.isDelete = false;
-	        $scope.isReference = false;
-	        var fileType = $files[0].name.substring($files[0].name.indexOf('.') + 1, $files[0].name.length);
-	        var ext = fileType.toLowerCase();
-	        if (jQuery.inArray(ext, ['pdf', 'png', 'jpg', 'jpeg']) == -1) {
-	            createDialog({
-	                id: 'fileType',
-	                template: "<div><span>ניתן להכניס רק קבצי PDF או תמונות!</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
-	                title: "שגיאה",
-	                scope: $rootScope,
-	                backdrop: true,
-	                css: 'z-index: 2500;',
-	                modalClass: "modal modalAlert"
-	            });
-	            $scope.fileTypeError = true;
-	            return false;
-	        }
-	        $scope.fileTypeError = false;
-	        var fileMedia = $files[0].type.substring(0, $files[0].type.indexOf('/'));
-	        if (window.FileReader) {
-	            var url = '';
-	            var fileReader = new FileReader();
-	            fileReader.readAsDataURL($files[0]);
-	            fileReader.onload = function (e) {
-	                $timeout(function () {
-	                    url = e.target.result.substring(0, e.target.result.indexOf('/') + 1);
-	                    url = url + fileType;
-	                    url = url + e.target.result.substring(e.target.result.indexOf(';'), e.target.result.length);
-	                    if ($scope.isEdit == true)
-	                        $scope.refund2.nvDocPath = url;
-	                    else
-	                        $scope.newRefund.nvDocPath = url;
-	                });
-	            }
-	        }
-	    };
-	    $scope.prepareData();
+$scope.docFileSelect = function ($files, number) {
+    $scope.isDelete = false;
+    $scope.isReference = false;
+    var fileType = $files[0].name.substring($files[0].name.indexOf('.') + 1, $files[0].name.length);
+    var ext = fileType.toLowerCase();
+    if (jQuery.inArray(ext, ['pdf', 'png', 'jpg', 'jpeg']) == -1) {
+        createDialog({
+            id: 'fileType',
+            template: "<div><span>ניתן להכניס רק קבצי PDF או תמונות!</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+            title: "שגיאה",
+            scope: $rootScope,
+            backdrop: true,
+            css: 'z-index: 2500;',
+            modalClass: "modal modalAlert"
+        });
+        $scope.fileTypeError = true;
+        return false;
+    }
+    $scope.fileTypeError = false;
+    var fileMedia = $files[0].type.substring(0, $files[0].type.indexOf('/'));
+    if (window.FileReader) {
+        var url = '';
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL($files[0]);
+        fileReader.onload = function (e) {
+            $timeout(function () {
+                url = e.target.result.substring(0, e.target.result.indexOf('/') + 1);
+                url = url + fileType;
+                url = url + e.target.result.substring(e.target.result.indexOf(';'), e.target.result.length);
+                if ($scope.isEdit == true)
+                    $scope.refund2.nvDocPath = url;
+                else
+                    $scope.newRefund.nvDocPath = url;
+            });
+        }
+    }
+};
+$scope.prepareData();
 
-	}]);
+}]);
