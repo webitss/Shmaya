@@ -34,6 +34,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
+	        $scope.currentDate = new Date();
 	        $scope.newRefund = {};
 	        $scope.flagFax = 0;
 	        $scope.gridIdentity = 'RefundsList';
@@ -60,6 +61,67 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
+							    if (new Date($scope.newRefund.dtPurchase) > new Date()) {
+							        createDialog({
+							            id: 'newRefunddtPurchase',
+							            template: "<div><span>יש לשים תאריך עד היום</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							            title: "שגיאה",
+							            scope: $rootScope,
+							            backdrop: true,
+							            css: 'z-index: 2500;',
+							            modalClass: "modal modalAlert"
+							        });
+							        return false;
+							    }
+							    if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
+							        createDialog({
+							            id: 'newRefundPayment',
+							            template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							            title: "שגיאה",
+							            scope: $rootScope,
+							            backdrop: true,
+							            css: 'z-index: 2500;',
+							            modalClass: "modal modalAlert"
+							        });
+							        return false;
+							    }
+							    if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
+							        createDialog({
+							            id: 'newRefundPayment',
+							            template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							            title: "שגיאה",
+							            scope: $rootScope,
+							            backdrop: true,
+							            css: 'z-index: 2500;',
+							            modalClass: "modal modalAlert"
+							        });
+							        return false;
+							    }
+							    if (!(!isNaN(parseInt($scope.newRefund.nPayment)) && angular.isNumber(parseInt($scope.newRefund.nPayment)))) {
+							        createDialog({
+							            id: 'newRefund',
+							            template: "<div><span>יש להכניס סכום בספרות בלבד!</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							            title: "שגיאה",
+							            scope: $rootScope,
+							            backdrop: true,
+							            css: 'z-index: 2500;',
+							            modalClass: "modal modalAlert"
+							        });
+							        $scope.newRefund.nPayment = '';
+							        return false;
+							    }
+							    if ($scope.fileTypeError == true) {
+							        createDialog({
+							            id: 'fileType',
+							            template: "<div><span>ניתן להכניס רק קבצי PDF או תמונות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							            title: "שגיאה",
+							            scope: $rootScope,
+							            backdrop: true,
+							            css: 'z-index: 2500;',
+							            modalClass: "modal modalAlert"
+							        });
+							        return false;
+							    }
 							    if (($scope.refund2.iProductId == 30 && $scope.flagChange == true) || ($scope.refund2.iProductId == 1 && $scope.flagChange == true))
 							        $scope.chngProd = true
 							    if ($scope.checkRefund($scope.refund2) == false)
@@ -209,12 +271,24 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        $scope.newRefund.dtPurchase = new Date();
 	        $scope.isEdit = false;
 	        $scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='newRefund.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
-				"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='newRefund.dtPurchase' required/>" +
+				"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='newRefund.dtPurchase' min='{{currentDate | date:'yyyy-MM-dd'}}' required/>" +
 				"<label>שיוך לחודש ושנה</label><form-dropdown ng-model='newRefund.iMonthYearId' enablesearch='false' data='monthYearList' required></form-dropdown>" +
 				"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='newRefund.nPayment' required/>" +
 					'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />';
 	        alerts.custom($scope.pop, 'הוספת רכישה', $scope,
 				function () {
+				    if (new Date($scope.newRefund.dtPurchase) > new Date()) {
+				        createDialog({
+				            id: 'newRefunddtPurchase',
+				            template: "<div><span>יש לשים תאריך עד היום</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+				            title: "שגיאה",
+				            scope: $rootScope,
+				            backdrop: true,
+				            css: 'z-index: 2500;',
+				            modalClass: "modal modalAlert"
+				        });
+				        return false;
+				    }
 				    if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
 				        createDialog({
 				            id: 'newRefundPayment',
