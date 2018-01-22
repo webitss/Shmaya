@@ -55,10 +55,10 @@
 			<form-dropdown ng-model="user.iWorkerType" enablesearch="false" data="workerTypeList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
 		</form-field>
 		<form-field span-text="תאריך הצטרפות" class="col-md-6" ng-if="showCustomer&&!showAdmin&&isEdit">
-			<input class="form-control" type="date" ng-model="user.dtResetHours" />
+			<input class="form-control" type="date" ng-model="user.dtResetHours"  />
 		</form-field>
 		<form-field span-text="תאריך הצטרפות" class="col-md-6" ng-if="showCustomer&&!showAdmin&&!isEdit">
-			<input class="form-control" type="date" ng-model="defDtResetHours" />
+			<input class="form-control" type="date" ng-model="defDtResetHours"  />
 		</form-field>
 		<form-field span-text="תאריך תחילת זכאות" class="col-md-6" ng-if="showCustomer &&!showAdmin">
 			<input class="form-control" type="date" ng-model="user.dtResetCommunication" required />

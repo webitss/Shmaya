@@ -5,6 +5,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        $scope.isDataLoaded = 0;
 	        $scope.sumRefunds;
 	        $scope.sumBalance;
+<<<<<<< HEAD
 	        $scope.isEdit = false;
 	        $scope.isDelete = false;
 	        $scope.isReference = false;
@@ -18,6 +19,21 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        //		$scope.YearOfRenewal += 4;
 	        //	}
 	        //}
+=======
+			$scope.isEdit = false;
+			$scope.isDelete = false;
+			$scope.isReference = false;
+			if ($scope.user.dtResetHours != null) {
+				$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
+				//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+				//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+				while (($scope.YearOfRenewal) < (new Date().getFullYear()))
+				{
+					$scope.YearOfRenewal += 4;
+				}
+				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+			}
+>>>>>>> a19b5d898fc58533161b9b72477dfb99c32220c7
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};

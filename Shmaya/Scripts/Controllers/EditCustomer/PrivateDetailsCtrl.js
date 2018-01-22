@@ -15,15 +15,29 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        }
 	    };
 
-	    $scope.saveDetails = function () {
+		$scope.saveDetails = function () {
+			if ($scope.user.dtResetHours && $scope.user.dtResetCommunication) {
+				var _MS_PER_DAY = 1000 * 60 * 60 * 24;
+				var utc1 = Date.UTC($scope.user.dtResetHours.getFullYear(), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+				var utc2 = Date.UTC($scope.user.dtResetCommunication.getFullYear(), $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
+
+				$scope.difference = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+			
 	        $scope.$broadcast('show-errors-check-validity');
-	        if (!$scope.formDetails.$valid) {
+			if (!$scope.formDetails.$valid || $scope.difference<0) {
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
 				console.log(JSON.stringify($scope.formDetails));
 	            return;
-	        }
+			}
+
+
+
+			// test it
+			//var a = new Date("2017-01-01"),
+			//	b = new Date("2017-07-25"),
+			//	difference = dateDiffInDays($scope.user.dtResetHours, $scope.user.dtResetCommunication);
 
 	        //$scope.lTempLanguage = $scope.user.lLanguage;
 	        //$scope.user.lLanguage = {};
@@ -71,15 +85,17 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	        }
 	    }
 
-		$scope.calculateNBankCommunication = function (iCommunicationCart) {
+			$scope.calculateNBankCommunication = function (iCommunicationCart)
+			{
 			$scope.user.nBankCommunication = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: iCommunicationCart }, true)[0].nTariff;
 	    };
 
-		$scope.calculateBankHours = function (iEntitlementTypeId) {
-			if ($scope.user && $scope.user.iEntitlementTypeId)
-				$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
-			$scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
-	    };
+			$scope.calculateBankHours = function (iEntitlementTypeId) {
+				if ($scope.user && $scope.user.iEntitlementTypeId)
+					$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+				$scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+			}
+		};
 
 		$scope.getData = function () {
 	        connect.post(true, 'GetEligibiltyTable', {},
@@ -95,7 +111,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				    if ($scope.user && $scope.user.iCommunicationCart)
 						$scope.user.nBankCommunication = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				});
-	        $scope.user.dtResetCommunication = new Date();
+	       // $scope.user.dtResetCommunication = new Date();
 	        $scope.userTypeList.splice(0, 2);
 
 	    }

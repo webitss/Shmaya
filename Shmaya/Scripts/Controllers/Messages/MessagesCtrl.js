@@ -13,9 +13,16 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	    nvFrom: null,
 	    iUserId: $scope.user.iUserId,
 	    iCreateUserId: $rootScope.user.iUserId
-	}
-
+		}
 	$scope.sendMessage = function () {
+		$scope.$broadcast('show-errors-check-validity');
+		if (!$scope.massegeForm.$valid) {
+			var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+			$rootScope.notification(savingStatus);
+			alerts.alert("יש למלא ערכים תקינים בכל השדות");
+			console.log(JSON.stringify($scope.formDetails));
+			return;
+		}
 		//אם השליחה היא לקבוצה
 		if ($rootScope.messageFromCust != true && $rootScope.listToSend == undefined /*&& scope.messageFromSelect != true*/) {
             if ($scope.sendTo == 1)

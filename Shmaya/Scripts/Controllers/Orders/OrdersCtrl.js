@@ -27,8 +27,8 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				    sort: false
 				},
 				{
+					title: 'ביטול',
 				    fieldName: 'iOrderId',
-				    title: 'ביטול',
 				    template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAOrder(item)\'></div>',
 				    deleteAOrder: function (item) {
 				        //$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
@@ -43,8 +43,16 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 
 				},
 				{
-				    title: 'סטטוס', fieldName: 'iStatusId', filter: true, type: 'select', data: $scope.statusList, onChange: function (item) {
-				        connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
+					title: 'סטטוס',
+					fieldName: 'iStatusId',
+					type: 'select',
+					search: true,
+					searchField:'status',
+					filter: true,
+					data: $scope.statusList,
+					onChange: function (item) {
+						console.log(item .status);
+						connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
 				        	function (result) {
 				        	    console.log("change");
 				        	});
