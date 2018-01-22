@@ -1,29 +1,28 @@
-﻿
-<div ng-controller="ConnectionsCtrl">
-	<!--{{showCustomer}}-->
-	<wait></wait>
-	<div class="container">
-		<div class="row">
-			<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
-		</div>
-		<br />
-		<div class="row">
-			<grid columns="columns"
-                  is-sub="true"
-				  data="ordersByUserList"
-				  class="color-gray"
-				  is-data-loaded="isDataLoaded"
-				  footer-text="ערכים"
-				  grid-identity="{{gridIdentity}}"></grid>
-		</div>
+﻿<div ng-controller="ConnectionsCtrl">
+    <!--{{showCustomer}}-->
+    <wait></wait>
+    <div class="container">
+        <div class="row">
+            <grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+        </div>
+        <br />
+        <div class="row">
+            <grid columns="columns"
+                is-sub="true"
+                data="ordersByUserList"
+                class="color-gray"
+                is-data-loaded="isDataLoaded"
+                footer-text="ערכים"
+                grid-identity="{{gridIdentity}}"></grid>
+        </div>
 
-		<div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
-			<div ng-repeat="order in ordersByUserList">
-				<create-dialog ng-if="order.dialogIsOpen" is-sub="true" item="order" image="glyphicon glyphicon-user"
-							   title="{{order.iOrderId}}" id="{{item.iOrderId}}" cancel="true">
+        <div style="margin: 0px !important; padding: 0px !important; height: 51px; position: absolute; bottom: 0; left: 0 !important; right: 0 !important;">
+            <div ng-repeat="order in ordersByUserList">
+                <create-dialog ng-if="order.dialogIsOpen" is-sub="true" item="order" image="glyphicon glyphicon-user"
+                    title="{{order.iOrderId}}" id="{{item.iOrderId}}" cancel="true">
 					<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
-			</div>
-		</div>
-		</div>
+            </div>
+        </div>
+    </div>
 </div>
