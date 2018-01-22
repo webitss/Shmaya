@@ -75,10 +75,10 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			});
 	    }
 		$scope.getData = function () {
-			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
-				$scope.codeTables = result;
-				$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
-			});
+			//connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+			//	$scope.codeTables = result;
+			//	$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+			//});
 			if ($scope.OrdersList != undefined) {
 				$scope.OrdersList.forEach(function (order) {
 					if (order.iMonthYearId instanceof String || typeof order.iMonthYearId === 'string') {
