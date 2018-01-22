@@ -67,7 +67,6 @@ namespace ShmayaService.Entities
         [DataMember]
         public double nBankCommunication { get; set; }
         [DataMember]
-        [NoSendToSQL]
         public int iWorkerType { get; set; }
 
         [DataMember]
@@ -108,11 +107,11 @@ namespace ShmayaService.Entities
         [DataMember]
         public DateTime? dtCreateDate { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		public static int CheckIdentity(string nvIdentity)
+        public static int CheckIdentity(string nvIdentity)
         {
             try
             {
@@ -165,7 +164,7 @@ namespace ShmayaService.Entities
             {
                 Log.ExceptionLog(e.Message, "CheckIdentity");
                 Result result = new Result();
-                result.iResult = - 1;
+                result.iResult = -1;
                 result.bResult = false;
                 result.sResult = e.Message;
                 return result;
@@ -246,48 +245,48 @@ namespace ShmayaService.Entities
             }
         }
 
-	public static List<User> GetUsers(int? iUserType,int iStatusId, int? iTypeTranslation)
-	{
-		try
-		{
-				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iUserType", iUserType));
-				parameters.Add(new SqlParameter("iStatusId", iStatusId));
-				parameters.Add(new SqlParameter("iTypeTranslation", iTypeTranslation));
-				//data set שולף אוסף של טבלאות
-				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT",parameters);
-			
-			List<User> lUsers = new List<User>();
-				DataView dv;
-				//מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
-				foreach (DataRow dr in ds.Tables[0].Rows)
-				{
-					User user = new User();
-					//הפיכת כל יוזר לפריט בליסט
-					user = ObjectGenerator<User>.GeneratFromDataRow(dr);
-					//יצירת הטבלה השניה כדינאמית שמחזירה רק שורות התואמות לתנאי מסוים
-					dv = new DataView(ds.Tables[1],
-					 "iUserId = " + user.iUserId.ToString(),
-					 "", DataViewRowState.CurrentRows);
-					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
-					//user.lLanguage = ObjectGenerator<int>.GeneratListFromDataRowCollection(dv.ToTable().Rows);
-					user.lLanguage = new List<int>();
-					for (int j = 0; j < dv.Count; j++)
-					{
-						user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
-					}
-					dv = new DataView(ds.Tables[2],
-					 "iUserId = " + user.iUserId.ToString(),
-					 "", DataViewRowState.CurrentRows);
-					user.lOrderType = new List<int>();
-					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
-					for (int j = 0; j < dv.Count; j++)
-					{
-						user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
-					}
-					lUsers.Add(user);
-				}
-				return lUsers;
+        public static List<User> GetUsers(int? iUserType, int iStatusId, int? iTypeTranslation)
+        {
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("iUserType", iUserType));
+                parameters.Add(new SqlParameter("iStatusId", iStatusId));
+                parameters.Add(new SqlParameter("iTypeTranslation", iTypeTranslation));
+                //data set שולף אוסף של טבלאות
+                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT", parameters);
+
+                List<User> lUsers = new List<User>();
+                DataView dv;
+                //מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    User user = new User();
+                    //הפיכת כל יוזר לפריט בליסט
+                    user = ObjectGenerator<User>.GeneratFromDataRow(dr);
+                    //יצירת הטבלה השניה כדינאמית שמחזירה רק שורות התואמות לתנאי מסוים
+                    dv = new DataView(ds.Tables[1],
+                     "iUserId = " + user.iUserId.ToString(),
+                     "", DataViewRowState.CurrentRows);
+                    //הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
+                    //user.lLanguage = ObjectGenerator<int>.GeneratListFromDataRowCollection(dv.ToTable().Rows);
+                    user.lLanguage = new List<int>();
+                    for (int j = 0; j < dv.Count; j++)
+                    {
+                        user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
+                    }
+                    dv = new DataView(ds.Tables[2],
+                     "iUserId = " + user.iUserId.ToString(),
+                     "", DataViewRowState.CurrentRows);
+                    user.lOrderType = new List<int>();
+                    //הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
+                    for (int j = 0; j < dv.Count; j++)
+                    {
+                        user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
+                    }
+                    lUsers.Add(user);
+                }
+                return lUsers;
             }
             catch (Exception ex)
             {
@@ -330,7 +329,7 @@ namespace ShmayaService.Entities
                 if (userType == 1)
                 {
                     user.iEntitlementTypeId = null;
-					user.iCommunicationCart = null;
+                    user.iCommunicationCart = null;
                 }
 
                 DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_INS", parameters);

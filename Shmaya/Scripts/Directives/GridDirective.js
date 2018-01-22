@@ -88,6 +88,20 @@
                     });
             }, true);
 
+            scope.changeSelected = function (fieldName) {
+                scope.selectAll = !scope.selectAll;
+
+                if (scope.selectAll) {
+                    $rootScope.selectAll = scope.selectAll;
+                    angular.forEach(($filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value)), function (item) {
+                        item.bChecked = scope.selectAll;
+                    });
+                }
+                else
+                    angular.forEach(scope.data, function (item) {
+                        item.bChecked = scope.selectAll;
+                    });
+            };
 
             scope.sort = function (col, field, sortedIndex) {
                 if (col.sort == true || col.sort == undefined) {
