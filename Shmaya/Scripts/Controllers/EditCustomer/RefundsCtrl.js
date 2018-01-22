@@ -62,7 +62,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								//חישוב סך החזר עבור פקס
 								else
 									if ($scope.refund2.iProductId == 30)
-										$scope.refund2.nRefund = $scope.refund2.nPayment * ((100 - $rootScope.vat) / 100);
+										$scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
 									else {
 										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
@@ -250,7 +250,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					//חישוב סך החזר עבור פקס
 					else
 						if ($scope.newRefund.iProductId == 30)
-							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ((100 - $rootScope.vat) / 100);
+							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ( $rootScope.vat / 100);
 						else {
 							if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
 								$scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;
