@@ -7,18 +7,17 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        $scope.sumBalance;
 			$scope.isEdit = false;
 			$scope.isDelete = false;
-			$scope.vat = 17;
 			$scope.isReference = false;
-			if ($scope.user.dtResetHours != null) {
-				$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
-				//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-				//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-				while (($scope.YearOfRenewal) < (new Date().getFullYear()))
-				{
-					$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear() + 4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-					$scope.YearOfRenewal += 4;
-				}
-			}
+			//if ($scope.user.dtResetHours != null) {
+			//	$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
+			//	//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+			//	//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+			//	while (($scope.YearOfRenewal) < (new Date().getFullYear()))
+			//	{
+			//		$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear() + 4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+			//		$scope.YearOfRenewal += 4;
+			//	}
+			//}
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
@@ -63,7 +62,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								//חישוב סך החזר עבור פקס
 								else
 									if ($scope.refund2.iProductId == 30)
-										$scope.refund2.nRefund = $scope.refund2.nPayment * ((100 - $scope.vat)/100);
+										$scope.refund2.nRefund = $scope.refund2.nPayment * ((100 - $rootScope.vat) / 100);
 									else {
 										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
@@ -99,7 +98,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							        }
 							    });
 
-							}, function () { }
+							}, function () {
+								$scope.getData();
+							}
 
 						);
 				    },
@@ -249,7 +250,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					//חישוב סך החזר עבור פקס
 					else
 						if ($scope.newRefund.iProductId == 30)
-							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ((100 - $scope.vat) / 100);
+							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ((100 - $rootScope.vat) / 100);
 						else {
 							if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
 								$scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;

@@ -3,9 +3,11 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId, $window) {
 	    $scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
 		$scope.defDate = new Date();
-		$scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;//(new Date()).getFullYear();
-		$scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
-		$scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
+		if ($scope.isEdit == false) {
+			$scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;//(new Date()).getFullYear();
+			$scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
+			$scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
+		}
 		//$scope.defMonthYear = parseInt(new Date().getFullYear()) * 100 + parseInt(new Date().getMonth());
 		$scope.testTime = new Date();
 		if (!$scope.order)
@@ -73,19 +75,32 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			});
 	    }
 		$scope.getData = function () {
-			$scope.OrdersList.forEach(function (order) {
-				if (order.iMonthYearId instanceof String || typeof order.iMonthYearId === 'string') {
-					$scope.tmpDate2 = order.iMonthYearId.substring(0, 2);
-					$scope.tmpDate1 = order.iMonthYearId.substring(3, 7);
-					$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
-					order.iMonthYearId = $scope.tmpDate
-				}
-			})
+			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+				$scope.codeTables = result;
+				$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+			});
+			if ($scope.OrdersList != undefined) {
+				$scope.OrdersList.forEach(function (order) {
+					if (order.iMonthYearId instanceof String || typeof order.iMonthYearId === 'string') {
+						$scope.tmpDate2 = order.iMonthYearId.substring(0, 2);
+						$scope.tmpDate1 = order.iMonthYearId.substring(3, 7);
+						$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+						order.iMonthYearId = $scope.tmpDate
+					}
+
+				})
+			}
 	        connect.post(true, 'GetUsers',
 				{ iUserType: 2, iStatusId: 0},
                 function (result) {
 					$scope.ABCBookCustomers = result;
 					$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
+					$scope.monthYearList.forEach(function (date) {
+					$scope.tmpDate1 = date.nvName.substring(0, 4);
+					$scope.tmpDate2 = date.nvName.substring(4, 6);
+					$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
+					date.nvName = $scope.tmpDate
+			})
                 }
             );
 	        connect.post(true, 'GetUsers',
