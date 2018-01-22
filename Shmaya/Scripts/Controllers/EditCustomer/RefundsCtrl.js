@@ -8,29 +8,18 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        $scope.isEdit = false;
 	        $scope.isDelete = false;
 	        $scope.isReference = false;
-	        //if ($scope.user.dtResetHours != null) {
-	        //	$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
-	        //	//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-	        //	//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-	        //	while (($scope.YearOfRenewal) < (new Date().getFullYear()))
-	        //	{
-	        //		$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear() + 4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-	        //		$scope.YearOfRenewal += 4;
-	        //	}
-	        //}
-	        //            $scope.isEdit = false;
-	        //$scope.isDelete = false;
-	        //$scope.isReference = false;
-	        //if ($scope.user.dtResetHours != null) {
-	        //    $scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
-	        //    //$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-	        //    //$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-	        //    while (($scope.YearOfRenewal) < (new Date().getFullYear()))
-	        //    {
-	        //        $scope.YearOfRenewal += 4;
-	        //    }
-	        //    $scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
-	        //}
+
+
+	        if ($scope.user.dtResetHours != null) {
+	            $scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
+	            //$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+	            //$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+	            while (($scope.YearOfRenewal) < (new Date().getFullYear()))
+	            {
+	                $scope.YearOfRenewal += 4;
+	            }
+	            $scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+	        }
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
@@ -125,6 +114,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							    if (($scope.refund2.iProductId == 30 && $scope.flagChange == true) || ($scope.refund2.iProductId == 1 && $scope.flagChange == true))
 							        $scope.chngProd = true
 							    if ($scope.checkRefund($scope.refund2) == false)
+<<<<<<< HEAD
 							        return
 							    //חישוב סך החזר עבור גלאי בכי
 							    if ($scope.refund2.iProductId == 1)
@@ -158,6 +148,42 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							    connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
 							        if (result)
 							        {
+=======
+									return
+								//חישוב סך החזר עבור גלאי בכי
+								if ($scope.refund2.iProductId == 1)
+								{
+									$scope.refund2.nRefund = 1075;
+									$scope.refund2.iBuyCryingDetector = 1;
+									$scope.user.iBuyCryingDetector = 1
+								}
+								//חישוב סך החזר עבור פקס
+								else
+									if ($scope.refund2.iProductId == 30)
+										$scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
+									else {
+										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
+											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
+										else
+											$scope.refund2.nRefund = $scope.sumBalance;
+										$scope.sumRefunds += $scope.refund2.nRefund;
+										$scope.sumBalance -= $scope.refund2.nRefund;
+									}
+								$scope.refundToSend = angular.copy($scope.refund2);
+								$scope.refundToSend.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
+								$scope.refundToSend.dtCreateDate = null;
+								if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string')
+								{
+									$scope.tmpDate2 = $scope.refundToSend.iMonthYearId.substring(0, 2);
+									$scope.tmpDate1 = $scope.refundToSend.iMonthYearId.substring(3, 7);
+									$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+									$scope.refundToSend.iMonthYearId = $scope.tmpDate
+								}
+								console.log(JSON.stringify($scope.refundToSend));
+								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
+									if (result)
+									{
+>>>>>>> ab8d8643247e8e78aca6a29319631e04bc106501
 							            console.log('RefundUpdate:');
 							            var savingStatus = "השינויים נשמרו בהצלחה";
 							            $scope.getData();
@@ -332,6 +358,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    if (($scope.newRefund.iProductId == 30 && $scope.flagChange == true) || ($scope.newRefund.iProductId == 1 && $scope.flagChange == true))
 				        $scope.chngProd = true
 				    if ($scope.checkRefund($scope.newRefund) == false)
+<<<<<<< HEAD
 				        <<<<<<< HEAD
 				    return
 				    //חישוב סך החזר עבור גלאי בכי
@@ -374,6 +401,28 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    $scope.sumBalance -= $scope.newRefund.nRefund;
 				}
 >>>>>>> fbeaa3bc7b01cdb6c564402a6727633a726a00b0
+=======
+						return
+					//חישוב סך החזר עבור גלאי בכי
+					if ($scope.newRefund.iProductId == 1)
+					{
+						$scope.newRefund.nRefund = 1075;
+						$scope.newRefund.iBuyCryingDetector = 1;
+						$scope.user.iBuyCryingDetector = 1;
+					}
+					//חישוב סך החזר עבור פקס
+					else
+						if ($scope.newRefund.iProductId == 30)
+							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ( $rootScope.vat / 100);
+						else {
+							if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
+								$scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;
+							else
+								$scope.newRefund.nRefund = $scope.sumBalance;
+							$scope.sumRefunds += $scope.newRefund.nRefund;
+							$scope.sumBalance -= $scope.newRefund.nRefund;
+						}
+>>>>>>> ab8d8643247e8e78aca6a29319631e04bc106501
 				    connect.post(true, 'RefundInsert', { refund: $scope.newRefund, iUserManagerId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId }, function (result) {
 				        if (result && result > 0) {
 				            console.log('RefundInsert:' + result);
