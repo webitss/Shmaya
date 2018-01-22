@@ -57,7 +57,7 @@
 					<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 
-				<create-dialog ng-if="newMessage2.dialogIsOpen" id="sendMassege" is-sub="true" image="glyphicon glyphicon-send color-gray-message" title="{{'שליחת הודעה'}}" cancel="true">
+				<create-dialog ng-if="newMessage2.dialogIsOpen" id="sendMassege" is-sub="true" close-func="initData()" image="glyphicon glyphicon-send color-gray-message" title="{{'שליחת הודעה'}}" cancel="true">
 					<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter" ng-init="whom='#';list=listToSend"></div>
 				</create-dialog>
 

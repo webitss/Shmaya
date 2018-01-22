@@ -54,13 +54,14 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				},
 				{
 				    title: 'בחירה',
-				    template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+				    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
 				    addMemberToMessage: function (item) {
 				        $scope.messageList(item);
 				    },
 				    weight: 0.5,
 				    filter: false,
-				    sort: false
+				    sort: false,
+				    type: 'choose'
 				},
 				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 				{ title: 'שם משפחה', fieldName: 'nvLastName' },
@@ -104,13 +105,14 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				},
 				{
 				    title: 'בחירה',
-				    template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+				    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
 				    addMemberToMessage: function (item) {
 				        $scope.messageList(item);
 				    },
 				    weight: 0.5,
 				    filter: false,
-				    sort: false
+				    sort: false,
+				    type: 'choose'
 				},
 				{ title: 'סוג', fieldName: 'nvOrdersType' },
 				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
@@ -156,13 +158,14 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 },
                 {
                     title: 'בחירה',
-                    template: '<input type="checkbox" ng-if="item.bNotReceivingMessages!=true" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+                    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
                     addMemberToMessage: function (item) {
                         $scope.messageList(item);
                     },
                     weight: 0.5,
                     filter: false,
-                    sort: false
+                    sort: false,
+                    type: 'choose'
                 },
                 { title: 'שם פרטי', fieldName: 'nvFirstName' },
                 { title: 'שם משפחה', fieldName: 'nvLastName' },
@@ -173,6 +176,32 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 { title: 'מייל', fieldName: 'nvEmail', weight: 1.2 },
                 { title: 'עוסק', fieldName: 'nvWorkerType', weight: 0.7 }
 	        ];
+	    };
+
+	    $scope.initData = function () {
+	        $rootScope.listToSend = [];
+	        if ($scope.showCustomer) {
+	            angular.forEach($scope.ABCBookCustomers, function (item) {
+	                if (item.bChecked) {
+	                    item.bChecked = !item.bChecked
+	                }
+	            });
+	        }
+	        else if ($scope.showAdmin) {
+	            angular.forEach($scope.ABCBookAdministrator, function (item) {
+	                if (item.bChecked) {
+	                    item.bChecked = !item.bChecked
+	                }
+	            });
+	        }
+	        else if (!$scope.showCustomer) {
+	            angular.forEach($scope.ABCBookProviders, function (item) {
+	                if (item.bChecked) {
+	                    item.bChecked = !item.bChecked
+	                }
+	            });
+	        }
+
 	    };
 
 	    $scope.messageList = function (user) {
@@ -204,6 +233,50 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	    };
 
 	    $scope.sendMessage = function () {
+	        if ($rootScope.selectAll) {
+	            if ($scope.showCustomer) {
+	                angular.forEach($scope.ABCBookCustomers, function (item) {
+	                    if (item.bChecked) {
+	                        $scope.aMember = {
+	                            iUserId: item.iUserId,
+	                            nvName: item.nvFirstName + ' ' + item.nvLastName,
+	                            nvEmail: item.nvEmail,
+	                            nvMobileNumber: item.nvMobileNumber,
+	                            bChecked: item.bChecked
+	                        };
+	                        $rootScope.listToSend.push($scope.aMember);
+	                    }
+	                });
+	            }
+	            else if ($scope.showAdmin) {
+	                angular.forEach($scope.ABCBookAdministrator, function (item) {
+	                    if (item.bChecked) {
+	                        $scope.aMember = {
+	                            iUserId: item.iUserId,
+	                            nvName: item.nvFirstName + ' ' + item.nvLastName,
+	                            nvEmail: item.nvEmail,
+	                            nvMobileNumber: item.nvMobileNumber,
+	                            bChecked: item.bChecked
+	                        };
+	                        $rootScope.listToSend.push($scope.aMember);
+	                    }
+	                });
+	            }
+	            else if (!$scope.showCustomer) {
+	                angular.forEach($scope.ABCBookProviders, function (item) {
+	                    if (item.bChecked) {
+	                        $scope.aMember = {
+	                            iUserId: item.iUserId,
+	                            nvName: item.nvFirstName + ' ' + item.nvLastName,
+	                            nvEmail: item.nvEmail,
+	                            nvMobileNumber: item.nvMobileNumber,
+	                            bChecked: item.bChecked
+	                        };
+	                        $rootScope.listToSend.push($scope.aMember);
+	                    }
+	                });
+	            }
+	        }
 	        if ($rootScope.listToSend.length == 0)
 	            //if ($scope.haveSend == false)
 	        {

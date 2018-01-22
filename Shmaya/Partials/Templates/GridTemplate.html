@@ -6,7 +6,7 @@
                 ng-if="col.type!='hidden'">
                 <div class="cancel-padding cancel-margin">
                     <div ng-if="!col.titleTemplate" class="col-md-11 cancel-padding cancel-margin grid-header-title" title="{{col.title}}">{{col.title}}</div>
-                    <div ng-if="col.titleTemplate" class="col-md-11 cancel-padding cancel-margin grid-header-title"  compile-data template="{{col.titleTemplate}}"></div>
+                    <div ng-if="col.titleTemplate" class="col-md-11 cancel-padding cancel-margin grid-header-title" compile-data template="{{col.titleTemplate}}"></div>
                     <div class="col-md-2 cancel-padding cancel-margin sort"
                         ng-if="col.sort == undefined || col.sort == true">
                         <i ng-show="$index != sortedIndex || !currentsort.value"
@@ -29,6 +29,9 @@
                             style="position: absolute; left: 5px; top: 0px;">
                             <span ng-class="{'glyphicon glyphicon-search' : filterFields[col.fieldName] == undefined ||  filterFields[col.fieldName] == '',  'glyphicon glyphicon-remove' : filterFields[col.fieldName]!=undefined && filterFields[col.fieldName] != '' }"></span>
                         </div>
+                    </div>
+                    <div ng-if="col.type=='choose'"><!--$event.stopPropagation();-->
+                        <input type="checkbox" ng-click=" changeSelected(col.fieldName);col.onCheck ? col.onCheck(selectAll):''" />
                     </div>
                 </div>
             </div>
