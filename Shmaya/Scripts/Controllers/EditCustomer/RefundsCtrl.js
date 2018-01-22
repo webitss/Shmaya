@@ -8,16 +8,16 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isEdit = false;
 			$scope.isDelete = false;
 			$scope.isReference = false;
-			//if ($scope.user.dtResetHours != null) {
-			//	$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
-			//	//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-			//	//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-			//	while (($scope.YearOfRenewal) < (new Date().getFullYear()))
-			//	{
-			//		$scope.DateOfRenewal = new Date(($scope.user.dtResetHours.getFullYear() + 4), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
-			//		$scope.YearOfRenewal += 4;
-			//	}
-			//}
+			if ($scope.user.dtResetHours != null) {
+				$scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
+				//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
+				//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+				while (($scope.YearOfRenewal) < (new Date().getFullYear()))
+				{
+					$scope.YearOfRenewal += 4;
+				}
+				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+			}
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};

@@ -51,10 +51,12 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
         };
         
 		$scope.saveConversation = function () {
-            $scope.$broadcast('show-errors-check-validity');
-            if (!$scope.form.newConversationForm.$valid) {
-                alerts.alert('ערכים נחוצים חסרים או שגויים');
-                return;
+			if (!$scope.newConversationForm.$valid) {
+				$scope.$broadcast('show-errors-check-validity');
+					var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
+					$rootScope.notification(savingStatus);
+					alerts.alert("יש למלא ערכים תקינים בכל השדות");
+					return;
             }
 			connect.post(true, 'CreateNewConversation', { conversation: $scope.newConversation/*, iCreateUserId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId*/ }, function (result) {
                 $scope.bIsNewConversationOpen = false;

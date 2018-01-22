@@ -53,7 +53,6 @@ companionApp.controller('ConnectionsCtrl', ['$scope', '$rootScope', 'connect', '
 
 	        connect.post(true, 'GetOrdersByUser', { iUserId: $scope.user.iUserId, iUserType: $scope.userType },
 				function (result) {
-<<<<<<< HEAD
 					$scope.ordersByUserList = result;
 					$scope.isDataLoaded++;
 					$scope.ordersByUserList.forEach(function (order) {
@@ -63,10 +62,6 @@ companionApp.controller('ConnectionsCtrl', ['$scope', '$rootScope', 'connect', '
 						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1;
 						order.iMonthYearId = $scope.tmpDate;
 					})
-=======
-				    $scope.ordersByUserList = result;
-				    $scope.isDataLoaded++;
->>>>>>> d030f9661c9916c09ffa019598e897afa8442f53
 				});
 	    };
 	    $scope.prepareData();

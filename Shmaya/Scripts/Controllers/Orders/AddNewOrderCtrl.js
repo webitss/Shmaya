@@ -94,6 +94,13 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				{ iUserType: 2, iStatusId: 0},
                 function (result) {
 					$scope.ABCBookCustomers = result;
+					$scope.orderTypeList = $filter('filter')(result, { Key: 'orderType' }, true)[0].Value;
+					$scope.statusList = $filter('filter')(result, { Key: 'status' }, true)[0].Value;
+					$scope.areaList = $filter('filter')(result, { Key: 'area' }, true)[0].Value;
+					$scope.productTypeList = $filter('filter')(result, { Key: 'productType' }, true)[0].Value;
+					$scope.workerTypeList = $filter('filter')(result, { Key: 'workerType' }, true)[0].Value;
+					$scope.paymentStatusList = $filter('filter')(result, { Key: 'paymentStatus' }, true)[0].Value;
+					$scope.city = $filter('filter')(result, { Key: 'city' }, true)[0].Value;
 					$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
 					$scope.monthYearList.forEach(function (date) {
 					$scope.tmpDate1 = date.nvName.substring(0, 4);

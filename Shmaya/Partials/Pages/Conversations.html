@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<!--הבפנים-->
-		<form name="form.newConversationForm" class="padding-t-17" novalidate>
+		<form id="newConversationForm" name="newConversationForm" class="padding-t-17" novalidate>
 			<div class="panel-default line-list-open ng-scope">
 
 
@@ -68,9 +68,7 @@
 					</span>
 					<div class="phone-info">
 						<span class="col-md conversation">
-							<b>תאריך שיחה: </b>{{
-conversation1.dtCreateDate | date: "dd-MM-yyyy"
-							}}
+							<b>תאריך שיחה: </b>{{conversation1.dtCreateDate | date: "dd-MM-yyyy"}}
 						</span>
 						<span class="col-md conversation"><b>מקבל השיחה: </b>{{conversation1.nvCreateUser}}</span>
 						<span class="col-md conversation"><b>נושא: </b>{{conversation1.nvSubject}}</span>

@@ -2,7 +2,7 @@
     <wait></wait>
     <div ng-controller="MessagesCtrl">
 		<form id="massegeForm" name="massegeForm" class="container container-message">
-			<button type="submit" class="btn  pass btn-ayelet color-gray-message pull-left sent-message" ng-disabled="massegeForm.$invalid" ng-click="sendMessage();$index = 0;">
+			<button type="submit" class="btn  pass btn-ayelet color-gray-message pull-left sent-message" ng-click="sendMessage();$index = 0;">
 				<div class="glyphicon glyphicon-send color-text-white"></div>
 				<span class="color-text-white"> שלח הודעה</span>
 			</button>
@@ -63,7 +63,7 @@
 							<div class="col-md"><span class="vertical-baseline-middle">מספר לחזרה</span></div>
 
 							<div class="col-md-10">
-								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
+								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" phone required />
 							</div>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 							<div class="col-md "><span class="vertical-baseline-middle">מייל לתוצאות</span></div>
 
 							<div class="col-md-12">
-								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" />
+								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required />
 							</div>
 						</div>
 					</div>
