@@ -82,7 +82,7 @@
 			<form-dropdown ng-model="user.iAreaId" enablesearch="false" data="areaList" required></form-dropdown>
 		</form-field>
 		<form-field span-text="שעות עבודה" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
-			<input class="form-control" type="text" ng-model="user.nBankHours" />
+			<input class="form-control" type="text" ng-model="user.nNumHours" disabled/>
 		</form-field>
 		<form-field span-text="שפות תרגום" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
 			<multi-form-dropdown ng-model="user.lLanguage" filter="false" enablesearch="false" data="languageList"></multi-form-dropdown>

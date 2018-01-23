@@ -42,7 +42,9 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 											alert('ארעה שגיאה בלתי צפויה');
 										}
 									});
-								}, function () { }
+								}, function () {
+								    $scope.getData();
+								}
 
 							);
 						},
@@ -93,7 +95,9 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 									alert('ארעה שגיאה בלתי צפויה');
 								}
 							});
-					}, function () { }
+						}, function () {
+						    $scope.getData();
+						}
 
 		);
 		}

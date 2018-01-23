@@ -54,7 +54,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				},
 				{
 				    title: 'בחירה',
-				    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+				    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" style="margin-right: 16px;" ng-model="item.bChecked"/>',
 				    addMemberToMessage: function (item) {
 				        $scope.messageList(item);
 				    },
@@ -105,7 +105,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				},
 				{
 				    title: 'בחירה',
-				    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+				    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" style="margin-right: 18px;" ng-model="item.bChecked"/>',
 				    addMemberToMessage: function (item) {
 				        $scope.messageList(item);
 				    },
@@ -158,7 +158,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 },
                 {
                     title: 'בחירה',
-                    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" ng-model="item.bChecked"/>',
+                    template: '<input type="checkbox" ng-change="col.addMemberToMessage(item)" style="margin-right: 23px;" ng-model="item.bChecked"/>',
                     addMemberToMessage: function (item) {
                         $scope.messageList(item);
                     },
