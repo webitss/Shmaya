@@ -81,9 +81,7 @@
 					</create-dialog>
 				</div>
 
-				<create-dialog ng-if="newUser.dialogIsOpen" id="newUser" close-func="getData()" cancel="true">
-					<!--is-sub="true"-->
-					<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
+				<create-dialog ng-if="newUser.dialogIsOpen" id="newUser" close-func="getData()" cancel="true"">
 					<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>
 				</create-dialog>
 

@@ -148,7 +148,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                     template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAAdministrator(item)\'></div>',
                     deleteAAdministrator: function (item) {
                         alerts.confirm('האם להפוך מנהל זה ללא פעיל? ', alerts.titles.message, function () {
-                            $scope.deleteAdministrator(item);
+							$scope.deleteCustomer(item);
                         }, function () {
                         });
                     },

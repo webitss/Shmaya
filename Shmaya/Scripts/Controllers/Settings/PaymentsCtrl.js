@@ -19,6 +19,18 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 								"<label>מחיר לשעה</label><input type='text' class='form-control' required ng-model='payment2.nTariff' required/>";
 							alerts.custom($scope.pop, 'הוספת ערך', $scope,
 								function () {
+									if (!$scope.payment2.nvPaymentType || !$scope.payment2.nTariff) {
+										createDialog({
+											id: 'eligibility2',
+											template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+											title: "שגיאה",
+											scope: $rootScope,
+											backdrop: true,
+											css: 'z-index: 2500;',
+											modalClass: "modal modalAlert"
+										});
+										return false;
+									}
 									connect.post(true, 'PaymentUpdate', { payment: $scope.payment2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 											if (result && result > 0) {
 												console.log('PaymentUpdate:' + result);
@@ -56,6 +68,18 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 				"<label>מחיר לשעה</label><input type='text' class='form-control' required ng-model='newPayment.nTariff' required/>";
 			alerts.custom($scope.pop, 'הוספת ערך', $scope,
 				function () {
+					if (!$scope.newPayment.nvPaymentType || !$scope.newPayment.nTariff) {
+						createDialog({
+							id: 'eligibility2',
+							template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							title: "שגיאה",
+							scope: $rootScope,
+							backdrop: true,
+							css: 'z-index: 2500;',
+							modalClass: "modal modalAlert"
+						});
+						return false;
+					}
 					connect.post(true, 'PaymentInsert', { payment: $scope.newPayment, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 						if (result && result > 0) {
 							console.log('PaymentInsert:' + result);

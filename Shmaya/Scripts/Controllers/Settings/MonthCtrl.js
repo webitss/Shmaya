@@ -22,6 +22,18 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 								"<label>עד תאריך</label><input type='date' class='form-control' required ng-model='month2.dtGlobalDateEnd_original' required/>";
 							alerts.custom($scope.pop, 'הוספת הגדרה', $scope,
 								function () {
+									if (!$scope.month2.iMonthYearId || !$scope.month2.dtGlobalDateBegin_original || !$scope.month2.dtGlobalDateEnd_original) {
+										createDialog({
+											id: 'eligibility2',
+											template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+											title: "שגיאה",
+											scope: $rootScope,
+											backdrop: true,
+											css: 'z-index: 2500;',
+											modalClass: "modal modalAlert"
+										});
+										return false;
+									}
 									$scope.monthToSend = angular.copy($scope.month2);
 									$scope.monthToSend.dtGlobalDateBegin = angular.copy($scope.month2.dtGlobalDateBegin_original);
 									$scope.monthToSend.dtGlobalDateEnd = angular.copy($scope.month2.dtGlobalDateEnd_original);
@@ -79,6 +91,18 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 				"<label>עד תאריך</label><input type='date' class='form-control' required ng-model='newMonth.dtGlobalDateEnd' required/>";
 			alerts.custom($scope.pop, 'הוספת ערך', $scope,
 				function () {
+					if (!$scope.newMonth.iMonthYearId || !$scope.newMonth.dtGlobalDateBegin_original || !$scope.newMonth.dtGlobalDateEnd_original) {
+						createDialog({
+							id: 'eligibility2',
+							template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							title: "שגיאה",
+							scope: $rootScope,
+							backdrop: true,
+							css: 'z-index: 2500;',
+							modalClass: "modal modalAlert"
+						});
+						return false;
+					}
 					$scope.tmpDate2 = $scope.newMonth.iMonthYearId.substring(0, 2);
 					$scope.tmpDate1 = $scope.newMonth.iMonthYearId.substring(3, 7);
 					$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
@@ -89,7 +113,6 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 							var savingStatus = "השינויים נשמרו בהצלחה";
 							$rootScope.notification(savingStatus);
 							$scope.newMonth = {};
-							//$scope.newEligibility.dialogIsOpen = false;
 							$scope.getData();
 						}
 						else {

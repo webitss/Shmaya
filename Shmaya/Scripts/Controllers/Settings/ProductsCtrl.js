@@ -19,6 +19,18 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 								"<label>שם מוצר</label><input type='text' class='form-control' required ng-model='product2.nvPruductName' required/>";
 							alerts.custom($scope.pop, 'הוספת מוצר', $scope,
 								function () {
+									if (!$scope.product2.iProductTypeId || !$scope.product2.nvPruductName) {
+										createDialog({
+											id: 'eligibility2',
+											template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+											title: "שגיאה",
+											scope: $rootScope,
+											backdrop: true,
+											css: 'z-index: 2500;',
+											modalClass: "modal modalAlert"
+										});
+										return false;
+									}
 									connect.post(true, 'ProductUpdate', { product: $scope.product2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 										if (result && result > 0) {
 											console.log('ProductUpdate:' + result);
@@ -56,6 +68,18 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 				//< input type= 'text' class='form-control' required ng- model='newProduct.nvPruductName' required/>";
 					alerts.custom($scope.pop, 'הוספת מוצר', $scope,
 						function () {
+							if (!$scope.newProduct.iProductTypeId || !$scope.newProduct.nvPruductName) {
+								createDialog({
+									id: 'eligibility2',
+									template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+									title: "שגיאה",
+									scope: $rootScope,
+									backdrop: true,
+									css: 'z-index: 2500;',
+									modalClass: "modal modalAlert"
+								});
+								return false;
+							}
 							connect.post(true, 'ProductInsert', { product: $scope.newProduct, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 								if (result && result > 0) {
 									console.log('ProductInsert:' + result);

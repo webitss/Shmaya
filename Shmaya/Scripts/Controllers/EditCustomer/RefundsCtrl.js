@@ -7,18 +7,20 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        $scope.sumBalance;
 	        $scope.isEdit = false;
 	        $scope.isDelete = false;
-	        $scope.isReference = false;
+			$scope.isReference = false;
+			$scope.isShowAlert = false;
+			$scope.vat = 17;
 
 
-	        if ($scope.user.dtResetHours != null) {
-	            $scope.YearOfRenewal = $scope.user.dtResetHours.getFullYear();
+			if ($scope.user.dtResetCommunication != null) {
+				$scope.YearOfRenewal = $scope.user.user.dtResetCommunication.getFullYear();
 	            //$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
 	            //$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
 	            while (($scope.YearOfRenewal) < (new Date().getFullYear()))
 	            {
 	                $scope.YearOfRenewal += 4;
 	            }
-	            $scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 	        }
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
@@ -50,9 +52,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
-							    if (new Date($scope.newRefund.dtPurchase) > new Date()) {
+								if (new Date($scope.refund2.dtPurchase) > new Date()) {
 							        createDialog({
-							            id: 'newRefunddtPurchase',
+										id: 'refund2dtPurchase',
 							            template: "<div><span>יש לשים תאריך עד היום</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
 							            title: "שגיאה",
 							            scope: $rootScope,
@@ -62,9 +64,21 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							        });
 							        return false;
 							    }
-							    if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
+							    //if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
+							    //    createDialog({
+							    //        id: 'newRefundPayment',
+							    //        template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							    //        title: "שגיאה",
+							    //        scope: $rootScope,
+							    //        backdrop: true,
+							    //        css: 'z-index: 2500;',
+							    //        modalClass: "modal modalAlert"
+							    //    });
+							    //    return false;
+								//}
+								if (!$scope.refund2.nPayment || !$scope.refund2.iMonthYearId || !$scope.refund2.iProductId || !$scope.refund2.dtPurchase) {
 							        createDialog({
-							            id: 'newRefundPayment',
+										id: 'refund2Payment',
 							            template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
 							            title: "שגיאה",
 							            scope: $rootScope,
@@ -73,22 +87,10 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							            modalClass: "modal modalAlert"
 							        });
 							        return false;
-							    }
-							    if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
+								}
+								if (!(!isNaN(parseInt($scope.refund2.nPayment)) && angular.isNumber(parseInt($scope.refund2.nPayment)))) {
 							        createDialog({
-							            id: 'newRefundPayment',
-							            template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
-							            title: "שגיאה",
-							            scope: $rootScope,
-							            backdrop: true,
-							            css: 'z-index: 2500;',
-							            modalClass: "modal modalAlert"
-							        });
-							        return false;
-							    }
-							    if (!(!isNaN(parseInt($scope.newRefund.nPayment)) && angular.isNumber(parseInt($scope.newRefund.nPayment)))) {
-							        createDialog({
-							            id: 'newRefund',
+										id: 'refund2',
 							            template: "<div><span>יש להכניס סכום בספרות בלבד!</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
 							            title: "שגיאה",
 							            scope: $rootScope,
@@ -96,7 +98,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							            css: 'z-index: 2500;',
 							            modalClass: "modal modalAlert"
 							        });
-							        $scope.newRefund.nPayment = '';
+									$scope.refund2.nPayment = '';
 							        return false;
 							    }
 							    if ($scope.fileTypeError == true) {
@@ -125,14 +127,20 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								//חישוב סך החזר עבור פקס
 								else
 									if ($scope.refund2.iProductId == 30)
-										$scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
-									else {
-										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
+										$scope.refund2.nRefund = $scope.refund2.nPayment * ($scope.vat / 100);
+									else
+									{
+										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9)) {
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
-										else
-											$scope.refund2.nRefund = $scope.sumBalance;
-										$scope.sumRefunds += $scope.refund2.nRefund;
-										$scope.sumBalance -= $scope.refund2.nRefund;
+											$scope.sumRefunds += $scope.refund2.nRefund;
+											$scope.sumBalance -= $scope.refund2.nRefund;
+										}
+										else {
+											$scope.refund2.nRefund = $scope.sumBalance + $scope.refund2.nRefund;
+											$scope.sumRefunds = $scope.user.nBankCommunication;
+											$scope.sumBalance = 0;
+										}
+
 									}
 								$scope.refundToSend = angular.copy($scope.refund2);
 								$scope.refundToSend.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
@@ -146,6 +154,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								}
 								console.log(JSON.stringify($scope.refundToSend));
 								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
+									if ($scope.isShowAlert == true)
+										alerts.alert("לא ניתן לקבל החזרים עד לתאריך ההתחדשות");
 									if (result)
 									{
 							            console.log('RefundUpdate:');
@@ -209,8 +219,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        connect.post(true, 'GetRefunds', { iUserId: $scope.user.iUserId },
 				function (result) {
 				    $scope.RefundsList = result;
-				    $scope.isDataLoaded++;
-				    $scope.sumBalance = $scope.user.nBankCommunication;
+					$scope.isDataLoaded++;
+					 $scope.sumBalance = $scope.user.nBankCommunication;
 				    $scope.sumRefunds = 0;
 				    $scope.RefundsList.forEach(function (refund) {
 				        if (refund.iMonthYearId != 0) {
@@ -230,7 +240,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				        if (refund.iProductId != 30 && refund.iProductId != 1) {
 				            $scope.sumRefunds += refund.nRefund;
 				            $scope.sumBalance -= refund.nRefund;
-				        }
+						}
+						if ($scope.sumBalance == 0)
+							$scope.isShowAlert = true;
 				        //אם נקנה פקס ע"י לקוח זה
 				        if (refund.dtPurchase != undefined && refund.dtPurchase != null && refund.dtPurchase != "")
 				            if (refund.dtPurchase.getFullYear() + 5 > (new Date().getFullYear()) && refund.iProductId == 30)
@@ -333,7 +345,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					//חישוב סך החזר עבור פקס
 					else
 						if ($scope.newRefund.iProductId == 30)
-							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ( $rootScope.vat / 100);
+							$scope.newRefund.nRefund = $scope.newRefund.nPayment * ( $scope.vat / 100);
 						else {
 							if ($scope.sumBalance > ($scope.newRefund.nPayment * 0.9))
 								$scope.newRefund.nRefund = $scope.newRefund.nPayment * 0.9;
@@ -342,7 +354,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							$scope.sumRefunds += $scope.newRefund.nRefund;
 							$scope.sumBalance -= $scope.newRefund.nRefund;
 						}
-				    connect.post(true, 'RefundInsert', { refund: $scope.newRefund, iUserManagerId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId }, function (result) {
+					connect.post(true, 'RefundInsert', { refund: $scope.newRefund, iUserManagerId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId }, function (result) {
+						if ($scope.isShowAlert == true)
+							alerts.alert("לא ניתן לקבל החזרים עד לתאריך ההתחדשות");
 				        if (result && result > 0) {
 				            console.log('RefundInsert:' + result);
 				            var savingStatus = "השינויים נשמרו בהצלחה";
