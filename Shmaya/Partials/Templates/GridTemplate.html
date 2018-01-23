@@ -14,6 +14,9 @@
                         <i ng-show="$index == sortedIndex && currentsort.value"
                             class="glyphicon glyphicon-menu-up"></i>
                     </div>
+                    <div ng-if="col.type=='choose'"><!--$event.stopPropagation();-->
+                        <input type="checkbox" style="margin-top: 15px;" title="בחר הכל" ng-click=" changeSelected(col.fieldName);col.onCheck ? col.onCheck(selectAll):''" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,9 +33,7 @@
                             <span ng-class="{'glyphicon glyphicon-search' : filterFields[col.fieldName] == undefined ||  filterFields[col.fieldName] == '',  'glyphicon glyphicon-remove' : filterFields[col.fieldName]!=undefined && filterFields[col.fieldName] != '' }"></span>
                         </div>
                     </div>
-                    <div ng-if="col.type=='choose'"><!--$event.stopPropagation();-->
-                        <input type="checkbox" ng-click=" changeSelected(col.fieldName);col.onCheck ? col.onCheck(selectAll):''" />
-                    </div>
+                    
                 </div>
             </div>
         </div>
