@@ -115,15 +115,15 @@ namespace ShmayaService
             return User.UserUpdate(user, iUserManagerId);
         }
 
-		[OperationContract]
-		[WebInvoke(
-		 Method = "POST",
-		 UriTemplate = "UserUpdate",
-		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		 ResponseFormat = WebMessageFormat.Json)]
-		public  void checkRenewDate()
-		{
-		}
+		//[OperationContract]
+		//[WebInvoke(
+		// Method = "POST",
+		// UriTemplate = "UserUpdate",
+		// BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		// ResponseFormat = WebMessageFormat.Json)]
+		//public  void checkRenewDate()
+		//{
+		//}
 
 		#endregion
 

@@ -13,7 +13,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 
 			if ($scope.user.dtResetCommunication != null) {
-				$scope.YearOfRenewal = $scope.user.user.dtResetCommunication.getFullYear();
+				$scope.YearOfRenewal = $scope.user.dtResetCommunication.getFullYear();
 	            //$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
 	            //$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
 	            while (($scope.YearOfRenewal) < (new Date().getFullYear())) {
@@ -51,11 +51,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
-<<<<<<< HEAD
 								if (new Date($scope.refund2.dtPurchase) > new Date()) {
-=======
-							    if (new Date($scope.refund2.dtPurchase) > new Date()) {
->>>>>>> 7dd837a28f2ae0caf4f19f3c9fe934d099b149ba
 							        createDialog({
 										id: 'refund2dtPurchase',
 							            template: "<div><span>יש לשים תאריך עד היום</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
@@ -67,7 +63,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							        });
 							        return false;
 							    }
-<<<<<<< HEAD
 							    //if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
 							    //    createDialog({
 							    //        id: 'newRefundPayment',
@@ -81,9 +76,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							    //    return false;
 								//}
 								if (!$scope.refund2.nPayment || !$scope.refund2.iMonthYearId || !$scope.refund2.iProductId || !$scope.refund2.dtPurchase) {
-=======
-							    if (!$scope.refund2.nPayment || !$scope.refund2.iMonthYearId || !$scope.refund2.iProductId || !$scope.refund2.dtPurchase) {
->>>>>>> 7dd837a28f2ae0caf4f19f3c9fe934d099b149ba
 							        createDialog({
 										id: 'refund2Payment',
 							            template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
@@ -249,7 +241,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				            $scope.sumBalance -= refund.nRefund;
 						}
 						if ($scope.sumBalance == 0)
+						{
 							$scope.isShowAlert = true;
+						}
 				        //אם נקנה פקס ע"י לקוח זה
 				        if (refund.dtPurchase != undefined && refund.dtPurchase != null && refund.dtPurchase != "")
 				            if (refund.dtPurchase.getFullYear() + 5 > (new Date().getFullYear()) && refund.iProductId == 30)
@@ -376,6 +370,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				        }
 				    });
 				}, function () {
+					$scope.newRefund = {};
 				    $scope.getData();
 				}
 
