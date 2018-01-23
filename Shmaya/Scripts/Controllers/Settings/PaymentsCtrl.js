@@ -30,7 +30,9 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 												alert('ארעה שגיאה בלתי צפויה');
 											}
 										});
-								}, function () { }
+								}, function () {
+								    $scope.getData();
+								}
 
 							);
 						},
@@ -69,7 +71,9 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 							alert('ארעה שגיאה בלתי צפויה');
 						}
 					});
-				}, function () { }
+				}, function () {
+				    $scope.getData();
+				}
 
 			);
 		}

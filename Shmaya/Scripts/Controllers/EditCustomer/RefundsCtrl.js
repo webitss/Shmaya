@@ -349,7 +349,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				            alerts.alert('ארעה שגיאה בלתי צפויה');
 				        }
 				    });
-				}, function () { }
+				}, function () {
+				    $scope.getData();
+				}
 
 			);
 	    }

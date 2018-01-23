@@ -44,7 +44,10 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 											alert('ארעה שגיאה בלתי צפויה');
 										}
 									});
-								}, function () { }
+								}, function () {
+								    $scope.month2 = [];
+								    $scope.getData();
+								}
 
 							);
 						},
@@ -96,7 +99,10 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 							alert('ארעה שגיאה בלתי צפויה');
 						}
 					});
-				}, function () { }
+				}, function () { 
+				    $scope.newMonth=[];
+				    $scope.getData();
+				}
 
 			);
 		}
