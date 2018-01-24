@@ -54,7 +54,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								if (new Date($scope.refund2.dtPurchase) > new Date()) {
 							        createDialog({
 										id: 'refund2dtPurchase',
-							            template: "<div><span>יש לשים תאריך עד היום</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							            template: "<div><span>אין להזין תאריך עתידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
 							            title: "שגיאה",
 							            scope: $rootScope,
 							            backdrop: true,
@@ -286,7 +286,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    if (new Date($scope.newRefund.dtPurchase) > new Date()) {
 				        createDialog({
 				            id: 'newRefunddtPurchase',
-				            template: "<div><span>יש לשים תאריך עד היום</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
+							template: "<div><span>אין להזין תאריך עתידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
 				            title: "שגיאה",
 				            scope: $rootScope,
 				            backdrop: true,

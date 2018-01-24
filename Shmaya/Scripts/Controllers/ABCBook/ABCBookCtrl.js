@@ -18,7 +18,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	        alert("hello");
 	    }
 
-	    $scope.prepareData = function () {
+		$scope.prepareData = function () {
 	        $scope.getData();
 	        $scope.isDataLoadedCustomers = 0;
 	        $scope.isDataLoadedProviders = 0;
@@ -128,19 +128,20 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 
 	        $scope.gridIdentity = 'ABCBookAdministrator';
 	        $scope.columns = [
-                {
-                    fieldName: 'iUserId',
-                    title: 'עריכה',
-                    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
-                    clickEvent: function (user) {
-                        $scope.isEdit = true;
-                        user.dialogIsOpen = true;
-                        $rootScope.$broadcast('displayDialog', { id: user.iUserId });
-                    },
-                    weight: 0.5,
-                    filter: false,
-                    sort: false
-                },
+				{
+					fieldName: 'iUserId',
+					title: 'עריכה',
+					template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
+					clickEvent: function (user)
+					{
+						$scope.isEdit = true;
+						user.dialogIsOpen = true;
+						$rootScope.$broadcast('displayDialog', { id: user.iUserId });
+					},
+					weight: 0.5,
+					filter: false,
+					sort: false
+				},
                 {
                     fieldName: 'iUserId',
                     title: 'מחיקה',
