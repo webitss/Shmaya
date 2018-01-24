@@ -1,0 +1,50 @@
+﻿<div class="login">
+	<div class="bgstretch">
+		&nbsp
+	</div>
+	<div class="d-enter-logo" ng-if="isLogin">
+		<img src="Images/shmayaLogo.png" class="enter-logo" />
+	</div>
+	<div class="form-container">
+				<form id="loginForm" name="loginForm" ng-show="var.forgetPassword==false"><!---->
+
+					<div class="form-group">
+						<label class="control-label font text">שם משתמש</label>
+						<input type="text" class="form-control font" id="userName" name="userName" placeholder="שם משתמש*"
+							   ng-model="userName"
+							   required />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label font text">סיסמה</label>
+						<input type="password" class="form-control font" id="userPassword" name="userPassword" placeholder="סיסמה*"
+							   ng-model="userPassword"
+							   required />
+					</div>
+
+					<div class="text-center">
+						<button type="submit" ng-click="login()" class="b-login btn btn-lg btn-block btn-login">כניסה</button>
+					</div>
+                <br />
+					<div class="form-group ">
+						<a ng-click="resetUser()">שכחתי סיסמא</a>
+					</div>
+				</form>
+				<form id="myForm1" name="forgetPasswordForm" ng-if="var.forgetPassword == true">
+					<div class="form-group">
+						<input type="email" class="form-control" id="mail" name="mail" placeholder="*הזן כתובת מייל לשחזור סיסמא"
+							   ng-model="user.nvMail"
+							   required />
+					</div>
+
+					<div class="form-group">
+						<button ng-click="resetPassword()" class="b-login btn btn-lg btn-block btn-login">אישור</button>
+					</div>
+
+					<div class="form-group">
+						<a ng-click="var.forgetPassword=false">כניסה באמצעות שם משתמש וסיסמא</a>
+					</div>
+				</form>
+			</div>
+	
+</div>

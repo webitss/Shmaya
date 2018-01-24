@@ -1,0 +1,30 @@
+﻿
+<div ng-controller="EligibilityTableCtrl">
+	<wait></wait>
+	<div class="container">
+		<div class="row">
+			<div class="nav pull-left">
+				<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="AddNewEligibility()">
+					<i class="glyphicon glyphicon-plus-sign"></i>
+					<span class="color-text-white">הוספת חדש</span>
+				</button>
+				<button class="btn  pass btn-ayelet color-yellow exportToExcel" title="ייצוא לאקסל" ng-click="exportToExcel()">
+					<span class=""></span>
+				</button><br />
+				<label>עדכון ערך מע"מ:</label><input type="text" ng-model="vat" number />
+			</div>
+			<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+		</div>
+		<br />
+		<div class="row">
+			<grid columns="columns"
+				  data="EligibilityTableList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded"
+				  footer-text="זכאות"
+				  grid-identity="{{gridIdentity}}"></grid>
+		</div>
+	</div>
+</div>
+
+

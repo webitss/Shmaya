@@ -1,0 +1,53 @@
+﻿<div ng-controller="MonthCtrl" class="container container-message">
+	<!--<div class="row margin-top-double">
+			<div class="pull-left col-md-6">
+				<div class="row">
+					<div class="col-md-10">
+						<button class="btn  btn-ayelet color-yellow pull-left" ng-click="saveDate()">
+							<div class="save-btn-ayelet"></div>
+							<span>שמירה</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<form id="formOrder" name="formMonth" novalidate>
+				<div class="row">
+					<form-field span-text="בחר חודש" class="col-md-6">
+						<form-dropdown ng-model="iMonthId" enablesearch="false" data="monthList" required></form-dropdown>
+					</form-field>
+				</div>
+				<div class="row">
+					<form-field span-text="מתאריך" class="col-md-6">
+						<input class="form-control" type="date" ng-model="dtGlobalDateBegin" required />
+					</form-field>
+				</div>
+				<div class="row">
+					<form-field span-text="עד תאריך" class="col-md-6">
+						<input class="form-control" type="date" ng-model="dtGlobalDateEnd" required />
+					</form-field>
+				</div>
+	</form>-->
+
+	<wait></wait>
+	<div class="container">
+		<div class="row">
+			<div class="nav pull-left">
+				<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="AddNewMonth()">
+					<i class="glyphicon glyphicon-plus-sign"></i>
+					<span class="color-text-white">הוספת חדש</span>
+				</button>
+			</div>
+			<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+		</div>
+		<br />
+		<div class="row">
+			<grid columns="columns"
+				  data="monthesList"
+				  class="color-gray"
+				  is-data-loaded="isDataLoaded"
+				  footer-text="תאריכים"
+				  grid-identity="{{gridIdentity}}"></grid>
+		</div>
+	</div>
+</div>

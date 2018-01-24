@@ -1,0 +1,159 @@
+/*directives- paging*/
+
+.grid-paging {
+}
+
+.dropdown-display-mode li {
+    padding: 5px 8px !important;
+}
+
+.grid-paging-right {
+    margin-left: 2px;
+}
+
+.grid-paging-left {
+    margin-right: 2px;
+}
+
+/*directives- dropdown*/
+
+.span-dropdown-value {
+    white-space: normal;
+    text-align:right !important;
+}
+
+.btn-group .combo-left {
+    float: left;
+    text-align: left;
+}
+
+.btn-group .combo-left .span-dropdown-value {
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.filter-input:not(.phone-prefix) .btn-group .combo-left .caret {
+    display: inline-block;
+
+}
+
+.btn-group .combo-left.combo-split .span-dropdown-value {
+    margin-right: 0;
+}
+
+.btn-group .combo-split .caret {
+    margin-top: 8px;
+    float: left;
+    padding-bottom: 8px;
+}
+
+.btn-group .combo-split .span-dropdown-value {
+    float: right;
+    overflow: hidden;
+
+}
+
+.dropdown-template .dropdown-menu > li:first-child {
+    /*padding-right: 2px;*/
+    /*padding-left: 2px;*/
+}
+
+.dropdown-template .btn.btn-dropdown.dropdown-toggle{
+    /*as bootstrap "form-control" class*/
+    height: 34px;
+}
+
+.dropdown-menu li .search-input {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.btn.display-btn {
+    padding: 4px;
+    width: auto;
+}
+
+.filter-input.dashboard-filter-with-display .btn.clear-btn {
+
+    width: 12%;
+}
+
+.filter-input.dashboard-filter-with-display .search-input {
+    /*width: 70%;*/
+}
+
+/*DROPDOWNS*/
+
+.dropdown-multi-selected {
+    border-right: solid 3px #0382C6;
+    color: #0382C6;
+    background-color: lightblue;
+}
+
+/*.has-error .dropdown-template .dropdown-toggle {
+    background-color: rgba(199, 63, 63, 0.14) !important;
+}
+
+.has-error .dropdown-template .dropdown-toggle:focus {
+   background-color: rgba(199, 63, 63, 0.14) !important;
+}*/
+
+.has-success .dropdown-template .dropdown-toggle {
+    /*border-color: #3c763d;*/
+    border-color: #5cb85c !important;
+}
+
+.has-success .dropdown-template .dropdown-toggle:focus {
+    border-color: #2b542c !important;
+}
+
+/*DROPDOWNS END*/
+
+/*Date Picker*/
+.date-wrapper {
+    direction: rtl;
+
+    /*float: right; !important;*/
+    position: relative;
+}
+
+.date-default::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.date-default {
+    border: none;
+    outline: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    margin-top: 2px;
+    /*padding-left: 5px;*/
+}
+
+.date-override {
+    text-align: -webkit-left;
+    position: absolute;
+    width: calc(100% - 50px);
+    border: none;
+    outline: none;
+    margin-top: 1px;
+    height: 28px !important;
+    box-shadow: none;
+    top: 0;
+    /*padding-left: 5px;*/
+
+}
+
+.date-override:focus {
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.invalid-date {
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+/*Date Picker END*/
+

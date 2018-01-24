@@ -1,0 +1,179 @@
+﻿
+/*#region ScrollBar*/
+
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 0em;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-button {
+    height: 0;
+}
+
+::-webkit-scrollbar-track-piece {
+    background: #aaa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3f3e3e;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/*#endregion ScrollBar*/
+
+
+
+.pos-relative {
+    position: relative;
+}
+
+
+
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('fonts/RUBIK-LIGHT.TTF');
+}
+
+html {
+    height: 100%;
+}
+
+
+body {
+    direction: rtl;
+    font-family: Rubik;
+    height: 100%;
+    font-size: 17px;
+}
+
+
+.v-align-b  {vertical-align: bottom;
+    
+}
+
+
+input {
+    background-color: #F7F7F7;
+    border-style: none none solid none;
+    border-width: 1px;
+    height: 34px;
+    border-color: #606060;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 6px 12px;
+}
+
+.header-shmaya img {
+    width: 100%;
+}
+
+
+
+.header-form {
+    background-color: #188587;
+    text-align: center;
+  
+    padding: 12px;
+}
+.header-form span{
+    
+    color: white;
+    font-size: 25px;
+
+}
+
+
+.form-wrap {
+    padding: 39px 17%;
+}
+
+    .form-wrap row {
+        width: 100%;
+    }
+
+.form-item {
+    min-height: 34px;
+    margin-bottom: 25px;
+}
+
+    .form-item .input input {
+        width: 100%;
+    }
+
+    .form-item .dropdown-template .btn.btn-dropdown.dropdown-toggle {
+        width: 100%;
+    }
+
+        .form-item .dropdown-template .btn.btn-dropdown.dropdown-toggle .combo-split {
+            float: left;
+        }
+
+
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+
+
+.end-btn {
+    background-color: #188587;
+    border: none;
+    color: white;
+    padding: 9px 83px;
+    margin: auto;
+    display: block;
+    border-radius: 7px;
+    margin-top: 22px;
+}
+
+    .end-btn:hover {
+        background-color: #136466;
+    }
+
+    .end-btn[disabled] {
+    background-color: #92cfd1;
+   cursor:not-allowed;
+}
+
+
+
+.popup-success-wrap {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 253, 253, 0.59);
+}
+
+
+
+
+.popup-success {
+  
+    margin: auto;
+    width: 300px;
+    background-color: #188587;
+    padding: 20px 18px;
+    margin-top: 19%;
+}
+
+    .popup-success img {
+        display: block;
+        margin: auto;
+        height: 75px;
+    }
+
+    .popup-success span {
+        display: block;
+        color: white;
+        padding: 13px 0;
+        text-align: center;
+        font-size: 19px;
+    }
