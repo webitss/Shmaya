@@ -161,3 +161,25 @@ footer i {
 }
 
 /*footer end*/
+
+
+#docFile {
+    background: transparent !important;
+    border: none !important;
+    margin-top: 25px;
+   padding:0px;
+}
+
+    #docFile input {
+        background: red !important;
+    }
+
+
+    #docFile > input {
+        background: red !important;
+    }
+
+
+input #docFile {
+    background: red !important;
+}
