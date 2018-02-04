@@ -9,6 +9,7 @@ using System.Web;
 
 namespace ShmayaService.Entities
 {
+
 	[DataContract]
 	public class Payment
 	{
