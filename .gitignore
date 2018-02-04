@@ -49,4 +49,23 @@ ShmayaService/ShmayaService.csproj
 *.exe
 *.user
 *.csproj
+<<<<<<< HEAD
+*.dll
+*.dll
+*.pdb
+*.cache
+*.cs
+*.txt
+=======
+Service/Files/13158943994540293918280txt
+Service/Files/13158944042581314918280txt
+Service/Files/13158945525487768818280txt
+>>>>>>> f3730f746564dcd21cb2d49611be48d3552ae504
+*.txt
+.vs/AyeletHashacharCompanionship/v15/.suo
+*.ide
+=======
 Shmaya.v11.suo
+>>>>>>> a8ccc08e5f081943c94813f467fd06194018cd1a
+*.dll
+*.dll

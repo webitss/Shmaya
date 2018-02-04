@@ -161,3 +161,12 @@ footer i {
 }
 
 /*footer end*/
+
+
+#docFile {
+    background: transparent !important;
+    border: none !important;
+    margin-top: 25px;
+   padding:0px;
+}
+
