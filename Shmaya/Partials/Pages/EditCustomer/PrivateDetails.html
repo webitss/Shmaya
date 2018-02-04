@@ -72,6 +72,7 @@
 		<form-field span-text="מספר שעות זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
 			<input class="form-control" type="text" ng-model="nInitBankHours" number />
 		</form-field>
+		{{user.lOrderType}}
 		<form-field span-text="סוג שירות" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
 			<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList" required></multi-form-dropdown>
 		</form-field>

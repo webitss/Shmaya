@@ -1,7 +1,7 @@
 "use strict";
 appMessagePdf.factory("ConnectForPdf", ['$http', function ($http) {
-    var urlBase = 'http://qa.webit-track.com/ShmayaCRMWs/Service.svc/';
-	//var urlBase = 'http://localhost:27786/ShmayaCRMWs/Service.svc/'
+    //var urlBase = 'http://qa.webit-track.com/ShmayaCRMWs/Service.svc/';
+	var urlBase = "http://localhost:27786/Service.svc/";
     function dateConvectionLoop(data, isPost) {
         if (!angular.isObject(data)) {
             var prop = data;

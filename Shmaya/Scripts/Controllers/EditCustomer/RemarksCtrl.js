@@ -31,8 +31,8 @@ companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'code
 			$scope.getAllRemarks = function () {
 				connect.post(true, 'GetRemarks', { iUserId: $scope.user.iUserId }, function (result) {
 					$scope.allRemarks = result;
-					if (result.lengh == 0)
-						$scope.noRemark = 'לא התבצעו שיחות עם חבר זה';
+					if ($scope.allRemarks.length == 0)
+						$scope.noConversation = 'לא נרשמו הערות ללקוח זה';
 				});
 			}
 			$scope.getAllRemarks();

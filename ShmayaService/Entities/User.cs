@@ -37,7 +37,9 @@ namespace ShmayaService.Entities
         public string nvFirstName { get; set; }
         [DataMember]
         public string nvAdress { get; set; }
-        [DataMember]
+		[DataMember]
+		public int iAreaId { get; set; }
+		[DataMember]
         public string nvPhoneNum { get; set; }
         [DataMember]
         public string nvMobileNum { get; set; }

@@ -15,8 +15,8 @@
 				$scope.getAllMessages = function () {
 					connect.post(true, 'GetMessages', { iUserId: $scope.user.iUserId }, function (result) {
 						$scope.allMessages = result;
-						if (result.lengh == 0)
-							$scope.noMessage = 'לא התבצעו שיחות עם חבר זה';
+						if ($scope.allMessages.length == 0)
+							$scope.noConversation = 'לא נשלחו הודעות ללקוח זה';
 					});
 				}
 				$scope.getAllMessages();

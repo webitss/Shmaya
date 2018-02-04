@@ -81,8 +81,6 @@
 							</div>
 						</div>
 					</div>
-					{{order.iTypeTranslation}}
-					{{freeTxt}}
 					<div class="col-md-6">
 						<div class="form-item row ">
 							<span class="text col-md-3">סוג תרגום<span ng-if="!order.iTypeTranslation" style="color:red">*</span></span>
@@ -90,25 +88,32 @@
 								<order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required ng-change="selectTypeTranslating(order.iTypeTranslation)"></order-form-dropdown>
 							</div>
 						</div>
-						<div class="form-item row " ng-if="freeTxt">
-							<input  type="text" ng-model="order.nvRemark" />
+						<div class="form-item row ">
+							<span class="text col-md-3">מטרת התרגום<span ng-if="!order.nvRemark" style="color:red">*</span></span>
+							<input type="text" ng-model="order.nvRemark" />
 						</div>
 						<div class="form-item row ">
 							<span class="text col-md-3">שעת התחלה<span ng-if="!order.dtTimeBegin_original" style="color:red">*</span></span>
 							<div class="input col-md-8">
-								<input type="time" ng-model="order.dtTimeBegin_original" required />
+								<input type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()"  required/>
 							</div>
 						</div>
 						<div class="form-item row ">
-							<span class="text col-md-3">משך תרגום<span ng-if="!order.dtTimeTranslation_original" style="color:red">*</span></span>
+							<span class="text col-md-3">משך תרגום<span ng-if="!order.dtTimeTranslation" style="color:red">*</span></span>
 							<div class="input col-md-8">
-								<input type="time" ng-model="order.dtTimeTranslation_original" required />
+								<input type="time" ng-model="order.dtTimeTranslation" ng-blur="calculateTimeEnd()" required/>
+							</div>
+						</div>
+						<div class="form-item row ">
+							<span class="text col-md-3">זמן סיום</span>
+							<div class="input col-md-8">
+								<input type="time" ng-model="order.dtTimeEnd" disabled />
 							</div>
 						</div>
 						<div class="form-item row " ng-if="showWaiting">
 							<span class="text col-md-3">זמן המתנה</span>
 							<div class="input col-md-8">
-								<input type="time"  ng-model="order.dtTimeWaiting_original" />
+								<input type="time" ng-model="order.dtTimeWaiting_original" />
 							</div>
 						</div>
 						<div class="form-item row ">

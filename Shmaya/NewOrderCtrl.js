@@ -7,7 +7,6 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 			dtDateTraslation_original: new Date(),
 			nvRemark:null
 			}
-		$scope.freeTxt = false;
 		$scope.showWaiting = false;
         $scope.successSend = false;
 
@@ -45,11 +44,22 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 
 		$scope.selectTypeTranslating = function (iTypeTranslation)
 		{
-			if (iTypeTranslation == 21)
-				$scope.freeTxt = true;
-			else
 				if (iTypeTranslation == 64)
 					$scope.showWaiting = true;
+		}
+
+		$scope.calculateTimeEnd = function () {
+			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation) return;
+			var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation.getHours();
+			var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation.getMinutes();
+			//if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeEnd) return;
+			//var hours = $scope.order.dtTimeEnd.getHours() - $scope.order.dtTimeBegin_original.getHours();
+			//var minutes = $scope.order.dtTimeEnd.getMinutes() - $scope.order.dtTimeBegin_original.getMinutes();
+			if (minutes >= 60) {
+				minutes -= 60;
+				hours += 1;
+			}
+			$scope.order.dtTimeEnd = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 		}
 
         $scope.checkIdentity = function () {
@@ -62,18 +72,18 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                     }
                     else if (result.iResult == 0) {
                         $scope.noIdentity = true;
-                        $scope.noIdentityALert = result.sResult;
+                        $scope.noIdentityAlert = result.sResult;
                         $scope.order.nameCustomer = "";
                         $scope.order.nvIdentity = "";
                     }
                     else {
                         $scope.noIdentity = true;
-                        $scope.noIdentityALert = result.sResult;
+                        $scope.noIdentityAlert = result.sResult;
                     }
                 }
                 else {
                     $scope.noIdentity = true;
-                    $scope.noIdentityALert = 'ארעה שגיאה בלתי צפויה';
+                    $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
             });
         };

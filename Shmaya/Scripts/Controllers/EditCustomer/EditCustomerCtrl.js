@@ -12,20 +12,30 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 			{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
 			{ title: 'החזרים  ללקוח', content: 'Partials/Pages/EditCustomer/Refunds.html' },
 			{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
-			{ title: 'הזמנות ללקוח', content: 'Partials/Pages/EditCustomer/Connections.html' }, 
+			{ title: 'הזמנות ללקוח', content: 'Partials/Pages/EditCustomer/Connections.html' },
 			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
 			{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
 		];
 	}
-	if (!$scope.showCustomer) {
-		$scope.tabs = [
-			{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
-			{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
-			{ title: 'הזמנות', content: 'Partials/Pages/EditCustomer/Connections.html' },
-			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
-			{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
-		];
-	}
+	else
+		if (!$scope.showCustomer && !$scope.showAdmin) {
+			$scope.tabs = [
+				{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
+				{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
+				{ title: 'הזמנות', content: 'Partials/Pages/EditCustomer/Connections.html' },
+				{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
+				{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
+			];
+		}
+		else
+		{
+			$scope.tabs = [
+				{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
+				{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
+				{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
+				{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
+			];
+		}
 
 	$scope.getCodeTables = function () {
 		connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {

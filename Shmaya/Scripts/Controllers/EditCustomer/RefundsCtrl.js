@@ -20,8 +20,17 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	            }
 				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 			}
-			if ($scope.DateOfRenewal == $scope.user.dtResetCommunication && $scope.user.dtResetCommunication != undefined)
-				$scope.DateOfRenewal = new Date($scope.YearOfRenewal+4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
+			//if ($scope.DateOfRenewal == $scope.user.dtResetCommunication && $scope.user.dtResetCommunication != undefined)
+			//	$scope.DateOfRenewal = new Date($scope.YearOfRenewal+4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
+			if ($scope.DateOfRenewal && $scope.user.dtResetCommunication) {
+				var _MS_PER_DAY = 1000 * 60 * 60 * 24;
+				var utc1 = Date.UTC($scope.DateOfRenewal.getFullYear(), $scope.DateOfRenewal.getMonth(), $scope.DateOfRenewal.getDate());
+				var utc2 = Date.UTC($scope.user.dtResetCommunication.getFullYear(), $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
+
+				$scope.difference = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+				if ($scope.difference == 0)
+					$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
+			}
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
@@ -36,7 +45,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
 				    clickEvent: function (refund) {
 						if (refund.item == undefined) return;
-				        $scope.refund2 = refund.item;
+						$scope.refund2 = refund.item;
+						$scope.refund2.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
 				        if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string') {
 				            $scope.tmpDate2 = $scope.refund2.iMonthYearId.substring(0, 2);
 				            $scope.tmpDate1 = $scope.refund2.iMonthYearId.substring(3, 7);
@@ -44,7 +54,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				            $scope.refund2.iMonthYearId = $scope.tmpDate
 				        }
 				        $scope.isEdit = true;
-						$scope.pop = "<label>שם מוצר</label><input type='text' class='form-control' required ng-model='refund2.nvPruductName' disabled />"
+						$scope.pop = "<label>שם מוצר</label><input type='text' class='form-control' required ng-model='refund2.nvPruductName' disabled />"+
 							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase_original' required/>" +
 							"<label>שיוך לחודש ושנה</label><form-dropdown ng-model='refund2.iMonthYearId' enablesearch='false' data='monthYearList' required></form-dropdown>" +
 							"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='refund2.nPayment' required/>" +
@@ -52,8 +62,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
-								$scope.refund2.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
-								if (new Date($scope.refund2.dtPurchase) > new Date()) {
+								if (new Date($scope.refund2.dtPurchase_original) > new Date()) {
 							        createDialog({
 										id: 'refund2dtPurchase',
 							            template: "<div><span>אין להזין תאריך עתידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
@@ -102,9 +111,9 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							        });
 							        return false;
 							    }
-							    if ($scope.refund2.iProductId == 30  || $scope.refund2.iProductId == 1 )
-							    if ($scope.checkRefund($scope.refund2) == false)
-									return
+							  //  if ($scope.refund2.iProductId == 30  || $scope.refund2.iProductId == 1 )
+							  //  if ($scope.checkRefund($scope.refund2) == false)
+									//return
 								//חישוב סך החזר עבור גלאי בכי
 								if ($scope.refund2.iProductId == 1)
 								{
@@ -209,7 +218,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					$scope.isDataLoaded++;
 					 $scope.sumBalance = $scope.user.nBankCommunication;
 				    $scope.sumRefunds = 0;
-				    $scope.RefundsList.forEach(function (refund) {
+					$scope.RefundsList.forEach(function (refund) {
+						refund.dtPurchase_original = angular.copy(refund.dtPurchase);
 				        if (refund.iMonthYearId != 0) {
 				            refund.iMonthYearId = refund.iMonthYearId + ""
 				            $scope.tmpDate1 = refund.iMonthYearId.substring(0, 4);
@@ -262,17 +272,18 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	        //$scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
 			//$scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
 			$scope.newRefund.iMonthYearId = parseInt(new Date().getFullYear()) * 100 + new Date().getMonth()+1;
-	        $scope.newRefund.dtPurchase = new Date();
+			$scope.newRefund.dtPurchase_original = new Date();
+			$scope.newRefund.dtPurchase = new Date();
 	        $scope.isEdit = false;
 	        $scope.pop = "<label>שם מוצר</label><form-dropdown ng-model='newRefund.iProductId' enablesearch='false' data='productsList' identityfield='iProductId' datafield='nvPruductName'></form-dropdown>" +
-				"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='newRefund.dtPurchase' min='{{currentDate | date:'yyyy-MM-dd'}}' required/>" +
+				"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='newRefund.dtPurchase_original' min='{{currentDate | date:'yyyy-MM-dd'}}' required/>" +
 				"<label>שיוך לחודש ושנה</label><form-dropdown ng-model='newRefund.iMonthYearId' enablesearch='false' data='monthYearList' required></form-dropdown>" +
 				"<label>סכום לתשלום</label><input type='text' class='form-control' required ng-model='newRefund.nPayment' required/>" +
 					'<input type="file" class="form-control " ng-file-select="docFileSelect($files)" id="docFile" />';
 	        alerts.custom($scope.pop, 'הוספת רכישה', $scope,
 				function () {
-					//$scope.newRefund.dtPurchase = angular.copy($scope.newRefund.dtPurchase_original)
-				    if (new Date($scope.newRefund.dtPurchase) > new Date()) {
+					$scope.newRefund.dtPurchase = angular.copy($scope.newRefund.dtPurchase_original);
+					if (new Date($scope.newRefund.dtPurchase_original) > new Date()) {
 				        createDialog({
 				            id: 'newRefunddtPurchase',
 							template: "<div><span>אין להזין תאריך עתידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
@@ -284,7 +295,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				        });
 				        return false;
 				    }
-				    if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase) {
+					if (!$scope.newRefund.nPayment || !$scope.newRefund.iMonthYearId || !$scope.newRefund.iProductId || !$scope.newRefund.dtPurchase_original) {
 				        createDialog({
 				            id: 'newRefundPayment',
 				            template: "<div><span>יש למלא את כל השדות</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
@@ -365,13 +376,12 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	    }
 	    $scope.checkRefund = function (refund) {
 	        if (refund.iProductId == 1 && $scope.user.iBuyCryingDetector == 1)
-				if (refund.iProductId == 1 && refund.nPayment > 1075) 
-				{
-	                alerts.alert("לא ניתן לרכוש את המוצר");
+			{
+				alerts.alert("לא ניתן לקבל החזר על המוצר");
 	                $scope.refund2 = {};
 	                $scope.newRefund = {};
 	                return false;
-	            }
+	        }
 	        if (refund.iProductId == 30 && $scope.flagFax == 1 ) {
 	            alerts.alert("לא ניתן לקבל החזר על המוצר");
 	            $scope.refund2 = {};
