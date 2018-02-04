@@ -117,14 +117,14 @@ NOApp.factory("orderConnect", ['$http', '$rootScope', '$location', 'orderAlerts'
             var url = '';
             switch (document.location.hostname) {
                 case 'localhost':;
-                    //url = "http://localhost:24151/";
-                    url = 'http://localhost/ShmayaService/'
+                    url = "http://localhost:27786/";
+                    //url = 'http://localhost/ShmayaService/'
                     break;
                 case '10.0.0.109':
                     url = 'http://10.0.0.109/AyeletService/';
                     break;
                 case 'ws.webit-track.com':
-                    url = "http://ws.webit-track.com/AyeletHashacharService/";
+					url = "http://ws.webit-track.com/ShmayaCRMWs/";
                     break;
                 case 'qa.webit-track.com':
 					url = "http://qa.webit-track.com/ShmayaCRMWs/";

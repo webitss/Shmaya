@@ -6,6 +6,7 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 		$scope.isPrepareData3 = true;
 
 		$scope.prepareData = function () {
+			$scope.getData();
 			if ($scope.isPrepareData == true)
 			{
 				$scope.isDataLoaded1 = 0;
@@ -18,12 +19,12 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
 					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
-				$scope.getData();
 			}
 		};
 
 
 		$scope.prepareData2 = function () {
+			$scope.getData2();
 			if ($scope.isPrepareData2 == true)
 			{
 				$scope.isDataLoaded2 = 0;
@@ -36,11 +37,11 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
 					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
-				$scope.getData2();
 			}
 		};
 
 		$scope.prepareData3 = function () {
+			$scope.getData3();
 			if ($scope.isPrepareData3 == true)
 			{
 				$scope.isDataLoaded3 = 0;
@@ -53,7 +54,6 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
 					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
-				$scope.getData3();
 			}
 		};
 

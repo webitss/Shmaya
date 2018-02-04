@@ -1,0 +1,35 @@
+﻿<div class="filter-input dropdown-template" ng-keydown="keyUp($event)">
+    <div class="btn-group open" uib-dropdown is-open="status.isopen">
+        <button type="button" class="btn btn-dropdown dropdown-toggle claerfix bordder" uib-dropdown-toggle ng-disabled="disabled" ng-click="focusInput()">
+            <span class="btn-dropdown-title">{{title}}</span>
+            <span class="" ng-class="{'combo-left' : title !='', 'combo-split': title ==''}">
+                <span class="span-dropdown-value">{{( filteredData | filter : selectedValueFilter : true)[0][datafield]}}
+                </span>
+                <span class="caret"></span>
+            </span>
+        </button>
+        <ul class="dropdown-menu" dropdown-menu role="menu" aria-labelledby="single-button" style="width: 500px; height: auto">
+            <li ng-show="enablesearch" class="">
+                <div>
+                    <span class="search-input col-md-10 col-lg-10">
+                        <input type="text" id="searchText" class="form-control btn-dropdown-value pull-right"
+                            ng-model="filterText" ng-change="refreshFilteredData()"
+                            ng-click="$event.stopPropagation()" placeholder="חפש..." />
+                        <i class="fa fa-search fa-search-disabled"></i>
+                    </span>
+                    <button type="button" ng-click="clearFilter()" class="col-md-2 col-lg-2 clear-btn btn ">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </li>
+          
+            <div ng-style="{'maxHeight' : screenHeight}" class="dropdown-content">
+                <li role="menuitem" ng-repeat="item in filteredData"
+                    ng-class="{'dropdown-items-over': keyDown == $index}"
+                    ng-click="valueChange(item)">
+                    <span>{{item[datafield]}}</span>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>

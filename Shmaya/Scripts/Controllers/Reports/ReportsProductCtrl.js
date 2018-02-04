@@ -4,6 +4,7 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 		$scope.isPrepareData = true;
 		$scope.isPrepareData2 = true;
 		$scope.prepareData = function () {
+			$scope.getData();
 			if ($scope.isPrepareData == true )
 			{
 				$scope.isDataLoaded1 = 0;
@@ -22,12 +23,12 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 					{ title: 'תאריך הזנה', fieldName: 'dtCreateDate' }
 				];
 
-				$scope.getData();
 			}
 
 		};
 
 		$scope.prepareData2 = function () {
+			$scope.getData2();
 			if ($scope.isPrepareData2 == true)
 			{
 				$scope.isDataLoaded2 = 0;
@@ -46,7 +47,6 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 					{ title: 'תאריך הזנה', fieldName: 'dtCreateDate' }
 				];
 
-				$scope.getData2();
 			}
 
 		};

@@ -44,9 +44,9 @@ namespace ShmayaService
            UriTemplate = "GetUsers",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public List<User> GetUsers(int? iUserType, int iStatusId, int? iTypeTranslation)
+        public List<User> GetUsers(int iUserId)
         {
-            return User.GetUsers(iUserType, iStatusId, iTypeTranslation);
+            return User.GetUsers(iUserId);
         }
 
         [OperationContract]
@@ -114,6 +114,17 @@ namespace ShmayaService
         {
             return User.UserUpdate(user, iUserManagerId);
         }
+
+		[OperationContract]
+		[WebInvoke(
+		 Method = "POST",
+		UriTemplate = "GetUsersCode",
+		BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		ResponseFormat = WebMessageFormat.Json)]
+		public List<KeyValue<int, string>> GetUsersCode(int? iUserType, int iStatusId, int? iTypeTranslation)
+		{
+			return User.GetUsersCode(iUserType, iStatusId, iTypeTranslation);
+		}
 
 		//[OperationContract]
 		//[WebInvoke(
@@ -650,11 +661,25 @@ namespace ShmayaService
         {
             return SysTableRow.GetSysTables();
         }
-        #endregion
+		#endregion
 
-        #region MessageToProvider
+		#region user basic
+		[OperationContract]
+		[WebInvoke(
+		Method = "POST",
+		UriTemplate = "GetUsersBasic",
+		BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		ResponseFormat = WebMessageFormat.Json)]
+		public  List<UserBasic> GetUsersBasic(int? iUserType)
+		{
+			return UserBasic.GetUsersBasic(iUserType);
+		}
 
-        [OperationContract]
+		#endregion
+
+		#region MessageToProvider
+
+		[OperationContract]
         [WebInvoke(
        Method = "POST",
        UriTemplate = "GetMessageToProvider",

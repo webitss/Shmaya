@@ -3,23 +3,31 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 	    $scope.isEdit = false;
 
-	    $scope.hello = function () {
-	        alert("hello");
-	    }
-
 	    $scope.prepareData = function () {
 	        $scope.isDataLoaded = 0;
-	        $scope.gridIdentity = 'OrdersList';
-	        $scope.newOrder = { dialogIsOpen: false };
+			$scope.gridIdentity = 'OrdersList';
+			$scope.item2
+			$scope.newOrder = { dialogIsOpen: false };
+			$scope.order = { dialogIsOpen: false };
 	        $scope.columns = [
 				{
 				    fieldName: 'iOrderId',
 				    title: 'עריכה',
-				    template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
-				    clickEvent: function (order) {
-				        $scope.isEdit = true;
-				        order.dialogIsOpen = true;
-				        $rootScope.$broadcast('displayDialog', { id: order.iOrderId });
+					template: '<div class="pass user-class glyphicon glyphicon-pencil"  ng-click="col.clickEvent(item)"></div>',
+					clickEvent: function (order) {
+						if (order.item == undefined)
+						{
+							$scope.order = angular.copy(order)
+							if ($scope.order.iMonthYearId instanceof String || typeof $scope.order.iMonthYearId === 'string') {
+								$scope.tmpDate2 = $scope.order.iMonthYearId.substring(0, 2);
+								$scope.tmpDate1 = $scope.order.iMonthYearId.substring(3, 7);
+								$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
+								$scope.order.iMonthYearId = $scope.tmpDate
+							}
+							$scope.isEdit = true;
+							$scope.order.dialogIsOpen = true;
+							$rootScope.$broadcast('displayDialog', { id: $scope.order.iOrderId });
+						}
 				    },
 
 				    weight: 0.5,
@@ -90,6 +98,11 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1;
 						order.iMonthYearId = $scope.tmpDate;
 					})
+
+					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+						$scope.codeTables = result;
+						$scope.statusList = $filter('filter')(result, { Key: 'status' }, true)[0].Value;
+					});
 				});
 		
 		};
@@ -130,14 +143,26 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	        $scope.name = "אלפון";
 	        $scope.newOrder.dialogIsOpen = true;
 	        $rootScope.$broadcast('displayDialog', { id: 'newOrder' });
-	    }
+		}
+
+		$scope.refresh = function ()
+		{
+			$scope.OrdersList.forEach(function (order) {
+				order.iMonthYearId = order.iMonthYearId + ""
+				$scope.tmpDate1 = order.iMonthYearId.substring(0, 4);
+				$scope.tmpDate2 = order.iMonthYearId.substring(4, 6);
+				$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1;
+				order.iMonthYearId = $scope.tmpDate;
+			})
+		}
 
 	    $scope.deleteOrder = function (item) {
 	        $rootScope.delete = true;
 	        connect.post(true, "DeleteOrder", { 'iOrderId': item.iOrderId }, function (result) {
-	            if (result) {
-	                //$scope.removeMember(item);
-	                $scope.getData();
+				if (result) {
+					var index = $scope.OrdersList.indexOf(item);
+					$scope.OrdersList.splice(index, 1);
+					$scope.isDataLoaded++;
 	            } else {
 	                alert('error!');
 	            }

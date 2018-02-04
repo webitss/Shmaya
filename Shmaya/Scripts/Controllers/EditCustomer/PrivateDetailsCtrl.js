@@ -4,6 +4,15 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 		$scope.defDtResetHours = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
 		$scope.nInitBankHours = null;
 		$scope.difference = 0;
+		if (!$scope.isEdit) {
+			$scope.user = {
+				dtResetHours: new Date(),
+				lOrderType: [],
+				lLanguage: []
+
+			};
+		}
+
 		$scope.checkIdentity = function ()
 		{
 			if (!$scope.isEdit)
@@ -30,11 +39,17 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 			}
 
 			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formDetails.$valid || $scope.difference < 0) {
+			if (!$scope.formDetails.$valid) {
 				var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
-				console.log(JSON.stringify($scope.formDetails));
+				return;
+			}
+			if ($scope.difference < 0)
+			{
+				var savingStatus = "אין להזין תאריך תחילת זכאות גדול מתאריך הצטרפות";
+				$rootScope.notification(savingStatus);
+				alerts.alert("אין להזין תאריך תחילת זכאות גדול מתאריך הצטרפות");
 				return;
 			}
 			if ($scope.isEdit == true) {
@@ -82,7 +97,13 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 			}
 
 
-		$scope.getData = function () {
+			$scope.getData = function () {
+					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+						$scope.codeTables = result;
+						$scope.languageList = $filter('filter')(result, { Key: 'language' }, true)[0].Value;
+						$scope.userTypeList = $filter('filter')(result, { Key: 'userType' }, true)[0].Value;
+						$scope.userTypeList.splice(0, 2);
+				});
 	        connect.post(true, 'GetEligibiltyTable', {},
 				function (result) {
 					$scope.EligibilityTableList = result;

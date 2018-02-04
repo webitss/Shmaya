@@ -10,28 +10,36 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	    $scope.userType;
 	    $scope.user = {};
 	    $rootScope.listToSend = [];
-	    $scope.newUser = { dialogIsOpen: false };
+		$scope.newUser = { dialogIsOpen: false };
+		$scope.user = { dialogIsOpen: false };
 	    $rootScope.newMessage2 = { dialogIsOpen: false };
-	    $scope.messageFromSelect = false
-
-	    $scope.hello = function () {
-	        alert("hello");
-	    }
+		$scope.messageFromSelect = false;
 
 		$scope.prepareData = function () {
-	        $scope.getData();
+			$scope.getData();
+			$scope.isDataLoadedAdministrator = 0;
 	        $scope.isDataLoadedCustomers = 0;
-	        $scope.isDataLoadedProviders = 0;
+			$scope.isDataLoadedProviders = 0;
 	        $scope.gridIdentity = 'ABCBookCustomers';
 	        $scope.columnsCustomers = [
 				{
 				    fieldName: 'iUserId',
 				    title: 'עריכה',
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
-				    clickEvent: function (user) {
-				        $scope.isEdit = true;
-				        user.dialogIsOpen = true;
-				        $rootScope.$broadcast('displayDialog', { id: user.iUserId });
+					clickEvent: function (user)
+					{
+						//if (user.item == undefined)
+						if (!isNaN(parseFloat(user.iUserId)) && !isNaN(user.iUserId - 0))
+						{
+							//$scope.user = angular.copy(user);
+							connect.post(true, 'GetUsers', { iUserId: user.iUserId },
+								function (result) {
+									$scope.user = result[0];
+									$scope.isEdit = true;
+									$scope.user.dialogIsOpen = true;
+									$rootScope.$broadcast('displayDialog', { id: $scope.user.iUserId });
+								});
+						}
 				    },
 				    weight: 0.5,
 				    filter: false,
@@ -40,10 +48,10 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{
 				    fieldName: 'iUserId',
 				    title: 'מחיקה',
-				    //type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
 				    template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteACustomer(item)\'></div>',
 				    deleteACustomer: function (item) {
-				        alerts.confirm('האם להפוך לקוח זה ללא פעיל? ', alerts.titles.message, function () {
+						alerts.confirm('האם להפוך לקוח זה ללא פעיל? ', alerts.titles.message, function () {
+							item.userType = 2;
 				            $scope.deleteCustomer(item);
 				        }, function () {
 				        });
@@ -65,7 +73,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				},
 				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'ת.ז.', fieldName: 'nvId' },
+				{ title: 'ת.ז.', fieldName: 'nvID' },
 				{ title: 'כתובת', fieldName: 'nvAdress' },
 				{ title: 'טלפון', fieldName: 'nvPhoneNum' },
 				{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
@@ -79,10 +87,18 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				    fieldName: 'iUserId',
 				    title: 'עריכה',
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
-				    clickEvent: function (user) {
-				        $scope.isEdit = true;
-				        user.dialogIsOpen = true;
-				        $rootScope.$broadcast('displayDialog', { id: user.iUserId });
+					clickEvent: function (user) {
+						//if (user.item == undefined)
+						if (!isNaN(parseFloat(user.iUserId)) && !isNaN(user.iUserId - 0)) {
+							//$scope.user = angular.copy(user);
+							connect.post(true, 'GetUsers', { iUserId: user.iUserId },
+								function (result) {
+									$scope.user = result[0];
+									$scope.isEdit = true;
+									$scope.user.dialogIsOpen = true;
+									$rootScope.$broadcast('displayDialog', { id: $scope.user.iUserId });
+								});
+						}
 				    },
 				    weight: 0.5,
 				    filter: false,
@@ -91,10 +107,10 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{
 				    fieldName: 'iUserId',
 				    title: 'מחיקה',
-				    //type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
 				    template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteACustomer(item)\'></div>',
 				    deleteACustomer: function (item) {
-				        alerts.confirm('האם להפוך נותן שירות זה ללא פעיל? ', alerts.titles.message, function () {
+						alerts.confirm('האם להפוך נותן שירות זה ללא פעיל? ', alerts.titles.message, function () {
+							item.userType = 3;
 				            $scope.deleteCustomer(item);
 				        }, function () {
 				        });
@@ -117,7 +133,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				{ title: 'סוג', fieldName: 'nvOrdersType' },
 				{ title: 'שם פרטי', fieldName: 'nvFirstName' },
 				{ title: 'שם משפחה', fieldName: 'nvLastName' },
-				{ title: 'ת.ז.', fieldName: 'nvId', weight: 0.8 },
+				{ title: 'ת.ז.', fieldName: 'nvID', weight: 0.8 },
 				{ title: 'כתובת', fieldName: 'nvAdress' },
 				{ title: 'טלפון', fieldName: 'nvPhoneNum' },
 				{ title: 'טלפון נייד', fieldName: 'nvMobileNum' },
@@ -134,9 +150,15 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user)
 					{
-						$scope.isEdit = true;
-						user.dialogIsOpen = true;
-						$rootScope.$broadcast('displayDialog', { id: user.iUserId });
+						if (!isNaN(parseFloat(user.iUserId)) && !isNaN(user.iUserId - 0)) {
+							connect.post(true, 'GetUsers', { iUserId: user.iUserId },
+								function (result) {
+									$scope.user = result[0];
+									$scope.isEdit = true;
+									$scope.user.dialogIsOpen = true;
+									$rootScope.$broadcast('displayDialog', { id: $scope.user.iUserId });
+								});
+						}
 					},
 					weight: 0.5,
 					filter: false,
@@ -145,10 +167,10 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 {
                     fieldName: 'iUserId',
                     title: 'מחיקה',
-                    //type: ($rootScope.user.iUserType != codeTablesId.permissionType.systemAdministrator && $rootScope.user.iUserType != codeTablesId.permissionType.schedulingCoordinator) ? 'hidden' : 'visible',
                     template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAAdministrator(item)\'></div>',
                     deleteAAdministrator: function (item) {
-                        alerts.confirm('האם להפוך מנהל זה ללא פעיל? ', alerts.titles.message, function () {
+						alerts.confirm('האם להפוך מנהל זה ללא פעיל? ', alerts.titles.message, function () {
+							item.userType = 1;
 							$scope.deleteCustomer(item);
                         }, function () {
                         });
@@ -170,7 +192,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
                 },
                 { title: 'שם פרטי', fieldName: 'nvFirstName' },
                 { title: 'שם משפחה', fieldName: 'nvLastName' },
-                { title: 'ת.ז.', fieldName: 'nvId', weight: 0.7 },
+                { title: 'ת.ז.', fieldName: 'nvID', weight: 0.7 },
                 { title: 'כתובת', fieldName: 'nvAdress' },
                 { title: 'טלפון', fieldName: 'nvPhoneNum' },
                 { title: 'טלפון נייד', fieldName: 'nvMobileNum', weight: 0.7 },
@@ -293,36 +315,21 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	        if ($scope.showCustomer) {
 	            $scope.page = 'לקוח';
 	            $scope.userType = 2;
-	            connect.post(true, 'GetUsers',
-					{ iUserType: 2, iStatusId: 1 },
+				connect.post(true, 'GetUsersBasic',
+					{ iUserType: 2 },
 					function (result) {
-					    $scope.ABCBookCustomers = result;
+						$scope.ABCBookCustomers = result;
+						$scope.ABCBookCustomersCopy = angular.copy($scope.ABCBookCustomers);
 					    $scope.isDataLoadedCustomers++;
 					});
 	        }
 	        else if (!$scope.showCustomer) {
 	            $scope.page = 'נותן שרות';
 	            $scope.userType = 3;
-	            connect.post(true, 'GetUsers',
-					{ iUserType: 3, iStatusId: 1 },
+				connect.post(true, 'GetUsersBasic',
+					{ iUserType: 3 },
 					function (result) {
 					    $scope.ABCBookProviders = result;
-					    //$scope.ABCBookProviders.forEach(function (user)
-					    //{
-					    //	user.lLanguage.forEach(function (language)
-					    //	{
-					    //		$scope.languageId1 = language;
-					    //		$scope.languageList.forEach(function (languageId2)
-					    //		{
-					    //			if ($scope.languageId1 == languageId2.iId)
-					    //			{ 
-					    //				user.nvLanguage += languageId2.nvName;
-					    //				user.nvLanguage += ', ';
-					    //			}
-					    //		})
-					    //	})
-					    //})
-
 					    $scope.ABCBookProviders.forEach(function (user) {
 					        user.nvOrdersType = '';
 					        user.lOrderType.forEach(function (type) {
@@ -341,11 +348,11 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	        if ($scope.showAdmin) {
 	            $scope.page = 'מנהל';
 	            $scope.userType = 1;
-	            connect.post(true, 'GetUsers',
-                    { iUserType: 1, iStatusId: 1 },
+				connect.post(true, 'GetUsersBasic',
+                    { iUserType: 1 },
                     function (result) {
-                        $scope.ABCBookAdministrator = result;
-                        $scope.isDataLoaded++;
+						$scope.ABCBookAdministrator = result;
+						$scope.isDataLoadedAdministrator++;
                     });
 	        };
 	    };
@@ -360,9 +367,24 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	    $scope.deleteCustomer = function (item) {
 	        $rootScope.delete = true;
 	        connect.post(true, "DeleteUser", { 'iUserId': item.iUserId }, function (result) {
-	            if (result) {
-	                //$scope.removeMember(item);
-	                $scope.getData();
+				if (result) {
+					if (item.userType == 2) {
+						var index = $scope.ABCBookCustomers.indexOf(item);
+						$scope.ABCBookCustomers.splice(index, 1);
+						$scope.isDataLoadedCustomers++;
+					}
+					else
+						if (item.userType == 3) {
+							index = $scope.ABCBookProviders.indexOf(item);
+							$scope.ABCBookProviders.splice(index, 1);
+							$scope.isDataLoadedProviders++;
+						}
+						else
+						{
+							index = $scope.ABCBookAdministrator.indexOf(item);
+							$scope.ABCBookAdministrator.splice(index, 1);
+							$scope.isDataLoadedAdministrator++;
+						}
 	            } else {
 	                alert('error!');
 	            }
@@ -380,7 +402,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	        $scope.isEdit = false;
 	        $scope.user = {};
 	        $rootScope.$broadcast('displayDialog', { id: 'newUser' })
-	    }
+		}
 
 	    $scope.prepareData();
 	}]);

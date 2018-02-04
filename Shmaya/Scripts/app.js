@@ -36,10 +36,6 @@ companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvi
 		//	controller: 'PdfToProvidersCtrl',
 		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
 		//})
-		//.when('/PdfToProviders', {
-		//	controller: 'PdfToProvidersCtrl',
-		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
-		//});
 
 	//app.config(['$qProvider', function ($qProvider) {
 	//    $qProvider.errorOnUnhandledRejections(false);
@@ -60,6 +56,7 @@ companionApp.run(function ($rootScope, $location, connect, $timeout, $window) {
 			$rootScope.notificationAlert = "";
 		}, 1500);
 	};
+	$rootScope.vat = 17
 
 	$rootScope.appVersionParameter = appVersionParameter;
 	$rootScope.$watch(function () {

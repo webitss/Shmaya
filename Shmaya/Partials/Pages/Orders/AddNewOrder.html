@@ -25,20 +25,15 @@
 		</div>
 		<div class="row">
 			<form-field span-text="שם לקוח" class="col-md-6">
-				<form-dropdown ng-model="order.iUserId" enablesearch="true" data="ABCBookCustomers" identityfield="iUserId" datafield="nvFullName" required></form-dropdown>
+				<form-dropdown-filter ng-model="order.iUserId" enablesearch="true" getfunc="GetUsersCode" datafunc="datafunc2" data="[]" required></form-dropdown-filter>
 			</form-field>
 			<form-field span-text="שם מתורגמן" class="col-md-6">
-				<form-dropdown ng-model="order.iSelectedTranslator" enablesearch="true" data="ABCBookProviders" identityfield="iUserId" datafield="nvFullName" required></form-dropdown>
+				<form-dropdown-filter ng-model="order.iSelectedTranslator" enablesearch="true" getfunc="GetUsersCode" datafunc="datafunc" data="[]" required></form-dropdown-filter>
 			</form-field>
 		</div>
-		<div class="row" ng-if="isEdit">
+		<div class="row">
 			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
 				<form-dropdown ng-model="order.iMonthYearId" enablesearch="false" data="monthYearList" required></form-dropdown>
-			</form-field>
-		</div>
-		<div class="row" ng-if="!isEdit">
-			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
-				<form-dropdown ng-model="defMonthYear" enablesearch="false" data="monthYearList" required></form-dropdown>
 			</form-field>
 		</div>
 		<div class="row">
@@ -46,12 +41,12 @@
 				<input class="form-control" type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()" required />
 			</form-field>
 			<form-field span-text="זמן תרגום" class="col-md-6">
-				<input class="form-control" type="time" ng-model="order.dtTimeTranslation_original" ng-blur="calculateTimeEnd()" required />
+				<input class="form-control" type="time" ng-model="order.dtTimeTranslation" ng-blur="calculateTimeEnd()" required />
 			</form-field>
 		</div>
 		<div class="row">
 			<form-field span-text="זמן סיום" class="col-md-6">
-				<input class="form-control" type="time" ng-model="order.dtTimeEndComputed" disabled />
+				<input class="form-control" type="time" ng-model="order.dtTimeEnd" disabled />
 			</form-field>
 			<form-field span-text="זמן נסיעה" class="col-md-6">
 				<input class="form-control" type="time" ng-model="order.dtTimeTravel" />
@@ -67,7 +62,7 @@
 		</div>
 		<div class="row">
 			<form-field span-text="איזור" class="col-md-6">
-				<form-dropdown ng-model="order.iArea" enablesearch="false" data="areaList"></form-dropdown>
+				<form-dropdown ng-model="order.iAreaId" enablesearch="false" data="areaList"></form-dropdown>
 			</form-field>
 			<form-field span-text="עיר" class="col-md-6">
 				<form-dropdown ng-model="order.iCityId" enablesearch="true" data="city"></form-dropdown>

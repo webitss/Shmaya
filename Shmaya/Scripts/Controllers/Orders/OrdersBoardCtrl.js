@@ -12,10 +12,6 @@ companionApp.controller('OrdersBoardCtrl', ['$scope', '$rootScope', 'connect', '
 
 		$scope.getSchedulesAsTable = function () {
 			connect.post(true, 'GetOrders', {
-				//iBranchId: $scope.interviewScheduler.iBranchId,
-				//iInterviewerId: $scope.interviewScheduler.iInterviewerId,
-				//iGenderId: $scope.interviewScheduler.iGenderId,
-				//nvAddress: $scope.interviewScheduler.nvAddress
 			}, function (result) {
 				$scope.currentMonth = new Date();
 				$scope.schedulesAsTable = result;//["Result"];

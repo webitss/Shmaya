@@ -52,7 +52,7 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public int iGenderTraslator { get; set; }
         [DataMember]
-        public int iArea { get; set; }
+        public int iAreaId { get; set; }
         [DataMember]
         public int iCityId { get; set; }
         [DataMember]
@@ -69,9 +69,7 @@ namespace ShmayaService.Entities
         [DataMember]
         public DateTime? dtTimeTravel { get; set; }
         [DataMember]
-        [NoSendToSQL]
-        /**/
-        public DateTime? dtTimeEndComputed { get; set; }
+        public DateTime? dtTimeEnd { get; set; }
         [DataMember]
         public DateTime? dtDateTraslation { get; set; }
         [DataMember]
@@ -128,12 +126,14 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public int iGlobalId { get; set; }
+		[DataMember]
+		public string nvRemark { get; set; }
 
-        #endregion
+		#endregion
 
-        #region methods
+		#region methods
 
-        public static List<Orders> GetOrders()
+		public static List<Orders> GetOrders()
         {
             try
             {

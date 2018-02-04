@@ -17,12 +17,14 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 						{
 							if (month.item == undefined) return;
 							$scope.month2 = month.item;
-							$scope.pop = "<label>בחר חודש ושנה</label><input type='text' class='form-control' required ng-model='month2.iMonthYearId' disabled/>" +
+							$scope.pop = "<label> חודש ושנה</label><input type='text' class='form-control' required ng-model='month2.iMonthYearId' disabled/>" +
 								"<label>מתאריך</label><input type='date' class='form-control' required ng-model='month2.dtGlobalDateBegin_original' required/>" +
 								"<label>עד תאריך</label><input type='date' class='form-control' required ng-model='month2.dtGlobalDateEnd_original' required/>";
-							alerts.custom($scope.pop, 'הוספת הגדרה', $scope,
+							alerts.custom($scope.pop, 'עריכת הגדרה', $scope,
 								function () {
-									if (!$scope.month2.iMonthYearId || !$scope.month2.dtGlobalDateBegin_original || !$scope.month2.dtGlobalDateEnd_original) {
+									$scope.month2.dtGlobalDateBegin = angular.copy($scope.month2.dtGlobalDateBegin_original)
+									$scope.month2.dtGlobalDateEnd = angular.copy($scope.month2.dtGlobalDateEnd_original)
+									if (!$scope.month2.iMonthYearId || !$scope.month2.dtGlobalDateBegin || !$scope.month2.dtGlobalDateEnd) {
 										createDialog({
 											id: 'eligibility2',
 											template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
@@ -94,7 +96,7 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 				"<label>עד תאריך</label><input type='date' class='form-control' required ng-model='newMonth.dtGlobalDateEnd' required/>";
 			alerts.custom($scope.pop, 'הוספת ערך', $scope,
 				function () {
-					if (!$scope.newMonth.iMonthYearId || !$scope.newMonth.dtGlobalDateBegin_original || !$scope.newMonth.dtGlobalDateEnd_original) {
+					if (!$scope.newMonth.iMonthYearId || !$scope.newMonth.dtGlobalDateBegin || !$scope.newMonth.dtGlobalDateEnd) {
 						createDialog({
 							id: 'eligibility2',
 							template: "<div><span>חסרים שדות חובה</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",

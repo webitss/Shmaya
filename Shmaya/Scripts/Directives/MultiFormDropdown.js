@@ -62,7 +62,7 @@ companionApp.directive('multiFormDropdown', function ($timeout, $window, $filter
 				});
 			};
 
-            scope.valueChange = function (val) {
+			scope.valueChange = function (val) {
                 scope.searchText = '';
                 val.selected = !val.selected;
                 var value = val[scope.identityfield];
@@ -103,11 +103,11 @@ companionApp.directive('multiFormDropdown', function ($timeout, $window, $filter
                 if (newValue) {
                     scope.originalngModel = angular.copy(ngModel.$modelValue);
                     //select the selected
-                    $timeout(function () {
-                        angular.forEach(scope.data, function (item) {
-                            if (ngModel.$modelValue.indexOf(item[scope.identityfield]) > -1)
-                                item.selected = true;
-                        });
+					$timeout(function () {
+						angular.forEach(scope.data, function (item) {
+							if (ngModel.$modelValue.indexOf(item[scope.identityfield]) > -1)
+								item.selected = true;
+						});
                         scope.refreshFilteredData();
                     }, 500);
 

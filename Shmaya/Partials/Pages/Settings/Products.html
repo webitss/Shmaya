@@ -5,12 +5,13 @@
 
 			<div class="nav pull-left">
 				<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="AddNewProduct()">
-                    <i class="glyphicon glyphicon-plus-sign"></i>
+					<i class="glyphicon glyphicon-plus-sign"></i>
 					<span class="color-text-white">הוספת חדש</span>
 				</button>
 				<button class="btn  pass btn-ayelet color-yellow exportToExcel" title="ייצוא לאקסל" ng-click="exportToExcel()">
 					<span class=""></span>
-				</button>
+				</button><br />
+				<label>עדכון ערך מע"מ:</label><input type="text" ng-model="vat" number ng-change="fn()"/>
 			</div>
 			<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
 		</div>

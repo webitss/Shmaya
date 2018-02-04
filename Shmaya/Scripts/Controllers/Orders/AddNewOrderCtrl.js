@@ -1,14 +1,12 @@
 ﻿"use strict"
 companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId', '$window',
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId, $window) {
-	    $scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
+		$scope.defOrder = $rootScope.user.nvFirstName + ' ' + $rootScope.user.nvLastName;
 		$scope.defDate = new Date();
-		if ($scope.isEdit == false) {
-			$scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;//(new Date()).getFullYear();
-			$scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
-			$scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
-		}
-		//$scope.defMonthYear = parseInt(new Date().getFullYear()) * 100 + parseInt(new Date().getMonth());
+		$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: null };
+		$scope.datafunc2 = { iUserType: 2, iStatusId: 0, iTypeTranslation: null };
+		if(!$scope.isEdit)
+			$scope.order = { iMonthYearId: parseInt(new Date().getFullYear()) * 100 + new Date().getMonth() + 1}
 		$scope.testTime = new Date();
 		if (!$scope.order)
 			$scope.typeTranslation = null
@@ -20,13 +18,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					$scope.typeTranslation = 41
 				else
 					$scope.typeTranslation = 42
-	    //$scope.order =
-	    //{
-	    //    iMonthId: $scope.monthList[(new Date().getMonth()) + 1].iId,
-	    //    iYearId : $filter('filter')($scope.yearList, { nvName: new Date().getFullYear()+'' }, true)[0].iId
-	    //}
-	    //$scope.order.timeTranslation = $filter('date')($scope.order.timeTranslation, 'HH:mm');
-	    //$scope.order.dtDateTraslation = new Date();
 	    $scope.Orderinsert_update;
 		if ($scope.isEdit)
 			var Orderinsert_update = 'OrderUpdate';
@@ -52,9 +43,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			}
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
-			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
-			if (!$scope.isEdit)
-				$scope.orderToSend.iMonthYearId = $scope.defMonthYear;
+			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
 
 	        connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 	            if (result && result > 0) {
@@ -63,9 +52,11 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	                $rootScope.notification(savingStatus);
 	                if ($scope.isEdit)
 	                    $scope.order.dialogIsOpen = false;
-	                else {
-	                    $scope.newOrder.dialogIsOpen = false;
-	                    $scope.getData();
+					else
+					{
+						$scope.newOrder.dialogIsOpen = false;
+						$scope.OrdersList.push($scope.order);
+	                    //$scope.getData();
 	                }
 	                $scope.prepareData();
 	            }
@@ -75,6 +66,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			});
 	    }
 		$scope.getData = function () {
+			//$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
 			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
 				$scope.codeTables = result;
 				$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
@@ -96,73 +88,41 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 
 				})
 			}
-	        connect.post(true, 'GetUsers',
-				{ iUserType: 2, iStatusId: 0},
-                function (result) {
-					$scope.ABCBookCustomers = result;
-					$scope.orderTypeList = $filter('filter')(result, { Key: 'orderType' }, true)[0].Value;
-					$scope.statusList = $filter('filter')(result, { Key: 'status' }, true)[0].Value;
-					$scope.areaList = $filter('filter')(result, { Key: 'area' }, true)[0].Value;
-					$scope.productTypeList = $filter('filter')(result, { Key: 'productType' }, true)[0].Value;
-					$scope.workerTypeList = $filter('filter')(result, { Key: 'workerType' }, true)[0].Value;
-					$scope.paymentStatusList = $filter('filter')(result, { Key: 'paymentStatus' }, true)[0].Value;
-					$scope.city = $filter('filter')(result, { Key: 'city' }, true)[0].Value;
-					$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
-					$scope.monthYearList.forEach(function (date) {
-					$scope.tmpDate1 = date.nvName.substring(0, 4);
-					$scope.tmpDate2 = date.nvName.substring(4, 6);
-					$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1
-					date.nvName = $scope.tmpDate
-			})
-                }
-            );
-	        connect.post(true, 'GetUsers',
-				{ iUserType: 3, iStatusId: 0, iTypeTranslation: $scope.typeTranslation},
-                function (result) {
-                    $scope.ABCBookProviders = result;
-                    if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
-                        $scope.order.iSelectedTranslator = $filter('filter')($scope.ABCBookProviders, { iUserId: $scope.order.iSelectedTranslator }, true)[0].iUserId;
-                });
-	        if ($scope.order && $scope.order.dtTimeBegin_original && $scope.order.dtTimeEndComputed && !$scope.order.dtTimeTranslation_original)
+	        if ($scope.order && $scope.order.dtTimeBegin_original && $scope.order.dtTimeEnd && !$scope.order.dtTimeTranslation)
 	        {
-	            var hours = new Date($scope.order.dtTimeEndComputed).getHours() - new Date($scope.order.dtTimeBegin_original).getHours();
-	            var minutes = new Date($scope.order.dtTimeEndComputed).getMinutes() - new Date($scope.order.dtTimeBegin_original).getMinutes();
+	            var hours = new Date($scope.order.dtTimeEnd).getHours() - new Date($scope.order.dtTimeBegin_original).getHours();
+	            var minutes = new Date($scope.order.dtTimeEnd).getMinutes() - new Date($scope.order.dtTimeBegin_original).getMinutes();
 	            if (minutes < 0) {
 	                minutes += 60;
 	                hours -= 1;
 	            }
-	            $scope.order.dtTimeTranslation_original = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
+	            $scope.order.dtTimeTranslation = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 	        }
 	    };
 
 	    $scope.calculateTimeEnd = function () {
-	        if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;
-	        var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation_original.getHours();
-	        var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation_original.getMinutes();
+	        if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation) return;
+	        var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation.getHours();
+	        var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation.getMinutes();
+			//if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeEnd) return;
+			//var hours = $scope.order.dtTimeEnd.getHours() - $scope.order.dtTimeBegin_original.getHours();
+			//var minutes = $scope.order.dtTimeEnd.getMinutes() - $scope.order.dtTimeBegin_original.getMinutes();
 	        if (minutes >= 60) {
 	            minutes -= 60;
 	            hours += 1;
-	        }
-	        $scope.order.dtTimeEndComputed = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
+			}
+			$scope.order.dtTimeEnd = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 
 		};
 
 		$scope.selectTypeTranslation = function () {
-				if ($scope.order.iTypeOrder == 22)
-					$scope.typeTranslation = 38
+			if ($scope.order.iTypeOrder == 22)
+				$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: 38 };
 				else
 					if ($scope.order.iTypeOrder == 23)
-						$scope.typeTranslation = 41
+						$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: 41 };
 					else
-						$scope.typeTranslation = 42
-
-			connect.post(true, 'GetUsers',
-				{ iUserType: 3, iStatusId: 0, iTypeTranslation: $scope.typeTranslation },
-				function (result) {
-					$scope.ABCBookProviders = result;
-					if ($scope.order.iSelectedTranslator && $scope.order.iSelectedTranslator > 0)
-						$scope.order.iSelectedTranslator = $filter('filter')($scope.ABCBookProviders, { iUserId: $scope.order.iSelectedTranslator }, true)[0].iUserId;
-				});
+						$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: 42 };
 		}
 
 	    $scope.getData();

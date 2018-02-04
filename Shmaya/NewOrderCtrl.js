@@ -4,9 +4,11 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 
         $scope.order =
             {
-                dtDateTraslation_original: new Date()
-            }
-
+			dtDateTraslation_original: new Date(),
+			nvRemark:null
+			}
+		$scope.freeTxt = false;
+		$scope.showWaiting = false;
         $scope.successSend = false;
 
         $scope.getData = function () {
@@ -33,13 +35,22 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
         };
 
         $scope.getTranslators = function (iTypeTranslation) {
-            orderConnect.post(true, 'GetUsers', { iUserType: 3, iStatusId: 0, iTypeTranslation: $scope.iTypeTranslation }, function (result) {
+			orderConnect.post(true, 'GetUsersCode', { iUserType: 3, iStatusId: 0, iTypeTranslation: $scope.iTypeTranslation }, function (result) {
                 if (result && result.length > 0)
                     $scope.ABCBookProviders = result;
                 else
                     OrderAlerts.alert('ארעה שגיאה בלתי צפויה');
             });
-        };
+		};
+
+		$scope.selectTypeTranslating = function (iTypeTranslation)
+		{
+			if (iTypeTranslation == 21)
+				$scope.freeTxt = true;
+			else
+				if (iTypeTranslation == 64)
+					$scope.showWaiting = true;
+		}
 
         $scope.checkIdentity = function () {
             if (!$scope.order.nvIdentity) return;
@@ -86,17 +97,18 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 || !$scope.order.nvIdentity || !$scope.order.nameCustomer
                 || !$scope.order.iSelectedTranslator || !$scope.order.dtDateTraslation_original
                 || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original || !$scope.order.dtTimeWaiting_original
-                || !$scope.order.iArea || !$scope.order.iCityId) {
+                || !$scope.order.iAreaId || !$scope.order.iCityId) {
                 $scope.noValid = true;
                 return;
-            }
+			}
             $scope.order.iMonthYearId = $scope.defMonthYear;
             $scope.order.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
             $scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
             orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1 }, function (result) {
-                if (result && result > 0) {
+				if (result && result > 0) {
+					console.log(JSON.stringify($scope.order))
                     $scope.order =
                     {
                         dtDateTraslation_original: new Date()

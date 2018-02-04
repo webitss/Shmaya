@@ -3,7 +3,6 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
 	    $scope.newEligibility = {};
 		$scope.prepareData = function () {
-			$rootScope.vat = 17;
 	        $scope.getData();
 	        $scope.isDataLoaded = 0;
 	        $scope.gridIdentity = 'EligibilityTableList';
