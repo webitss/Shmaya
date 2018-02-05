@@ -46,7 +46,10 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				    clickEvent: function (refund) {
 						if (refund.item == undefined) return;
 						$scope.refund2 = refund.item;
-						$scope.refund2.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
+						if (!($scope.refund2.dtPurchase_original instanceof String || typeof $scope.refund2.dtPurchase_original === 'string'))
+							$scope.refund2.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
+						else
+							$scope.refund2.dtPurchase_original = angular.copy(new Date($scope.refund2.dtPurchase_original))
 				        if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string') {
 				            $scope.tmpDate2 = $scope.refund2.iMonthYearId.substring(0, 2);
 				            $scope.tmpDate1 = $scope.refund2.iMonthYearId.substring(3, 7);

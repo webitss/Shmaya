@@ -32,7 +32,7 @@ companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'code
 				connect.post(true, 'GetRemarks', { iUserId: $scope.user.iUserId }, function (result) {
 					$scope.allRemarks = result;
 					if ($scope.allRemarks.length == 0)
-						$scope.noConversation = 'לא נרשמו הערות ללקוח זה';
+						$scope.noConversation = 'לא נרשמו הערות למשתמש זה';
 				});
 			}
 			$scope.getAllRemarks();

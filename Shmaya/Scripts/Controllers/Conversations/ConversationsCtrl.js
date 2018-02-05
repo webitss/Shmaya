@@ -31,7 +31,7 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
 			connect.post(true, 'GetConversations', { iUserId: $scope.user.iUserId }, function (result) {
 				$scope.allConversations = result;
 				if ($scope.allConversations.length == 0)
-					$scope.noConversation = 'לא התבצעו שיחות עם לקוח זה';
+					$scope.noConversation = 'לא התבצעו שיחות עם משתמש זה';
 			});
 		}
 		$scope.getAllConversations();
