@@ -52,8 +52,8 @@ body {
 }
 
 
-.v-align-b  {vertical-align: bottom;
-    
+.v-align-b {
+    vertical-align: bottom;
 }
 
 
@@ -68,24 +68,31 @@ input {
     padding: 6px 12px;
 }
 
-.header-shmaya img {
-    width: 100%;
+.header-shmaya {
+    position: relative;
 }
 
+    .header-shmaya img:nth-child(1) {
+        width: 100%;
+    }
 
+    .header-shmaya img:nth-child(2) {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: 100px;
+    }
 
 .header-form {
     background-color: #188587;
     text-align: center;
-  
     padding: 12px;
 }
-.header-form span{
-    
-    color: white;
-    font-size: 25px;
 
-}
+    .header-form span {
+        color: white;
+        font-size: 25px;
+    }
 
 
 .form-wrap {
@@ -131,6 +138,7 @@ input {
     display: block;
     border-radius: 7px;
     margin-top: 22px;
+    margin-bottom: 22px;
 }
 
     .end-btn:hover {
@@ -138,9 +146,9 @@ input {
     }
 
     .end-btn[disabled] {
-    background-color: #92cfd1;
-   cursor:not-allowed;
-}
+        background-color: #92cfd1;
+        cursor: not-allowed;
+    }
 
 
 
@@ -156,7 +164,6 @@ input {
 
 
 .popup-success {
-  
     margin: auto;
     width: 300px;
     background-color: #188587;
@@ -177,3 +184,41 @@ input {
         text-align: center;
         font-size: 19px;
     }
+
+
+
+.dropdown-template .btn.btn-dropdown.dropdown-toggle {
+    border: none;
+    border-bottom: 1px solid #606060;
+    background-color: #f7f7f7;
+    box-shadow: none;
+    border-radius: 0 !important;
+}
+
+.btn-group, .btn-group-vertical {
+    width: 100%;
+}
+
+h3 {
+    color: #592c5f;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.p-none{
+    padding:0px;
+}
+
+.h-22 {
+    height: 22px;
+}
+
+@media (max-width: 768px) {
+
+    .header-shmaya img:nth-child(2) {
+        top: 12px;
+        left: 5px;
+        width: 50px;
+    }
+}
