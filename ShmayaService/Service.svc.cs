@@ -126,15 +126,15 @@ namespace ShmayaService
 			return User.GetUsersCode(iUserType, iStatusId, iTypeTranslation);
 		}
 
-		//[OperationContract]
-		//[WebInvoke(
-		// Method = "POST",
-		// UriTemplate = "UserUpdate",
-		// BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		// ResponseFormat = WebMessageFormat.Json)]
-		//public  void checkRenewDate()
-		//{
-		//}
+		[OperationContract]
+		[WebInvoke(
+		 Method = "POST",
+		 UriTemplate = "YearOfRenewalUpdate",
+		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		 ResponseFormat = WebMessageFormat.Json)]
+		public void YearOfRenewalUpdate()
+		{
+		}
 
 		#endregion
 

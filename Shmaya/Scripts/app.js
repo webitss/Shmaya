@@ -36,6 +36,10 @@ companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvi
 		//	controller: 'PdfToProvidersCtrl',
 		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
 		//})
+		//.when('/PdfToProviders', {
+		//	controller: 'PdfToProvidersCtrl',
+		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
+		//})
 
 	//app.config(['$qProvider', function ($qProvider) {
 	//    $qProvider.errorOnUnhandledRejections(false);

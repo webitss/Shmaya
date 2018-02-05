@@ -1,12 +1,12 @@
 ﻿'use strict'
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
-		$scope.defDtResetHours = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
+		$scope.defdtCreateDate = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
 		$scope.nInitBankHours = null;
 		$scope.difference = 0;
 		if (!$scope.isEdit) {
 			$scope.user = {
-				dtResetHours: new Date(),
+				dtCreateDate: new Date(),
 				lOrderType: [],
 				lLanguage: []
 
@@ -30,9 +30,9 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 	    };
 
 		$scope.saveDetails = function () {
-			if ($scope.user.dtResetHours && $scope.user.dtResetCommunication) {
+			if ($scope.user.dtCreateDate && $scope.user.dtResetCommunication) {
 				var _MS_PER_DAY = 1000 * 60 * 60 * 24;
-				var utc1 = Date.UTC($scope.user.dtResetHours.getFullYear(), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+				var utc1 = Date.UTC($scope.user.dtCreateDate.getFullYear(), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
 				var utc2 = Date.UTC($scope.user.dtResetCommunication.getFullYear(), $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 
 				$scope.difference = Math.floor((utc2 - utc1) / _MS_PER_DAY);
@@ -67,7 +67,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				});
 			}
 			else {
-				$scope.user.dtResetHours = $scope.defDtResetHours;
+				$scope.user.dtCreateDate = $scope.defdtCreateDate;
 				connect.post(true, 'UserInsert', { user: $scope.user, iUserManagerId: $rootScope.user.iUserId, userType: $scope.userType }, function (result) {
 					if (result && result > 0) {
 						console.log('UserInsert:' + result);

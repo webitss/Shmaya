@@ -52,7 +52,8 @@ namespace ShmayaService.Entities
         [DataMember]
         public int? iEntitlementTypeId { get; set; }
         [DataMember]
-        public DateTime? dtResetHours { get; set; }
+		[NoSendToSQL]
+		public DateTime? dtResetHours { get; set; }
         [DataMember]
         public DateTime? dtResetCommunication { get; set; }
         [DataMember]
@@ -102,7 +103,6 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         [DataMember]
         public string nvLanguage { get; set; }
-        [NoSendToSQL]
         [DataMember]
         public DateTime? dtCreateDate { get; set; }
 
@@ -371,39 +371,18 @@ namespace ShmayaService.Entities
 			}
 		}
 
-		//public static void checkRenewDate()
-		//{
-		//	try
-		//	{
-		//		int iUserType = 2;
-		//		int iStatusId = 1;
-		//		int? iTypeTranslation = null;
-		//		List<SqlParameter> parameters = new List<SqlParameter>();
-		//		parameters.Add(new SqlParameter("iUserType", iUserType));
-		//		parameters.Add(new SqlParameter("iStatusId", iStatusId));
-		//		parameters.Add(new SqlParameter("iTypeTranslation", iTypeTranslation));
-		//		//data table שולף טבלה
-		//		DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysUser_SLCT",parameters).Tables[0];
-		//		List<User> lUsers = new List<User>();
-		//		lUsers = ObjectGenerator<User>.GeneratListFromDataRowCollection(dt.Rows);
-		//		foreach (var user in lUsers)
-		//		{
-		//			DateTime dtResetCommunication = user.dtResetCommunication ?? new DateTime();
-		//			int YearOfRenewal = dtResetCommunication.Year;
-		//			while (YearOfRenewal < DateTime.Now.Year)
-		//			{
-		//				YearOfRenewal += 4;
-		//			}
-		//			dtResetCommunication = new DateTime(YearOfRenewal,dtResetCommunication.Month, dtResetCommunication.Day);
-		//			if (dtResetCommunication >= DateTime.Now)
-		//				user.dtResetCommunication = dtResetCommunication;
-		//		}
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Log.ExceptionLog(ex.Message, "checkRenewDate");
-		//	}
-		//}
+		public static void YearOfRenewalUpdate()
+		{
+			try
+			{
+				SqlDataAccess.ExecuteDatasetSP("TYearOfRenewal_UPD");
+
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "YearOfRenewalUpdate");
+			}
+		}
 
 		#endregion
 	}

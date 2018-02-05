@@ -13,24 +13,15 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 			if ($scope.user.dtResetCommunication != null) {
 				$scope.YearOfRenewal = $scope.user.dtResetCommunication.getFullYear();
-	            //$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtResetHours.getFullYear()) % 4);
-	            //$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDay());
+	            //$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtCreateDate.getFullYear()) % 4);
+	            //$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtCreateDate.getMonth(), $scope.user.dtCreateDate.getDay());
 	            while (($scope.YearOfRenewal) < (new Date().getFullYear())) {
 	                $scope.YearOfRenewal += 4;
 	            }
 				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 			}
-			//if ($scope.DateOfRenewal == $scope.user.dtResetCommunication && $scope.user.dtResetCommunication != undefined)
-			//	$scope.DateOfRenewal = new Date($scope.YearOfRenewal+4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
-			if ($scope.DateOfRenewal && $scope.user.dtResetCommunication) {
-				var _MS_PER_DAY = 1000 * 60 * 60 * 24;
-				var utc1 = Date.UTC($scope.DateOfRenewal.getFullYear(), $scope.DateOfRenewal.getMonth(), $scope.DateOfRenewal.getDate());
-				var utc2 = Date.UTC($scope.user.dtResetCommunication.getFullYear(), $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
-
-				$scope.difference = Math.floor((utc2 - utc1) / _MS_PER_DAY);
-				if ($scope.difference == 0)
-					$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
-			}
+			if ($scope.DateOfRenewal == $scope.user.dtResetCommunication && $scope.user.dtResetCommunication != undefined)
+				$scope.DateOfRenewal = new Date($scope.YearOfRenewal+4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 	        if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 	            $scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 	        $scope.refund2 = {};
@@ -65,7 +56,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 				        alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
-								if (new Date($scope.refund2.dtPurchase_original) > new Date()) {
+								if (new Date($scope.refund2.dtPurchase) > new Date()) {
 							        createDialog({
 										id: 'refund2dtPurchase',
 							            template: "<div><span>אין להזין תאריך עתידי</span><button  ng-click='$modalCancel()' class='btn  pass color-grn btn-ayelet pull-left'><span> אישור</span></button>" + "</div>",
