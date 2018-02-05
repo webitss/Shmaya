@@ -32,7 +32,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 		$scope.saveDetails = function () {
 			if ($scope.user.dtCreateDate && $scope.user.dtResetCommunication) {
 				var _MS_PER_DAY = 1000 * 60 * 60 * 24;
-				var utc1 = Date.UTC($scope.user.dtCreateDate.getFullYear(), $scope.user.dtResetHours.getMonth(), $scope.user.dtResetHours.getDate());
+				var utc1 = Date.UTC($scope.user.dtCreateDate.getFullYear(), $scope.user.dtCreateDate.getMonth(), $scope.user.dtCreateDate.getDate());
 				var utc2 = Date.UTC($scope.user.dtResetCommunication.getFullYear(), $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 
 				$scope.difference = Math.floor((utc2 - utc1) / _MS_PER_DAY);

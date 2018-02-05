@@ -134,6 +134,7 @@ namespace ShmayaService
 		 ResponseFormat = WebMessageFormat.Json)]
 		public void YearOfRenewalUpdate()
 		{
+			User.YearOfRenewalUpdate();
 		}
 
 		#endregion
