@@ -1,4 +1,7 @@
-﻿
+﻿body * {
+
+    font-size: 15px;
+}
 /*#region ScrollBar*/
 
 
@@ -114,10 +117,14 @@ input {
 
     .form-item .dropdown-template .btn.btn-dropdown.dropdown-toggle {
         width: 100%;
+        height: 34px;
     }
 
         .form-item .dropdown-template .btn.btn-dropdown.dropdown-toggle .combo-split {
-            float: left;
+            /*float: left;*/
+            font-size: 15px;
+            width: 100%;
+            text-align: right;
         }
 
 
@@ -199,6 +206,56 @@ input {
     width: 100%;
 }
 
+.dropdown-menu li {
+    padding: 8px 17px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.38);
+    font-size: 15px;
+}
+.dropdown-menu div li:hover {
+    background-color: #eeecec;
+}
+.filter-input .open > .dropdown-menu .dropdown-content {
+    overflow-y: auto;
+}
+
+.filter-input .open > .dropdown-menu div {
+    /* max-height: calc(100vh - 330px); */
+    /* overflow-y: auto; */
+}
+ul.dropdown-menu {
+    min-width: 0;
+    width: 100% !important;
+}
+
+.dropdown-menu, .form-control, .btn {
+    /*font-size: 1rem;*/
+}
+.dropdown-template .dropdown-menu > li:first-child {
+    padding: 0 1px 0 0;
+    height: 40px;
+}
+.dropdown-menu button {
+    /* width: 50px; */
+    height: 34px;
+    padding: 0;
+}
+
+.dropdown-menu .dropdown-content {
+    width: 100% !important;
+}
+
+input {
+    background-color: #F7F7F7 !important;
+    border-style: none none solid none !important;
+    border-width: 1px !important;
+    height: 34px !important;
+    border-color: #606060 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 6px 12px;
+}
+
 h3 {
     color: #592c5f;
     font-size: 18px;
@@ -211,11 +268,23 @@ h3 {
 }
 
 .h-22 {
-    height: 22px;
+    height: 22px!important;
 }
 
-@media (max-width: 768px) {
+.input-stamp{
+    height: 102px !important;
+    border: 1px solid #606060 !important;
+}
+.caret {
+    float: left;
+    margin: 9px 0;
+}
 
+.span-dropdown-value {
+    float:right;
+
+}
+@media (max-width: 768px) {
     .header-shmaya img:nth-child(2) {
         top: 12px;
         left: 5px;
