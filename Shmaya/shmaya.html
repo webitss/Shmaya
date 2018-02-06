@@ -67,16 +67,19 @@
                         </div>
                         <div class="form-item  col-md-4">
                             <span class="text col-md-4 p-none">שם מתורגמן<span ng-if="!order.iSelectedTranslator" style="color:red">*</span></span>
-                            <div style="text-align:right" class="input col-md-8 p-none">
-                                <order-form-dropdown ng-model="order.iSelectedTranslator"
-                                                     name="selectedTranslator"
-                                                     enablesearch="true"
-                                                     data="ABCBookProviders"
-                                                     identityfield="iId"
-                                                     datafield="nvName"
-                                                     required>
-                                </order-form-dropdown>
+                            <div class="input col-md-8 p-none">
+                                <input type="text"  />
                             </div>
+                            <!--<div style="text-align:right" class="input col-md-8 p-none">
+        <order-form-dropdown ng-model="order.iSelectedTranslator"
+                             name="selectedTranslator"
+                             enablesearch="true"
+                             data="ABCBookProviders"
+                             identityfield="iId"
+                             datafield="nvName"
+                             required>
+        </order-form-dropdown>
+    </div>-->
                         </div>
 
 
