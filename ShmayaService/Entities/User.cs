@@ -129,11 +129,14 @@ namespace ShmayaService.Entities
             }
         }
 
-        public static Result GetUserByIdentity(string nvIdentity)
+        public static Result GetUserByIdentity(string nvIdentity ,int userType)
         {
             try
             {
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_SLCT_BY_Identity", new SqlParameter("nvIdentity", nvIdentity));
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("nvIdentity", nvIdentity));
+				parameters.Add(new SqlParameter("userType", userType));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_SLCT_BY_Identity", parameters);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     int iResult = int.Parse(ds.Tables[0].Rows[0][0].ToString());

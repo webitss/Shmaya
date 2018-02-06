@@ -33,9 +33,9 @@ namespace ShmayaService
            UriTemplate = "GetUserByIdentity",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public Result GetUserByIdentity(string nvIdentity)
+        public Result GetUserByIdentity(string nvIdentity, int userType)
         {
-            return User.GetUserByIdentity(nvIdentity);
+            return User.GetUserByIdentity(nvIdentity,userType);
         }
 
         [OperationContract]

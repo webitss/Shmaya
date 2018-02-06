@@ -7,8 +7,7 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 
 		$scope.prepareData = function () {
 			$scope.getData();
-			if ($scope.isPrepareData == true)
-			{
+			if ($scope.isPrepareData == true) {
 				$scope.isDataLoaded1 = 0;
 				$scope.gridIdentity1 = 'ReportsList1';
 				$scope.columns1 = [
@@ -20,6 +19,8 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
 			}
+			else
+				$scope.isPrepareData = true;
 		};
 
 
@@ -38,6 +39,8 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
 			}
+			else
+				$scope.isPrepareData2 = true;
 		};
 
 		$scope.prepareData3 = function () {
@@ -55,6 +58,8 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'מספר שעות', fieldName: 'nBankHours' }
 				];
 			}
+			else
+				$scope.isPrepareData3 = true;
 		};
 
 		$scope.getData = function () {

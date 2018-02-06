@@ -7,8 +7,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		$scope.prepareData = function () {
 			$scope.getData();
-			if ($scope.isPrepareData = true)
-			{
+			if ($scope.isPrepareData = true) {
 				$scope.isDataLoaded1 = 0;
 				$scope.gridIdentity1 = 'ReportsList1';
 				$scope.columns1 = [
@@ -20,6 +19,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				];
 
 			}
+			else
+				$scope.isPrepareData = true;
 		};
 
 
@@ -39,6 +40,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				];
 			
 			}
+			else
+				$scope.isPrepareData2 = true;
 		};
 
 
@@ -58,6 +61,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'מספר שעות', fieldName: 'nNumHours' }
 				];
 			}
+			else
+				$scope.isPrepareData3 = true;
 		};
 
 

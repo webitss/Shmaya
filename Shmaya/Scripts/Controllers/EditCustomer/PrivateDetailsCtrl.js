@@ -97,6 +97,12 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				$scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 			}
 
+			$scope.addBankHours = function (num)
+			{
+				$scope.user.nBankHours += num - $scope.nInitBankHours2
+				$scope.nBankHours = num;
+			}
+
 
 			$scope.getData = function () {
 					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
@@ -109,8 +115,10 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				function (result) {
 					$scope.EligibilityTableList = result;
 					if ($scope.EligibilityTableList != undefined)
-						if ($scope.user && $scope.user.iEntitlementTypeId)
+						if ($scope.user && $scope.user.iEntitlementTypeId) {
 							$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: $scope.user.iEntitlementTypeId }, true)[0].nNumHours;
+							$scope.nInitBankHours2 = $scope.nInitBankHours;
+						}
 				});
 	        connect.post(true, 'GetCommunicationCart', {},
 				function (result) {
