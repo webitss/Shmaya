@@ -57,6 +57,13 @@
                                 <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
                             </div>
                         </div>
+
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">מספר זהות<span ng-if="!order.nvIdentity" style="color:red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
+                            </div>
+                        </div>
                         <div class="form-item  col-md-4">
                             <span class="text col-md-4 p-none">שם מתורגמן<span ng-if="!order.iSelectedTranslator" style="color:red">*</span></span>
                             <div style="text-align:right" class="input col-md-8 p-none">
@@ -71,12 +78,7 @@
                             </div>
                         </div>
 
-                        <div class="form-item  col-md-4">
-                            <span class="text col-md-4 p-none">מספר זהות<span ng-if="!order.nvIdentity" style="color:red">*</span></span>
-                            <div class="input col-md-8 p-none">
-                                <input type="text" ng-model="order.nvIdentity" required ng-blur="checkIdentity()" />
-                            </div>
-                        </div>
+
                     </div>
 
                     <h3>פרטי הזמנה</h3>
