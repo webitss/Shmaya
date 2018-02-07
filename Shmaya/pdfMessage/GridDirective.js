@@ -225,8 +225,8 @@
                                 if (data[item.fieldName] != undefined && data[item.fieldName] != null && data[item.fieldName] != "")
                                     data[item.fieldName] = $filter('date')(data[item.fieldName], 'HH:mm');
                             });
-                        }
-
+						}
+	
                         //if not defined boolean text
                         if (item.type == 'boolean') {
                             angular.forEach(scope.data, function (data) {

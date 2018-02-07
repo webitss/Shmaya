@@ -20,6 +20,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					$scope.YearOfRenewal += 4;
 				}
 				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
+				if ($scope.DateOfRenewal.getFullYear() == new Date().getFullYear())
+					$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate())
 			}
 			if ($scope.DateOfRenewal == $scope.user.dtResetCommunication && $scope.user.dtResetCommunication != undefined)
 				$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
@@ -215,6 +217,17 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					$scope.isDataLoaded++;
 					$scope.RefundsList.forEach(function (refund) {
 						refund.dtPurchase_original = angular.copy(refund.dtPurchase);
+						if (refund.nvDocPath)
+						{
+							refund.nvDocName = refund.nvDocPath;
+							refund.nvDocPath = connect.getFilesUrl() + refund.nvDocPath;
+						}
+
+						//אם נקנה פקס ע"י לקוח זה
+						if (refund.dtPurchase != undefined && refund.dtPurchase != null && refund.dtPurchase != "")
+							if (refund.dtPurchase.getFullYear() + 5 > (new Date().getFullYear()) && refund.iProductId == 30)
+								$scope.flagFax = 1;
+
 						if (refund.iMonthYearId != 0)
 						{
 							refund.iMonthYearId = refund.iMonthYearId + ""
@@ -240,10 +253,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									$scope.restart = false;
 								}
 
-								if (refund.nvDocPath) {
-									refund.nvDocName = refund.nvDocPath;
-									refund.nvDocPath = connect.getFilesUrl() + refund.nvDocPath;
-								}
 								//אם לא מדובר בגלאי בכי או פקס - שהם לא מחושבים בסך ההחזר הכללי
 								//      if (refund.iProductId != 30 && refund.iProductId != 1) {
 								//          $scope.sumRefunds += refund.nRefund;
@@ -252,10 +261,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								if ($scope.sumBalance == 0) {
 									$scope.isShowAlert = true;
 								}
-								//אם נקנה פקס ע"י לקוח זה
-								if (refund.dtPurchase != undefined && refund.dtPurchase != null && refund.dtPurchase != "")
-									if (refund.dtPurchase.getFullYear() + 5 > (new Date().getFullYear()) && refund.iProductId == 30)
-										$scope.flagFax = 1;
 						
 					});
 
