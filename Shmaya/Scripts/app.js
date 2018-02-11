@@ -36,10 +36,17 @@ companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvi
 		//	controller: 'PdfToProvidersCtrl',
 		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
 		//})
+<<<<<<< HEAD
+        .when('/PdfToProviders', {
+            controller: 'PdfToProvidersCtrl',
+            templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
+        })
+=======
 		//.when('/PdfToProviders', {
 		//	controller: 'PdfToProvidersCtrl',
 		//	templateUrl: 'Partials/Pages/Messages/PdfToProviders.html'
 		//})
+>>>>>>> 01c05276d6dc05149ab4b22d98db9364477dbb19
 
 	//app.config(['$qProvider', function ($qProvider) {
 	//    $qProvider.errorOnUnhandledRejections(false);

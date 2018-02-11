@@ -162,11 +162,13 @@ namespace ShmayaService.Entities
 
                 string sFileName = DateTime.Now.ToFileTime().ToString();
 
-                string filePath = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"] + url;
-
+                string filePath = System.Configuration.ConfigurationManager.AppSettings["BaseUrlForPDF"] + url;
+                //string filePath = url;
                 var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
                 sFileName = "דוח שעות" + sFileName;
                 File.WriteAllBytes(System.Configuration.ConfigurationManager.AppSettings["ReportFiles"] + folderName + sFileName + ".pdf", pdfBytes);
+                //File.WriteAllBytes( folderName + sFileName + ".pdf", pdfBytes);
+
                 return filePath;
             }
             catch (Exception ex)

@@ -1,17 +1,186 @@
 <!DOCTYPE html>
-<html ng-app="appMessagePdf">
-<head>
-	<link href="Style/bootstrap.min.css" rel="stylesheet" />
-	<link href="Style/bootstrap-rtl.min.css" rel="stylesheet" />
-	<link href="Style/StyleSheet.css" rel="stylesheet" />
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="companionApp">
+<!--appMessagePdf-->
 
-	<script src="GridDirective.js"></script>
-	<script src="GridPagingDirective.js"></script>
-	<!--<link href="Style/FWManagement.css" rel="stylesheet" />-->
-	<!--<link href="Style/font-awesome.min.css" rel="stylesheet" />-->
+<head>
+    <title>PDF שמעיה</title>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Style/bootstrap.css" rel="stylesheet" />
+    <link href="Style/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Style/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="Style/jquery-ui.min.css" rel="stylesheet" />
+    <link href="Style/ayelet_hashachar-companionship.css" rel="stylesheet" />
+    <link href="Style/directives-style.css" rel="stylesheet" />
+    <link href="Style/grid-style.css" rel="stylesheet" />
+    <link href="Style/StyleSheet.css" rel="stylesheet" />
+    <link href="Style/directives-style1.css" rel="stylesheet" />
+
+
 </head>
 
 <body ng-controller="MessageInPdfCtrl">
+<<<<<<< HEAD
+    <!--id="OrderForm"-->
+    <div class="container">
+        <!--<div class="container" id="pdf">-->
+        <wait></wait>
+
+        <style>
+            .grid-paging {
+                display: none;
+            }
+
+            .gridRow.headerFilter {
+                display: none;
+            }
+
+            .gridBody {
+                height: inherit !important;
+                overflow: hidden;
+                border-left: 1px solid lightgray;
+                width: 100%;
+            }
+
+            .headerRow .glyphicon-menu-down, .headerRow .glyphicon-menu-up {
+                display: none;
+            }
+
+            .headerRow .glyphicon-menu-down, .headerRow .glyphicon-menu-up {
+                display: none;
+            }
+        </style>
+       
+        <div class="container">
+            <div class="row">
+                <div class="commands menu-klaly">
+                    <grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <grid columns="columns"
+                      data="OrdersList"
+                      class="color-gray"
+                      is-data-loaded="isDataLoaded"
+                      footer-text="הזמנות"
+                      grid-identity="{{gridIdentity}}"></grid>
+            </div>
+        </div>
+
+       <div class="container">
+            <div class="row">
+                <div class="commands menu-klaly">
+                    <grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity2}}"></grid-pager>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <grid columns="columns2"
+                    data="CustomersList"
+                    class="color-gray"
+                    is-data-loaded="isDataLoaded2"
+                    footer-text="לקוחות"
+                    grid-identity="{{gridIdentity2}}"
+                    show-all="true"></grid>
+            </div>
+        </div>
+        <!--</div>-->
+    </div>
+
+
+
+    <script src="Scripts/Libraries/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/Libraries/jquery-ui.min.js"></script>
+    <script src="Scripts/Libraries/jquery.flip.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.7/angular.js"></script>
+    <script src="Scripts/Libraries/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Scripts/Libraries/angular-bootstrap-multiselect.js"></script>
+    <script src="Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
+
+  
+
+    <script type="text/javascript">
+        var companionApp = angular.module('companionApp', []);
+    </script>
+    <script src="Scripts/Factories/ConnectForPdf.js"></script>
+    <script type="text/javascript">
+        companionApp.controller('MessageInPdfCtrl', ['$scope', '$rootScope', '$timeout', '$window', 'ConnectForPdf', '$location',
+            function ($scope, $rootScope, $timeout, $window, ConnectForPdf, $location) {
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
+
+                $scope.prepareData = function () {
+                    $scope.UserId = parseInt(getParameterByName('iUserId'));//parseInt($routeParams.iUserId);
+                    $scope.dateBegin = new Date(getParameterByName('dtDateBegin'));
+                    $scope.dateEnd = new Date(getParameterByName('dtDateEnd'));
+                    //$scope.UserId = 36;
+                    //$scope.dateBegin = new Date(new Date().getFullYear() - 5, new Date().getMonth(), new Date().getDate());
+                    //$scope.dateEnd = new Date();
+                    $scope.isDataLoaded = 0;
+                    $scope.gridIdentity = 'OrdersList';
+                    $scope.columns = [
+                        { title: 'שם לקוח', fieldName: 'nameCustomer' },
+                        { title: 'שם מתורגמן', fieldName: 'nameTranslator' },
+                        { title: 'סוג הזמנה', fieldName: 'typeOrder' },
+                        { title: 'סוג תרגום', fieldName: 'typeTranslation' },
+                        { title: 'תאריך תרגום', fieldName: 'dtDateTraslation', type: 'date' },
+                        { title: 'זמן תרגום', fieldName: 'dtTimeTranslation', type: 'time' }],
+
+                        $scope.isDataLoaded2 = 0;
+                              $scope.gridIdentity2 = 'CustomersList';
+                              $scope.columns2 = [
+                        	{ title: 'זמן תרגום', fieldName: 'dtTimeTranslation', type: 'time' },
+                        	{ title: 'סה"כ לתשלום', fieldName: 'nSumPayment' },
+                        	{ title: 'תשלום שעה ראשונה', fieldName: 'nTariffToFirst' },
+                        	{ title: 'תשלום שעה שניה', fieldName: 'nTariffToSecond' }
+                              ];
+
+                              $scope.getData1();
+                              $scope.getData2();
+
+
+                };
+                $scope.getData1 = function () {
+                    ConnectForPdf.post('GetOrdersByStatus', { iUserId: $scope.UserId },
+                        function (result) {
+                            $scope.OrdersList = result;
+                            $scope.isDataLoaded++;
+                        });
+                };
+                $scope.getData2 = function () {
+                    ConnectForPdf.post('GetMessageToProvider', { iUserId: $scope.UserId, dtBeginDate: $scope.dateBegin, dtEndDate: $scope.dateEnd },
+                        function (result) {
+                            $scope.CustomersList = result;
+                            $scope.isDataLoaded2++;
+                        });
+                };
+                $scope.prepareData();
+
+            }]);
+    </script>
+
+
+
+
+    <script src="Scripts/Directives/GridDirective.js"></script>
+    <script src="Scripts/Directives/GridPagingDirective.js"></script>
+    <script src="Scripts/Factories/ExcelFactory2.js"></script>
+    <script src="Scripts/Filters/Floor.js"></script>
+    <script src="Scripts/Filters/Abs.js"></script>
+    <script src="Scripts/Factories/ScreenHeight.js"></script>
+    <!--<link href="Style/FWManagement.css" rel="stylesheet" />-->
+    <!--<link href="Style/font-awesome.min.css" rel="stylesheet" />-->
+=======
 	<!--id="OrderForm"-->
 	<div class="container">
 		<!--<div class="container" id="pdf">-->
@@ -148,6 +317,7 @@
 			}]);
 	</script>
 
+>>>>>>> 01c05276d6dc05149ab4b22d98db9364477dbb19
 
 </body>
 

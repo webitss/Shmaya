@@ -4,7 +4,8 @@
     <ProjectView>ShowAllFiles</ProjectView>
     <NameOfLastUsedPublishProfile>FolderProfile1</NameOfLastUsedPublishProfile>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
