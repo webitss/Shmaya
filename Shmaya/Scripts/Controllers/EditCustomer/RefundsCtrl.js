@@ -131,6 +131,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
 											$scope.sumRefunds += $scope.refund2.nRefund;
 											$scope.sumBalance -= $scope.refund2.nRefund;
+											Math.round($scope.sumBalance * 100) / 100;
+											Math.round($scope.sumRefunds * 100) / 100;
 										}
 										else {
 											$scope.refund2.nRefund = $scope.sumBalance + $scope.refund2.nRefund;
@@ -249,6 +251,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								})
 								if ($scope.restart == true) {
 									$scope.sumBalance = $scope.sumCommunication - $scope.user.nBankCommunication;
+									Math.round($scope.sumBalance * 100) / 100
+									Math.round($scope.sumRefunds * 100) / 100
 									$scope.sumRefunds = $scope.user.nBankCommunication;
 									$scope.restart = false;
 								}
@@ -370,6 +374,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								$scope.newRefund.nRefund = $scope.sumBalance;
 							$scope.sumRefunds += $scope.newRefund.nRefund;
 							$scope.sumBalance -= $scope.newRefund.nRefund;
+							Math.round($scope.sumBalance * 100) / 100
+							Math.round($scope.sumRefunds * 100) / 100
 						}
 					connect.post(true, 'RefundInsert', { refund: $scope.newRefund, iUserManagerId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId }, function (result) {
 						if ($scope.isShowAlert == true && $scope.newRefund.iProductId != 30 && $scope.newRefund.iProductId != 1)

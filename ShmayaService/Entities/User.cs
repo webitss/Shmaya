@@ -80,8 +80,7 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public int? iBuyCryingDetector { get; set; }
         [DataMember]
-        [NoSendToSQL]
-        public double nSumPayment { get; set; }
+        public double nInitBankHours { get; set; }
         [DataMember]
         [NoSendToSQL]
         public string nvEntitlementType { get; set; }

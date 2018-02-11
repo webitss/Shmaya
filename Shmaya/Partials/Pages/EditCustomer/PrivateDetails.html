@@ -31,7 +31,7 @@
 			<form-dropdown ng-model="user.iGenderId" enablesearch="false" data="genderList" ng-required="!showCustomer&&!showAdmin"></form-dropdown>
 		</form-field>
 		<form-field span-text="מייל" class="col-md-6">
-			<input class="form-control" type="text" ng-model="user.nvEmail" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="!showCustomer&&!showAdmin" />
+			<input class="form-control" type="text" ng-model="user.nvEmail"  ng-required="!showCustomer&&!showAdmin" />
 		</form-field>
 		<form-field span-text="כתובת" class="col-md-6">
 			<input class="form-control" type="text" ng-model="user.nvAdress" />
@@ -70,7 +70,7 @@
 			<input class="form-control" type="text" disabled ng-model="nInitBankCommunication" /><!--user.nBankCommunication-->
 		</form-field>
 		<form-field span-text="מספר שעות זכאות" class="col-md-6" ng-if="showCustomer&&!showAdmin">
-			<input class="form-control" type="text" ng-model="nInitBankHours"  ng-change="addBankHours(nInitBankHours)" />
+			<input class="form-control" type="text" ng-model="user.nInitBankHours"  ng-blur="addBankHours(user.nInitBankHours)" />
 		</form-field>
 		<form-field span-text="סוג שירות" class="col-md-6" ng-if="!showCustomer&&!showAdmin">
 			<multi-form-dropdown ng-model="user.lOrderType" filter="false" enablesearch="false" data="userTypeList" required></multi-form-dropdown>

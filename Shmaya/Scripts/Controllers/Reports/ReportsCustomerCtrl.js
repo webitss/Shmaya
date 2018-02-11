@@ -16,7 +16,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nBankHours' }
+					{ title: 'מספר שעות', fieldName: 'nBankHours' },
+					{ title: 'מספר שעות המתנה', fieldName: 'nTimeWating' }
+
+					
 				];
 			}
 			else
@@ -36,7 +39,8 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nBankHours' }
+					{ title: 'מספר שעות', fieldName: 'nBankHours' },
+					{ title: 'מספר שעות המתנה', fieldName: 'nTimeWating' }
 				];
 			}
 			else
@@ -55,7 +59,8 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nBankHours' }
+					{ title: 'מספר שעות', fieldName: 'nBankHours' },
+					{ title: 'מספר שעות המתנה', fieldName: 'nTimeWating' }
 				];
 			}
 			else
@@ -72,6 +77,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 						return;
 					}
 					$scope.ReportsList1 = result;
+					$scope.ReportsList1.forEach(function (item) {
+						item.nBankHours = Math.round(item.nBankHours * 100) / 100
+						item.nTimeWating = Math.round(item.nTimeWating * 100) / 100
+					})
 					$scope.isDataLoaded1++;
 				});
 		};
@@ -85,6 +94,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 						return;
 					}
 					$scope.ReportsList2 = result;
+					$scope.ReportsList2.forEach(function (item) {
+						item.nBankHours = Math.round(item.nBankHours * 100) / 100
+						item.nTimeWating = Math.round(item.nTimeWating * 100) / 100
+					})
 					$scope.isDataLoaded2++;
 				});
 		};
@@ -98,6 +111,10 @@ companionApp.controller('ReportsCustomerCtrl', ['$scope', '$rootScope', 'connect
 						return;
 					}
 					$scope.ReportsList3 = result;
+					$scope.ReportsList3.forEach(function (item) {
+						item.nBankHours = Math.round(item.nBankHours * 100) / 100
+						item.nTimeWating = Math.round(item.nTimeWating * 100) / 100
+					})
 					$scope.isDataLoaded3++;
 				});
 		};

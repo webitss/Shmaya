@@ -78,6 +78,10 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return;
 					}
 					$scope.ReportsList1 = result;
+					$scope.ReportsList1.forEach(function (item)
+					{
+						item.nNumHours = Math.round(item.nNumHours * 100) / 100
+					})
 					$scope.isDataLoaded1++;
 				
 				});
@@ -94,6 +98,9 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return
 					}
 					$scope.ReportsList2 = result;
+					$scope.ReportsList2.forEach(function (item) {
+						item.nNumHours = Math.round(item.nNumHours * 100) / 100
+					})
 					$scope.isDataLoaded2++;
 
 				});
@@ -109,6 +116,9 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return
 					}
 					$scope.ReportsList3 = result;
+					$scope.ReportsList3.forEach(function (item) {
+						item.nNumHours = Math.round(item.nNumHours * 100) / 100
+					})
 					$scope.isDataLoaded3++;
 
 				});

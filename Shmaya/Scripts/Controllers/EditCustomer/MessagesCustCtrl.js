@@ -33,7 +33,6 @@
 						iMessage: -1,
 						iUserId: $scope.user.iUserId,
 						iCreateUserId: $rootScope.user.iUserId,
-						nvCoordinatorName: $scope.user.nvName,
 						nvSubject: '',
 						nvComment: '',
 						dtCreateDate: new Date()

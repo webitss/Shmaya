@@ -1,12 +1,10 @@
 ﻿<div ng-controller="ReportsProductCtrl" class="popup-ayelet">
 	<div class="container container-message">
 		<form id="formReport3" name="formReport3" novalidate>
-			<div class="row">
 				<form-field span-text="בחר חודש ושנה" class="col-md-6">
 					<form-dropdown ng-model="iMonthYearId" enablesearch='false' data="monthYearList" required ng-change="prepareData();prepareData2()"></form-dropdown>
 				</form-field>
-			</div>
-</form>
+		</form>
 		<button type="button" class="btn  pass btn-ayelet pull-right color-gray-message sent-message" style="margin-top: 0;" ng-click="checkValidation()">
 			<div class="glyphicon glyphicon-list color-text-white"></div>
 			<span class="color-text-white">הפק דו"ח</span>

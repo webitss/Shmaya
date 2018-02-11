@@ -31,7 +31,7 @@ namespace ShmayaService.Entities
 		public string nvCreateUser { get; set; }
 
 		#endregion
-		#region Functions
+		#region methods
 
 		public static bool CreateNewMessage(MessageCust message)
 		{

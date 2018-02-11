@@ -2,8 +2,9 @@
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 		$scope.defdtCreateDate = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
-		$scope.nInitBankHours = null;
 		$scope.difference = 0;
+		$scope.tmpBankHours;
+		$scope.nInitBankHours2 = $scope.user.nInitBankHours
 		if (!$scope.isEdit) {
 			$scope.user = {
 				dtCreateDate: new Date(),
@@ -47,12 +48,14 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 			}
 			if ($scope.difference < 0)
 			{
-				var savingStatus = "אין להזין תאריך תחילת זכאות גדול מתאריך הצטרפות";
+				var savingStatus = "אין להזין תאריך תחילת זכאות לפני תאריך הצטרפות";
 				$rootScope.notification(savingStatus);
-				alerts.alert("אין להזין תאריך תחילת זכאות גדול מתאריך הצטרפות");
+				alerts.alert("אין להזין תאריך תחילת זכאות לפני תאריך הצטרפות");
 				return;
 			}
 			if ($scope.isEdit == true) {
+				if ($scope.tmpBankHours!=undefined)
+					$scope.user.nBankHours += $scope.tmpBankHours - $scope.nInitBankHours2;
 				connect.post(true, 'UserUpdate', { user: $scope.user, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 					if (result && result > 0) {
 						console.log('UserUpdate:' + result);
@@ -67,6 +70,7 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				});
 			}
 			else {
+				$scope.user.nBankHours += $scope.tmpBankHours - $scope.nInitBankHours2;
 				$scope.user.dtCreateDate = $scope.defdtCreateDate;
 				connect.post(true, 'UserInsert', { user: $scope.user, iUserManagerId: $rootScope.user.iUserId, userType: $scope.userType }, function (result) {
 					if (result && result > 0) {
@@ -92,15 +96,13 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 
 			$scope.calculateBankHours = function (iEntitlementTypeId)
 			{
-				if ($scope.user && $scope.user.iEntitlementTypeId)
-					$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
+				$scope.user.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 				$scope.user.nBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: iEntitlementTypeId }, true)[0].nNumHours;
 			}
 
 			$scope.addBankHours = function (num)
 			{
-				$scope.user.nBankHours += num - $scope.nInitBankHours2
-				$scope.nBankHours = num;
+				$scope.tmpBankHours = num;
 			}
 
 
@@ -116,8 +118,6 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 					$scope.EligibilityTableList = result;
 					if ($scope.EligibilityTableList != undefined)
 						if ($scope.user && $scope.user.iEntitlementTypeId) {
-							$scope.nInitBankHours = $filter('filter')($scope.EligibilityTableList, { iEntitlementTypeId: $scope.user.iEntitlementTypeId }, true)[0].nNumHours;
-							$scope.nInitBankHours2 = $scope.nInitBankHours;
 						}
 				});
 	        connect.post(true, 'GetCommunicationCart', {},
