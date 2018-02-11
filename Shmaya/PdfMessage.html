@@ -100,12 +100,12 @@
 				}
 
 				$scope.prepareData = function () {
-					//$scope.UserId = parseInt(getParameterByName('iUserId'));//parseInt($routeParams.iUserId);
-					//$scope.dateBegin = new Date(getParameterByName('dtDateBegin'));
-					//$scope.dateEnd = new Date(getParameterByName('dtDateEnd'));
-					$scope.UserId = 36;
-					$scope.dateBegin = new Date(new Date().getFullYear() - 5, new Date().getMonth(), new Date().getDate());
-					$scope.dateEnd = new Date();
+					$scope.UserId = parseInt(getParameterByName('iUserId'));//parseInt($routeParams.iUserId);
+					$scope.dateBegin = new Date(getParameterByName('dtDateBegin'));
+					$scope.dateEnd = new Date(getParameterByName('dtDateEnd'));
+					//$scope.UserId = 36;
+					//$scope.dateBegin = new Date(new Date().getFullYear() - 5, new Date().getMonth(), new Date().getDate());
+					//$scope.dateEnd = new Date();
 					$scope.isDataLoaded = 0;
 					$scope.gridIdentity = 'OrdersList';
 					$scope.columns = [
