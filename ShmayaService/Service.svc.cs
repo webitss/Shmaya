@@ -33,9 +33,9 @@ namespace ShmayaService
            UriTemplate = "GetUserByIdentity",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public Result GetUserByIdentity(string nvIdentity)
+        public Result GetUserByIdentity(string nvIdentity, int userType)
         {
-            return User.GetUserByIdentity(nvIdentity);
+            return User.GetUserByIdentity(nvIdentity,userType);
         }
 
         [OperationContract]
@@ -126,15 +126,16 @@ namespace ShmayaService
 			return User.GetUsersCode(iUserType, iStatusId, iTypeTranslation);
 		}
 
-		//[OperationContract]
-		//[WebInvoke(
-		// Method = "POST",
-		// UriTemplate = "UserUpdate",
-		// BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		// ResponseFormat = WebMessageFormat.Json)]
-		//public  void checkRenewDate()
-		//{
-		//}
+		[OperationContract]
+		[WebInvoke(
+		 Method = "POST",
+		 UriTemplate = "YearOfRenewalUpdate",
+		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		 ResponseFormat = WebMessageFormat.Json)]
+		public void YearOfRenewalUpdate()
+		{
+			User.YearOfRenewalUpdate();
+		}
 
 		#endregion
 
