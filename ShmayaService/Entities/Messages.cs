@@ -69,6 +69,8 @@ namespace ShmayaService.Entities
 			mailMessage.From = new MailAddress(message.nvFrom);
 			mailMessage.Subject = message.nvSubject;
 			mailMessage.Body = message.nvMessage;
+            //Attachment oa = new Attachment("ששם הקובץ");
+            //mailMessage.Attachments.Add(oa);
 			for (int i = 0; i < lMember.Count; i++)
 			{
 				if (lMember[i].nvEmail != null && lMember[i].nvEmail != "")

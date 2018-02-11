@@ -722,5 +722,18 @@ namespace ShmayaService
         }
 
         #endregion VideoTranslation
+
+        #region PDF
+        [OperationContract]
+        [WebInvoke(
+         Method = "POST",
+         UriTemplate = "GenerateAttendanceReport",
+         BodyStyle = WebMessageBodyStyle.WrappedRequest,
+         ResponseFormat = WebMessageFormat.Json)]
+        public string GenerateAttendanceReport(string folderName, string url)
+        {
+            return FileManageCtrl.GenerateAttendanceReport(folderName, url);
+        }
+        #endregion
     }
 }

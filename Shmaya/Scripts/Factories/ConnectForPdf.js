@@ -1,7 +1,7 @@
 "use strict";
-appMessagePdf.factory("ConnectForPdf", ['$http', function ($http) {
+companionApp.factory("ConnectForPdf", ['$http', function ($http) {
     //var urlBase = 'http://qa.webit-track.com/ShmayaCRMWs/Service.svc/';
-	var urlBase = "http://localhost:27786/Service.svc/";
+    var urlBase = "http://localhost:51719/Service.svc/";
     function dateConvectionLoop(data, isPost) {
         if (!angular.isObject(data)) {
             var prop = data;
@@ -49,7 +49,8 @@ appMessagePdf.factory("ConnectForPdf", ['$http', function ($http) {
             var data = dateConvectionLoop(data, true);
             $http.post(urlBase + actionName, data)
                         .success(function (result) {
-                            SuccessFunc(result);
+                            //SuccessFunc(result);
+                            SuccessFunc(dateConvectionLoop(result, false));
                         }).error(function (result) {
                             if (ErrorFunc)
                                 ErrorFunc(result);
@@ -58,7 +59,8 @@ appMessagePdf.factory("ConnectForPdf", ['$http', function ($http) {
         get: function (actionName, SuccessFunc, ErrorFunc) {
             $http.get(urlBase + actionName)
                 .success(function (result) {
-                    SuccessFunc(result);
+                    //SuccessFunc(result);
+                    SuccessFunc(dateConvectionLoop(result, false));
                 }).error(function (result) {
                     if (ErrorFunc)
                         ErrorFunc(result);
