@@ -80,8 +80,7 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public int? iBuyCryingDetector { get; set; }
         [DataMember]
-        [NoSendToSQL]
-        public double nSumPayment { get; set; }
+        public double nInitBankHours { get; set; }
         [DataMember]
         [NoSendToSQL]
         public string nvEntitlementType { get; set; }
@@ -129,11 +128,14 @@ namespace ShmayaService.Entities
             }
         }
 
-        public static Result GetUserByIdentity(string nvIdentity)
+        public static Result GetUserByIdentity(string nvIdentity ,int userType)
         {
             try
             {
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_SLCT_BY_Identity", new SqlParameter("nvIdentity", nvIdentity));
+				List<SqlParameter> parameters = new List<SqlParameter>();
+				parameters.Add(new SqlParameter("nvIdentity", nvIdentity));
+				parameters.Add(new SqlParameter("userType", userType));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TUser_SLCT_BY_Identity", parameters);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     int iResult = int.Parse(ds.Tables[0].Rows[0][0].ToString());
@@ -268,7 +270,7 @@ namespace ShmayaService.Entities
 					user.lLanguage = new List<int>();
 					for (int j = 0; j < dv.Count; j++)
 					{
-						user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
+						user.lLanguage.Add(int.Parse(dv[j]["iTypeId"].ToString()));
 					}
 					dv = new DataView(ds.Tables[2],
 					 "iUserId = " + user.iUserId.ToString(),
@@ -277,7 +279,7 @@ namespace ShmayaService.Entities
 					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
 					for (int j = 0; j < dv.Count; j++)
 					{
-						user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
+						user.lOrderType.Add(int.Parse(dv[j]["iTypeId"].ToString()));
 					}
 					lUsers.Add(user);
 				}
@@ -381,6 +383,21 @@ namespace ShmayaService.Entities
 			catch (Exception ex)
 			{
 				Log.ExceptionLog(ex.Message, "YearOfRenewalUpdate");
+			}
+		}
+
+		public static string BankHoursUpdate()
+		{
+			try
+			{
+				SqlDataAccess.ExecuteDatasetSP("TBankHours_UPD");
+				return "OK";
+
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "BankHoursUpdate");
+				return null;
 			}
 		}
 

@@ -7,8 +7,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		$scope.prepareData = function () {
 			$scope.getData();
-			if ($scope.isPrepareData = true)
-			{
+			if ($scope.isPrepareData = true) {
 				$scope.isDataLoaded1 = 0;
 				$scope.gridIdentity1 = 'ReportsList1';
 				$scope.columns1 = [
@@ -20,6 +19,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				];
 
 			}
+			else
+				$scope.isPrepareData = true;
 		};
 
 
@@ -39,6 +40,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				];
 			
 			}
+			else
+				$scope.isPrepareData2 = true;
 		};
 
 
@@ -58,6 +61,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'מספר שעות', fieldName: 'nNumHours' }
 				];
 			}
+			else
+				$scope.isPrepareData3 = true;
 		};
 
 
@@ -73,6 +78,10 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return;
 					}
 					$scope.ReportsList1 = result;
+					$scope.ReportsList1.forEach(function (item)
+					{
+						item.nNumHours = Math.round(item.nNumHours * 100) / 100
+					})
 					$scope.isDataLoaded1++;
 				
 				});
@@ -89,6 +98,9 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return
 					}
 					$scope.ReportsList2 = result;
+					$scope.ReportsList2.forEach(function (item) {
+						item.nNumHours = Math.round(item.nNumHours * 100) / 100
+					})
 					$scope.isDataLoaded2++;
 
 				});
@@ -104,6 +116,9 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return
 					}
 					$scope.ReportsList3 = result;
+					$scope.ReportsList3.forEach(function (item) {
+						item.nNumHours = Math.round(item.nNumHours * 100) / 100
+					})
 					$scope.isDataLoaded3++;
 
 				});

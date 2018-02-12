@@ -132,5 +132,18 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 			);
 		}
 
+		$scope.ResetBankHours = function ()
+		{
+			alerts.confirm('האם אתה בטוח שברצונך לאפס את בנק השעות לכלל הלקוחות?', alerts.titles.message,
+				function () {
+					connect.post(true, 'BankHoursUpdate', {}, function (result) {
+						if (result)
+							alerts.alert('האיפוס בוצע בהצלחה')
+						else
+							alerts.alert('ארעה תקלה בלתי צפויה')
+					})
+				}, function () { })
+		}
+
 		$scope.prepareData();
 	}]);

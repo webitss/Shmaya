@@ -49,9 +49,9 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 		}
 
 		$scope.calculateTimeEnd = function () {
-			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation) return;
-			var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation.getHours();
-			var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation.getMinutes();
+			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;
+			var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation_original.getHours();
+			var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation_original.getMinutes();
 			//if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeEnd) return;
 			//var hours = $scope.order.dtTimeEnd.getHours() - $scope.order.dtTimeBegin_original.getHours();
 			//var minutes = $scope.order.dtTimeEnd.getMinutes() - $scope.order.dtTimeBegin_original.getMinutes();
@@ -62,9 +62,9 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 			$scope.order.dtTimeEnd = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 		}
 
-        $scope.checkIdentity = function () {
-            if (!$scope.order.nvIdentity) return;
-            orderConnect.post(true, 'GetUserByIdentity', { 'nvIdentity': $scope.order.nvIdentity }, function (result) {
+        $scope.checkIdentityCustomer = function () {
+			if (!$scope.order.nvIdentityCustomer) return;
+			orderConnect.post(true, 'GetUserByIdentity', { 'nvIdentity': $scope.order.nvIdentityCustomer,'userType':2 }, function (result) {
                 if (result) {
                     if (result.iResult > 0) {
                         $scope.order.nameCustomer = result.sResult;
@@ -74,7 +74,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                         $scope.noIdentity = true;
                         $scope.noIdentityAlert = result.sResult;
                         $scope.order.nameCustomer = "";
-                        $scope.order.nvIdentity = "";
+						$scope.order.nvIdentityCustomer = "";
                     }
                     else {
                         $scope.noIdentity = true;
@@ -86,7 +86,33 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                     $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
             });
-        };
+		};
+
+		$scope.checkIdentityProvider = function () {
+			if (!$scope.order.nvIdentityProvider) return;
+			orderConnect.post(true, 'GetUserByIdentity', { 'nvIdentity': $scope.order.nvIdentityProvider,'userType':3 }, function (result) {
+				if (result) {
+					if (result.iResult > 0) {
+						$scope.order.nameTranslator = result.sResult;
+						$scope.order.iSelectedTranslator = result.iResult;
+					}
+					else if (result.iResult == 0) {
+						$scope.noIdentity = true;
+						$scope.noIdentityAlert = result.sResult;
+						$scope.order.nameTranslator = "";
+						$scope.order.nvIdentityProvider = "";
+					}
+					else {
+						$scope.noIdentity = true;
+						$scope.noIdentityAlert = result.sResult;
+					}
+				}
+				else {
+					$scope.noIdentity = true;
+					$scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
+				}
+			});
+		};
 
         $scope.closePopupSend = function () {
             $scope.successSend = false;
@@ -104,9 +130,9 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
         $scope.sendReport = function () {
             if (!$scope.order.bAgree) alert();
             if (!$scope.order.iTypeOrder || !$scope.order.iTypeTranslation
-                || !$scope.order.nvIdentity || !$scope.order.nameCustomer
-                || !$scope.order.iSelectedTranslator || !$scope.order.dtDateTraslation_original
-                || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original || !$scope.order.dtTimeWaiting_original
+				|| !$scope.order.nvIdentityCustomer || !$scope.order.nvIdentityProvider || !$scope.order.nameCustomer
+				|| !$scope.order.nameTranslator || !$scope.order.dtDateTraslation_original
+                || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original //|| !$scope.order.dtTimeWaiting_original
                 || !$scope.order.iAreaId || !$scope.order.iCityId) {
                 $scope.noValid = true;
                 return;

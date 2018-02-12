@@ -39,7 +39,10 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public int iTimeTranslation { get; set; }
-        [DataMember]
+		[DataMember]
+		[NoSendToSQL]
+		public int iTimeWaiting { get; set; }
+		[DataMember]
         public int iUserId { get; set; }
         [DataMember]
         public int iTypeOrder { get; set; }
@@ -211,13 +214,14 @@ namespace ShmayaService.Entities
             }
         }
 
-        public static int? OrderUpdate(Orders order, int iUserManagerId)
+        public static int? OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
         {
             try
             {
                 List<SqlParameter> parameters = ObjectGenerator<Orders>.GetSqlParametersFromObject(order);
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_UPD", parameters);
+				parameters.Add(new SqlParameter("prevTimeTranslation", prevTimeTranslation));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_UPD", parameters);
                 return int.Parse(ds.Tables[0].Rows[0][0].ToString());
             }
             catch (Exception ex)

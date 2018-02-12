@@ -14,9 +14,10 @@
                         <i ng-show="$index == sortedIndex && currentsort.value"
                             class="glyphicon glyphicon-menu-up"></i>
                     </div>
-                    <div ng-if="col.type=='choose'"><!--$event.stopPropagation();-->
-                        <input type="checkbox" style="margin-top: 15px;" title="בחר הכל" ng-click="changeSelected(col.fieldName);col.onCheck ? col.onCheck(selectAll):''" />
-                    </div>
+					<div ng-if="col.type=='choose'">
+						<!--$event.stopPropagation();-->
+						<input type="checkbox" style="margin-top: 15px;" title="בחר הכל" ng-click="changeSelected(col.fieldName);col.onCheck ? col.onCheck(selectAll):''" />
+					</div>
                 </div>
             </div>
         </div>

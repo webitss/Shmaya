@@ -3,7 +3,12 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
 	    $scope.isEdit = false;
 
-	    $scope.prepareData = function () {
+		$scope.prepareData = function () {
+			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+				$scope.codeTables = result;
+				$scope.statusList = $filter('filter')(result, { Key: 'status' }, true)[0].Value;
+
+		
 	        $scope.isDataLoaded = 0;
 			$scope.gridIdentity = 'OrdersList';
 			$scope.item2
@@ -55,7 +60,8 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 					fieldName: 'iStatusId',
 					type: 'select',
 					search: true,
-					searchField:'status',
+					searchField: 'status',
+					filterFields: 'status',
 					filter: true,
 					data: $scope.statusList,
 					onChange: function (item) {
@@ -76,17 +82,19 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation', type: 'date' },
 				{ title: 'שיוך לחודש ושנה', fieldName: 'iMonthYearId' },
 				{
-				    title: 'זמן תרגום', fieldName: 'nvTimeTranslation', doSum: true, weight: 1.2
+					title: 'זמן תרגום', fieldName: 'nvTimeTranslation', doSum: true, weight: 1.2, type: 'time' 
 				},
 				{ title: 'שעת התחלה', fieldName: 'dtTimeBegin', type: 'time' },
 				{ title: 'משתמש מזין', fieldName: 'nvCreateUserId' },
-	        ];
+			];
+			});
 			$scope.getData();
 
 
 	    };
 		$scope.getData = function ()
 		{
+	
 	        connect.post(true, 'GetOrders', {},
 				function (result) {
 					$scope.OrdersList = result;
@@ -98,12 +106,8 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 						$scope.tmpDate = $scope.tmpDate2 + '/' + $scope.tmpDate1;
 						order.iMonthYearId = $scope.tmpDate;
 					})
-
-					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
-						$scope.codeTables = result;
-						$scope.statusList = $filter('filter')(result, { Key: 'status' }, true)[0].Value;
 					});
-				});
+			
 		
 		};
 

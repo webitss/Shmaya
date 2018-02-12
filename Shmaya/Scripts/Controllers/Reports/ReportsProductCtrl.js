@@ -24,6 +24,8 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 				];
 
 			}
+			else
+				$scope.isPrepareData = true;
 
 		};
 
@@ -48,6 +50,8 @@ companionApp.controller('ReportsProductCtrl', ['$scope', '$rootScope', 'connect'
 				];
 
 			}
+			else
+				$scope.isPrepareData2 = true;
 
 		};
 

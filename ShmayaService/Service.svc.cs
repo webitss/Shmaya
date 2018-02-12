@@ -33,9 +33,9 @@ namespace ShmayaService
            UriTemplate = "GetUserByIdentity",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public Result GetUserByIdentity(string nvIdentity)
+        public Result GetUserByIdentity(string nvIdentity, int userType)
         {
-            return User.GetUserByIdentity(nvIdentity);
+            return User.GetUserByIdentity(nvIdentity,userType);
         }
 
         [OperationContract]
@@ -137,6 +137,17 @@ namespace ShmayaService
 			User.YearOfRenewalUpdate();
 		}
 
+		[OperationContract]
+		[WebInvoke(
+		 Method = "POST",
+		 UriTemplate = "BankHoursUpdate",
+		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		 ResponseFormat = WebMessageFormat.Json)]
+		public string BankHoursUpdate()
+		{
+			return User.BankHoursUpdate();
+		}
+
 		#endregion
 
 		#region Order
@@ -191,9 +202,9 @@ namespace ShmayaService
       UriTemplate = "OrderUpdate",
       BodyStyle = WebMessageBodyStyle.WrappedRequest,
       ResponseFormat = WebMessageFormat.Json)]
-        public int? OrderUpdate(Orders order, int iUserManagerId)
+        public int? OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
         {
-            return Orders.OrderUpdate(order, iUserManagerId);
+            return Orders.OrderUpdate(order, iUserManagerId, prevTimeTranslation);
         }
 
         [OperationContract]
@@ -723,5 +734,18 @@ namespace ShmayaService
         }
 
         #endregion VideoTranslation
+
+        #region PDF
+        [OperationContract]
+        [WebInvoke(
+         Method = "POST",
+         UriTemplate = "GenerateAttendanceReport",
+         BodyStyle = WebMessageBodyStyle.WrappedRequest,
+         ResponseFormat = WebMessageFormat.Json)]
+        public string GenerateAttendanceReport(string folderName, string url)
+        {
+            return FileManageCtrl.GenerateAttendanceReport(folderName, url);
+        }
+        #endregion
     }
 }

@@ -25,6 +25,7 @@ namespace ShmayaService.Entities
 		public double nPayment { get; set; }
 		public double nRefund { get; set; }
 		public DateTime? dtCreateDate { get; set; }
+		public double nTimeWating { get; set; }
 
 		public static List<Report> GetReports(int iMonthYearId ,int iTypeOrder)
 		{

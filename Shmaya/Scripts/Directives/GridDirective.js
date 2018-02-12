@@ -75,9 +75,9 @@
                 var columnsCount = 0;
                 scope.columnsWidth = [];
 
-                angular.forEach(scope.columns, function (value, key) {
+				angular.forEach(scope.columns, function (value, key) {
 
-                    scope.sortFields.push({ name: value.fieldName, value: true });
+						scope.sortFields.push({ name: value.fieldName, value: true });
                     //columnsCount += angular.isString(value.width) || value.type == 'hidden' ? 0 : value.width ? value.width : 1;
                     columnsCount += value.type == 'hidden' ? 0 : value.weight ? value.weight : 1;
                 });
@@ -155,6 +155,12 @@
 					//var data = scope.data.filter(word => word <= parseInt(scope.filterFields.nBankHours));
 				}
 				else
+					if (scope.filterFields.iStatusId) {
+						var item = {status: scope.filterFields.iStatusId }
+						var data = ($filter('orderBy')($filter('filter')(scope.data, item), scope.currentsort.name, scope.currentsort.value));
+				}
+
+				else
 					var data = ($filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
                 if (scope.showAll)
                     scope.filteredData = data;
@@ -162,13 +168,20 @@
                     scope.filteredData = data.slice(scope.start, scope.end);
                 scope.dataLength = $filter('number')(data.length);
                 angular.forEach(scope.columns, function (col) {
-                    if (col.doSum) {
-                        var sum = $filter('number')($filter('sumByField')(data, "iTimeTranslation"));
+					if (col.doSum) {
+						var sum = $filter('number')($filter('sumByField')(data, "iTimeTranslation"));
+						var sum2 = $filter('number')($filter('sumByField')(data, "iTimeWaiting"));
                         if (sum.indexOf(',') != -1) {
                             sum = sum.split(',');
                             sum = sum[0] + sum[1];
-                        }
-                        sum = parseInt(sum,10);
+						}
+						if (sum2.indexOf(',') != -1) {
+							sum2 = sum2.split(',');
+							sum2 = sum2[0] + sum2[1];
+						}
+						sum = parseInt(sum, 10);
+						sum2 = parseInt(sum2, 10);
+						sum = sum + sum2;
                         sum /= 60;
                         col['sumByField'] = sum;
                         col['sumByField'] = parseFloat(col['sumByField']).toFixed(2);
@@ -225,7 +238,33 @@
                                 if (data[item.fieldName] != undefined && data[item.fieldName] != null && data[item.fieldName] != "")
                                     data[item.fieldName] = $filter('date')(data[item.fieldName], 'HH:mm');
                             });
-                        }
+						}
+
+
+						//if (item.type == 'timeRound') {
+						//	scope.columns.push({
+						//		title: '',
+						//		fieldName: item.fieldName + '_original',
+						//		//width: '0%',
+						//		filter: true,
+						//		type: 'hidden'
+						//	});
+						//	scope.sortFields.push({ name: item.fieldName + '_original', value: true });
+						//	angular.forEach(scope.data, function (data) {
+						//		//data[item.fieldName + '_original'] = $filter('dateObjFromServer')(data[item.fieldName]);
+						//		//data[item.fieldName] = $filter('dateFromServer')(data[item.fieldName]);
+						//		data[item.fieldName + '_original'] = data[item.fieldName];
+						//		//if (item.type == 'format')
+						//		if (data[item.fieldName] != undefined && data[item.fieldName] != null && data[item.fieldName] != "") {
+						//			data[item.fieldName] = $filter('date')(data[item.fieldName], 'HH:mm');
+						//			if (data[item.fieldName].substring(3, 4) == 3)
+						//				data[item.fieldName] = data[item.fieldName].substring(0, 2) + '.50'
+						//			else
+						//				data[item.fieldName] = data[item.fieldName].substring(0, 2) + '.00'
+
+						//		}
+						//	});
+						//}
 
                         //if not defined boolean text
                         if (item.type == 'boolean') {
