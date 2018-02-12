@@ -5,8 +5,14 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 		$scope.defDate = new Date();
 		$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: null };
 		$scope.datafunc2 = { iUserType: 2, iStatusId: 0, iTypeTranslation: null };
-		if(!$scope.isEdit)
-			$scope.order = { iMonthYearId: parseInt(new Date().getFullYear()) * 100 + new Date().getMonth() + 1}
+		if (!$scope.isEdit) {
+			$scope.order = {
+				iMonthYearId: parseInt(new Date().getFullYear()) * 100 + new Date().getMonth() + 1,
+				iTypeOrder: 22
+			}
+		}
+		else
+			$scope.prevTimeTranslation = $scope.order.dtTimeTranslation;
 		$scope.testTime = new Date();
 		if (!$scope.order)
 			$scope.typeTranslation = null
@@ -45,7 +51,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
 
-	        connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId }, function (result) {
+			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation:$scope.prevTimeTranslation }, function (result) {
 	            if (result && result > 0) {
 	                console.log(Orderinsert_update + ":" + result);
 	                var savingStatus = "השינויים נשמרו בהצלחה";
@@ -66,6 +72,12 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			});
 	    }
 		$scope.getData = function () {
+
+			connect.post(true, 'GetUsersCode',
+				{ iUserType: 2, iStatusId: 0, iTypeTranslation: null },
+				function (result) {
+					$scope.usersList = result;
+				});
 			//$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
 			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
 				$scope.codeTables = result;

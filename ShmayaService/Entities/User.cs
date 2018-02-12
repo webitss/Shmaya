@@ -270,7 +270,7 @@ namespace ShmayaService.Entities
 					user.lLanguage = new List<int>();
 					for (int j = 0; j < dv.Count; j++)
 					{
-						user.lLanguage.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
+						user.lLanguage.Add(int.Parse(dv[j]["iTypeId"].ToString()));
 					}
 					dv = new DataView(ds.Tables[2],
 					 "iUserId = " + user.iUserId.ToString(),
@@ -279,7 +279,7 @@ namespace ShmayaService.Entities
 					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
 					for (int j = 0; j < dv.Count; j++)
 					{
-						user.lOrderType.Add(int.Parse(ds.Tables[2].Rows[j]["iTypeId"].ToString()));
+						user.lOrderType.Add(int.Parse(dv[j]["iTypeId"].ToString()));
 					}
 					lUsers.Add(user);
 				}
@@ -383,6 +383,21 @@ namespace ShmayaService.Entities
 			catch (Exception ex)
 			{
 				Log.ExceptionLog(ex.Message, "YearOfRenewalUpdate");
+			}
+		}
+
+		public static string BankHoursUpdate()
+		{
+			try
+			{
+				SqlDataAccess.ExecuteDatasetSP("TBankHours_UPD");
+				return "OK";
+
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "BankHoursUpdate");
+				return null;
 			}
 		}
 

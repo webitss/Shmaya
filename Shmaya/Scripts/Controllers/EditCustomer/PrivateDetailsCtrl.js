@@ -70,7 +70,8 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				});
 			}
 			else {
-				$scope.user.nBankHours += $scope.tmpBankHours - $scope.nInitBankHours2;
+				if ($scope.tmpBankHours != undefined)
+					$scope.user.nBankHours += $scope.tmpBankHours - $scope.nInitBankHours2;
 				$scope.user.dtCreateDate = $scope.defdtCreateDate;
 				connect.post(true, 'UserInsert', { user: $scope.user, iUserManagerId: $rootScope.user.iUserId, userType: $scope.userType }, function (result) {
 					if (result && result > 0) {

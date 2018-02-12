@@ -137,6 +137,17 @@ namespace ShmayaService
 			User.YearOfRenewalUpdate();
 		}
 
+		[OperationContract]
+		[WebInvoke(
+		 Method = "POST",
+		 UriTemplate = "BankHoursUpdate",
+		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		 ResponseFormat = WebMessageFormat.Json)]
+		public string BankHoursUpdate()
+		{
+			return User.BankHoursUpdate();
+		}
+
 		#endregion
 
 		#region Order
@@ -191,9 +202,9 @@ namespace ShmayaService
       UriTemplate = "OrderUpdate",
       BodyStyle = WebMessageBodyStyle.WrappedRequest,
       ResponseFormat = WebMessageFormat.Json)]
-        public int? OrderUpdate(Orders order, int iUserManagerId)
+        public int? OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
         {
-            return Orders.OrderUpdate(order, iUserManagerId);
+            return Orders.OrderUpdate(order, iUserManagerId, prevTimeTranslation);
         }
 
         [OperationContract]

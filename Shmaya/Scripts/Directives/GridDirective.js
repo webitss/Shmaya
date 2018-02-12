@@ -169,12 +169,19 @@
                 scope.dataLength = $filter('number')(data.length);
                 angular.forEach(scope.columns, function (col) {
 					if (col.doSum) {
-                        var sum = $filter('number')($filter('sumByField')(data, "iTimeTranslation"));
+						var sum = $filter('number')($filter('sumByField')(data, "iTimeTranslation"));
+						var sum2 = $filter('number')($filter('sumByField')(data, "iTimeWaiting"));
                         if (sum.indexOf(',') != -1) {
                             sum = sum.split(',');
                             sum = sum[0] + sum[1];
-                        }
-                        sum = parseInt(sum,10);
+						}
+						if (sum2.indexOf(',') != -1) {
+							sum2 = sum2.split(',');
+							sum2 = sum2[0] + sum2[1];
+						}
+						sum = parseInt(sum, 10);
+						sum2 = parseInt(sum2, 10);
+						sum = sum + sum2;
                         sum /= 60;
                         col['sumByField'] = sum;
                         col['sumByField'] = parseFloat(col['sumByField']).toFixed(2);

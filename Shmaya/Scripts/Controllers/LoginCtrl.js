@@ -6,7 +6,7 @@ companionApp.controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'aler
     //if guide expired
     if ($rootScope.user == null || $rootScope.user == undefined) {
         $rootScope.user = JSON.parse(localStorage.getItem('AyeletHashacharCompanionship'));
-    }
+	}
 
     $scope.login = function () {
         if ($scope.checkRequiredFields()) {

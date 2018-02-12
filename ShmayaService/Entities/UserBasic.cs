@@ -63,7 +63,7 @@ namespace ShmayaService.Entities
 					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
 					for (int j = 0; j < dv.Count; j++)
 					{
-						user.lOrderType.Add(int.Parse(ds.Tables[1].Rows[j]["iTypeId"].ToString()));
+						user.lOrderType.Add(int.Parse(dv[j]["iTypeId"].ToString()));
 					}
 					lUsers.Add(user);
 				}
