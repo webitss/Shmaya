@@ -1,4 +1,5 @@
-﻿//"use strict"
+﻿"use strict"
+var a;
 var NOApp = angular.module('NOApp', ['ngRoute', 'ui.bootstrap']);
 
 NOApp.config(function ($routeProvider, $compileProvider) {

@@ -50,6 +50,15 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
+			if ($scope.order.iSelectedTranslator)
+				$scope.orderToSend.iSelectedTranslator = angular.copy($scope.order.iSelectedTranslator.iId)
+			if ($scope.order.iUserId)
+				$scope.orderToSend.iUserId = angular.copy($scope.order.iUserId.iId)
+			if ($scope.order.iAreaId)
+				$scope.orderToSend.iAreaId = angular.copy($scope.order.iAreaId.iId)
+			if ($scope.order.iCityId)
+				$scope.orderToSend.iCityId = angular.copy($scope.order.iCityId.iId)
+			$scope.orderToSend.iTypeTranslation = angular.copy($scope.order.iTypeTranslation.iId)
 
 			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation:$scope.prevTimeTranslation }, function (result) {
 	            if (result && result > 0) {

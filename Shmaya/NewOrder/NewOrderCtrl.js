@@ -1,6 +1,7 @@
 ﻿"use strict"
-companionApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts', '$rootScope', 'createDialog',
-	function ($scope, orderConnect, $filter, orderAlerts, $rootScope,createDialog) {
+var a;
+NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts', '$rootScope',
+	function ($scope, orderConnect, $filter, orderAlerts, $rootScope) {
 
         $scope.order =
             {
@@ -54,9 +55,9 @@ companionApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'o
 				dataUrl: ''
 			};
 			$scope.showBtnSignature = true;
-			createDialog({
+			orderCreateDialog({
 				scope: $scope,
-				templateUrl: 'Partials/Templates/Signature.html' + $rootScope.appVersionParameter,
+				templateUrl: 'Signature.html' + $rootScope.appVersionParameter,
 				title: 'חתימה',
 				backdrop: true,
 				modalClass: "modal modalAlert"

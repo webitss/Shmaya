@@ -2,10 +2,10 @@
  * https://github.com/legalthings/signature-pad-angular
  * Copyright (c) 2015 ; Licensed MIT
  */
-
-angular.module('signature', []);
-
-angular.module('signature').directive('signaturePad', ['$interval', '$timeout', '$window',
+"use strict"
+//var signatureModule = angular.module('signature', []);
+var a;
+NOApp.directive('signaturePad', ['$interval', '$timeout', '$window',
   function ($interval, $timeout, $window) {
       'use strict';
 

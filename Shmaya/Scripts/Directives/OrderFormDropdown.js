@@ -1,4 +1,5 @@
-﻿NOApp.directive('orderFormDropdown', function ($timeout, $window, $filter, $rootScope) {
+﻿"use strict"
+NOApp.directive('orderFormDropdown', function ($timeout, $window, $filter, $rootScope) {
         return {
             restrict: 'E',
             require: '^ngModel',
