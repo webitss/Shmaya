@@ -70,11 +70,9 @@
     <Content Include="Scripts\Directives\multiSearchDrct.js" />
     <Content Include="Scripts\Factories\ConnectForPdf.js" />
     <Content Include="AlertTemplate.html" />
-    <Content Include="bg-shmaya.png" />
     <Content Include="OrderFormDropdownTemplate.html" />
     <Content Include="Images\building.jpg" />
     <Content Include="Images\excel-icon.png" />
-    <Content Include="good-icon.png" />
     <Content Include="Images\phone-plus.png" />
     <Content Include="Images\phone-under.png" />
     <Content Include="Images\print.png" />
