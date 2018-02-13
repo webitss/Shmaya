@@ -5,16 +5,17 @@ companionApp.directive('searchInput', function($timeout, $filter) {
     return {
         restrict: 'E',
         template: '<div class="search-list" ng-mouseleave="updateOpenList(false); isShow = searchText == \'\' ? false : isShow" ng-class="{\'disabled-sign\' : disabled,\'ng-invalid-required\':requiredfield==null||requiredfield==-1}">' +
-            '   <div class="search-input form-control">' +
+            '   <div class="search-input form-control secletion-search">' +
 
-            '      <i class=" search-input-icon glyphicon glyphicon-triangle-bottom bcursor pull-right" ng-click="updateOpenList(true)" ng-show="bcursor == true"></i>' +
-            '      <i class=" search-input-icon glyphicon glyphicon-remove pull-right" ng-click="disabled ? \'\' : initSearch()" ng-show="bcancel == true"></i>' +
-            '      <div   class="pull-left" style="padding-right: 0;padding-left: 0;width: calc(100% - 45px)">' + /*ng-class="{\'col-md-8\':bcancel == true,\'col-md-9\':bcancel == false}"*/
+            '      <i class=" search-input-icon glyphicon glyphicon-triangle-bottom bcursor " ng-click="updateOpenList(true)" ng-show="bcursor == true"></i>' +
+            '      <i class=" search-input-icon glyphicon glyphicon-remove " ng-click="disabled ? \'\' : initSearch()" ng-show="bcancel == true"></i>' +
+            '      <div>' + /*ng-class="{\'col-md-8\':bcancel == true,\'col-md-9\':bcancel == false}"*/
             '           <input style="width:100%" ng-disabled="disabled" ng-class="{\'disabled-sign\' : disabled}" placeholder="{{placeholder}}" ng-change="searchText == \'\' ? initSearch() : \'\'" ' +
             '                  ng-keyup="searchKeyDown($event)" ng-model="searchText" ng-click="updateOpenList(true)"/>' +
             '      </div>' +
             '   </div>' +
-            '   <ul style="z-index: 1110 !important; max-height:250px;overflow-y:auto;" role="menu" aria-labelledby="single-button" class="search-items" ng-if="open || ((searchText && sourcedata | filter : searchText) && isShow)">' +
+       
+            '<ul role="menu" aria-labelledby="single-button" class="search-items secletion-search-ul" ng-if="open || ((searchText && sourcedata | filter : searchText) && isShow)">'+
             '       <div vs-repeat>' +
             '           <li style = "" ng-repeat="d in filteredData | limitTo:18 track by $index" ng-class="{\'search-items-over\': keyDown == $index}" ng-mouseover="searchMouseOver($index)" ng-click="choose(d, $event)">' +
             '               <span ng-repeat="f in searchfield track by $index" style = "">{{d[f]}} </span>' +

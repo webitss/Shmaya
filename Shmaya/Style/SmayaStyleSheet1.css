@@ -284,13 +284,13 @@ h3 {
     float:right;
 
 }
-@media (max-width: 768px) {
-    .header-shmaya img:nth-child(2) {
-        top: 12px;
-        left: 5px;
-        width: 50px;
-    }
 
-   
 
+
+    @media (max-width: 768px) {
+        .header-shmaya img:nth-child(2) {
+            top: 12px;
+            left: 5px;
+            width: 50px;
+        }
     }
