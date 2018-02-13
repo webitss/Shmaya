@@ -78,6 +78,12 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				function (result) {
 					$scope.usersList = result;
 				});
+
+			connect.post(true, 'GetUsersCode',
+				{ iUserType: 3, iStatusId: 0, iTypeTranslation: null },
+				function (result) {
+					$scope.usersList2 = result;
+				});
 			//$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
 			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
 				$scope.codeTables = result;

@@ -1,6 +1,6 @@
 ﻿"use strict"
 //var mainApp = angular.module('mainApp', ['ngAnimate', 'ngRoute', 'ngStorage', 'ui.bootstrap', 'fundoo.services', 'ngSanitize', 'angularFileUpload', 'ui.calendar', 'ngAutocomplete']);
-var companionApp = angular.module('companionApp', ['ngRoute', 'ngAnimate', 'ngAutocomplete', 'ui.bootstrap', 'fundoo.services', 'angularFileUpload']);
+var companionApp = angular.module('companionApp', ['ngRoute', 'ngAnimate', 'ngAutocomplete', 'ui.bootstrap', 'fundoo.services', 'angularFileUpload', 'signature']);
 companionApp.config(['$routeProvider', '$compileProvider', function ($routeProvider) {
 	$routeProvider
 		.when('/', {

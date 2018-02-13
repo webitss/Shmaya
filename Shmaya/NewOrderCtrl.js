@@ -1,6 +1,6 @@
 ﻿"use strict"
-NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts',
-    function ($scope, orderConnect, $filter, orderAlerts) {
+companionApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts', '$rootScope', 'createDialog',
+	function ($scope, orderConnect, $filter, orderAlerts, $rootScope,createDialog) {
 
         $scope.order =
             {
@@ -47,6 +47,21 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 				if (iTypeTranslation == 64)
 					$scope.showWaiting = true;
 		}
+
+		$scope.OpenSignatureDialog = function () {
+			console.log("here");
+			$rootScope.signature = {
+				dataUrl: ''
+			};
+			$scope.showBtnSignature = true;
+			createDialog({
+				scope: $scope,
+				templateUrl: 'Partials/Templates/Signature.html' + $rootScope.appVersionParameter,
+				title: 'חתימה',
+				backdrop: true,
+				modalClass: "modal modalAlert"
+			});
+		};
 
 		$scope.calculateTimeEnd = function () {
 			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;
