@@ -62,6 +62,7 @@
     <Content Include="Images\bg-shmaya.png" />
     <Content Include="Images\good-icon.png" />
     <Content Include="Images\logo-ravacha.png" />
+    <Content Include="Partials\Templates\FormDropdownFilterTemplate.html" />
     <Content Include="Scripts\Factories\ConnectForPdf.js" />
     <Content Include="AlertTemplate.html" />
     <Content Include="OrderFormDropdownTemplate.html" />
