@@ -1961,3 +1961,62 @@ textarea {
     vertical-align: middle;
     font-size: 16px;
 }
+
+.search-list {
+    position:relative;
+}
+.secletion-search {
+    padding: 0;
+    position: relative;
+    border: none;
+    box-shadow: none;
+}
+
+    .secletion-search i {
+        position: absolute;
+        left: 10px;
+        font-size: 9px;
+        top: 12px;
+    }
+
+        .secletion-search i:nth-child(2) {
+            left: 30px;
+        }
+
+
+.secletion-search-ul {
+    -webkit-padding-start: 0px;
+    line-height: 30px;
+    /*background: #dadada;*/
+    padding-right: 10px;
+    z-index: 1110 !important;
+    max-height: 250px;
+    overflow-y: auto;
+    list-style: none;
+    position: absolute;
+    width: 100%;
+
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.secletion-search-ul li {
+    padding: 8px 17px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.38);
+}
+
+.secletion-search-ul li:hover {
+    background-color: #eeecec;
+}
+
