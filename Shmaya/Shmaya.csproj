@@ -59,6 +59,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NewOrder\NewOrderApp.js" />
+    <Content Include="NewOrder\NewOrderCtrl.js" />
+    <Content Include="NewOrder\OrderFormDropdownTemplate.html" />
+    <Content Include="NewOrder\shmaya.html" />
+    <Content Include="NewOrder\SignatureDirective.js" />
     <Content Include="Partials\Templates\Signature.html" />
     <Content Include="pdfMessage\GridDirective.js" />
     <Content Include="pdfMessage\GridPagingDirective.js" />
