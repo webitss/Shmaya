@@ -59,6 +59,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Partials\Templates\Signature.html" />
+    <Content Include="pdfMessage\GridDirective.js" />
+    <Content Include="pdfMessage\GridPagingDirective.js" />
+    <Content Include="pdfMessage\GridPagingTemplate.html" />
+    <Content Include="pdfMessage\GridTemplate.html" />
+    <Content Include="Partials\Templates\FormDropdownFilterTemplate.html" />
+    <Content Include="Scripts\Directives\dropdown2Directive.js" />
+    <Content Include="Scripts\Directives\FormDropdownFilter.js" />
+    <Content Include="Scripts\Directives\multiSearchDrct.js" />
     <Content Include="Scripts\Factories\ConnectForPdf.js" />
     <Content Include="AlertTemplate.html" />
     <Content Include="bg-shmaya.png" />
@@ -82,6 +91,7 @@
     <Content Include="Images\x-command.png" />
     <Content Include="index.html" />
     <Content Include="shmaya-Logo.ico" />
+    <Content Include="shmaya.html" />
     <Content Include="Shmaya\bootstrap\bootstrap-rtl.css" />
     <Content Include="Shmaya\bootstrap\bootstrap-rtl.js" />
     <Content Include="Shmaya\bootstrap\bootstrap-theme-rtl.css" />
@@ -222,7 +232,9 @@
     <Content Include="Scripts\Libraries\moment.min.js" />
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.3.1.min.js" />
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.4.0.min.js" />
-    <Content Include="shmaya.html" />
+    <Content Include="pdfMessage\shmaya.html" />
+    <Content Include="Signature.html" />
+    <Content Include="SignatureDirective.js" />
     <Content Include="Style\ayelet_hashachar-companionship.css" />
     <Content Include="Style\bootstrap-flipped.css" />
     <Content Include="Style\bootstrap-flipped.min.css" />
@@ -273,6 +285,7 @@
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
