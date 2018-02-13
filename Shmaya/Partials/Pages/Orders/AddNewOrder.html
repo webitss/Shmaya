@@ -29,12 +29,17 @@
 	</form-field>-->
 			<form-field span-text="שם לקוח" class="col-md-6">
 				<search-input id="order.iUserId" sourcedata="usersList" ismulti="false" bcancel="true" bcursor="true"
-							  onchoose="order.iUserId = itemSearch" searchfield="['nvName']">
+							  onchoose="order.iUserId = itemSearch" searchfield="['nvName']" defultvalue="order.iUserId">
 				</search-input>
 			</form-field>
-				<form-field span-text="שם מתורגמן" class="col-md-6">
-					<form-dropdown-filter ng-model="order.iSelectedTranslator" enablesearch="true" getfunc="GetUsersCode" datafunc="datafunc" data="[]" required></form-dropdown-filter>
-				</form-field>
+			<form-field span-text="שם מתורגמן" class="col-md-6">
+				<search-input id="order.iSelectedTranslator" sourcedata="usersList2" ismulti="false" bcancel="true" bcursor="true"
+							  onchoose="order.iSelectedTranslator = itemSearch" searchfield="['nvName']" defultvalue="order.iSelectedTranslator">
+				</search-input>
+			</form-field>
+			<!--<form-field span-text="שם מתורגמן" class="col-md-6">
+		<form-dropdown-filter ng-model="order.iSelectedTranslator" enablesearch="true" getfunc="GetUsersCode" datafunc="datafunc" data="[]" required></form-dropdown-filter>
+	</form-field>-->
 		</div>
 		<div class="row">
 			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
@@ -65,16 +70,26 @@
 				<form-dropdown ng-model="order.iTypeTranslation" enablesearch="true" data="translateTypeList" required></form-dropdown>
 			</form-field>
 		</div>
-		<div class="row">
+		<!--<div class="row">
 			<form-field span-text="איזור" class="col-md-6">
-		<form-dropdown ng-model="order.iAreaId" enablesearch="true" data="areaList"></form-dropdown>
-	</form-field>
-			<!--<form-field span-text="איזור" class="col-md-6">
-				<form-dropdown-custom tabindex="-1" domaint class="drop-focus" span-text="בחר" ng-model="order.iAreaId" data="areaList" enablesearch="true" required></form-dropdown-custom>
-			</form-field>-->
+				<form-dropdown ng-model="order.iAreaId" enablesearch="true" data="areaList"></form-dropdown>
+			</form-field>
+
 				<form-field span-text="עיר" class="col-md-6">
 					<form-dropdown ng-model="order.iCityId" enablesearch="true" data="city"></form-dropdown>
 				</form-field>
+		</div>-->
+		<div class="row">
+			<form-field span-text="איזור" class="col-md-6">
+				<search-input id="order.iAreaId" sourcedata="areaList" ismulti="false" bcancel="true" bcursor="true"
+							  onchoose="order.iAreaId = itemSearch" searchfield="['nvName']" defultvalue="order.iAreaId">
+				</search-input>
+			</form-field>
+			<form-field span-text="עיר" class="col-md-6">
+				<search-input id="order.iCityId" sourcedata="city" ismulti="false" bcancel="true" bcursor="true"
+							  onchoose="order.iCityId = itemSearch" searchfield="['nvName']" defultvalue="order.iCityId">
+				</search-input>
+			</form-field>
 		</div>
 		<div class="row">
 			<form-field span-text="משתמש מזין" class="col-md-6" ng-if="isEdit">
