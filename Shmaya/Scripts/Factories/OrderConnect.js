@@ -117,8 +117,8 @@ NOApp.factory("orderConnect", ['$http', '$rootScope', '$location', 'orderAlerts'
             var url = '';
             switch (document.location.hostname) {
                 case 'localhost':;
-                   // url = "http://localhost:27786/";
-                    url = 'http://localhost/ShmayaService/'
+                    url = "http://localhost:27786/";
+                   // url = 'http://localhost/ShmayaService/'
                     break;
                 case '10.0.0.109':
                     url = 'http://10.0.0.109/AyeletService/';

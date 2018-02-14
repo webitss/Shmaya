@@ -1,6 +1,6 @@
 ﻿'use strict'
-companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId',
-	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId) {
+companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId', 'createDialog',
+	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId, createDialog) {
 		$scope.defdtCreateDate = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
 		$scope.difference = 0;
 		$scope.tmpBankHours;

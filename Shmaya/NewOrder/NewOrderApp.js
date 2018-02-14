@@ -1,6 +1,6 @@
 ﻿"use strict"
 var a;
-var NOApp = angular.module('NOApp', ['ngRoute', 'ui.bootstrap']);
+var NOApp = angular.module('NOApp', ['ngRoute', 'ui.bootstrap', 'fundoo.services']);
 
 NOApp.config(function ($routeProvider, $compileProvider) {
     $routeProvider

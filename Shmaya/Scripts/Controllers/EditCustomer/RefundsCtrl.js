@@ -9,6 +9,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isDelete = false;
 			$scope.isReference = false;
 			$scope.isShowAlert = false;
+			$scope.isShowAlert2 = false;
 			$scope.restart = true;
 
 
@@ -127,9 +128,11 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 										//	$scope.sumRefunds += $scope.refund2.nRefund;
 										//	$scope.sumBalance -= $scope.refund2.nRefund;
 										//}
-										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9)) {
+										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
+										{
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
 											$scope.sumRefunds += $scope.refund2.nRefund;
+											$scope.user.nBankCommunication += $scope.refund2.nRefund;
 											$scope.sumBalance -= $scope.refund2.nRefund;
 											Math.round($scope.sumBalance * 100) / 100;
 											Math.round($scope.sumRefunds * 100) / 100;
@@ -252,8 +255,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								if ($scope.restart == true) {
 									$scope.sumBalance = $scope.sumCommunication - $scope.user.nBankCommunication;
 									Math.round($scope.sumBalance * 100) / 100
-									Math.round($scope.sumRefunds * 100) / 100
 									$scope.sumRefunds = $scope.user.nBankCommunication;
+									Math.round($scope.sumRefunds * 100) / 100
 									$scope.restart = false;
 								}
 
@@ -262,6 +265,8 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								//          $scope.sumRefunds += refund.nRefund;
 								//          $scope.sumBalance -= refund.nRefund;
 								//}
+								if ($scope.user.iCommunicationCart == 3)
+									$scope.isShowAlert2 = true;
 								if ($scope.sumBalance == 0) {
 									$scope.isShowAlert = true;
 								}
@@ -359,7 +364,10 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						return
 					//חישוב סך החזר עבור גלאי בכי
 					if ($scope.newRefund.iProductId == 1) {
-						$scope.newRefund.nRefund = 1075;
+						if ($scope.newRefund.nPayment>1075)
+							$scope.newRefund.nRefund = 1075;
+						else
+							$scope.newRefund.nRefund = $scope.newRefund.nPayment
 						$scope.newRefund.iBuyCryingDetector = 1;
 						$scope.user.iBuyCryingDetector = 1;
 					}
@@ -373,11 +381,15 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							else
 								$scope.newRefund.nRefund = $scope.sumBalance;
 							$scope.sumRefunds += $scope.newRefund.nRefund;
+							$scope.user.nBankCommunication += $scope.newRefund.nRefund;
 							$scope.sumBalance -= $scope.newRefund.nRefund;
 							Math.round($scope.sumBalance * 100) / 100
 							Math.round($scope.sumRefunds * 100) / 100
 						}
 					connect.post(true, 'RefundInsert', { refund: $scope.newRefund, iUserManagerId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId }, function (result) {
+						if ($scope.isShowAlert2 == true)
+							alerts.alert("לקוח זה אינו זכאי להחזרים");
+						else
 						if ($scope.isShowAlert == true && $scope.newRefund.iProductId != 30 && $scope.newRefund.iProductId != 1)
 							alerts.alert("לא ניתן לקבל החזרים עד לתאריך ההתחדשות");
 						if (result && result > 0) {

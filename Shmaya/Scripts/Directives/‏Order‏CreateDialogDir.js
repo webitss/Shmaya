@@ -4,7 +4,7 @@ var a;
 NOApp.directive('orderCreateDialog', ['$document', '$compile', "$rootScope", "$controller", "$timeout", '$filter', function ($document, $compile, $rootScope, $controller, $timeout, $filter) {
     return {
         transclude: true,
-        templateUrl: 'Partials/Templates/CreateDialogTemplate.html',
+        templateUrl: 'CreateDialogTemplate.html',
         scope: {
             id: '@?',
             template: '@?',
