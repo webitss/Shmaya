@@ -24,7 +24,6 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysProduct_SLCT").Tables[0];
 				List<Product> lProducts = new List<Product>();
 				for (int i = 0; i < dt.Rows.Count; i++)
@@ -37,8 +36,6 @@ namespace ShmayaService.Entities
 					product.nvProductTypeId = dt.Rows[i]["nvProductTypeId"].ToString();
 					lProducts.Add(product);
 				}
-				//פונקציה שהופכת את הטבלה לרשימה
-				//lProducts = ObjectGenerator<Product>.GeneratListFromDataRowCollection(dt.Rows);
 				return lProducts;
 			}
 			catch (Exception ex)

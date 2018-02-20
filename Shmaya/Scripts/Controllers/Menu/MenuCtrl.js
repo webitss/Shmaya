@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Partials/Pages/Messages/Messages.html" />
+﻿
 companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeTablesId', function ($scope, $location, $rootScope, codeTablesId) {
     $scope.isLogin = false;
     $scope.index = 0;

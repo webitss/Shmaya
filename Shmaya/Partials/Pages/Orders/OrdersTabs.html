@@ -1,6 +1,5 @@
 ﻿<div>
 	<div ng-controller="OrdersTabsCtrl" class="popup-ayelet">
-		<!--<img src="Images/webit_logo.png">-->
 		<div class=" second-menu">
 			<div ng-repeat="tab in tabs" class="second-menu-item" ng-class="{'second-menu-item-active': ordersActiveTab == $index }">
 				<span class="header-menu-tab" ng-click="ordersTabClick($index)">{{tab.title}}</span>

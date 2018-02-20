@@ -2,7 +2,9 @@
 var a;
 NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts', '$rootScope','createDialog',
 	function ($scope, orderConnect, $filter, orderAlerts, $rootScope, createDialog) {
-
+		$scope.isSign1 = false
+		$scope.isSign2 = false
+		$scope.isSign3 = false
         $scope.order =
             {
 			dtDateTraslation_original: new Date(),
@@ -45,12 +47,12 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 
 		$scope.selectTypeTranslating = function (iTypeTranslation)
 		{
-				if (iTypeTranslation == 64)
+				if (iTypeTranslation == 58)
 					$scope.showWaiting = true;
 		}
 
-		$scope.OpenSignatureDialog = function () {
-			console.log("here");
+		$scope.OpenSignatureDialog = function (ind) {
+			$scope.ind = ind;
 			$rootScope.signature = {
 				dataUrl: ''
 			};
@@ -63,6 +65,26 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 				modalClass: "modal modalAlert"
 			});
 		};
+
+
+		$scope.sendSignature = function (ind)
+		{
+			if (ind == 1) {
+				$scope.isSign1 = true;
+				$scope.order.nvProviderSignature = $rootScope.signature.dataUrl.substring($rootScope.signature.dataUrl.indexOf(',') + 1, $rootScope.signature.dataUrl.length);
+			}
+			else
+				if (ind == 2) {
+					$scope.order.nvCustomerSignature = $rootScope.signature.dataUrl.substring($rootScope.signature.dataUrl.indexOf(',') + 1, $rootScope.signature.dataUrl.length);
+					$scope.isSign2 = true;
+				}
+				else {
+					$scope.order.nvLocationSignature = $rootScope.signature.dataUrl.substring($rootScope.signature.dataUrl.indexOf(',') + 1, $rootScope.signature.dataUrl.length);
+					$scope.isSign3 = true;
+				}
+
+
+		} 
 
 		$scope.calculateTimeEnd = function () {
 			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;
@@ -143,22 +165,25 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
         }
 
 
-        $scope.sendReport = function () {
+		$scope.sendReport = function () {
             if (!$scope.order.bAgree) alert();
             if (!$scope.order.iTypeOrder || !$scope.order.iTypeTranslation
 				|| !$scope.order.nvIdentityCustomer || !$scope.order.nvIdentityProvider || !$scope.order.nameCustomer
 				|| !$scope.order.nameTranslator || !$scope.order.dtDateTraslation_original
                 || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original //|| !$scope.order.dtTimeWaiting_original
-                || !$scope.order.iAreaId || !$scope.order.iCityId) {
+				|| !$scope.order.iAreaId || !$scope.order.iCityId || !$scope.isSign1 || !$scope.isSign2 || !$scope.isSign3) {
                 $scope.noValid = true;
                 return;
 			}
+			$scope.isSign1 = false
+			$scope.isSign2 = false
+			$scope.isSign3 = false
             $scope.order.iMonthYearId = $scope.defMonthYear;
             $scope.order.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
             $scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
-            orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1 }, function (result) {
+            orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite':0 }, function (result) {
 				if (result && result > 0) {
 					console.log(JSON.stringify($scope.order))
                     $scope.order =

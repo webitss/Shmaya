@@ -61,26 +61,6 @@
 					<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter" ng-init="whom='#';list=listToSend"></div>
 				</create-dialog>
 
-				<!--<div ng-repeat="user in ABCBookCustomers">
-		<create-dialog ng-if="user.dialogIsOpen" is-sub="true" item="user" image="glyphicon glyphicon-user"
-					   title="{{user.nvFirstName+' '+user.nvLastName}}" id="{{item.iUserId}}" cancel="true">
-			<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
-		</create-dialog>
-	</div>
-				<div ng-repeat="user in ABCBookProviders">
-		<create-dialog ng-if="user.dialogIsOpen" item="user" is-sub="true" image="glyphicon glyphicon-user"
-					   title="{{user.nvFirstName+' '+user.nvLastName}}" id="{{user.iUserId}}" cancel="true">
-			<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>
-		</create-dialog>
-	</div>
-	<div ng-repeat="user in ABCBookAdministrator">
-		<create-dialog ng-if="user.dialogIsOpen" item="user" is-sub="true" image="glyphicon glyphicon-user"
-					   title="{{user.nvFirstName+' '+user.nvLastName}}" id="{{user.iUserId}}" cancel="true">
-			<div ng-include="'Partials/Pages/EditCustomer/PrivateDetails.html'+ $root.appVersionParameter"></div>
-		</create-dialog>
-	</div>-->
-
-
 				<create-dialog ng-if="user.dialogIsOpen" is-sub="true" item="user" image="glyphicon glyphicon-user"
 							   title="עריכת {{page}} - {{user.nvFirstName+' '+user.nvLastName}}" id="{{user.iUserId}}" cancel="true">
 					<div ng-include="'Partials/Pages/EditCustomer/EditCustomer.html'+ $root.appVersionParameter"></div>

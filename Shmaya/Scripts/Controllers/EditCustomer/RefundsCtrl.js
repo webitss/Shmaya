@@ -3,8 +3,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts, createDialog) {
 		$scope.prepareData = function () {
 			$scope.isDataLoaded = 0;
-			//$scope.sumRefunds;
-			//$scope.sumBalance;
 			$scope.isEdit = false;
 			$scope.isDelete = false;
 			$scope.isReference = false;
@@ -15,8 +13,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 			if ($scope.user.dtResetCommunication != null) {
 				$scope.YearOfRenewal = $scope.user.dtResetCommunication.getFullYear();
-				//$scope.YearOfRenewal = ((new Date()).getFullYear()) - (((new Date()).getFullYear() - $scope.user.dtCreateDate.getFullYear()) % 4);
-				//$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtCreateDate.getMonth(), $scope.user.dtCreateDate.getDay());
 				while (($scope.YearOfRenewal) < (new Date().getFullYear())) {
 					$scope.YearOfRenewal += 4;
 				}
@@ -44,7 +40,12 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						if (!($scope.refund2.dtPurchase_original instanceof String || typeof $scope.refund2.dtPurchase_original === 'string'))
 							$scope.refund2.dtPurchase = angular.copy($scope.refund2.dtPurchase_original)
 						else
-							$scope.refund2.dtPurchase_original = angular.copy(new Date($scope.refund2.dtPurchase_original))
+						{
+							var day = $scope.refund2.dtPurchase_original.substring(0, 2);
+							var month = $scope.refund2.dtPurchase_original.substring(3, 5);
+							var year = $scope.refund2.dtPurchase_original.substring(6, 10);
+							$scope.refund2.dtPurchase_original = angular.copy(new Date(parseInt(year), parseInt(month)-1, parseInt(day)))
+						}
 						if ($scope.refund2.iMonthYearId instanceof String || typeof $scope.refund2.iMonthYearId === 'string') {
 							$scope.tmpDate2 = $scope.refund2.iMonthYearId.substring(0, 2);
 							$scope.tmpDate1 = $scope.refund2.iMonthYearId.substring(3, 7);
@@ -109,9 +110,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									});
 									return false;
 								}
-								//  if ($scope.refund2.iProductId == 30  || $scope.refund2.iProductId == 1 )
-								//  if ($scope.checkRefund($scope.refund2) == false)
-								//return
 								//חישוב סך החזר עבור גלאי בכי
 								if ($scope.refund2.iProductId == 1) {
 									$scope.refund2.nRefund = 1075;
@@ -123,11 +121,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									if ($scope.refund2.iProductId == 30)
 										$scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
 									else {
-										//if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9)) {
-										//	$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
-										//	$scope.sumRefunds += $scope.refund2.nRefund;
-										//	$scope.sumBalance -= $scope.refund2.nRefund;
-										//}
 										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
 										{
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
@@ -159,7 +152,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 										var savingStatus = "השינויים נשמרו בהצלחה";
 										$scope.getData();
 										$rootScope.notification(savingStatus);
-										//$scope.nvDocPath = connect.getFilesUrl() + result;
 										$scope.isReference = true;
 										$scope.RefundsList.forEach(function (refund) {
 											if (refund.iMonthYearId != 0) {
@@ -189,7 +181,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 				{
 					fieldName: 'iRefundId',
 					title: 'אסמכתא',
-					//template: '<div class="pass user-class glyphicon glyphicon-list"  ng-click="col.clickEvent(item)"></div>',
 					template: '<a href="{{item.nvDocPath}}" id="ref" ng-if="item.nvDocName" target="_blank"></a>' +
 					'<div class="pass user-class glyphicon glyphicon-file" ng-click="clickEvent(item)"></div>',
 					clickEvent: function (item) {
@@ -225,7 +216,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 						if (refund.nvDocPath)
 						{
 							refund.nvDocName = refund.nvDocPath;
-							refund.nvDocPath = connect.getFilesUrl() + refund.nvDocPath;
+							refund.nvDocPath = connect.getFilesUrl("reference") + refund.nvDocPath;
 						}
 
 						//אם נקנה פקס ע"י לקוח זה
@@ -259,12 +250,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									Math.round($scope.sumRefunds * 100) / 100
 									$scope.restart = false;
 								}
-
-								//אם לא מדובר בגלאי בכי או פקס - שהם לא מחושבים בסך ההחזר הכללי
-								//      if (refund.iProductId != 30 && refund.iProductId != 1) {
-								//          $scope.sumRefunds += refund.nRefund;
-								//          $scope.sumBalance -= refund.nRefund;
-								//}
 								if ($scope.user.iCommunicationCart == 3)
 									$scope.isShowAlert2 = true;
 								if ($scope.sumBalance == 0) {
@@ -296,9 +281,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 		};
 
 		$scope.AddNewRefund = function () {
-			//$scope.defYear = $filter('filter')($scope.yearList, { nvName: new Date().getFullYear() + '' }, true)[0].nvName;//(new Date()).getFullYear();
-			//$scope.defMonth = $scope.monthList[new Date().getMonth()].iId;//(new Date()).getMonth();
-			//$scope.defMonthYear = parseInt($scope.defYear) * 100 + $scope.defMonth
 			$scope.newRefund.iMonthYearId = parseInt(new Date().getFullYear()) * 100 + new Date().getMonth() + 1;
 			$scope.newRefund.dtPurchase_original = new Date();
 			$scope.newRefund.dtPurchase = new Date();

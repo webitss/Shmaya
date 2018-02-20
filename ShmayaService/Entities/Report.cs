@@ -34,7 +34,6 @@ namespace ShmayaService.Entities
 				List<SqlParameter> parameters = new List<SqlParameter>();
 				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
 				parameters.Add(new SqlParameter("iTypeOrder", iTypeOrder));
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportProvider_SLCT",parameters).Tables[0];
 				List<Report> lReports = new List<Report>();
 				lReports = ObjectGenerator<Report>.GeneratListFromDataRowCollection(dt.Rows);
@@ -54,7 +53,6 @@ namespace ShmayaService.Entities
 				List<SqlParameter> parameters = new List<SqlParameter>();
 				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
 				parameters.Add(new SqlParameter("iTypeOrder", iTypeOrder));
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportCustomer_SLCT", parameters).Tables[0];
 				List<Report> lReports = new List<Report>();
 				lReports = ObjectGenerator<Report>.GeneratListFromDataRowCollection(dt.Rows);
@@ -73,7 +71,6 @@ namespace ShmayaService.Entities
 			{
 				List<SqlParameter> parameters = new List<SqlParameter>();
 				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportProducts_SLCT", parameters).Tables[0];
 				List<Report> lReports = new List<Report>();
 				lReports = ObjectGenerator<Report>.GeneratListFromDataRowCollection(dt.Rows);
@@ -92,7 +89,6 @@ namespace ShmayaService.Entities
 			{
 				List<SqlParameter> parameters = new List<SqlParameter>();
 				parameters.Add(new SqlParameter("iMonthYearId", iMonthYearId));
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TReportcryingDetector_SLCT", parameters).Tables[0];
 				List<Report> lReports = new List<Report>();
 				lReports = ObjectGenerator<Report>.GeneratListFromDataRowCollection(dt.Rows);

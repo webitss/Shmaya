@@ -134,8 +134,8 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
 			return url;
 		},
 
-        getFilesUrl: function () {
-            return connectObj.getServiceUrl() + 'Files/';
+		getFilesUrl: function (subFile) {
+			return connectObj.getServiceUrl() + 'Files/' + subFile+'/';
         },
 
         functions: {

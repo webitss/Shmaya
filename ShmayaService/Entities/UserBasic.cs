@@ -44,23 +44,18 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data set שולף אוסף של טבלאות
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TSysUserBasic_SLCT", new SqlParameter("iUserType", iUserType));
 
 				List<UserBasic> lUsers = new List<UserBasic>();
 				DataView dv;
-				//מעבר על כל שורה מתוך הטבלה הראשונה שבאוסף
 				foreach (DataRow dr in ds.Tables[0].Rows)
 				{
 					UserBasic user = new UserBasic();
-					//הפיכת כל יוזר לפריט בליסט
 					user = ObjectGenerator<UserBasic>.GeneratFromDataRow(dr);
-					//יצירת הטבלה השניה כדינאמית שמחזירה רק שורות התואמות לתנאי מסוים
 					dv = new DataView(ds.Tables[1],
 					 "iUserId = " + user.iUserId.ToString(),
 					 "", DataViewRowState.CurrentRows);
 					user.lOrderType = new List<int>();
-					//הכנסת הערכים מהטבלה השניה לתוך הליסט המתאים להם באובייקט
 					for (int j = 0; j < dv.Count; j++)
 					{
 						user.lOrderType.Add(int.Parse(dv[j]["iTypeId"].ToString()));

@@ -14,7 +14,6 @@ namespace ShmayaService.Entities
     {
         #region members
         [DataMember]
-        /**/
         public int iOrderId { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -59,13 +58,11 @@ namespace ShmayaService.Entities
         [DataMember]
         public int iCityId { get; set; }
         [DataMember]
-        [NoSendToSQL]
         public string nvStreet { get; set; }
         [DataMember]
         [NoSendToSQL]
         public string nvNumberHouse { get; set; }
         [DataMember]
-        /**/
         public DateTime? dtTimeBegin { get; set; }
         [DataMember]
         public DateTime? dtTimeWaiting { get; set; }
@@ -79,13 +76,10 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public DateTime? dtCreateDate { get; set; }
         [DataMember]
-        /**/
         public int iFavoriteTranslator { get; set; }
         [DataMember]
-        /**/
         public int iSelectedTranslator { get; set; }
         [DataMember]
-        /**/
         public int iStatusId { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -115,7 +109,6 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public string nvCreateUserId { get; set; }
         [DataMember]
-        /**/
         public int iMonthYearId { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -131,6 +124,12 @@ namespace ShmayaService.Entities
         public int iGlobalId { get; set; }
 		[DataMember]
 		public string nvRemark { get; set; }
+		[DataMember]
+		public string nvProviderSignature { get; set; }
+		[DataMember]
+		public string nvCustomerSignature { get; set; }
+		[DataMember]
+		public string nvLocationSignature { get; set; }
 
 		#endregion
 
@@ -140,12 +139,9 @@ namespace ShmayaService.Entities
         {
             try
             {
-                //data table שולף טבלה
                 DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysOrders_SLCT").Tables[0];
                 List<Orders> lOrders = new List<Orders>();
                 lOrders = ObjectGenerator<Orders>.GeneratListFromDataRowCollection(dt.Rows);
-                //פונקציה שהופכת את הטבלה לרשימה
-                //lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
                 return lOrders;
             }
             catch (Exception ex)
@@ -154,26 +150,6 @@ namespace ShmayaService.Entities
                 return null;
             }
         }
-
-        public static List<Orders> GetOrdersByStatus(int iUserId)
-        {
-            try
-            {
-                //data table שולף טבלה
-                DataTable dt = SqlDataAccess.ExecuteDatasetSP("TOrdersByStatus_SLCT", new SqlParameter("iUserId", iUserId)).Tables[0];
-                List<Orders> lOrders = new List<Orders>();
-                lOrders = ObjectGenerator<Orders>.GeneratListFromDataRowCollection(dt.Rows);
-                //פונקציה שהופכת את הטבלה לרשימה
-                //lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
-                return lOrders;
-            }
-            catch (Exception ex)
-            {
-                Log.ExceptionLog(ex.Message, "GetOrders");
-                return null;
-            }
-        }
-
         public static List<Orders> GetOrdersByUser(int iUserId, int iUserType)
         {
             try
@@ -181,13 +157,9 @@ namespace ShmayaService.Entities
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter("iUserId", iUserId));
                 parameters.Add(new SqlParameter("iUserType", iUserType));
-
-                //data table שולף טבלה
                 DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysOrdersByUser_SLCT", parameters).Tables[0];
                 List<Orders> lOrders = new List<Orders>();
                 lOrders = ObjectGenerator<Orders>.GeneratListFromDataRowCollection(dt.Rows);
-                //פונקציה שהופכת את הטבלה לרשימה
-                //lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
                 return lOrders;
             }
             catch (Exception ex)
@@ -231,14 +203,22 @@ namespace ShmayaService.Entities
             }
         }
 
-        public static int? OrderInsert(Orders order, int iUserManagerId)
+
+
+		public static int? OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
         {
             try
             {
-                //order.dtTimeTranslation = new DateTime(order.dtTimeTranslation);
-                List<SqlParameter> parameters = ObjectGenerator<Orders>.GetSqlParametersFromObject(order);
+				if(order.nvProviderSignature != null)
+					order.nvProviderSignature = new FileManageCtrl().SaveFile(order.nvProviderSignature.Substring(order.nvProviderSignature.LastIndexOf(",") + 1), "signatures", "png", iUserManagerId);
+				if (order.nvCustomerSignature != null)
+					order.nvCustomerSignature = new FileManageCtrl().SaveFile(order.nvCustomerSignature.Substring(order.nvCustomerSignature.LastIndexOf(",") + 1), "signatures", "png", iUserManagerId);
+				if (order.nvLocationSignature != null)
+					order.nvLocationSignature = new FileManageCtrl().SaveFile(order.nvLocationSignature.Substring(order.nvLocationSignature.LastIndexOf(",") + 1), "signatures", "png", iUserManagerId);
+				List<SqlParameter> parameters = ObjectGenerator<Orders>.GetSqlParametersFromObject(order);
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
-                DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_INS", parameters);
+				parameters.Add(new SqlParameter("isFromSite", isFromSite));
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_INS", parameters);
                 return int.Parse(ds.Tables[0].Rows[0][0].ToString());
             }
             catch (Exception ex)

@@ -23,6 +23,17 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 						if (order.item == undefined)
 						{
 							$scope.order = angular.copy(order)
+
+							if ($scope.order.dtDateTraslation_original)
+								console.log(`/Date(${Date.UTC(
+										$scope.order.dtDateTraslation_original.getFullYear(),
+										$scope.order.dtDateTraslation_original.getMonth(),
+										$scope.order.dtDateTraslation_original.getDate(),
+										$scope.order.dtDateTraslation_original.getHours(),
+										$scope.order.dtDateTraslation_original.getMinutes()
+									)})/`)
+			
+				
 							if ($scope.order.iMonthYearId instanceof String || typeof $scope.order.iMonthYearId === 'string') {
 								$scope.tmpDate2 = $scope.order.iMonthYearId.substring(0, 2);
 								$scope.tmpDate1 = $scope.order.iMonthYearId.substring(3, 7);
@@ -44,7 +55,6 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				    fieldName: 'iOrderId',
 				    template: '<div class=\'pass glyphicon glyphicon-remove color-text-gray\' ng-click=\'col.deleteAOrder(item)\'></div>',
 				    deleteAOrder: function (item) {
-				        //$scope.someone = item.nvFirstName + ' ' + item.nvLastName;
 				        alerts.confirm('האם לבטל הזמנה זו?', alerts.titles.message, function () {
 				            $scope.deleteOrder(item);
 				        }, function () {
@@ -122,18 +132,6 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	            fileName: 'הזמנות'
 	        });
 	    };
-
-	    //$scope.deleteMember = function (item) {
-	    //	$rootScope.delete = true;
-	    //	connect.post(true, connect.functions.DeleteMember, { 'iPersonId': item.iPersonId, iUserId: $rootScope.user.iUserId }, function (result) {
-	    //		if (result) {
-	    //			//$scope.removeMember(item);
-	    //			$scope.getData();
-	    //		} else {
-	    //			alert('error!');
-	    //		}
-	    //	});
-	    //}
 
 	    $rootScope.$on('deleteList', function () {
 	        $scope.listToSend = [];

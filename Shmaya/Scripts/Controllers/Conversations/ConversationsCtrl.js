@@ -5,28 +5,8 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
         $scope.noConversation = null;
 
         $scope.bIsNewConversationOpen = false;
-        //$scope.date = new Date();
-        //$scope.date = $filter('date')($scope.date, 'dd-MM-yyyy');
         $scope.showNewConversation = false;
         $scope.isCollapse = false;
-		//$scope.allConversations = ['stam'];
-        
-        //$scope.conversation = {
-        //    nvSubject: undefined,
-        //    nvComment: undefined,
-        //    dtNextConversation: undefined,
-        //    iStatusConversationType: undefined
-        //};
-        //$scope.User = $rootScope.user.iUserId;
-
-        //$scope.selected
-		
-
-       
-        //$scope.oneAtATime = false;
-
-        //  $scope.conversation.dtConversationDate = $filter('date')($scope.conversation.dtConversationDate, 'dd-MM-yyyy');
-
 		$scope.getAllConversations = function () {
 			connect.post(true, 'GetConversations', { iUserId: $scope.user.iUserId }, function (result) {
 				$scope.allConversations = result;

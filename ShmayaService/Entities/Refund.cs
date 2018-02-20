@@ -59,10 +59,8 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TRefunds_SLCT",new SqlParameter("iUserId",iUserId)).Tables[0];
 				List<Refund> lRefunds = new List<Refund>();
-				//פונקציה שהופכת את הטבלה לרשימה
 				lRefunds = ObjectGenerator<Refund>.GeneratListFromDataRowCollection(dt.Rows);
 				return lRefunds;
 			}
@@ -80,11 +78,11 @@ namespace ShmayaService.Entities
 				if (refund.nvDocPath!=null)
 				{ 
 					if (isDelete == false)
-						refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+						refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1),"reference", refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
 					else
 					{
 						refund.nvDocPath = refund.nvDocPath.Split('/')[4];
-						new FileManageCtrl().DeleteFile(refund.nvDocPath);
+						new FileManageCtrl().DeleteFile(refund.nvDocPath, "reference");
 						refund.nvDocPath = null;
 					}
 				}
@@ -105,7 +103,7 @@ namespace ShmayaService.Entities
 			try
 			{
 				if (refund.nvDocPath != null)
-					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+					refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), "reference", refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				parameters.Add(new SqlParameter("iUserId", iUserId));

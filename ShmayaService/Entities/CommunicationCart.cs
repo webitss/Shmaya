@@ -25,7 +25,6 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysCommunicationCart_SLCT").Tables[0];
 				List<CommunicationCart> lCommunicationCart = new List<CommunicationCart>();
 				for (int i = 0; i < dt.Rows.Count; i++)
@@ -36,8 +35,6 @@ namespace ShmayaService.Entities
 					communicationCart.nTariff = double.Parse(dt.Rows[i]["nTariff"].ToString());
 					lCommunicationCart.Add(communicationCart);
 				}
-				//פונקציה שהופכת את הטבלה לרשימה
-				//lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
 				return lCommunicationCart;
 			}
 			catch (Exception ex)

@@ -12,11 +12,11 @@ namespace ShmayaService.Entities
 {
     public class FileManageCtrl
     {
-        public void DeleteFile(string sPath)
+        public void DeleteFile(string sPath, string subFile)
         {
             try
             {
-                File.Delete(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + sPath);
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + subFile+"\\"+ sPath);
             }
             catch (Exception ex)
             {
@@ -32,12 +32,7 @@ namespace ShmayaService.Entities
                 sFile = sFile.Substring(sFile.LastIndexOf(",") + 1);
                 byte[] array = Convert.FromBase64String(sFile);
                 string FileName = DateTime.Now.ToFileTime().ToString() + index.ToString() + "." + sFileType;
-
                 File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + sFolder + "\\" + FileName, array);
-
-
-
-
                 return FileName;
             }
             catch (Exception ex)
@@ -47,19 +42,14 @@ namespace ShmayaService.Entities
             }
         }
 
-        public string SaveFile(string sFile, string sFileType, int iUserManagerId)
+        public string SaveFile(string sFile, string subFile, string sFileType, int iUserManagerId)
         {
             try
             {
 
                 byte[] array = Convert.FromBase64String(sFile);
                 string FileName = DateTime.Now.ToFileTime().ToString() + iUserManagerId + "." + sFileType;
-
-                File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + FileName, array);
-
-
-
-
+                File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + subFile +"\\"+ FileName, array);
                 return FileName;
             }
             catch (Exception ex)

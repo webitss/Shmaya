@@ -22,7 +22,6 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysEntitlementTable_SLCT").Tables[0];
 				List<EligibiltyTable> lEligibiltyTable = new List<EligibiltyTable>();
 				for (int i = 0; i < dt.Rows.Count; i++)
@@ -33,8 +32,6 @@ namespace ShmayaService.Entities
 					eligibiltyTable.nNumHours = double.Parse(dt.Rows[i]["nNumHours"].ToString());
 					lEligibiltyTable.Add(eligibiltyTable);
 				}
-				//פונקציה שהופכת את הטבלה לרשימה
-				//lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
 				return lEligibiltyTable;
 			}
 			catch (Exception ex)
@@ -48,7 +45,7 @@ namespace ShmayaService.Entities
 			try
 			{
 
-				List<SqlParameter> parameters = new List<SqlParameter>(); //ObjectGenerator<EligibiltyTable>.GetSqlParametersFromObject(eligibility);
+				List<SqlParameter> parameters = new List<SqlParameter>();
 				parameters.Add(new SqlParameter("iEntitlementTypeId", eligibility.iEntitlementTypeId));
 				parameters.Add(new SqlParameter("nvEntitlementType", eligibility.nvEntitlementType));
 				parameters.Add(new SqlParameter("nNumHours", eligibility.nNumHours));

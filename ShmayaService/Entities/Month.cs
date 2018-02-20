@@ -59,12 +59,9 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TGlobalDate_SLCT").Tables[0];
 				List<Month> lMonths = new List<Month>();
 				lMonths = ObjectGenerator<Month>.GeneratListFromDataRowCollection(dt.Rows);
-				//פונקציה שהופכת את הטבלה לרשימה
-				//lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
 				return lMonths;
 			}
 			catch (Exception ex)

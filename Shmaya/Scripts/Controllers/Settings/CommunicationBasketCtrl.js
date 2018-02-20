@@ -49,7 +49,6 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 								                console.log('CommunicationUpdate:' + result);
 								                var savingStatus = "השינויים נשמרו בהצלחה";
 								                $rootScope.notification(savingStatus);
-								                //$scope.comm.dialogIsOpen = false;
 								            }
 								            else {
 								                alert('ארעה שגיאה בלתי צפויה');
@@ -117,7 +116,6 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 				                var savingStatus = "השינויים נשמרו בהצלחה";
 				                $rootScope.notification(savingStatus);
 				                $scope.newCommunication = {};
-				                //$scope.newEligibility.dialogIsOpen = false;
 				                $scope.getData();
 				            }
 				            else {

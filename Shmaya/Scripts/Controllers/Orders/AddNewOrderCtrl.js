@@ -41,25 +41,35 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	            return;
 			}
 			$scope.orderToSend = angular.copy($scope.order);
-			if ($scope.orderToSend.iMonthYearId instanceof String || typeof $scope.orderToSend.iMonthYearId === 'string') {
+			if ($scope.order.iMonthYearId instanceof String || typeof $scope.order.iMonthYearId === 'string') {
 				$scope.tmpDate2 = $scope.orderToSend.iMonthYearId.substring(0, 2);
 				$scope.tmpDate1 = $scope.orderToSend.iMonthYearId.substring(3, 7);
 				$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
 				$scope.orderToSend.iMonthYearId = $scope.tmpDate
 			}
+			if (!($scope.orderToSend.dtDateTraslation_original instanceof String || typeof $scope.orderToSend.dtDateTraslation_original === 'string'))
+				$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
+			else {
+				var day = $scope.order.dtDateTraslation_original.substring(0, 2);
+				var month = $scope.order.dtDateTraslation_original.substring(3, 5);
+				var year = $scope.order.dtDateTraslation_original.substring(6, 10);
+				$scope.order.dtDateTraslation = angular.copy(new Date(parseInt(year), parseInt(month) - 1, parseInt(day)))
+			}
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
-			if ($scope.order.iSelectedTranslator)
-				$scope.orderToSend.iSelectedTranslator = angular.copy($scope.order.iSelectedTranslator.iId)
-			if ($scope.order.iUserId)
-				$scope.orderToSend.iUserId = angular.copy($scope.order.iUserId.iId)
-			if ($scope.order.iAreaId)
-				$scope.orderToSend.iAreaId = angular.copy($scope.order.iAreaId.iId)
-			if ($scope.order.iCityId)
-				$scope.orderToSend.iCityId = angular.copy($scope.order.iCityId.iId)
-			if ($scope.order.iTypeTranslation)
-				$scope.orderToSend.iTypeTranslation = angular.copy($scope.order.iTypeTranslation.iId)
+			if (!$scope.isEdit) {
+				if ($scope.order.iSelectedTranslator)
+					$scope.orderToSend.iSelectedTranslator = angular.copy($scope.order.iSelectedTranslator.iId)
+				if ($scope.order.iUserId)
+					$scope.orderToSend.iUserId = angular.copy($scope.order.iUserId.iId)
+				if ($scope.order.iAreaId)
+					$scope.orderToSend.iAreaId = angular.copy($scope.order.iAreaId.iId)
+				if ($scope.order.iCityId)
+					$scope.orderToSend.iCityId = angular.copy($scope.order.iCityId.iId)
+				if ($scope.order.iTypeTranslation)
+					$scope.orderToSend.iTypeTranslation = angular.copy($scope.order.iTypeTranslation.iId)
+			}
 
 			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation:$scope.prevTimeTranslation }, function (result) {
 	            if (result && result > 0) {
@@ -72,7 +82,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					{
 						$scope.newOrder.dialogIsOpen = false;
 						$scope.OrdersList.push($scope.order);
-	                    //$scope.getData();
 	                }
 	                $scope.prepareData();
 	            }
@@ -94,7 +103,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				function (result) {
 					$scope.usersList2 = result;
 				});
-			//$scope.order.iUserId = $filter('filter')($scope.ABCBookCustomers, { iUserId: $scope.order.iUserId }, true)[0].iUserId;
 			connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
 				$scope.codeTables = result;
 				$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
@@ -132,9 +140,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation) return;
 	        var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation.getHours();
 	        var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation.getMinutes();
-			//if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeEnd) return;
-			//var hours = $scope.order.dtTimeEnd.getHours() - $scope.order.dtTimeBegin_original.getHours();
-			//var minutes = $scope.order.dtTimeEnd.getMinutes() - $scope.order.dtTimeBegin_original.getMinutes();
 	        if (minutes >= 60) {
 	            minutes -= 60;
 	            hours += 1;

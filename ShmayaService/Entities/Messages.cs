@@ -34,13 +34,8 @@ namespace ShmayaService.Entities
 		{
 			if (message.nvTo != null && message.nvTo != "")
 			{
-				//reportDetails = new Reports { sFileName = "AttendanceReport", configKey = "AttendanceSheetPath", iMonth = iMonthId, iPersonId = item.iPersonId, iAfterSchoolId = -1, iCoordinatorId = -1 };
 				MailMessage mailMessage = new MailMessage();
-				//if (message.nvFrom == null)
-				//    mailMessage.From = new MailAddress("saram@webit-sys.com");//new MailAddress(message.nvMailFrom);//ConfigurationManager.AppSettings["mailFrom"].ToString());
-				//else
 				mailMessage.From = new MailAddress(message.nvFrom);
-				//mailMessage.From = new MailAddress(message.nvFrom);//ConfigurationManager.AppSettings["mailFrom"].ToString());
 				mailMessage.To.Add(new MailAddress(message.nvTo));
 				mailMessage.Subject = message.nvSubject;
 				mailMessage.Body = message.nvMessage;
@@ -62,15 +57,15 @@ namespace ShmayaService.Entities
 		}
 
 
-		public static bool SendEmailToGroup(List<User> lMember, Messages message, int iUserId)
+		public static bool SendEmailToGroup(List<UserBasic> lMember, Messages message, int iUserId, List<Attachment> lAttach)
 		{
-
 			MailMessage mailMessage = new MailMessage();
+			if (lAttach != null)
+				foreach (var img in lAttach)
+					mailMessage.Attachments.Add(img);
 			mailMessage.From = new MailAddress(message.nvFrom);
 			mailMessage.Subject = message.nvSubject;
 			mailMessage.Body = message.nvMessage;
-            //Attachment oa = new Attachment("ששם הקובץ");
-            //mailMessage.Attachments.Add(oa);
 			for (int i = 0; i < lMember.Count; i++)
 			{
 				if (lMember[i].nvEmail != null && lMember[i].nvEmail != "")

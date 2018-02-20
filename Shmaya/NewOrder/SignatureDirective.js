@@ -2,12 +2,12 @@
  * https://github.com/legalthings/signature-pad-angular
  * Copyright (c) 2015 ; Licensed MIT
  */
-"use strict"
-//var signatureModule = angular.module('signature', []);
-var a;
-NOApp.directive('signaturePad', ['$interval', '$timeout', '$window',
-  function ($interval, $timeout, $window) {
-      'use strict';
+
+angular.module('signature', []);
+
+angular.module('signature').directive('signaturePad', ['$interval', '$timeout', '$window',
+	function ($interval, $timeout, $window) {
+		'use strict';
 
       var signaturePad, element, EMPTY_IMAGE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjgAAADcCAQAAADXNhPAAAACIklEQVR42u3UIQEAAAzDsM+/6UsYG0okFDQHMBIJAMMBDAfAcADDATAcwHAAwwEwHMBwAAwHMBzAcAAMBzAcAMMBDAcwHADDAQwHwHAAwwEMB8BwAMMBMBzAcADDATAcwHAADAcwHADDAQwHMBwAwwEMB8BwAMMBDAfAcADDATAcwHAAwwEwHMBwAAwHMBzAcAAMBzAcAMMBDAcwHADDAQwHwHAAwwEwHMBwAMMBMBzAcAAMBzAcwHAADAcwHADDAQwHMBwAwwEMB8BwAMMBDAfAcADDATAcwHAAwwEwHMBwAAwHMBzAcCQADAcwHADDAQwHwHAAwwEMB8BwAMMBMBzAcADDATAcwHAADAcwHMBwAAwHMBwAwwEMBzAcAMMBDAfAcADDAQwHwHAAwwEwHMBwAAwHMBzAcAAMBzAcAMMBDAcwHADDAQwHwHAAwwEMB8BwAMMBMBzAcADDATAcwHAADAcwHMBwAAwHMBwAwwEMB8BwAMMBDAfAcADDATAcwHAAwwEwHMBwAAwHMBzAcAAMBzAcAMMBDAcwHADDAQwHwHAAwwEMB8BwAMMBMBzAcADDkQAwHMBwAAwHMBwAwwEMBzAcAMMBDAfAcADDAQwHwHAAwwEwHMBwAMMBMBzAcAAMBzAcwHAADAcwHADDAQwHMBwAwwEMB8BwAMMBMBzAcADDATAcwHAADAcwHMBwAAwHMBwAwwEMBzAcAMMBDAegeayZAN3dLgwnAAAAAElFTkSuQmCC';
 
@@ -143,8 +143,10 @@ NOApp.directive('signaturePad', ['$interval', '$timeout', '$window',
                   event.preventDefault();
               }
 
-              function onTouchend(event) {
-                  scope.$apply(function () {
+			  function onTouchend(event)
+			  {
+				  scope.$apply(function ()
+				  {
                       // updateModel
                       scope.updateModel();
 
@@ -152,7 +154,7 @@ NOApp.directive('signaturePad', ['$interval', '$timeout', '$window',
                       scope.notifyDrawing({ drawing: false });
                   });
                   event.preventDefault();
-              }
+			  }
           }
       };
   }

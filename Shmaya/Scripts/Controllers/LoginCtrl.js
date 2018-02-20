@@ -13,10 +13,6 @@ companionApp.controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'aler
 			$scope.isDisableBtn = true;
 		
             connect.post(false, connect.functions.Login, {userName: $scope.userName, password: $scope.userPassword }, function (result) {
-            //connect.login({
-            //    userName: $scope.userName,
-            //    password: $scope.userPassword
-            //}, function (result) {
                 if (result == "" || result == null || result == undefined || result.iUserId && result.iUserId == -1) {
                     alerts.alert('שם משתמש או סיסמה אינם תקינים', 'אופס...');
                 } else {

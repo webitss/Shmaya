@@ -1,8 +1,7 @@
 ﻿"use strict";
 companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'alerts', 'codeTablesId',
     function ($scope, $rootScope, $routeParams, connect, $location, $filter, $timeout, codeTablesName, alerts, codeTablesId) {
-    $scope.typeSelect = 1;
-   // $rootScope.listToSend = undefined;
+    $scope.typeSelect = 1;;
     $scope.sendTo = 2;
     $scope.userList = [];
     $scope.userList.push($scope.user)
@@ -120,14 +119,13 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 
     }
 	$scope.sendSumMessage = function () {
-		$timeout( connect.post(true, 'SendSumMessage', { folderName: "sumMessage", url: /*http://localhost:36667*/"PdfMessage.html?iUserId=12&dtDateBegin=01-01-2017&dtDateEnd=01-01-08" },
+		$timeout(connect.post(true, 'createDocumentToProviders', { iUserId: $scope.user.iUserId, dtBeginDate: $scope.dtStartDate, dtEndDate: $scope.dtEndDate },
 			function (result) {
 			    if (result) {
 			        console.log(result);
-			        alert(result);
 			    }
-			    else
-			        alert("not succese")
+				else
+					alerts.alert("אירעה שגיאה בלתי צפויה")
 			}),5000);
     }
 

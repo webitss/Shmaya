@@ -52,12 +52,9 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TRemark_SLCT", new SqlParameter("iUserId", iUserId)).Tables[0];
 				List<Remark> lRemarks = new List<Remark>();
 				lRemarks = ObjectGenerator<Remark>.GeneratListFromDataRowCollection(dt.Rows);
-				//פונקציה שהופכת את הטבלה לרשימה
-				//lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
 				return lRemarks;
 			}
 			catch (Exception ex)

@@ -1,5 +1,5 @@
 "use strict";
-companionApp.factory("ConnectForPdf", ['$http', function ($http) {
+pdfApp.factory("ConnectForPdf", ['$http', function ($http) {
     //var urlBase = 'http://qa.webit-track.com/ShmayaCRMWs/Service.svc/';
 	var urlBase = "http://localhost:27786/Service.svc/";
     function dateConvectionLoop(data, isPost) {

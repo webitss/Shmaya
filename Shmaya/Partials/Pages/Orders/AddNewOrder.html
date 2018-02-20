@@ -22,10 +22,6 @@
 			<form-field span-text="תאריך" class="col-md-6">
 				<input class="form-control" type="date" ng-model="order.dtDateTraslation_original" required />
 			</form-field>
-
-			<!--<form-field span-text="שם לקוח" class="col-md-6">
-		<form-dropdown-filter ng-model="order.iUserId" enablesearch="true" getfunc="GetUsersCode" datafunc="datafunc2" data="[]" required></form-dropdown-filter>
-	</form-field>-->
 			<form-field span-text="שם לקוח" class="col-md-6">
 				<search-input id="order.iUserId" sourcedata="usersList" ismulti="false" bcancel="true" bcursor="true"
 							  onchoose="order.iUserId = itemSearch" searchfield="['nvName']" defultvalue="order.iUserId" identityfield="iId">
@@ -36,10 +32,6 @@
 							  onchoose="order.iSelectedTranslator = itemSearch" searchfield="['nvName']" defultvalue="order.iSelectedTranslator" identityfield="iId">
 				</search-input>
 			</form-field>
-			<!--<form-field span-text="שם מתורגמן" class="col-md-6">
-		<form-dropdown-filter ng-model="order.iSelectedTranslator" enablesearch="true" getfunc="GetUsersCode" datafunc="datafunc" data="[]" required></form-dropdown-filter>
-	</form-field>-->
-
 			<form-field span-text="שיוך לחודש ושנה" class="col-md-6">
 				<form-dropdown ng-model="order.iMonthYearId" enablesearch="false" data="monthYearList" required></form-dropdown>
 			</form-field>
@@ -61,9 +53,6 @@
 			<form-field span-text="זמן המתנה" class="col-md-6">
 				<input class="form-control" type="time" ng-model="order.dtTimeWaiting" />
 			</form-field>
-			<!--<form-field span-text="סוג תרגום" class="col-md-6">
-		<form-dropdown ng-model="order.iTypeTranslation" enablesearch="true" data="translateTypeList" required></form-dropdown>
-	</form-field>-->
 			<form-field span-text="סוג תרגום" class="col-md-6">
 				<search-input id="order.iTypeTranslation" sourcedata="translateTypeList" ismulti="false" bcancel="true" bcursor="true"
 							  onchoose="order.iTypeTranslation = itemSearch" searchfield="['nvName']" defultvalue="order.iTypeTranslation" identityfield="iId">
@@ -71,18 +60,8 @@
 			</form-field>
 
 			<form-field span-text="מטרת התרגום" class="col-md-6">
-				<input class="form-control" type="text" ng-model="order.nvRemark" required />
+				<input class="form-control" type="text" ng-model="order.nvRemark" />
 			</form-field>
-			<!--<div class="row">
-		<form-field span-text="איזור" class="col-md-6">
-			<form-dropdown ng-model="order.iAreaId" enablesearch="true" data="areaList"></form-dropdown>
-		</form-field>
-
-			<form-field span-text="עיר" class="col-md-6">
-				<form-dropdown ng-model="order.iCityId" enablesearch="true" data="city"></form-dropdown>
-			</form-field>
-	</div>-->
-
 			<form-field span-text="איזור" class="col-md-6">
 				<search-input id="order.iAreaId" sourcedata="areaList" ismulti="false" bcancel="true" bcursor="true"
 							  onchoose="order.iAreaId = itemSearch" searchfield="['nvName']" defultvalue="order.iAreaId" identityfield="iId">

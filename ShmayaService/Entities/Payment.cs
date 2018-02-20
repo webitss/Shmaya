@@ -22,7 +22,6 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				//data table שולף טבלה
 				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysPayment_SLCT").Tables[0];
 				List<Payment> lPayment = new List<Payment>();
 				for (int i = 0; i < dt.Rows.Count; i++)
@@ -33,8 +32,6 @@ namespace ShmayaService.Entities
 					payment.nTariff = double.Parse(dt.Rows[i]["nTariff"].ToString());
 					lPayment.Add(payment);
 				}
-				//פונקציה שהופכת את הטבלה לרשימה
-				//lPayment = ObjectGenerator<Payment>.GeneratListFromDataRowCollection(dt.Rows);
 				return lPayment;
 			}
 			catch (Exception ex)

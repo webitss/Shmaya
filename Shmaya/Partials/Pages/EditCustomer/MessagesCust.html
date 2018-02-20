@@ -1,9 +1,7 @@
 ﻿
 <div class="container phone-wrap-div" ng-controller="MessagesCustCtrl">
-	<!--<div class="container" ng-controller="ConversationsCtrl">-->
 	<div class="conversation-buttons">
 		<button type="button" ng-click="openNewMessage()" class="btn  btn-ayelet color-yellow">
-			<!--ng-show="!bIsNewConversationOpen==true"-->
 			<i class="glyphicon glyphicon-envelope"></i>
 			<span>הודעה חדשה</span>
 		</button>
@@ -25,7 +23,6 @@
 						<span class="col-md conversation"><b>תאריך שליחה: </b>{{Message1.dtCreateDate | date: "dd-MM-yyyy"}}</span>
 						<span class="col-md conversation"><b>משתמש שולח: </b>{{Message1.nvCreateUser}}</span>
 						<span title="{{Message1.nvSubject}}" class="col-md conversation"><b>נושא: </b>{{Message1.nvSubject}}</span>
-						<!--<span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': isCollapse, 'glyphicon glyphicon-menu-right': !isCollapse}"></span>-->
 						<span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': Message1.isCollapse, 'glyphicon glyphicon-menu-left': !Message1.isCollapse}"></span>
 					</div>
 				</uib-accordion-heading>
@@ -43,7 +40,6 @@
 	<div>
 		<create-dialog ng-if="newMessage1.dialogIsOpen" id="newMessage1"
 					   title="{{user.nvFirstName+' '+user.nvLastName}}" cancel="true">
-			<!--image="{{selected.idStudent?'user-class-blue':'user-class-green'}}" title="{{'משתמש חדש '}}"-->
 			<div ng-include="'Partials/Pages/Messages/Messages.html'+ $root.appVersionParameter"></div>
 		</create-dialog>
 	</div>

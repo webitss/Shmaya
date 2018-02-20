@@ -51,7 +51,6 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 											var savingStatus = "השינויים נשמרו בהצלחה";
 											$rootScope.notification(savingStatus);
 											$scope.getData();
-											//$scope.user.dialogIsOpen = false;
 										}
 										else
 										{

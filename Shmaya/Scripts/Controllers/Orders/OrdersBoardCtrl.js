@@ -23,27 +23,4 @@ companionApp.controller('OrdersBoardCtrl', ['$scope', '$rootScope', 'connect', '
 			});
 		};
 		$scope.getSchedulesAsTable();
-		//$scope.getData = function () {
-		//	connect.post(true, 'GetOrders', {},
-		//		function (result) {
-		//			$scope.OrdersList = result;
-		//			$scope.isDataLoaded++;
-		//		});
-		//	$scope.initOrdersList();
-		//};
-
-		
-
-		////	}, function () {
-		////		createDialog({
-		////			id: 'GetAdvancedStudy',
-		////			template: "<div class='divAlert'><p>ארעה שגיאה בלתי צפויה</p> <button  ng-click='$modalCancel()' class='btn  btn-Alert btn-Alert-submit'><span> אישור</span><img src='Images/v-command.png'/></button>" + "</div>",
-		////			title: "שגיאה",
-		////			scope: $rootScope,
-		////			backdrop: true,
-		////			modalClass: "modal modalAlert"
-		////		});
-		////	});
-		////}
-		//		$scope.getData();
 }]);

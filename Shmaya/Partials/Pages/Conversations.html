@@ -1,7 +1,4 @@
 ﻿<div class="container phone-wrap-div" ng-controller="ConversationsCtrl">
-    <!--<div class="container" ng-controller="ConversationsCtrl">-->
-
-
     <div class="conversation-buttons">
         <button type="button" ng-click="openNewConversation()" class="btn  btn-ayelet color-yellow" ng-show="!bIsNewConversationOpen==true">
             <div class="new-phone-btn"></div>
@@ -68,7 +65,6 @@
 						        </span>
 						        <span class="col-md conversation"><b>מקבל השיחה: </b>{{conversation1.nvCreateUser}}</span>
 						        <span class="col-md conversation"><b>נושא: </b>{{conversation1.nvSubject}}</span>
-						        <!--<span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': isCollapse, 'glyphicon glyphicon-menu-right': !isCollapse}"></span>-->
 						        <span class="glyphicon" ng-class="{'glyphicon glyphicon-menu-down': conversation1.isCollapse, 'glyphicon glyphicon-menu-left': !conversation1.isCollapse}"></span>
 					        </div>
 				        </uib-accordion-heading>

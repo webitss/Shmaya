@@ -14,11 +14,9 @@ using System.Configuration;
 namespace ShmayaService.Entities
 {
     [DataContract]
-    public class User
+    public class User:UserBasic
     {
         #region Members
-        [DataMember]
-        public int iUserId { get; set; }
         [DataMember]
         [NoSendToSQL]
         public string nvUserName { get; set; }
@@ -29,26 +27,12 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public int iUserRoleId { get; set; }
-        [DataMember]
-        public string nvEmail { get; set; }
-        [DataMember]
-        public string nvLastName { get; set; }
-        [DataMember]
-        public string nvFirstName { get; set; }
-        [DataMember]
-        public string nvAdress { get; set; }
 		[DataMember]
 		public int iAreaId { get; set; }
-		[DataMember]
-        public string nvPhoneNum { get; set; }
-        [DataMember]
-        public string nvMobileNum { get; set; }
         [DataMember]
         public string nvFaxNum { get; set; }
         [DataMember]
         public int iGenderId { get; set; }
-        [DataMember]
-        public double nBankHours { get; set; }
         [DataMember]
         public int? iEntitlementTypeId { get; set; }
         [DataMember]
@@ -61,8 +45,6 @@ namespace ShmayaService.Entities
         [DataMember]
         public bool isWorker { get; set; }
         [DataMember]
-        public double nNumHours { get; set; }
-        [DataMember]
         public int? iCommunicationCart { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -74,22 +56,12 @@ namespace ShmayaService.Entities
 
         [DataMember]
         [NoSendToSQL]
-        public string nvWorkerType { get; set; }
-
-        [DataMember]
-        [NoSendToSQL]
         public int? iBuyCryingDetector { get; set; }
         [DataMember]
         public double nInitBankHours { get; set; }
-        [DataMember]
-        [NoSendToSQL]
-        public string nvEntitlementType { get; set; }
         [NoSendToSQL]
         [DataMember]
         public List<int> lLanguage { get; set; }
-        [DataMember]
-        [NoSendToSQL]
-        public List<int> lOrderType { get; set; }
         [DataMember]
         [NoSendToSQL]
         public int iLastModifyUserId { get; set; }
@@ -140,7 +112,6 @@ namespace ShmayaService.Entities
                 {
                     int iResult = int.Parse(ds.Tables[0].Rows[0][0].ToString());
                     Result result = new Result();
-                    //result.iResult = iResult;
                     if (iResult == 1)
                     {
                         string sResult = ds.Tables[2].Rows[0][0].ToString();

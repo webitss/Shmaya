@@ -28,10 +28,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user)
 					{
-						//if (user.item == undefined)
 						if (!isNaN(parseFloat(user.iUserId)) && !isNaN(user.iUserId - 0))
 						{
-							//$scope.user = angular.copy(user);
 							connect.post(true, 'GetUsers', { iUserId: user.iUserId },
 								function (result) {
 									$scope.user = result[0];
@@ -88,9 +86,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 				    title: 'עריכה',
 				    template: '<div class="pass user-class glyphicon glyphicon-pencil" ng-click="col.clickEvent(item)"></div>',
 					clickEvent: function (user) {
-						//if (user.item == undefined)
 						if (!isNaN(parseFloat(user.iUserId)) && !isNaN(user.iUserId - 0)) {
-							//$scope.user = angular.copy(user);
 							connect.post(true, 'GetUsers', { iUserId: user.iUserId },
 								function (result) {
 									$scope.user = result[0];
@@ -301,7 +297,6 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	            }
 	        }
 	        if ($rootScope.listToSend.length == 0)
-	            //if ($scope.haveSend == false)
 	        {
 	            alerts.alert('יש לבחור נמענים לשליחת הודעה!', 'שגיאה');
 	            return;

@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Net.Mail;
 
 namespace ShmayaService
 {
@@ -163,16 +164,16 @@ namespace ShmayaService
             return Orders.GetOrders();
         }
 
-        [OperationContract]
-        [WebInvoke(
-           Method = "POST",
-           UriTemplate = "GetOrdersByStatus",
-           BodyStyle = WebMessageBodyStyle.WrappedRequest,
-           ResponseFormat = WebMessageFormat.Json)]
-        public List<Orders> GetOrdersByStatus(int iUserId)
-        {
-            return Orders.GetOrdersByStatus(iUserId);
-        }
+        //[OperationContract]
+        //[WebInvoke(
+        //   Method = "POST",
+        //   UriTemplate = "GetOrdersByStatus",
+        //   BodyStyle = WebMessageBodyStyle.WrappedRequest,
+        //   ResponseFormat = WebMessageFormat.Json)]
+        //public List<Orders> GetOrdersByStatus(int iUserId)
+        //{
+        //    return Orders.GetOrdersByStatus(iUserId);
+        //}
 
         [OperationContract]
         [WebInvoke(
@@ -213,9 +214,9 @@ namespace ShmayaService
           UriTemplate = "OrderInsert",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public int? OrderInsert(Orders order, int iUserManagerId)
+        public int? OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
         {
-            return Orders.OrderInsert(order, iUserManagerId);
+            return Orders.OrderInsert(order, iUserManagerId, isFromSite);
         }
 
         [OperationContract]
@@ -285,9 +286,9 @@ namespace ShmayaService
            UriTemplate = "SendEmailToGroup",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public bool sendEmailToGroup(List<User> lMember, Messages message, int iUserId)
+        public bool sendEmailToGroup(List<UserBasic> lMember, Messages message, int iUserId, List<Attachment> lAttach)
         {
-            return Messages.SendEmailToGroup(lMember, message, iUserId);
+            return Messages.SendEmailToGroup(lMember, message, iUserId, lAttach);
         }
 
         [OperationContract]
@@ -692,32 +693,43 @@ namespace ShmayaService
 		#region MessageToProvider
 
 		[OperationContract]
-        [WebInvoke(
-       Method = "POST",
-       UriTemplate = "GetMessageToProvider",
-       BodyStyle = WebMessageBodyStyle.WrappedRequest,
-       ResponseFormat = WebMessageFormat.Json)]
-        public List<MessageToProvider> GetMessageToProvider(int iUserId, DateTime? dtBeginDate, DateTime? dtEndDate)
-        {
-            return MessageToProvider.GetMessageToProvider(iUserId, dtBeginDate, dtEndDate);
-        }
+			[WebInvoke(
+				 Method = "POST",
+				 UriTemplate = "createDocumentToProviders",
+				 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+				 ResponseFormat = WebMessageFormat.Json)]
+			public int createDocumentToProviders(int iUserId, DateTime? dtBeginDate, DateTime? dtEndDate)
+			{
+				return MessageToProvider.createDocumentToProviders(iUserId, dtBeginDate, dtEndDate);
+			}
 
-        [OperationContract]
-        [WebInvoke(
-       Method = "POST",
-       UriTemplate = "SendSumMessage",
-       BodyStyle = WebMessageBodyStyle.WrappedRequest,
-       ResponseFormat = WebMessageFormat.Json)]
-        public string SendSumMessage(string folderName, string url)
-        {
-            return MessageToProvider.SendSumMessage(folderName, url);
-        }
+		//[OperationContract]
+		//      [WebInvoke(
+		//     Method = "POST",
+		//     UriTemplate = "GetMessageToProvider",
+		//     BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		//     ResponseFormat = WebMessageFormat.Json)]
+		//      public List<MessageToProvider> GetMessageToProvider(int iUserId, DateTime? dtBeginDate, DateTime? dtEndDate)
+		//      {
+		//          return MessageToProvider.GetMessageToProvider(iUserId, dtBeginDate, dtEndDate);
+		//      }
 
-        #endregion
+		//      [OperationContract]
+		//      [WebInvoke(
+		//     Method = "POST",
+		//     UriTemplate = "SendSumMessage",
+		//     BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		//     ResponseFormat = WebMessageFormat.Json)]
+		//      public string SendSumMessage(string folderName, string url)
+		//      {
+		//          return MessageToProvider.SendSumMessage(folderName, url);
+		//      }
 
-        #region VideoTranslation
+		#endregion
 
-        [OperationContract]
+		#region VideoTranslation
+
+		[OperationContract]
         [WebGet(
             ResponseFormat = WebMessageFormat.Json)]
         public double GetNumHours(string nvIdentity)

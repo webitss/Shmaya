@@ -67,7 +67,6 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 		$scope.AddNewProduct = function () {
 			$scope.pop = "<label>סוג מוצר</label><form-dropdown ng-model='newProduct.iProductTypeId' enablesearch='false' data='productTypeList' identityfield='iId' datafield='nvName'></form-dropdown>"+
 				"<label>שם מוצר</label><input type='text' class='form-control' required ng-model='newProduct.nvPruductName' required/>" 
-				//< input type= 'text' class='form-control' required ng- model='newProduct.nvPruductName' required/>";
 					alerts.custom($scope.pop, 'הוספת מוצר', $scope,
 						function () {
 							if (!$scope.newProduct.iProductTypeId || !$scope.newProduct.nvPruductName) {

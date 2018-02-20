@@ -34,42 +34,6 @@ namespace ShmayaService.Entities
 
 		#region Functions
 
-		//public static List<Conversations> GetAllConversations(int iUserId)
-  //      {
-  //          try
-  //          {
-		//		DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSysConversation_SLCT", new SqlParameter("iUserId", iUserId)).Tables[0];
-		//		List<Conversations> lConversation = new List<Conversations>();
-		//		//פונקציה שהופכת את הטבלה לרשימה
-		//		lConversation = ObjectGenerator<Conversations>.GeneratListFromDataRowCollection(dt.Rows);
-		//		return lConversation;
-		//	}
-  //          catch (Exception ex)
-  //          {
-  //              Log.ExceptionLog(ex.Message, "GetAllConversations");
-  //              return null;
-  //          }
-  //      }
-
-        //public static Conversations GetConversation(int iConversationId)
-        //{
-        //    try
-        //    {
-        //        DataSet ds = SqlDataAccess.ExecuteDatasetSP("T1Conversation_SLCT", new List<SqlParameter>() {
-        //        new SqlParameter("iConversationId",iConversationId)
-        //        });
-
-        //        Conversations Conversation = new Conversations();
-        //        Conversation = ObjectGenerator<Conversations>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
-        //        return Conversation;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.ExceptionLog(ex.Message, "GetConversation");
-        //        return null;
-        //    }
-        //}
-
         public static bool CreateNewConversation(Conversations conversation/*, int iUserId*/)
         {
             try
