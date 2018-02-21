@@ -102,7 +102,7 @@ namespace ShmayaService.Entities
 			}
 			catch(Exception ex)
 			{
-				Log.ExceptionLog(ex.Message, "sendEmailToGroup, Email, try1");
+				Log.ExceptionLog(ex.Message, "sendEmailToGroup, Email, try2");
 				return false;
 			}
 		}

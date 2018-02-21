@@ -119,14 +119,14 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 
     }
 	$scope.sendSumMessage = function () {
-		$timeout(connect.post(true, 'createDocumentToProviders', { iUserId: $scope.user.iUserId, dtBeginDate: $scope.dtStartDate, dtEndDate: $scope.dtEndDate },
+		connect.post(true, 'createDocumentToProviders', { iUserId: $scope.user.iUserId, dtBeginDate: $scope.dtStartDate, dtEndDate: $scope.dtEndDate },
 			function (result) {
-			    if (result) {
+			    if (result ! =0) {
 			        console.log(result);
 			    }
 				else
 					alerts.alert("אירעה שגיאה בלתי צפויה")
-			}),5000);
+			});
     }
 
 

@@ -108,6 +108,18 @@ namespace ShmayaService.Utilities
             }
 
         }
-        #endregion
-    }
+		public static void UpdateVat(int vat)
+		{
+			try
+			{
+				SqlDataAccess.ExecuteDatasetSP("TSysGlobalParameter_UPD", new SqlParameter("vat", vat) { });
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "UpdateVat");
+			}
+		}
+		
+		#endregion
+	}
 }

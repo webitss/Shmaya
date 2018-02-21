@@ -2,6 +2,14 @@
 companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId',
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
 		$scope.newProduct = {};
+		$scope.updateVat = function (num)
+		{
+			num = parseInt(num);
+			$rootScope.vat = num;
+			connect.post(true, 'UpdateVat', { vat: num},
+				function (result) {
+				});
+		}
 		$scope.prepareData = function () {
 			$scope.getData();
 			$scope.isDataLoaded = 0;

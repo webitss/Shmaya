@@ -14,10 +14,12 @@ using System.Configuration;
 namespace ShmayaService.Entities
 {
     [DataContract]
-    public class User:UserBasic
+    public class User
     {
-        #region Members
-        [DataMember]
+		#region Members
+		[DataMember]
+		public int iUserId { get; set; }
+		[DataMember]
         [NoSendToSQL]
         public string nvUserName { get; set; }
         [DataMember]
@@ -28,12 +30,27 @@ namespace ShmayaService.Entities
         [NoSendToSQL]
         public int iUserRoleId { get; set; }
 		[DataMember]
+		public string nvEmail { get; set; }
+		[DataMember]
+		public string nvLastName { get; set; }
+		[DataMember]
+		public string nvFirstName { get; set; }
+		[DataMember]
+		public string nvAdress { get; set; }
+		[DataMember]
 		public int iAreaId { get; set; }
-        [DataMember]
+		[DataMember]
+		public string nvPhoneNum { get; set; }
+		[DataMember]
+		public string nvMobileNum { get; set; }
+		[DataMember]
         public string nvFaxNum { get; set; }
         [DataMember]
-        public int iGenderId { get; set; }
-        [DataMember]
+		public int iGenderId { get; set; }
+		[DataMember]
+		public double nBankHours { get; set; }
+		
+		[DataMember]
         public int? iEntitlementTypeId { get; set; }
         [DataMember]
 		[NoSendToSQL]
@@ -44,7 +61,9 @@ namespace ShmayaService.Entities
         public DateTime? dtBirthDate { get; set; }
         [DataMember]
         public bool isWorker { get; set; }
-        [DataMember]
+		[DataMember]
+		public double nNumHours { get; set; }
+		[DataMember]
         public int? iCommunicationCart { get; set; }
         [DataMember]
         [NoSendToSQL]
@@ -53,16 +72,25 @@ namespace ShmayaService.Entities
         public double nBankCommunication { get; set; }
         [DataMember]
         public int iWorkerType { get; set; }
+		[DataMember]
+		[NoSendToSQL]
+		public string nvWorkerType { get; set; }
 
-        [DataMember]
+		[DataMember]
         [NoSendToSQL]
         public int? iBuyCryingDetector { get; set; }
         [DataMember]
         public double nInitBankHours { get; set; }
-        [NoSendToSQL]
+		[DataMember]
+		[NoSendToSQL]
+		public string nvEntitlementType { get; set; }
+		[NoSendToSQL]
         [DataMember]
         public List<int> lLanguage { get; set; }
-        [DataMember]
+		[DataMember]
+		[NoSendToSQL]
+		public List<int> lOrderType { get; set; }
+		[DataMember]
         [NoSendToSQL]
         public int iLastModifyUserId { get; set; }
         [DataMember]
@@ -77,11 +105,13 @@ namespace ShmayaService.Entities
         [DataMember]
         public DateTime? dtCreateDate { get; set; }
 
-        #endregion
 
-        #region Methods
 
-        public static int CheckIdentity(string nvIdentity)
+		#endregion
+
+		#region Methods
+
+		public static int CheckIdentity(string nvIdentity)
         {
             try
             {
@@ -269,9 +299,9 @@ namespace ShmayaService.Entities
             {
                 List<SqlParameter> parameters = ObjectGenerator<User>.GetSqlParametersFromObject(user);
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
-				if(user.lLanguage!=null)
+				if(user.lLanguage!=null && user.lLanguage.Count != 0)
 					parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lLanguage, "int", "lLanguage"));
-				if(user.lOrderType!=null)
+				if(user.lOrderType!=null && user.lOrderType.Count != 0)
 					parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lOrderType, "int", "lOrderType"));
                 DataSet ds = SqlDataAccess.ExecuteDatasetSP("User_UPD", parameters);
                 return int.Parse(ds.Tables[0].Rows[0][0].ToString());

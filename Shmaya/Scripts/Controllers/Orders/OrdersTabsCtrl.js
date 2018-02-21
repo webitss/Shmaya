@@ -26,6 +26,9 @@ companionApp.controller('OrdersTabsCtrl', ['$scope', '$rootScope', 'connect', '$
 			$scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
 			$scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
 			$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+			$scope.globalParameterList = $filter('filter')(result, { Key: 'globalParameter' }, true)[0].Value;
+			$rootScope.vat = $scope.globalParameterList[0].nvName;
+			$rootScope.vat = parseInt($rootScope.vat);
 			$scope.monthYearList.forEach(function (date) {
 				$scope.tmpDate1 = date.nvName.substring(0, 4);
 				$scope.tmpDate2 = date.nvName.substring(4, 6);

@@ -148,8 +148,19 @@ namespace ShmayaService
 		{
 			return User.BankHoursUpdate();
 		}
+		
 
 		#endregion
+				[OperationContract]
+		[WebInvoke(
+		 Method = "POST",
+		 UriTemplate = "UpdateVat",
+		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+		 ResponseFormat = WebMessageFormat.Json)]
+		public void UpdateVat(int vat)
+		{
+			 SysTableRow.UpdateVat(vat);
+		}
 
 		#region Order
 

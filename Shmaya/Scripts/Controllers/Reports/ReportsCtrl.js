@@ -15,7 +15,9 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+					{ title: 'מספר שעות', fieldName: 'nNumHours' },
+					{ title: 'סוג עוסק', fieldName: 'nvWorkerType' }
+					
 				];
 
 			}
@@ -36,7 +38,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+					{ title: 'מספר שעות', fieldName: 'nNumHours' },
+					{ title: 'סוג עוסק', fieldName: 'nvWorkerType' }
 				];
 			
 			}
@@ -58,7 +61,8 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'שם משפחה', fieldName: 'nvLastName' },
 					{ title: 'מ.ז.', fieldName: 'nvId' },
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
-					{ title: 'מספר שעות', fieldName: 'nNumHours' }
+					{ title: 'מספר שעות', fieldName: 'nNumHours' },
+					{ title: 'סוג עוסק', fieldName: 'nvWorkerType' }
 				];
 			}
 			else
