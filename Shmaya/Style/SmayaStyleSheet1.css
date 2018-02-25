@@ -294,3 +294,55 @@ h3 {
             width: 50px;
         }
     }
+
+
+      /*pdf*/
+
+#PdfDiv {
+    position:relative;
+        padding-top: 280px;
+}
+
+#PdfDiv .head-img {
+    position:absolute;
+    top:0;
+    width:100%;
+}
+
+
+#PdfDiv .logo-center-img {
+  
+    position: absolute;
+    top: 64px;
+    left: 30px;
+    height: 136px;
+}
+
+.shikum-img {
+      position: absolute;
+    top: 140px;
+    right: 30px;
+    height: 110px;
+}
+
+.PdfDiv h1 {
+    text-align:center;
+    display:block;
+}
+
+.sub-header {
+}
+
+.content-pdf {
+}
+
+.content-pdf span {
+}
+.content-pdf label {
+}
+      
+      
+      
+      
+      
+       /*end-pdf*/

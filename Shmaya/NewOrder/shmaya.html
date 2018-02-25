@@ -2,288 +2,305 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>דיווח ביצוע</title>
-	<link rel="shortcut icon" href="shmaya-Logo.ico" />
-	<link href="../Shmaya/bootstrap/bootstrap.css" rel="stylesheet" />
-	<link href="../Shmaya/bootstrap/bootstrap-theme.css" rel="stylesheet" />
-	<link href="../Shmaya/bootstrap/bootstrap-rtl.css" rel="stylesheet" />
-	<link href="../Shmaya/bootstrap/bootstrap-theme-rtl.css" rel="stylesheet" />
-	<link href="../Style/SmayaStyleSheet1.css" rel="stylesheet" />
-	<!--<link href="Style/ayelet_hashachar-companionship.css" rel="stylesheet" />-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>דיווח ביצוע</title>
+    <link rel="shortcut icon" href="shmaya-Logo.ico" />
+    <link href="../Shmaya/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="../Shmaya/bootstrap/bootstrap-theme.css" rel="stylesheet" />
+    <link href="../Shmaya/bootstrap/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="../Shmaya/bootstrap/bootstrap-theme-rtl.css" rel="stylesheet" />
+    <link href="../Style/SmayaStyleSheet1.css" rel="stylesheet" />
+    <!--<link href="Style/ayelet_hashachar-companionship.css" rel="stylesheet" />-->
 </head>
 <body ng-app="NOApp" ng-controller="NewOrderCtrl">
-	<div class="pos-relative">
-		<!--ng-if="!showPdf"-->
-		<div class="header-shmaya">
-			<img src="../Images/bg-shmaya.png" />
-			<img src="../Images/logo-ravacha.png" />
-		</div>
+    <div class="pos-relative">
+        <!--ng-if="!showPdf"-->
+        <div class="header-shmaya">
+            <img src="../Images/bg-shmaya.png" />
+            <img src="../Images/logo-ravacha.png" />
+        </div>
 
-		<div class="header-form"><span>דוח ביצוע</span></div>
-		<div class="container">
-			<form name="orderForm" id="orderForm">
-				<div class="pull-left">
-					<h3>פרטים אישיים</h3>
-					<div class="row">
+        <div class="header-form"><span>דוח ביצוע</span></div>
+        <div class="container">
+            <form name="orderForm" id="orderForm">
+                <div class="pull-left">
+                    <h3>פרטים אישיים</h3>
+                    <div class="row">
 
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">מספר זהות לקוח<span ng-if="!order.nvIdentity" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="text" ng-model="order.nvIdentityCustomer" required ng-blur="checkIdentityCustomer()" />
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">שם לקוח<span ng-if="!order.nameCustomer" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">מספר זהות מתורגמן<span ng-if="!order.nvIdentity" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="text" ng-model="order.nvIdentityProvider" required ng-blur="checkIdentityProvider()" />
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">שם מתורגמן<span ng-if="!order.iSelectedTranslator" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="text" ng-model="order.nameTranslator" disabled required style="cursor: not-allowed" />
-							</div>
-						</div>
-
-
-					</div>
-
-					<h3>פרטי הזמנה</h3>
-					<div class="row">
-
-						<div class="form-item col-md-4">
-							<span class="text col-md-4 p-none">סוג הזמנה<span ng-if="!order.iTypeOrder" style="color:red">*</span></span>
-							<div style="text-align:right" class="input col-md-8 p-none">
-								<order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
-							</div>
-						</div>
-
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">סוג תרגום<span ng-if="!order.iTypeTranslation" style="color:red">*</span></span>
-							<div style="text-align:right" class="input col-md-8 p-none">
-								<order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required ng-change="selectTypeTranslating(order.iTypeTranslation)"></order-form-dropdown>
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">מטרת התרגום<span ng-if="!order.nvRemark" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="text" ng-model="order.nvRemark" />
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">עיר<span ng-if="!order.iCityId" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">איזור<span ng-if="!order.iAreaId" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<order-form-dropdown ng-model="order.iAreaId" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
-							</div>
-						</div>
-
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">מקום תרגום</span>
-							<div class="input col-md-8 p-none">
-								<input type="text" ng-model="order.nvStreet" />
-							</div>
-						</div>
-
-					</div>
-
-					<h3>זמנים</h3>
-					<div class="row">
-
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">תאריך<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="date" ng-model="order.dtDateTraslation_original" required />
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">שעת התחלה<span ng-if="!order.dtTimeBegin_original" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()" required />
-							</div>
-						</div>
-						<div class="form-item  col-md-4 ">
-							<span class="text col-md-4 p-none">משך תרגום<span ng-if="!order.dtTimeTranslation_original" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input type="time" ng-model="order.dtTimeTranslation_original" ng-blur="calculateTimeEnd()" required />
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">זמן סיום</span>
-							<div class="input col-md-8 p-none">
-								<input type="time" ng-model="order.dtTimeEnd" disabled />
-							</div>
-						</div>
-						<div ng-if="showWaiting">
-							<div class="form-item  col-md-4">
-								<span class="text col-md-4 p-none">זמן המתנה</span>
-								<div class="input col-md-8 p-none">
-									<input type="time" ng-model="order.dtTimeWaiting_original" />
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="form-check form-check-inline">
-						<input class="h-22 v-align-b" type="checkbox" name="logoDisplayed" value="true" ng-model="order.bAgree" form-control-name="logoDisplayed" />
-						<span class="v-align-m">
-							ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין.<br />
-							בכפוף לביצוע התשלום עבור הרכיבים המפורים ב"פרטי העבודה" ולאור מהות ההתקשרות ביני לבין המזמין. התמורה הנ"ל הינה מלאה, סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל.
-						</span>
-					</div>
-					<h3>חתימות</h3>
-					<div class="row">
-
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
-							<div class="input col-md-8 p-none">
-								<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
-								<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
-							</div>
-						</div>
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">חתימת לקוח</span>
-							<div class="input  col-md-8 p-none">
-								<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
-								<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
-							</div>
-						</div>
-
-						<div class="form-item  col-md-4">
-							<span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
-							<div class="input  col-md-8 p-none">
-								<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
-								<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
-							</div>
-						</div>
-
-					</div>
-
-					<button type="submit" class="end-btn" ng-disabled="!order.bAgree" ng-click="sendReport()"><span>שלח דוח</span></button>
-				</div>
-			</form>
-		</div>
-
-		<div ng-if="noIdentity" class="popup-success-wrap">
-			<!--ng-if="!showPdf"-->
-			<div class="popup-success">
-				<div class="float-left">
-					<button class="close" ng-click="closePopupIdentity()">X</button>
-				</div>
-				<span>{{noIdentityAlert}}</span>
-			</div>
-		</div>
-		<div ng-if="noValid" class="popup-success-wrap">
-			<div class="popup-success">
-				<div class="float-left">
-					<button class="close" ng-click="closePopupValid()">X</button>
-				</div>
-				<span>ערכים נחוצים חסרים</span>
-			</div>
-		</div>
-	</div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">מספר זהות לקוח<span ng-if="!order.nvIdentity" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nvIdentityCustomer" required ng-blur="checkIdentityCustomer()" />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">שם לקוח<span ng-if="!order.nameCustomer" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nameCustomer" disabled required style="cursor: not-allowed" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">מספר זהות מתורגמן<span ng-if="!order.nvIdentity" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nvIdentityProvider" required ng-blur="checkIdentityProvider()" />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">שם מתורגמן<span ng-if="!order.iSelectedTranslator" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nameTranslator" disabled required style="cursor: not-allowed" />
+                            </div>
+                        </div>
 
 
+                    </div>
 
-	<div ng-if="successSend" class="popup-success-wrap">
-		<div class="popup-success">
-			<div class="float-left">
-				<button class="close" ng-click="closePopupSend()">X</button>
-			</div>
+                    <h3>פרטי הזמנה</h3>
+                    <div class="row">
 
-			<img src="../Images/good-icon.png" />
-			<span>הדוח נשלח בהצלחה!</span>
-		</div>
-	</div>
+                        <div class="form-item col-md-4">
+                            <span class="text col-md-4 p-none">סוג הזמנה<span ng-if="!order.iTypeOrder" style="color: red">*</span></span>
+                            <div style="text-align: right" class="input col-md-8 p-none">
+                                <order-form-dropdown ng-model="order.iTypeOrder" name="orderType" enablesearch="false" data="orderTypeList" ng-change="selectTypeTranslation()" required></order-form-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">סוג תרגום<span ng-if="!order.iTypeTranslation" style="color: red">*</span></span>
+                            <div style="text-align: right" class="input col-md-8 p-none">
+                                <order-form-dropdown ng-model="order.iTypeTranslation" name="translateType" enablesearch="false" data="translateTypeList" required ng-change="selectTypeTranslating(order.iTypeTranslation)"></order-form-dropdown>
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">מטרת התרגום<span ng-if="!order.nvRemark" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nvRemark" />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">עיר<span ng-if="!order.iCityId" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <order-form-dropdown ng-model="order.iCityId" name="city" enablesearch="true" data="city" required></order-form-dropdown>
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">איזור<span ng-if="!order.iAreaId" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <order-form-dropdown ng-model="order.iAreaId" name="area" enablesearch="false" data="areaList" required></order-form-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">מקום תרגום</span>
+                            <div class="input col-md-8 p-none">
+                                <input type="text" ng-model="order.nvStreet" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <h3>זמנים</h3>
+                    <div class="row">
+
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">תאריך<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="date" ng-model="order.dtDateTraslation_original" required />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">שעת התחלה<span ng-if="!order.dtTimeBegin_original" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="time" ng-model="order.dtTimeBegin_original" ng-blur="calculateTimeEnd()" required />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4 ">
+                            <span class="text col-md-4 p-none">משך תרגום<span ng-if="!order.dtTimeTranslation_original" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input type="time" ng-model="order.dtTimeTranslation_original" ng-blur="calculateTimeEnd()" required />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">זמן סיום</span>
+                            <div class="input col-md-8 p-none">
+                                <input type="time" ng-model="order.dtTimeEnd" disabled />
+                            </div>
+                        </div>
+                        <div ng-if="showWaiting">
+                            <div class="form-item  col-md-4">
+                                <span class="text col-md-4 p-none">זמן המתנה</span>
+                                <div class="input col-md-8 p-none">
+                                    <input type="time" ng-model="order.dtTimeWaiting_original" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="h-22 v-align-b" type="checkbox" name="logoDisplayed" value="true" ng-model="order.bAgree" form-control-name="logoDisplayed" />
+                        <span class="v-align-m">ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין.<br />
+                            בכפוף לביצוע התשלום עבור הרכיבים המפורים ב"פרטי העבודה" ולאור מהות ההתקשרות ביני לבין המזמין. התמורה הנ"ל הינה מלאה, סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל.
+                        </span>
+                    </div>
+                    <h3>חתימות</h3>
+                    <div class="row">
+
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+                            <div class="input col-md-8 p-none">
+                                <input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
+                                <img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
+                            </div>
+                        </div>
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">חתימת לקוח</span>
+                            <div class="input  col-md-8 p-none">
+                                <input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
+                                <img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
+                            </div>
+                        </div>
+
+                        <div class="form-item  col-md-4">
+                            <span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
+                            <div class="input  col-md-8 p-none">
+                                <input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
+                                <img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="end-btn" ng-disabled="!order.bAgree" ng-click="sendReport()"><span>שלח דוח</span></button>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="noIdentity" class="popup-success-wrap">
+            <!--ng-if="!showPdf"-->
+            <div class="popup-success">
+                <div class="float-left">
+                    <button class="close" ng-click="closePopupIdentity()">X</button>
+                </div>
+                <span>{{noIdentityAlert}}</span>
+            </div>
+        </div>
+        <div ng-if="noValid" class="popup-success-wrap">
+            <div class="popup-success">
+                <div class="float-left">
+                    <button class="close" ng-click="closePopupValid()">X</button>
+                </div>
+                <span>ערכים נחוצים חסרים</span>
+            </div>
+        </div>
+    </div>
 
 
-	<div id="PdfDiv">
-		<!--ng-if="showPdf"-->
-		<!--<img src="../Images/בלנק מרכז תמיכה לתקשורת-03.png" />
-	<img src="../Images/בלנק מרכז תמיכה לתקשורת-04.png" />
-	<img src="../Images/בלנק מרכז תמיכה לתקשורת-05.png" />-->
-		<label>תאריך התרגום</label>
-		<h1>דוח ביצוע</h1>
-		<h1>פרטי נותן השירות</h1>
-		<label>מספר זהות</label><label>{{order.nvIdentityProvider}}</label>
-		<label>שם</label><label>{{order.nameTranslator}}</label>
-		<h1>פרטי לקוח</h1>
-		<label>מספר זהות</label><label>{{order.nvIdentityCustomer}}</label>
-		<label>שם</label><label>{{order.nameCustomer}}</label>
-		<h1>פרטי העבודה</h1>
-		<label>סוג ההזמנה</label><label>{{order.iTypeOrder}}</label>
-		<label>סוג התרגום</label><label>{{order.iTypeTranslation}}</label>
-		<label>מטרת התרגום</label><label>{{order.nvRemark}}</label><br />
-		<label>עיר</label><label>{{order.iCityId}}</label>
-		<label>איזור</label><label>{{order.iAreaId}}</label>
-		<label>מקום התרגום</label><label>{{order.nvStreet}}</label><br />
-		<label>שעת התחלה</label><label>{{dtTimeBegin_original}}</label>
-		<label>משך התרגום</label><label>{{order.dtTimeTranslation_original}}</label>
-		<label>שעת סיום</label><label>{{order.dtTimeEnd}}</label><br />
-		<label>זמן המתנה</label><label>{{order.dtTimeWaiting_original}}</label><br />
-		<label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
-		<label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
-		<label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
-		<h3>חתימות</h3>
-		<div class="row">
 
-			<div class="form-item  col-md-4">
-				<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
-				<div class="input col-md-8 p-none">
-					<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
-					<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
-				</div>
-			</div>
-			<div class="form-item  col-md-4">
-				<span class="text col-md-4 p-none">חתימת לקוח</span>
-				<div class="input  col-md-8 p-none">
-					<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
-					<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
-				</div>
-			</div>
+    <div ng-if="successSend" class="popup-success-wrap">
+        <div class="popup-success">
+            <div class="float-left">
+                <button class="close" ng-click="closePopupSend()">X</button>
+            </div>
 
-			<div class="form-item  col-md-4">
-				<span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
-				<div class="input  col-md-8 p-none">
-					<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
-					<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
-				</div>
-			</div>
+            <img src="../Images/good-icon.png" />
+            <span>הדוח נשלח בהצלחה!</span>
+        </div>
+    </div>
 
-		</div>
-	</div>
 
-	<script src="../Scripts/Libraries/jquery-3.1.1.min.js"></script>
-	<script src="../Scripts/Libraries/angular.min.js"></script>
-	<script src="../Scripts/Libraries/angular-route.min.js"></script>
-	<script src="../Scripts/Libraries/angular-animate.min.js"></script>
-	<script src="../Scripts/Libraries/bootstrap/js/bootstrap.js"></script>
-	<script src="../Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
-	<script src="../Scripts/Factories/createDialog.js"></script>
-	<script src="SignatureDirective.js"></script>
-	<script src="../Scripts/Libraries/signature_pad.min.js"></script>
+    <div id="PdfDiv">
+        <img class="head-img" src="../Images/head.png" />
+        <img class="logo-center-img" src="../Images/logo-center.png" />
+        <img class="shikum-img" src="../Images/shikum.png" />
 
-	<script src="NewOrderApp.js"></script>
-	<script src="NewOrderCtrl.js"></script>
-	<script src="../Scripts/Factories/orderConnect.js"></script>
-	<script src="../Scripts/Factories/orderAlerts.js"></script>
-	<script src="../Scripts/Directives/OrderFormDropdown.js"></script>
+        <label>תאריך התרגום</label>
+
+        <h1>דוח ביצוע</h1>
+
+        <label class="sub-header">פרטי נותן השירות</label>
+        <div class="row content-pdf">
+            <div class="col-md-6">
+                <span>מספר זהות</span>
+                <label>{{order.nvIdentityProvider}}</label>
+            </div>
+
+            <div class="col-md-6">
+                <span>שם</span>
+                <label>{{order.nameTranslator}}</label>
+            </div>
+        </div>
+
+        <label class="sub-header">פרטי לקוח</label>
+        <div class="row content-pdf">
+            <div class="col-md-6">
+                <span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
+            </div>
+            <div class="col-md-6">
+                <span>שם</span><label>{{order.nameCustomer}}</label>
+            </div>
+        </div>
+        <h1>פרטי העבודה</h1>
+        <label>סוג ההזמנה</label><label>{{order.iTypeOrder}}</label>
+        <label>סוג התרגום</label><label>{{order.iTypeTranslation}}</label>
+        <label>מטרת התרגום</label><label>{{order.nvRemark}}</label><br />
+        <label>עיר</label><label>{{order.iCityId}}</label>
+        <label>איזור</label><label>{{order.iAreaId}}</label>
+        <label>מקום התרגום</label><label>{{order.nvStreet}}</label><br />
+        <label>שעת התחלה</label><label>{{dtTimeBegin_original}}</label>
+        <label>משך התרגום</label><label>{{order.dtTimeTranslation_original}}</label>
+        <label>שעת סיום</label><label>{{order.dtTimeEnd}}</label><br />
+        <label>זמן המתנה</label><label>{{order.dtTimeWaiting_original}}</label><br />
+        <label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
+        <label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
+        <label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
+        <h3>חתימות</h3>
+        <div class="row">
+
+            <div class="form-item  col-md-4">
+                <span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+                <div class="input col-md-8 p-none">
+                    <input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
+                    <img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
+                </div>
+            </div>
+            <div class="form-item  col-md-4">
+                <span class="text col-md-4 p-none">חתימת לקוח</span>
+                <div class="input  col-md-8 p-none">
+                    <input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
+                    <img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
+                </div>
+            </div>
+
+            <div class="form-item  col-md-4">
+                <span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
+                <div class="input  col-md-8 p-none">
+                    <input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
+                    <img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../Scripts/Libraries/jquery-3.1.1.min.js"></script>
+    <script src="../Scripts/Libraries/angular.min.js"></script>
+    <script src="../Scripts/Libraries/angular-route.min.js"></script>
+    <script src="../Scripts/Libraries/angular-animate.min.js"></script>
+    <script src="../Scripts/Libraries/bootstrap/js/bootstrap.js"></script>
+    <script src="../Scripts/Libraries/ui-bootstrap-tpls-2.4.0.min.js"></script>
+    <script src="../Scripts/Factories/createDialog.js"></script>
+    <script src="SignatureDirective.js"></script>
+    <script src="../Scripts/Libraries/signature_pad.min.js"></script>
+
+    <script src="NewOrderApp.js"></script>
+    <script src="NewOrderCtrl.js"></script>
+    <script src="../Scripts/Factories/orderConnect.js"></script>
+    <script src="../Scripts/Factories/orderAlerts.js"></script>
+    <script src="../Scripts/Directives/OrderFormDropdown.js"></script>
 
 
 </body>
