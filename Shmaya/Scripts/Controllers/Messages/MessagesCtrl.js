@@ -105,11 +105,19 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
                 connect.post(true, 'SendSMSToGroup', { lMember: $scope.userList, message: $scope.messageToSend, iUserId: $rootScope.user.iUserId },
 					function (result) {
 						$scope.res = result;
-						if ($rootScope.messageFromCust == true)
-						{
+						if ($rootScope.messageFromCust == true) {
+							$rootScope.messageFromCust = false;
 							$scope.getAllMessages();
+							$scope.newMessage1.dialogIsOpen = false;
 						}
-						if ($rootScope.messageFromCust == true)
+						if ($scope.newMessage2.dialogIsOpen == true)
+							$scope.newMessage2.dialogIsOpen = false;
+						alerts.alert('ההודעה נשלחה בהצלחה')
+					}, function () {
+						alerts.alert('השליחה נכשלה');
+						if ($scope.newMessage2.dialogIsOpen == true)
+							$scope.newMessage2.dialogIsOpen = false;
+						if ($rootScope.newMessage1.dialogIsOpen == true)
 							$scope.newMessage1.dialogIsOpen = false;
 					});
             }
@@ -121,11 +129,11 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	$scope.sendSumMessage = function () {
 		connect.post(true, 'createDocumentToProviders', { iUserId: $scope.user.iUserId, dtBeginDate: $scope.dtStartDate, dtEndDate: $scope.dtEndDate },
 			function (result) {
-			    if (result ! =0) {
-			        console.log(result);
+				if (result) {
+					alerts.alert("ההודעה נשלחה בהצלחה");
 			    }
 				else
-					alerts.alert("אירעה שגיאה בלתי צפויה")
+					alerts.alert("השליחה נכשלה")
 			});
     }
 

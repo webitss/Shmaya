@@ -20,8 +20,11 @@
             //required when 2 grids in one page
             gridIdentity: '@?',
             showAll: '=?'
-        },
-        link: function (scope, elem, attr) {
+		},
+
+		link: function (scope, elem, attr) {
+			var item;
+			var status;
 
 
             //in first grid load
@@ -155,13 +158,21 @@
 					//var data = scope.data.filter(word => word <= parseInt(scope.filterFields.nBankHours));
 				}
 				else
-					if (scope.filterFields.iStatusId) {
-						var item = {status: scope.filterFields.iStatusId }
+					if (scope.filterFields.iStatusId )
+					{
+						item = Object.assign({}, scope.filterFields);
+						if (item.iStatusId)
+							item.iStatusId = undefined;
+						item.status = scope.filterFields.iStatusId
 						var data = ($filter('orderBy')($filter('filter')(scope.data, item), scope.currentsort.name, scope.currentsort.value));
-				}
+					
 
-				else
-					var data = ($filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
+					}
+
+					else {
+						var data = ($filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
+					}
+			
                 if (scope.showAll)
                     scope.filteredData = data;
                 else

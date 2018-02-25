@@ -1,10 +1,11 @@
 ﻿"use strict"
 var a;
-NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts', '$rootScope','createDialog',
-	function ($scope, orderConnect, $filter, orderAlerts, $rootScope, createDialog) {
+NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAlerts', '$rootScope', 'createDialog', '$location',
+	function ($scope, orderConnect, $filter, orderAlerts, $rootScope, createDialog, $location) {
 		$scope.isSign1 = false
 		$scope.isSign2 = false
 		$scope.isSign3 = false
+		$scope.showPdf = false
         $scope.order =
             {
 			dtDateTraslation_original: new Date(),
@@ -59,7 +60,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 			$scope.showBtnSignature = true;
 			createDialog({
 				scope: $scope,
-				templateUrl: 'Signature.html', //+ $rootScope.appVersionParameter, 
+				templateUrl: 'Signature.html', 
 				title: 'חתימה',
 				backdrop: true,
 				modalClass: "modal modalAlert"
@@ -184,19 +185,57 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
             $scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
             orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite':0 }, function (result) {
-				if (result && result > 0) {
-					console.log(JSON.stringify($scope.order))
+				if (result.iOrderId && result.iOrderId > 0) {
                     $scope.order =
                     {
                         dtDateTraslation_original: new Date()
                     }
-                    $scope.successSend = true;
+					$scope.successSend = true;
+					$scope.showPdf = true;
+					$scope.html = document.getElementById('PdfDiv').innerHTML;
+					orderConnect.post(true, 'GeneratePdfFromHtml', {
+						title: '',
+						html: $scope.html,
+						css: null /*css*/,
+						sFileName: 'pdfReport'
+					}, function (result) {
+						if (result)
+						{
+							console.log("generate pdf");
+							$scope.showPdf = false;
+						}
+					})
                 }
                 else {
                     $scope.noIdentity = true;
                     $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
-            });
+			});
+
+
+
+
+				//var css;
+
+				//css = '.wait.modal-backdrop {visibility: hidden !important;}' + '.screen-height { max-height: none !important; overflow : auto; height: inherit !important; }'
+				//	+ '.fc-scroller.fc-day-grid-container{ overflow-y: hidden !important; } ';
+				////+'.fc-head:first-child {background: red !important;  display: table-header-group !important; border :15px solid green; }'
+				//// 'table, tr, td, th, tbody, thead, tfoot { page-break-inside: avoid !important; }';
+
+				//var styleFiles = ['bootstrap.min.css', 'bootstrap-rtl.min.css', 'jquery-ui.min.css', 'font-awesome.css', 'font-awesome.min.css', 'flaticon.css',
+				//	'calendar/fullcalendar.css', 'grid-style.css', 'directives-style.css', 'StyleSheet.css', 'NefeshStyle.css', 'StudentWorkersMembers.css', 'after-schools-style.css'];
+
+
+				//angular.forEach(styleFiles, function (fileName) {
+				//	$http.get('Style/' + fileName).success(function (response) {
+				//		css += response.split('../').join(document.location.origin + document.location.pathname.split('index.html')[0]);
+				//	});
+				//});
+
+
+		
+
+
         };
 
         $scope.getData();

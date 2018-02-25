@@ -3,7 +3,7 @@
 companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'codeTablesName', '$timeout', '$filter','alerts',
 		function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter,alerts) {
 			//לא נרשמו הערות 
-			$scope.noRemark = null;
+			$scope.noConversation = null;
 
 			$scope.bIsNewRemarkOpen = false;
 			$scope.showNewRemark = false;
@@ -44,6 +44,7 @@ companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'code
 					$scope.bIsNewRemarkOpen = false;
 					$scope.newRemark = {};
 					var savingStatus = "שיחה נוספה בהצלחה"
+					$scope.noConversation = null;
 					$rootScope.notification(savingStatus);
 					$scope.getAllRemarks();
 				});

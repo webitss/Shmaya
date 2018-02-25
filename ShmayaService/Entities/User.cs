@@ -228,7 +228,7 @@ namespace ShmayaService.Entities
                     message.nvSubject = "שיחזור סיסמא";
                     message.nvTo = user.nvEmail;
                     message.nvFrom = ConfigurationManager.AppSettings["mailFrom"].ToString();
-                    bool b = Messages.SendEmailToOne(message);
+                    bool b = Messages.SendEmailToOne(message,null);
                     if (b == false)
                         return -1;
                     //return "שליחת המייל נכשלה";

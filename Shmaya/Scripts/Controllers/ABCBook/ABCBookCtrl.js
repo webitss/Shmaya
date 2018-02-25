@@ -229,7 +229,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	                iUserId: user.iUserId,
 	                nvName: user.nvFirstName + ' ' + user.nvLastName,
 	                nvEmail: user.nvEmail,
-	                nvMobileNumber: user.nvMobileNumber,
+	                nvMobileNum: user.nvMobileNum,
 	                bChecked: user.bChecked
 	            };
 	            $rootScope.listToSend.push($scope.aMember);
@@ -317,8 +317,13 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 						$scope.ABCBookCustomersCopy = angular.copy($scope.ABCBookCustomers);
 					    $scope.isDataLoadedCustomers++;
 					});
-	        }
-	        else if (!$scope.showCustomer) {
+			}
+			else if (!$scope.showCustomer && !$scope.showAdmin) {
+			
+					connect.post(true, 'GetUserCodeTables', { iUserId: $rootScope.user.iUserId }, function (result) {
+						$scope.codeTables = result;
+						$scope.userTypeList = $filter('filter')(result, { Key: 'userType' }, true)[0].Value;
+					
 	            $scope.page = 'נותן שרות';
 	            $scope.userType = 3;
 				connect.post(true, 'GetUsersBasic',
@@ -338,6 +343,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					        })
 					    })
 					    $scope.isDataLoadedProviders++;
+					});
 					});
 	        }
 	        if ($scope.showAdmin) {

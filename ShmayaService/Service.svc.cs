@@ -175,17 +175,6 @@ namespace ShmayaService
             return Orders.GetOrders();
         }
 
-        //[OperationContract]
-        //[WebInvoke(
-        //   Method = "POST",
-        //   UriTemplate = "GetOrdersByStatus",
-        //   BodyStyle = WebMessageBodyStyle.WrappedRequest,
-        //   ResponseFormat = WebMessageFormat.Json)]
-        //public List<Orders> GetOrdersByStatus(int iUserId)
-        //{
-        //    return Orders.GetOrdersByStatus(iUserId);
-        //}
-
         [OperationContract]
         [WebInvoke(
            Method = "POST",
@@ -214,7 +203,7 @@ namespace ShmayaService
       UriTemplate = "OrderUpdate",
       BodyStyle = WebMessageBodyStyle.WrappedRequest,
       ResponseFormat = WebMessageFormat.Json)]
-        public int? OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
+        public Orders OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
         {
             return Orders.OrderUpdate(order, iUserManagerId, prevTimeTranslation);
         }
@@ -225,7 +214,7 @@ namespace ShmayaService
           UriTemplate = "OrderInsert",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public int? OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
+        public Orders OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
         {
             return Orders.OrderInsert(order, iUserManagerId, isFromSite);
         }
@@ -297,7 +286,7 @@ namespace ShmayaService
            UriTemplate = "SendEmailToGroup",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public bool sendEmailToGroup(List<UserBasic> lMember, Messages message, int iUserId, List<Attachment> lAttach)
+        public bool sendEmailToGroup(List<User> lMember, Messages message, int iUserId, List<Attachment> lAttach)
         {
             return Messages.SendEmailToGroup(lMember, message, iUserId, lAttach);
         }
@@ -330,9 +319,9 @@ namespace ShmayaService
           UriTemplate = "SendSMSToGroup",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public static bool SendEmailToOne(Messages message)
+        public static bool SendEmailToOne(Messages message, List<Attachment> lAttach)
         {
-            return Messages.SendEmailToOne(message);
+            return Messages.SendEmailToOne(message, lAttach);
         }
 
 
@@ -713,29 +702,6 @@ namespace ShmayaService
 			{
 				return MessageToProvider.createDocumentToProviders(iUserId, dtBeginDate, dtEndDate);
 			}
-
-		//[OperationContract]
-		//      [WebInvoke(
-		//     Method = "POST",
-		//     UriTemplate = "GetMessageToProvider",
-		//     BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		//     ResponseFormat = WebMessageFormat.Json)]
-		//      public List<MessageToProvider> GetMessageToProvider(int iUserId, DateTime? dtBeginDate, DateTime? dtEndDate)
-		//      {
-		//          return MessageToProvider.GetMessageToProvider(iUserId, dtBeginDate, dtEndDate);
-		//      }
-
-		//      [OperationContract]
-		//      [WebInvoke(
-		//     Method = "POST",
-		//     UriTemplate = "SendSumMessage",
-		//     BodyStyle = WebMessageBodyStyle.WrappedRequest,
-		//     ResponseFormat = WebMessageFormat.Json)]
-		//      public string SendSumMessage(string folderName, string url)
-		//      {
-		//          return MessageToProvider.SendSumMessage(folderName, url);
-		//      }
-
 		#endregion
 
 		#region VideoTranslation
@@ -769,6 +735,17 @@ namespace ShmayaService
         {
             return FileManageCtrl.GenerateAttendanceReport(folderName, url);
         }
-        #endregion
-    }
+
+		[OperationContract]
+		[WebInvoke(
+	 Method = "POST",
+	 UriTemplate = "GeneratePdfFromHtml",
+	 BodyStyle = WebMessageBodyStyle.WrappedRequest,
+	 ResponseFormat = WebMessageFormat.Json)]
+		public string GeneratePdfFromHtml(string title, string html, string css, string sFileName)
+		{
+			return FileManageCtrl.GeneratePdfFromHtml(title, html, css, sFileName);
+		}
+		#endregion
+	}
 }

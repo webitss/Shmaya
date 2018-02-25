@@ -4,7 +4,7 @@
 				$rootScope.newMessage1 = { dialogIsOpen: false };
 				$rootScope.messageFromCust = false;
 				//לא התבצעו שיחות 
-				$scope.noMessage = null;
+				$scope.noConversation = null;
 
 				$scope.bIsNewMessageOpen = false;
 				$scope.showNewMessage = false;
@@ -47,6 +47,7 @@
 						$scope.bIsNewMessageOpen = false;
 						$scope.newMessage = {};
 						var savingStatus = "שיחה נוספה בהצלחה"
+						$scope.noConversation = null;
 						$rootScope.notification(savingStatus);
 						$scope.getAllMessages();
 					});

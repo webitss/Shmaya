@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -27,46 +29,69 @@ namespace ShmayaService.Entities
 		public string nTariffToFirst { get; set; }
 		[DataMember]
 		public string nTariffToSecond { get; set; }
+	
 
-
-		public static int createDocumentToProviders(int iUserId, DateTime? dtBeginDate, DateTime? dtEndDate)
+	public static int createDocumentToProviders(int iUserId, DateTime? dtBeginDate, DateTime? dtEndDate)
 		{
 			try
 			{
-				List<SqlParameter> parameters = new List<SqlParameter>();
-				parameters.Add(new SqlParameter("iUserId", iUserId));
-				parameters.Add(new SqlParameter("dtBeginDate", dtBeginDate));
-				parameters.Add(new SqlParameter("dtEndDate", dtEndDate));
-				//data table שולף טבלה
-				DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSumMessage_SLCT", parameters).Tables[0];
-				List<MessageToProvider> lToProvider = new List<MessageToProvider>();
-				lToProvider = ObjectGenerator<MessageToProvider>.GeneratListFromDataRowCollection(dt.Rows);
+				FileManageCtrl.DeleteAllFile(AppDomain.CurrentDomain.BaseDirectory + "Files\\reports");
 
-				//data table שולף טבלה
-				DataTable dt2 = SqlDataAccess.ExecuteDatasetSP("TOrdersByStatus_SLCT", new SqlParameter("iUserId", iUserId)).Tables[0];
-				List<Orders> lOrders = new List<Orders>();
-				lOrders = ObjectGenerator<Orders>.GeneratListFromDataRowCollection(dt2.Rows);
 
-				string sFileName = "_" + DateTime.Now.ToFileTime().ToString();
-				string sFileName2 = "_" + DateTime.Now.ToFileTime().ToString();
-				string path = AppDomain.CurrentDomain.BaseDirectory + "Files\\" + sFileName + ".xlsx";
-				string path2 = AppDomain.CurrentDomain.BaseDirectory + "Files\\" + sFileName2 + ".xlsx";
-				string[] str = { "זמן תרגום","סהכ לתשלום","תשלום שעה ראשונה","תשלום שעה שניה" };
-				string[] str2 = { "שם לקוח", "שם מתורגמן", "סוג הזמנה", "סוג תרגום" ,"תאריך תרגום","זמן תרגום"};
-				Messages message = new Messages();
-				message.nvFrom = System.Configuration.ConfigurationManager.AppSettings["mailFrom"];
-				message.nvSubject = "דוח סיכום חודשי";
-				message.nvMessage = "שלום. להלן פירוט השעות שבצעת מתאריך" + dtBeginDate + "עד תאריך" + dtEndDate + "ובנוסף רשימת הזמנות שממתינות לאישור תשלום - לטיפולך";
-				List<UserBasic> lUser = new List<UserBasic>();
+				List <UserBasic> lUser = new List<UserBasic>();
 				lUser = UserBasic.GetUsersBasic(3);
-				ExcelHendler.ExportToExcel(dt, "aaa", str, path);
-				ExcelHendler.ExportToExcel(dt2, "aaa", str2, path2);
-				List<Attachment> lAttach = new List<Attachment>();
-				lAttach.Add(new Attachment(path));
-				lAttach.Add(new Attachment(path2));
-				bool isSuccess = Messages.SendEmailToGroup(lUser, message, 1, lAttach);
-				if (isSuccess == false)
-					return 0;
+				foreach (var user in lUser)
+				{
+				
+						List<SqlParameter> parameters = new List<SqlParameter>();
+						parameters.Add(new SqlParameter("iUserId", user.iUserId));
+						parameters.Add(new SqlParameter("dtBeginDate", dtBeginDate));
+						parameters.Add(new SqlParameter("dtEndDate", dtEndDate));
+						//data table שולף טבלה
+						DataTable dt = SqlDataAccess.ExecuteDatasetSP("TSumMessage_SLCT", parameters).Tables[0];
+						List<MessageToProvider> lToProvider = new List<MessageToProvider>();
+						lToProvider = ObjectGenerator<MessageToProvider>.GeneratListFromDataRowCollection(dt.Rows);
+
+						//data table שולף טבלה
+						DataTable dt2 = SqlDataAccess.ExecuteDatasetSP("TOrdersByStatus_SLCT", new SqlParameter("iUserId", user.iUserId)).Tables[0];
+						List<Orders> lOrders = new List<Orders>();
+						lOrders = ObjectGenerator<Orders>.GeneratListFromDataRowCollection(dt2.Rows);
+
+						string sFileName = "פירוט שעות";
+						string sFileName2 = "רשימת הזמנות";
+						string path = AppDomain.CurrentDomain.BaseDirectory + "Files\\" +"reports\\"+ sFileName + "_" + DateTime.Now.ToFileTime().ToString() + ".xlsx";
+						string path2 = AppDomain.CurrentDomain.BaseDirectory + "Files\\" + "reports\\" + sFileName2 + "_" + DateTime.Now.ToFileTime().ToString() + ".xlsx";
+						string[] str = { "זמן תרגום", "סהכ לתשלום", "תשלום שעה ראשונה", "תשלום שעה שניה" };
+						string[] str2 = { "שם לקוח", "שם מתורגמן", "סוג הזמנה", "סוג תרגום", "תאריך תרגום", "זמן תרגום" };
+						Messages message = new Messages();
+						message.nvFrom = System.Configuration.ConfigurationManager.AppSettings["mailFrom"];
+						message.nvTo = user.nvEmail;
+						message.nvSubject = "דוח סיכום חודשי";
+
+						string dtBeginDateString = dtBeginDate != null ? dtBeginDate.Value.ToString("dd-MM-yyyy") : "n/a";
+						string dtEndDateString = dtEndDate != null ? dtEndDate.Value.ToString("dd-MM-yyyy") : "n/a";
+
+						if (lToProvider != null && lToProvider.Count != 0 && lOrders != null && lOrders.Count != 0)
+							message.nvMessage = " שלום. מצ\"ב פירוט השעות שבצעת מתאריך" + " " + dtBeginDateString + " " + "עד תאריך " + dtEndDateString + " " + "ובנוסף רשימת הזמנות שממתינות לאישור תשלום - לטיפולך";
+						else
+							if (lToProvider != null && lToProvider.Count != 0)
+							message.nvMessage = " שלום. מצ\"ב פירוט השעות שבצעת מתאריך" + " " + dtBeginDateString + " " + "עד תאריך " + dtEndDateString;
+						else
+							if (lOrders != null && lOrders.Count != 0)
+							message.nvMessage = "שלום. מצ\"ב רשימת הזמנות שממתינות לאישור תשלום - לטיפולך";
+
+
+
+						ExcelHendler.ExportToExcel(dt, "aaa", str, path);
+						ExcelHendler.ExportToExcel(dt2, "aaa", str2, path2);
+						List<Attachment> lAttach = new List<Attachment>();
+						if (lToProvider != null && lToProvider.Count != 0)
+							lAttach.Add(new Attachment(path));
+						if (lOrders != null && lOrders.Count != 0)
+							lAttach.Add(new Attachment(path2));
+						bool isSuccess = Messages.SendEmailToOne(message, lAttach);
+					
+					}
 				return 1;
 			}
 			catch (Exception ex)

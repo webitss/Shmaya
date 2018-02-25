@@ -186,7 +186,7 @@ namespace ShmayaService.Entities
             }
         }
 
-        public static int? OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
+        public static Orders OrderUpdate(Orders order, int iUserManagerId, DateTime? prevTimeTranslation)
         {
             try
             {
@@ -194,18 +194,19 @@ namespace ShmayaService.Entities
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				parameters.Add(new SqlParameter("prevTimeTranslation", prevTimeTranslation));
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_UPD", parameters);
-                return int.Parse(ds.Tables[0].Rows[0][0].ToString());
-            }
+				order.iOrderId = int.Parse(ds.Tables[0].Rows[0][0].ToString());
+				return order;
+			}
             catch (Exception ex)
             {
                 Log.ExceptionLog(ex.Message, "OrderUpdate");
-                return -1;
+                return null;
             }
         }
 
 
 
-		public static int? OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
+		public static Orders OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
         {
             try
             {
@@ -219,12 +220,14 @@ namespace ShmayaService.Entities
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
 				parameters.Add(new SqlParameter("isFromSite", isFromSite));
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TOrder_INS", parameters);
-                return int.Parse(ds.Tables[0].Rows[0][0].ToString());
-            }
+				order.iOrderId=int.Parse(ds.Tables[0].Rows[0][0].ToString());
+				return order;
+
+			}
             catch (Exception ex)
             {
                 Log.ExceptionLog(ex.Message, "OrderInsert");
-                return -1;
+                return null;
             }
         }
 
@@ -244,6 +247,8 @@ namespace ShmayaService.Entities
                 return -1;
             }
         }
+
+
 
         #endregion
 

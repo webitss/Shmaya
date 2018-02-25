@@ -1,10 +1,9 @@
 ﻿'use strict'
 companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout', 'connect', '$filter', '$location', 'codeTablesName', 'tablesId', 'alerts', 'codeTablesId', 'createDialog',
 	function ($scope, $rootScope, $timeout, connect, $filter, $location, codeTablesName, tablesId, alerts, codeTablesId, createDialog) {
-		$scope.defdtCreateDate = new Date();//$filter('date')(new Date(), 'dd/MM/yyyy');
 		$scope.difference = 0;
 		$scope.tmpBankHours;
-		$scope.nInitBankHours2 = $scope.user.nInitBankHours
+		$scope.nInitBankHours2 = $scope.user.nInitBankHours;
 		if (!$scope.isEdit) {
 			$scope.user = {
 				dtCreateDate: new Date(),
@@ -72,7 +71,6 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 			else {
 				if ($scope.tmpBankHours != undefined)
 					$scope.user.nBankHours += $scope.tmpBankHours - $scope.nInitBankHours2;
-				$scope.user.dtCreateDate = $scope.defdtCreateDate;
 				connect.post(true, 'UserInsert', { user: $scope.user, iUserManagerId: $rootScope.user.iUserId, userType: $scope.userType }, function (result) {
 					if (result && result > 0) {
 						console.log('UserInsert:' + result);
@@ -133,7 +131,6 @@ companionApp.controller('PrivateDetailsCtrl', ['$scope', '$rootScope', '$timeout
 				    if ($scope.user && $scope.user.iCommunicationCart)
 					  $scope.nInitBankCommunication = $filter('filter')($scope.CommunicationCartList, { iCommunicationCart: $scope.user.iCommunicationCart }, true)[0].nTariff;
 				});
-	       // $scope.user.dtResetCommunication = new Date();
 	        $scope.userTypeList.splice(0, 2);
 
 	    }

@@ -7,7 +7,11 @@ NOApp.config(function ($routeProvider, $compileProvider) {
         .when('/', {
             //controller: 'NewOrderCtrl',
             templateUrl: 'shmaya.html'
-        })
+		})
+		.when('/pdfReport', {
+			controller: 'NewOrderCtrl',
+			templateUrl: 'pdfReport.html'
+		})
         .otherwise({
             redirectTo: '/'
         });

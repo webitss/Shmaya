@@ -60,7 +60,6 @@ companionApp.run(function ($rootScope, $location, connect, $timeout, $window) {
 			$rootScope.notificationAlert = "";
 		}, 1500);
 	};
-	$rootScope.vat = 17
 
 	$rootScope.appVersionParameter = appVersionParameter;
 	$rootScope.$watch(function () {

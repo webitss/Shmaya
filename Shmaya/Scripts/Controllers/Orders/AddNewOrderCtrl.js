@@ -33,8 +33,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 
 		$scope.saveOrders = function ()
 		{
-	        $scope.$broadcast('show-errors-check-validity');
-	        if (!$scope.formOrder.$valid) {
+			$scope.$broadcast('show-errors-check-validity');
+			if (!$scope.formOrder.$valid || !$scope.order.iSelectedTranslator || !$scope.order.iUserId) {
 	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
 				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
@@ -49,7 +49,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			}
 			if (!($scope.orderToSend.dtDateTraslation_original instanceof String || typeof $scope.orderToSend.dtDateTraslation_original === 'string'))
 				$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
-			else {
+			else
+			{
 				var day = $scope.order.dtDateTraslation_original.substring(0, 2);
 				var month = $scope.order.dtDateTraslation_original.substring(3, 5);
 				var year = $scope.order.dtDateTraslation_original.substring(6, 10);
@@ -58,7 +59,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
-			if (!$scope.isEdit) {
+			//if (!$scope.isEdit) {
 				if ($scope.order.iSelectedTranslator)
 					$scope.orderToSend.iSelectedTranslator = angular.copy($scope.order.iSelectedTranslator.iId)
 				if ($scope.order.iUserId)
@@ -69,10 +70,15 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					$scope.orderToSend.iCityId = angular.copy($scope.order.iCityId.iId)
 				if ($scope.order.iTypeTranslation)
 					$scope.orderToSend.iTypeTranslation = angular.copy($scope.order.iTypeTranslation.iId)
-			}
-
-			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation:$scope.prevTimeTranslation }, function (result) {
-	            if (result && result > 0) {
+			//}
+			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation: $scope.prevTimeTranslation }, function (result) {
+				if (result.iOrderId == -1) {
+					alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
+					if ($scope.isEdit)
+						$scope.order.dialogIsOpen = false;
+				}
+				else
+					if (result.iOrderId  && result.iOrderId  > 0) {
 	                console.log(Orderinsert_update + ":" + result);
 	                var savingStatus = "השינויים נשמרו בהצלחה";
 	                $rootScope.notification(savingStatus);
@@ -85,7 +91,8 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	                }
 	                $scope.prepareData();
 	            }
-	            else {
+				else {
+					//alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
 	                alert('ארעה שגיאה בלתי צפויה');
 	            }
 			});
@@ -99,7 +106,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				});
 
 			connect.post(true, 'GetUsersCode',
-				{ iUserType: 3, iStatusId: 0, iTypeTranslation: null },
+				{ iUserType: 3, iStatusId: 0, iTypeTranslation: 38 },
 				function (result) {
 					$scope.usersList2 = result;
 				});
@@ -149,13 +156,28 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 		};
 
 		$scope.selectTypeTranslation = function () {
-			if ($scope.order.iTypeOrder == 22)
-				$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: 38 };
-				else
-					if ($scope.order.iTypeOrder == 23)
-						$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: 41 };
-					else
-						$scope.datafunc = { iUserType: 3, iStatusId: 0, iTypeTranslation: 42 };
+			if ($scope.order.iTypeOrder == 22) {
+				connect.post(true, 'GetUsersCode',
+					{ iUserType: 3, iStatusId: 0, iTypeTranslation: 38 },
+					function (result) {
+						$scope.usersList2 = result;
+					});
+			}
+			else
+				if ($scope.order.iTypeOrder == 23) {
+					connect.post(true, 'GetUsersCode',
+						{ iUserType: 3, iStatusId: 0, iTypeTranslation: 41 },
+						function (result) {
+							$scope.usersList2 = result;
+						});
+				}
+				else {
+					connect.post(true, 'GetUsersCode',
+						{ iUserType: 3, iStatusId: 0, iTypeTranslation: 42 },
+						function (result) {
+							$scope.usersList2 = result;
+						});
+				}
 		}
 
 	    $scope.getData();

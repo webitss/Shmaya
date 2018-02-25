@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using NReco.PdfGenerator;
 using ShmayaService.Utilities;
@@ -12,7 +13,22 @@ namespace ShmayaService.Entities
 {
     public class FileManageCtrl
     {
-        public void DeleteFile(string sPath, string subFile)
+		public static void DeleteAllFile(string sURL/*, string sShortFileName*/)
+		{
+			try
+			{
+				string[] filePaths = Directory.GetFiles(sURL);
+				foreach (string filePath in filePaths)
+					File.Delete(filePath);
+
+			}
+			catch (Exception e)
+			{
+				Log.ExceptionLog(e.Message, "DeleteFile: sPath-" + sURL + ", sShortFileName-" );
+			}
+		}
+
+		public void DeleteFile(string sPath, string subFile)
         {
             try
             {
@@ -167,5 +183,50 @@ namespace ShmayaService.Entities
                 return null;
             }
         }
-    }
+
+		public static string GeneratePdfFromHtml(string title, string html, string css, string sFileName)
+		{
+			try
+			{
+
+				NReco.PdfGenerator.HtmlToPdfConverter pdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+				pdf.Margins = new NReco.PdfGenerator.PageMargins();
+				pdf.Margins.Top = 10;
+				pdf.Margins.Bottom = 10;
+				pdf.Margins.Right = 10;
+				pdf.Margins.Left = 10;
+				pdf.Size = PageSize.A4;
+				pdf.Orientation = PageOrientation.Landscape;
+
+				//pdf.CustomWkHtmlTocArgs = "--toc-disable-back-links";
+				//pdf.CustomWkHtmlPageArgs = "--header-html";
+				//pdf.Size = PageSize.A4;
+
+				//string hostName = System.ServiceModel.Web.WebOperationContext.Current.IncomingRequest.UriTemplateMatch.RequestUri.Host + System.Web.Hosting.HostingEnvironment.ApplicationHost.GetVirtualPath();
+				//css = css.Replace("../", hostName + "/");
+				//pdf.PageFooterHtml = "<div style='text-align:center;'><span class='page' style='border-left:1px solid #ddbfd3 ;padding-left:10px'></span> / <span style='border-right:1px solid #ddbfd3 ;padding-right:10px' class='topage'></span></div>";
+				//pdf.PageHeaderHtml = "<div><div style='text-align:center; font-size:20px; color: #06416D ; font-family: Arial'>" + title + "</div></div>";
+				html = "<html><head><meta charset='utf-8' /><style type='text/css'>" + css + "</style></head>" +
+					"<body><div style='text-align:right;' dir='rtl'>" + html + "</div></body></html>";
+				string fileName = sFileName.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "") + "_" + DateTime.Now.ToFileTime();
+				sFileName += "_" + DateTime.Now.ToFileTime().ToString() + ".pdf";
+				byte[] Bytes = Encoding.UTF8.GetBytes(html);
+
+				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfGenerator.html", Bytes);
+				Log.ExceptionLog("file path: ", AppDomain.CurrentDomain.BaseDirectory + "Files\\" + fileName + ".html");
+				var pdfBytes = pdf.GeneratePdfFromFile(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfGenerator.html", null);
+
+				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfGenerator.pdf", pdfBytes);
+
+				//File.WriteAllBytes(dir + fileName + ".pdf", pdfBytes);
+
+				return fileName + ".pdf";
+			}
+			catch (Exception ex)
+			{
+				Log.ExceptionLog(ex.Message, "GeneratePdfFromHtml");
+				return null;
+			}
+		}
+	}
 }

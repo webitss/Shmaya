@@ -30,11 +30,14 @@ namespace ShmayaService.Entities
 
 		#region methods
 
-		public static bool SendEmailToOne( Messages message)
+		public static bool SendEmailToOne( Messages message, List<Attachment> lAttach)
 		{
-			if (message.nvTo != null && message.nvTo != "")
+			if (message.nvTo != null && message.nvTo != "" && lAttach != null && lAttach.Count != 0)
 			{
+
 				MailMessage mailMessage = new MailMessage();
+					foreach (var img in lAttach)
+						mailMessage.Attachments.Add(img);
 				mailMessage.From = new MailAddress(message.nvFrom);
 				mailMessage.To.Add(new MailAddress(message.nvTo));
 				mailMessage.Subject = message.nvSubject;
@@ -57,12 +60,12 @@ namespace ShmayaService.Entities
 		}
 
 
-		public static bool SendEmailToGroup(List<UserBasic> lMember, Messages message, int iUserId, List<Attachment> lAttach)
+		public static bool SendEmailToGroup(List<User> lMember, Messages message, int iUserId, List<Attachment> lAttach)
 		{
 			MailMessage mailMessage = new MailMessage();
-			if (lAttach != null)
-				foreach (var img in lAttach)
-					mailMessage.Attachments.Add(img);
+			//if (lAttach != null)
+			//	foreach (var img in lAttach)
+			//		mailMessage.Attachments.Add(img);
 			mailMessage.From = new MailAddress(message.nvFrom);
 			mailMessage.Subject = message.nvSubject;
 			mailMessage.Body = message.nvMessage;

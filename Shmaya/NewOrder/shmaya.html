@@ -15,6 +15,7 @@
 </head>
 <body ng-app="NOApp" ng-controller="NewOrderCtrl">
 	<div class="pos-relative">
+		<!--ng-if="!showPdf"-->
 		<div class="header-shmaya">
 			<img src="../Images/bg-shmaya.png" />
 			<img src="../Images/logo-ravacha.png" />
@@ -152,7 +153,7 @@
 						<div class="form-item  col-md-4">
 							<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
 							<div class="input col-md-8 p-none">
-								<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)"/>
+								<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
 								<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
 							</div>
 						</div>
@@ -174,13 +175,13 @@
 
 					</div>
 
-
 					<button type="submit" class="end-btn" ng-disabled="!order.bAgree" ng-click="sendReport()"><span>שלח דוח</span></button>
 				</div>
 			</form>
 		</div>
 
 		<div ng-if="noIdentity" class="popup-success-wrap">
+			<!--ng-if="!showPdf"-->
 			<div class="popup-success">
 				<div class="float-left">
 					<button class="close" ng-click="closePopupIdentity()">X</button>
@@ -208,6 +209,63 @@
 
 			<img src="../Images/good-icon.png" />
 			<span>הדוח נשלח בהצלחה!</span>
+		</div>
+	</div>
+
+
+	<div id="PdfDiv">
+		<!--ng-if="showPdf"-->
+		<!--<img src="../Images/בלנק מרכז תמיכה לתקשורת-03.png" />
+	<img src="../Images/בלנק מרכז תמיכה לתקשורת-04.png" />
+	<img src="../Images/בלנק מרכז תמיכה לתקשורת-05.png" />-->
+		<label>תאריך התרגום</label>
+		<h1>דוח ביצוע</h1>
+		<h1>פרטי נותן השירות</h1>
+		<label>מספר זהות</label><label>{{order.nvIdentityProvider}}</label>
+		<label>שם</label><label>{{order.nameTranslator}}</label>
+		<h1>פרטי לקוח</h1>
+		<label>מספר זהות</label><label>{{order.nvIdentityCustomer}}</label>
+		<label>שם</label><label>{{order.nameCustomer}}</label>
+		<h1>פרטי העבודה</h1>
+		<label>סוג ההזמנה</label><label>{{order.iTypeOrder}}</label>
+		<label>סוג התרגום</label><label>{{order.iTypeTranslation}}</label>
+		<label>מטרת התרגום</label><label>{{order.nvRemark}}</label><br />
+		<label>עיר</label><label>{{order.iCityId}}</label>
+		<label>איזור</label><label>{{order.iAreaId}}</label>
+		<label>מקום התרגום</label><label>{{order.nvStreet}}</label><br />
+		<label>שעת התחלה</label><label>{{dtTimeBegin_original}}</label>
+		<label>משך התרגום</label><label>{{order.dtTimeTranslation_original}}</label>
+		<label>שעת סיום</label><label>{{order.dtTimeEnd}}</label><br />
+		<label>זמן המתנה</label><label>{{order.dtTimeWaiting_original}}</label><br />
+		<label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
+		<label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
+		<label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
+		<h3>חתימות</h3>
+		<div class="row">
+
+			<div class="form-item  col-md-4">
+				<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
+				<div class="input col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
+					<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
+				</div>
+			</div>
+			<div class="form-item  col-md-4">
+				<span class="text col-md-4 p-none">חתימת לקוח</span>
+				<div class="input  col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
+					<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
+				</div>
+			</div>
+
+			<div class="form-item  col-md-4">
+				<span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
+				<div class="input  col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
+					<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
+				</div>
+			</div>
+
 		</div>
 	</div>
 
