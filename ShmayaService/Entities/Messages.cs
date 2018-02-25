@@ -60,12 +60,12 @@ namespace ShmayaService.Entities
 		}
 
 
-		public static bool SendEmailToGroup(List<User> lMember, Messages message, int iUserId, List<Attachment> lAttach)
+		public static bool SendEmailToGroup(List<UserBasic> lMember, Messages message, int iUserId, List<Attachment> lAttach)
 		{
 			MailMessage mailMessage = new MailMessage();
-			//if (lAttach != null)
-			//	foreach (var img in lAttach)
-			//		mailMessage.Attachments.Add(img);
+			if (lAttach != null)
+				foreach (var img in lAttach)
+					mailMessage.Attachments.Add(img);
 			mailMessage.From = new MailAddress(message.nvFrom);
 			mailMessage.Subject = message.nvSubject;
 			mailMessage.Body = message.nvMessage;

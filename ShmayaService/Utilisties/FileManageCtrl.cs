@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Web;
 using NReco.PdfGenerator;
@@ -173,7 +174,7 @@ namespace ShmayaService.Entities
                 var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
                 sFileName = "דוח שעות" + sFileName;
                 File.WriteAllBytes(System.Configuration.ConfigurationManager.AppSettings["ReportFiles"] + folderName + sFileName + ".pdf", pdfBytes);
-                //File.WriteAllBytes( folderName + sFileName + ".pdf", pdfBytes);
+				//File.WriteAllBytes( folderName + sFileName + ".pdf", pdfBytes);
 
                 return filePath;
             }
@@ -184,7 +185,7 @@ namespace ShmayaService.Entities
             }
         }
 
-		public static string GeneratePdfFromHtml(string title, string html, string css, string sFileName)
+		public static string GeneratePdfFromHtml(string title, string html, string css, string sFileName, string identityTranslator)
 		{
 			try
 			{
@@ -212,13 +213,35 @@ namespace ShmayaService.Entities
 				sFileName += "_" + DateTime.Now.ToFileTime().ToString() + ".pdf";
 				byte[] Bytes = Encoding.UTF8.GetBytes(html);
 
-				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfGenerator.html", Bytes);
-				Log.ExceptionLog("file path: ", AppDomain.CurrentDomain.BaseDirectory + "Files\\" + fileName + ".html");
-				var pdfBytes = pdf.GeneratePdfFromFile(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfGenerator.html", null);
+				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + fileName+".html", Bytes);
+				Log.ExceptionLog("file path: ", AppDomain.CurrentDomain.BaseDirectory + "Files\\pdfReports\\pdfGenerator" + fileName + ".html");
+				var pdfBytes = pdf.GeneratePdfFromFile(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + fileName+".html", null);
 
-				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfGenerator.pdf", pdfBytes);
+				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + fileName+".pdf", pdfBytes);
 
 				//File.WriteAllBytes(dir + fileName + ".pdf", pdfBytes);
+				List<UserBasic> lusers = new List<UserBasic>();
+				UserBasic provider = new UserBasic();
+				UserBasic shmaya = new UserBasic();
+				shmaya.nvEmail = "simanim1@gmail.com";
+				lusers = UserBasic.GetUsersBasic(3);
+				foreach (UserBasic user in lusers)
+				{
+					if (user.nvID == identityTranslator)
+					{
+						provider = user;
+						break;
+					}
+				}
+				lusers = new List<UserBasic>();
+				lusers.Add(provider);
+				lusers.Add(shmaya);
+				Messages message = new Messages();
+				message.nvFrom = "shmaya@gmail.com";
+				message.nvSubject = "מצ\"ב דו\"ח ביצוע הזמנה";
+				List<Attachment> lAttach = new List<Attachment>();
+				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + fileName + ".pdf"));
+				Messages.SendEmailToGroup(lusers, message, 1, lAttach);
 
 				return fileName + ".pdf";
 			}

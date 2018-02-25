@@ -212,105 +212,106 @@
     </div>
 
 
-    <div id="PdfDiv">
-        <img class="head-img" src="../Images/head.png" />
-        <img class="logo-center-img" src="../Images/logo-center.png" />
-        <img class="shikum-img" src="../Images/shikum.png" />
-         <div class=" content-pdf content-absolut">
-        <span>תאריך התרגום</span>
-             <label></label>
-            </div>
+	<div id="PdfDiv" ng-show="1==2">
+	
+		<img class="head-img" src="../Images/head.png" />
+		<img class="logo-center-img" src="../Images/logo-center.png" />
+		<img class="shikum-img" src="../Images/shikum.png" />
+		<div class=" content-pdf content-absolut">
+			<span>תאריך התרגום</span>
+			<label></label>
+		</div>
 
-        <h1 class="header-pdf">דוח ביצוע</h1>
+		<h1 class="header-pdf">דוח ביצוע</h1>
 
-        <label class="sub-header">פרטי נותן השירות</label>
-        <div class="row content-pdf">
-            <div class="col-md-6">
-                <span>מספר זהות</span>
-                <label>{{order.nvIdentityProvider}}</label>
-            </div>
+		<label class="sub-header">פרטי נותן השירות</label>
+		<div class="row content-pdf">
+			<div class="col-md-6">
+				<span>מספר זהות</span>
+				<label>{{order.nvIdentityProvider}}</label>
+			</div>
 
-            <div class="col-md-6">
-                <span>שם</span>
-                <label>{{order.nameTranslator}}</label>
-            </div>
-        </div>
+			<div class="col-md-6">
+				<span>שם</span>
+				<label>{{order.nameTranslator}}</label>
+			</div>
+		</div>
 
-        <label class="sub-header">פרטי לקוח</label>
-        <div class="row content-pdf">
-            <div class="col-md-6">
-                <span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
-            </div>
-            <div class="col-md-6">
-                <span>שם</span><label>{{order.nameCustomer}}</label>
-            </div>
-        </div>
-        <label class="sub-header">פרטי העבודה</label>
-        <div class="row content-pdf">
-            <div class="col-md-4">
-                <span>סוג ההזמנה</span>
-                <label>{{order.iTypeOrder}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>סוג התרגום</span><label>{{order.iTypeTranslation}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>עיר</span><label>{{order.iCityId}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>איזור</span><label>{{order.iAreaId}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>מקום התרגום</span><label>{{order.nvStreet}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>שעת התחלה</span><label>{{dtTimeBegin_original}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>משך התרגום</span><label>{{order.dtTimeTranslation_original}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
-            </div>
-            <div class="col-md-4">
-                <span>זמן המתנה</span><label>{{order.dtTimeWaiting_original}}</label>
-            </div>
+		<label class="sub-header">פרטי לקוח</label>
+		<div class="row content-pdf">
+			<div class="col-md-6">
+				<span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
+			</div>
+			<div class="col-md-6">
+				<span>שם</span><label>{{order.nameCustomer}}</label>
+			</div>
+		</div>
+		<label class="sub-header">פרטי העבודה</label>
+		<div class="row content-pdf">
+			<div class="col-md-4">
+				<span>סוג ההזמנה</span>
+				<label>{{order.nvTypeOrder}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>סוג התרגום</span><label>{{order.nvTypeTranslation}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>עיר</span><label>{{order.nvCity}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>איזור</span><label>{{order.nvArea}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>מקום התרגום</span><label>{{order.nvStreet}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>שעת התחלה</span><label>{{order.dtTimeBegin}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>משך התרגום</span><label>{{order.dtTimeTranslation}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>זמן המתנה</span><label>{{order.dtTimeWaiting}}</label>
+			</div>
 
-        </div>
-        <label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
-        <label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
-        <label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
-        <h3>חתימות</h3>
-        <div class="row">
+		</div>
+		<label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
+		<label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
+		<label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
+		<h3>חתימות</h3>
+		<div class="row">
 
-            <div class="form-item  col-md-4">
-                <span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
-                <div class="input col-md-8 p-none">
-                    <input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
-                    <img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
-                </div>
-            </div>
-            <div class="form-item  col-md-4">
-                <span class="text col-md-4 p-none">חתימת לקוח</span>
-                <div class="input  col-md-8 p-none">
-                    <input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
-                    <img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
-                </div>
-            </div>
+			<div class="form-item  col-md-4">
+				<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+				<div class="input col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
+					<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
+				</div>
+			</div>
+			<div class="form-item  col-md-4">
+				<span class="text col-md-4 p-none">חתימת לקוח</span>
+				<div class="input  col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
+					<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
+				</div>
+			</div>
 
-            <div class="form-item  col-md-4">
-                <span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
-                <div class="input  col-md-8 p-none">
-                    <input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
-                    <img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
-                </div>
-            </div>
+			<div class="form-item  col-md-4">
+				<span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
+				<div class="input  col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
+					<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
+				</div>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
 
     <script src="../Scripts/Libraries/jquery-3.1.1.min.js"></script>
     <script src="../Scripts/Libraries/angular.min.js"></script>

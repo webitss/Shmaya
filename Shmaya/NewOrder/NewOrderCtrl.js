@@ -5,7 +5,6 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 		$scope.isSign1 = false
 		$scope.isSign2 = false
 		$scope.isSign3 = false
-		$scope.showPdf = false
         $scope.order =
             {
 			dtDateTraslation_original: new Date(),
@@ -167,6 +166,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 
 
 		$scope.sendReport = function () {
+			
             if (!$scope.order.bAgree) alert();
             if (!$scope.order.iTypeOrder || !$scope.order.iTypeTranslation
 				|| !$scope.order.nvIdentityCustomer || !$scope.order.nvIdentityProvider || !$scope.order.nameCustomer
@@ -176,6 +176,37 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 $scope.noValid = true;
                 return;
 			}
+			$scope.translateTypeList.forEach(function (item) {
+				if (item.iId == $scope.order.iTypeTranslation) {
+					$scope.order.nvTypeTranslation = item.nvName;
+					return;
+				}
+			})
+			$scope.orderTypeList.forEach(function (item) {
+				if (item.iId == $scope.order.iTypeOrder) {
+					$scope.order.nvTypeOrder = item.nvName;
+					return;
+				}
+			})
+			$scope.areaList.forEach(function (item) {
+				if (item.iId == $scope.order.iAreaId) {
+					$scope.order.nvArea = item.nvName;
+					return;
+				}
+			})
+			$scope.city.forEach(function (item) {
+				if (item.iId == $scope.order.iCityId) {
+					$scope.order.nvCity = item.nvName;
+					return;
+				}
+			})
+
+			$scope.order.dtTimeBegin = $filter('date')($scope.order.dtTimeBegin_original, 'HH:mm');
+			$scope.order.dtTimeEnd = $filter('date')($scope.order.dtTimeEnd_original, 'HH:mm');
+			$scope.order.dtTimeTranslation = $filter('date')($scope.order.dtTimeTranslation_original, 'HH:mm');
+			if ($scope.order.dtTimeWaiting)
+				$scope.order.dtTimeWaiting = $filter('date')($scope.order.dtTimeWaiting_original, 'HH:mm');
+
 			$scope.isSign1 = false
 			$scope.isSign2 = false
 			$scope.isSign3 = false
@@ -183,26 +214,27 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
             $scope.order.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
-            $scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
+			$scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
+			$scope.order.dtTimeEnd = angular.copy($scope.order.dtTimeEnd_original)
             orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite':0 }, function (result) {
 				if (result.iOrderId && result.iOrderId > 0) {
-                    $scope.order =
-                    {
-                        dtDateTraslation_original: new Date()
-                    }
 					$scope.successSend = true;
-					$scope.showPdf = true;
+					
 					$scope.html = document.getElementById('PdfDiv').innerHTML;
 					orderConnect.post(true, 'GeneratePdfFromHtml', {
 						title: '',
 						html: $scope.html,
 						css: null /*css*/,
-						sFileName: 'pdfReport'
+						sFileName: 'pdfReport',
+						identityTranslator: $scope.order.nvIdentityProvider
 					}, function (result) {
 						if (result)
 						{
 							console.log("generate pdf");
-							$scope.showPdf = false;
+							$scope.order =
+								{
+									dtDateTraslation_original: new Date()
+								}
 						}
 					})
                 }

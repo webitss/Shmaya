@@ -286,7 +286,7 @@ namespace ShmayaService
            UriTemplate = "SendEmailToGroup",
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            ResponseFormat = WebMessageFormat.Json)]
-        public bool sendEmailToGroup(List<User> lMember, Messages message, int iUserId, List<Attachment> lAttach)
+        public bool sendEmailToGroup(List<UserBasic> lMember, Messages message, int iUserId, List<Attachment> lAttach)
         {
             return Messages.SendEmailToGroup(lMember, message, iUserId, lAttach);
         }
@@ -742,9 +742,9 @@ namespace ShmayaService
 	 UriTemplate = "GeneratePdfFromHtml",
 	 BodyStyle = WebMessageBodyStyle.WrappedRequest,
 	 ResponseFormat = WebMessageFormat.Json)]
-		public string GeneratePdfFromHtml(string title, string html, string css, string sFileName)
+		public string GeneratePdfFromHtml(string title, string html, string css, string sFileName, string identityTranslator)
 		{
-			return FileManageCtrl.GeneratePdfFromHtml(title, html, css, sFileName);
+			return FileManageCtrl.GeneratePdfFromHtml(title, html, css, sFileName, identityTranslator);
 		}
 		#endregion
 	}
