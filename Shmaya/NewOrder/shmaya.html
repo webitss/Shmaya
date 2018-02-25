@@ -216,10 +216,12 @@
         <img class="head-img" src="../Images/head.png" />
         <img class="logo-center-img" src="../Images/logo-center.png" />
         <img class="shikum-img" src="../Images/shikum.png" />
+         <div class=" content-pdf content-absolut">
+        <span>תאריך התרגום</span>
+             <label></label>
+            </div>
 
-        <label>תאריך התרגום</label>
-
-        <h1>דוח ביצוע</h1>
+        <h1 class="header-pdf">דוח ביצוע</h1>
 
         <label class="sub-header">פרטי נותן השירות</label>
         <div class="row content-pdf">
@@ -243,17 +245,41 @@
                 <span>שם</span><label>{{order.nameCustomer}}</label>
             </div>
         </div>
-        <h1>פרטי העבודה</h1>
-        <label>סוג ההזמנה</label><label>{{order.iTypeOrder}}</label>
-        <label>סוג התרגום</label><label>{{order.iTypeTranslation}}</label>
-        <label>מטרת התרגום</label><label>{{order.nvRemark}}</label><br />
-        <label>עיר</label><label>{{order.iCityId}}</label>
-        <label>איזור</label><label>{{order.iAreaId}}</label>
-        <label>מקום התרגום</label><label>{{order.nvStreet}}</label><br />
-        <label>שעת התחלה</label><label>{{dtTimeBegin_original}}</label>
-        <label>משך התרגום</label><label>{{order.dtTimeTranslation_original}}</label>
-        <label>שעת סיום</label><label>{{order.dtTimeEnd}}</label><br />
-        <label>זמן המתנה</label><label>{{order.dtTimeWaiting_original}}</label><br />
+        <label class="sub-header">פרטי העבודה</label>
+        <div class="row content-pdf">
+            <div class="col-md-4">
+                <span>סוג ההזמנה</span>
+                <label>{{order.iTypeOrder}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>סוג התרגום</span><label>{{order.iTypeTranslation}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>עיר</span><label>{{order.iCityId}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>איזור</span><label>{{order.iAreaId}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>מקום התרגום</span><label>{{order.nvStreet}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>שעת התחלה</span><label>{{dtTimeBegin_original}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>משך התרגום</span><label>{{order.dtTimeTranslation_original}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
+            </div>
+            <div class="col-md-4">
+                <span>זמן המתנה</span><label>{{order.dtTimeWaiting_original}}</label>
+            </div>
+
+        </div>
         <label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
         <label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
         <label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
