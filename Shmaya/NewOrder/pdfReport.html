@@ -1,56 +1,256 @@
 ﻿
+<style id="pdfStyle">
+    
+@font-face {
+    font-family: 'Rubik';
+    src: url('fonts/RUBIK-LIGHT.TTF');
+}
 
-	<!--<img src="../Images/בלנק מרכז תמיכה לתקשורת-03.png" />
-	<img src="../Images/בלנק מרכז תמיכה לתקשורת-04.png" />
-	<img src="../Images/בלנק מרכז תמיכה לתקשורת-05.png" />-->
-	<label>תאריך התרגום</label>
-	<h1>דוח ביצוע</h1>
-	<h1>פרטי נותן השירות</h1>
-	<label>מספר זהות</label><label>{{order.nvIdentityProvider}}</label>
-	<label>שם</label><label>{{order.nameTranslator}}</label>
-	<h1>פרטי לקוח</h1>
-	<label>מספר זהות</label><label>{{order.nvIdentityCustomer}}</label>
-	<label>שם</label><label>{{order.nameCustomer}}</label>
-	<h1>פרטי העבודה</h1>
-	<label>סוג ההזמנה</label><label>{{order.iTypeOrder}}</label>
-	<label>סוג התרגום</label><label>{{order.iTypeTranslation}}</label>
-	<label>מטרת התרגום</label><label>{{order.nvRemark}}</label><br />
-	<label>עיר</label><label>{{order.iCityId}}</label>
-	<label>איזור</label><label>{{order.iAreaId}}</label>
-	<label>מקום התרגום</label><label>{{order.nvStreet}}</label><br />
-	<label>שעת התחלה</label><label>{{dtTimeBegin_original}}</label>
-	<label>משך התרגום</label><label>{{order.dtTimeTranslation_original}}</label>
-	<label>שעת סיום</label><label>{{order.dtTimeEnd_original}}</label><br />
-	<label>זמן המתנה</label><label>{{order.dtTimeWaiting_original}}</label><br />
-	<label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
-	<label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
-	<label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
-	<h3>חתימות</h3>
-	<div class="row">
+html {
+    height: 100%;
+}
 
-		<div class="form-item  col-md-4">
-			<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color:red">*</span></span>
-			<div class="input col-md-8 p-none">
-				<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
-				<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
+
+body {
+    direction: rtl;
+    font-family: Rubik;
+    height: 100%;
+    font-size: 17px;
+}
+        
+#PdfDiv {
+   
+    position: relative;
+    padding: 280px 28px 30px 28px;
+}
+
+#PdfDiv .head-img {
+    position:absolute;
+    top:0;
+    width:100%;
+}
+
+
+#PdfDiv .logo-center-img {
+  
+    position: absolute;
+    top: 64px;
+    left: 30px;
+    height: 136px;
+}
+
+.shikum-img {
+      position: absolute;
+    top: 140px;
+    right: 30px;
+    height: 110px;
+}
+
+#PdfDiv .header-pdf {
+  
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.sub-header {
+  
+    font-size: 18px;
+    display: block;
+    margin-top: 16px;
+    color: black;
+    margin-bottom: 9px;
+}
+
+.content-pdf {
+    
+    margin-top: 5px;
+    margin-bottom: 13px;
+}
+.col-md-6 {
+    
+   width:49%;
+       display: inline-block;
+}
+ .col-md-4 {
+    
+   width:32%;
+       display: inline-block;
+}
+
+.content-pdf span {
+    
+    margin-bottom: 19px;
+    width: 103px;
+    display: inline-block;
+    font-weight: 600;
+}
+.content-pdf label {
+  
+    background-color: rgba(204, 204, 204, 0.4);
+    padding: 0 11px;
+    margin-right: 5px;
+    width: calc(100% - 115px);
+    min-height: 23px;
+    vertical-align: middle;
+    font-weight: 200;
+    max-width: 214px;
+}
+.content-absolut {
+        position: absolute;
+    top: 178px;
+    right: 372px;
+    width: 346px;
+}
+
+.know-label {
+    
+    font-weight: normal;
+    line-height: 2px;
+}
+
+.signature {
+    
+    position: relative;
+}
+
+.signature span {
+    
+    position: absolute;
+    top: 109px;
+    font-weight: 600;
+    width: 89%;
+    text-align: center;
+}
+
+
+.input-stamp{
+    height: 102px !important;
+    border: 1px solid #606060 !important;
+    width: 100%;
+}
+
+.footer-img {
+    
+    width: 100%;
+    margin-top: 32px;
+}
+    
+
+
+
+
+    </style>
+
+
+<body>
+
+    <div id="PdfDiv" ><!--ng-show="1==2"-->
+	
+		<img class="head-img" src="../Images/head.png" />
+		<img class="logo-center-img" src="../Images/logo-center.png" />
+		<img class="shikum-img" src="../Images/shikum.png" />
+		<div class=" content-pdf content-absolut">
+			<span>תאריך התרגום</span>
+			<label></label>
+		</div>
+
+		<h1 class="header-pdf">דוח ביצוע</h1>
+
+		<label class="sub-header">פרטי נותן השירות</label>
+		<div class="row content-pdf">
+			<div class="col-md-6">
+				<span>מספר זהות</span>
+				<label>{{order.nvIdentityProvider}}</label>
+			</div>
+
+			<div class="col-md-6">
+				<span>שם</span>
+				<label>{{order.nameTranslator}}</label>
 			</div>
 		</div>
-		<div class="form-item  col-md-4">
-			<span class="text col-md-4 p-none">חתימת לקוח</span>
-			<div class="input  col-md-8 p-none">
-				<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
-				<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
+
+		<label class="sub-header">פרטי לקוח</label>
+		<div class="row content-pdf">
+			<div class="col-md-6">
+				<span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
+			</div>
+			<div class="col-md-6">
+				<span>שם</span><label>{{order.nameCustomer}}</label>
 			</div>
 		</div>
-
-		<div class="form-item  col-md-4">
-			<span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
-			<div class="input  col-md-8 p-none">
-				<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
-				<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
+		<label class="sub-header">פרטי העבודה</label>
+		<div class="row content-pdf">
+			<div class="col-md-4">
+				<span>סוג ההזמנה</span>
+				<label>{{order.nvTypeOrder}}</label>
 			</div>
-		</div>
+			<div class="col-md-4">
+				<span>סוג התרגום</span><label>{{order.nvTypeTranslation}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>עיר</span><label>{{order.nvCity}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>איזור</span><label>{{order.nvArea}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>מקום התרגום</span><label>{{order.nvStreet}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>שעת התחלה</span><label>{{order.dtTimeBegin}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>משך התרגום</span><label>{{order.dtTimeTranslation}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
+			</div>
+			<div class="col-md-4">
+				<span>זמן המתנה</span><label>{{order.dtTimeWaiting}}</label>
+			</div>
 
+		</div>
+		<label class="know-label">ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
+		<label class="know-label">בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
+		<label class="know-label">התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
+		<label class="sub-header">חתימות</label>
+		<div class="row">
+
+			<div class=" signature col-md-4">
+				<span class=" p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+				<div class="input col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
+					<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
+				</div>
+			</div>
+			<div class="signature col-md-4">
+				<span class=" p-none">חתימת לקוח</span>
+				<div class="input  col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
+					<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
+				</div>
+			</div>
+
+			<div class="signature col-md-4">
+				<span class=" p-none">שם וחתימת מקום התרגום</span>
+				<div class="input  col-md-8 p-none">
+					<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
+					<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
+				</div>
+			</div>
+
+		</div>
+          <img class="footer-img" src="../Images/footer.png" />
+        
+        
 	</div>
 
 
+
+
+
+</body>
