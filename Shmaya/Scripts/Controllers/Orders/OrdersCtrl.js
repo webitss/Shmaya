@@ -77,11 +77,11 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 					onChange: function (item) {
 						connect.post(true, 'ChangeStatus', { iStatusId: item.iStatusId, iOrderId: item.iOrderId },
 							function (result) {
-								//result = result.toString()
-								//var isDouble = result.substring(2, 3);
-								//result = result.substring(0, 2);
-								//result = parseInt(result)
-								//isDouble = parseInt(isDouble);
+								result = result.toString()
+								var isDouble = result.substring(2, 3);
+								result = result.substring(0, 2);
+								result = parseInt(result)
+								isDouble = parseInt(isDouble);
 								if (result != item.iStatusId)
 								{
 									$scope.OrdersList.forEach(function (order)
@@ -92,10 +92,10 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 										}
 
 									})
-									//if (isDouble == 0)
+									if (isDouble == 0)
 										alerts.alert("אין מספיק שעות בבנק השעות ללקוח זה על מנת לשנות לסטטוס המבוקש")
-									//else
-										//alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר");
+									else
+										alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר");
 								}
 				        	    console.log("change");
 				        	});

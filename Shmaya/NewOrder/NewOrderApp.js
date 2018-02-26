@@ -9,7 +9,7 @@ NOApp.config(function ($routeProvider, $compileProvider) {
             templateUrl: 'shmaya.html'
 		})
 		.when('/pdfReport', {
-			controller: 'NewOrderCtrl',
+			//controller: 'NewOrderCtrl',
 			templateUrl: 'pdfReport.html'
 		})
         .otherwise({

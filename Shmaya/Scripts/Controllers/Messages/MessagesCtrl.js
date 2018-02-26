@@ -23,7 +23,7 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 			return;
 		}
 		//אם השליחה היא לקבוצה
-		if ($rootScope.messageFromCust != true && $rootScope.listToSend == undefined /*&& scope.messageFromSelect != true*/) {
+		if ($rootScope.messageFromCust != true && $rootScope.listToSend == undefined) {
             if ($scope.sendTo == 1)
                 $scope.sendTo = null;
             $scope.userType = $scope.sendTo;

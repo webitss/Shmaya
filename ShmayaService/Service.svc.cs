@@ -731,9 +731,9 @@ namespace ShmayaService
          UriTemplate = "GenerateAttendanceReport",
          BodyStyle = WebMessageBodyStyle.WrappedRequest,
          ResponseFormat = WebMessageFormat.Json)]
-        public string GenerateAttendanceReport(string folderName, string url)
+        public string GenerateAttendanceReport(string folderName, string url, string identityTranslator)
         {
-            return FileManageCtrl.GenerateAttendanceReport(folderName, url);
+            return FileManageCtrl.GenerateAttendanceReport(folderName, url, identityTranslator);
         }
 
 		[OperationContract]
@@ -746,6 +746,7 @@ namespace ShmayaService
 		{
 			return FileManageCtrl.GeneratePdfFromHtml(title, html, css, sFileName, identityTranslator);
 		}
+
 		#endregion
 	}
 }

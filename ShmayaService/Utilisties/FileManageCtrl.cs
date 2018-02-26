@@ -154,7 +154,7 @@ namespace ShmayaService.Entities
             return mSmallImage.ToArray();
         }
 
-        public static string GenerateAttendanceReport(string folderName, string url)
+        public static string GenerateAttendanceReport(string folderName, string url, string identityTranslator)
         {
             try
             {
@@ -169,14 +169,37 @@ namespace ShmayaService.Entities
 
                 string sFileName = DateTime.Now.ToFileTime().ToString();
 
-                string filePath = System.Configuration.ConfigurationManager.AppSettings["BaseUrlForPDF"] + url;
+				string filePath = url;//System.Configuration.ConfigurationManager.AppSettings["BaseUrlForPDF"] + url;
                 //string filePath = url;
                 var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
-                sFileName = "דוח שעות" + sFileName;
-                File.WriteAllBytes(System.Configuration.ConfigurationManager.AppSettings["ReportFiles"] + folderName + sFileName + ".pdf", pdfBytes);
+                sFileName = "דוח" + sFileName;
+                File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + sFileName + ".pdf", pdfBytes);
 				//File.WriteAllBytes( folderName + sFileName + ".pdf", pdfBytes);
 
-                return filePath;
+				List<UserBasic> lusers = new List<UserBasic>();
+				UserBasic provider = new UserBasic();
+				UserBasic shmaya = new UserBasic();
+				shmaya.nvEmail = "simanim1@gmail.com";
+				lusers = UserBasic.GetUsersBasic(3);
+				foreach (UserBasic user in lusers)
+				{
+					if (user.nvID == identityTranslator)
+					{
+						provider = user;
+						break;
+					}
+				}
+				lusers = new List<UserBasic>();
+				lusers.Add(provider);
+				lusers.Add(shmaya);
+				Messages message = new Messages();
+				message.nvFrom = "shmaya@gmail.com";
+				message.nvSubject = "מצ\"ב דו\"ח ביצוע הזמנה";
+				List<Attachment> lAttach = new List<Attachment>();
+				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + sFileName + ".pdf"));
+				Messages.SendEmailToGroup(lusers, message, 1, lAttach);
+
+				return filePath;
             }
             catch (Exception ex)
             {

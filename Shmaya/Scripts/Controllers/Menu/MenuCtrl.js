@@ -42,14 +42,6 @@ companionApp.controller('MenuCtrl', ['$scope', '$location', '$rootScope', 'codeT
         $scope.index = index;
         $location.path(page);
     }
-
-    //$scope.$watch(function () {
-    //    return $location.path();
-    //}, function (value, oldValue) {
-    //    $scope.index = $scope.tabs.indexOf($filter('filter')($scope.tabs, { url: value }, true)[0]);
-    //});
-
-
 	$scope.tabClick = function (tab, index) {
         if (!$scope.tabs[index].url) return;
         $scope.index = index;

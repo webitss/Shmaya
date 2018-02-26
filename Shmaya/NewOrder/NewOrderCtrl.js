@@ -243,11 +243,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                     $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
 			});
-
-
-
-
-				//var css;
+						//var css;
 
 				//css = '.wait.modal-backdrop {visibility: hidden !important;}' + '.screen-height { max-height: none !important; overflow : auto; height: inherit !important; }'
 				//	+ '.fc-scroller.fc-day-grid-container{ overflow-y: hidden !important; } ';
@@ -263,11 +259,6 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 				//		css += response.split('../').join(document.location.origin + document.location.pathname.split('index.html')[0]);
 				//	});
 				//});
-
-
-		
-
-
         };
 
         $scope.getData();

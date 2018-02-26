@@ -59,7 +59,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
 	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
-			//if (!$scope.isEdit) {
+	
 				if ($scope.order.iSelectedTranslator)
 					$scope.orderToSend.iSelectedTranslator = angular.copy($scope.order.iSelectedTranslator.iId)
 				if ($scope.order.iUserId)
@@ -70,7 +70,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					$scope.orderToSend.iCityId = angular.copy($scope.order.iCityId.iId)
 				if ($scope.order.iTypeTranslation)
 					$scope.orderToSend.iTypeTranslation = angular.copy($scope.order.iTypeTranslation.iId)
-			//}
+		
 			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation: $scope.prevTimeTranslation }, function (result) {
 				if (result.iOrderId == -1) {
 					alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
