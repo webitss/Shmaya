@@ -1,256 +1,365 @@
 ﻿
-<style id="pdfStyle">
-    
-@font-face {
-    font-family: 'Rubik';
-    src: url('fonts/RUBIK-LIGHT.TTF');
-}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myAppPdf">
+<head>
+	<title>דוח pdf</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800" rel="stylesheet" />
+	<!--<link href="Style/bootstrap.css" rel="stylesheet" />
+	<link href="Style/bootstrap-theme.css" rel="stylesheet" />
+	<link href="Style/bootstrap-rtl.min.css" rel="stylesheet" />-->
 
-html {
-    height: 100%;
-}
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.7/angular.js"></script>
+	<script>
 
-
-body {
-    direction: rtl;
-    font-family: Rubik;
-    height: 100%;
-    font-size: 17px;
-}
-        
-#PdfDiv {
-   
-    position: relative;
-    padding: 280px 28px 30px 28px;
-}
-
-#PdfDiv .head-img {
-    position:absolute;
-    top:0;
-    width:100%;
-}
-
-
-#PdfDiv .logo-center-img {
-  
-    position: absolute;
-    top: 64px;
-    left: 30px;
-    height: 136px;
-}
-
-.shikum-img {
-      position: absolute;
-    top: 140px;
-    right: 30px;
-    height: 110px;
-}
-
-#PdfDiv .header-pdf {
-  
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.sub-header {
-  
-    font-size: 18px;
-    display: block;
-    margin-top: 16px;
-    color: black;
-    margin-bottom: 9px;
-}
-
-.content-pdf {
-    
-    margin-top: 5px;
-    margin-bottom: 13px;
-}
-.col-md-6 {
-    
-   width:49%;
-       display: inline-block;
-}
- .col-md-4 {
-    
-   width:32%;
-       display: inline-block;
-}
-
-.content-pdf span {
-    
-    margin-bottom: 19px;
-    width: 103px;
-    display: inline-block;
-    font-weight: 600;
-}
-.content-pdf label {
-  
-    background-color: rgba(204, 204, 204, 0.4);
-    padding: 0 11px;
-    margin-right: 5px;
-    width: calc(100% - 115px);
-    min-height: 23px;
-    vertical-align: middle;
-    font-weight: 200;
-    max-width: 214px;
-}
-.content-absolut {
-        position: absolute;
-    top: 178px;
-    right: 372px;
-    width: 346px;
-}
-
-.know-label {
-    
-    font-weight: normal;
-    line-height: 2px;
-}
-
-.signature {
-    
-    position: relative;
-}
-
-.signature span {
-    
-    position: absolute;
-    top: 109px;
-    font-weight: 600;
-    width: 89%;
-    text-align: center;
-}
+		var myAppPdf = angular.module('myAppPdf', []);
+		//var urlBaseP = ' http://localhost:27786/';
+		var urlBaseP = '';
+		switch (document.location.hostname) {
+			case 'localhost':
+					urlBaseP = "http://localhost:27786/";
+				break;
+			case '10.0.0.109':
+				urlBaseP = 'http://10.0.0.109/AyeletService/';
+				break;
+			case 'ws.webit-track.com':
+				urlBaseP = "http://ws.webit-track.com/ShmayaCRMWs/";
+				break;
+			case 'qa.webit-track.com':
+				urlBaseP = "http://qa.webit-track.com/ShmayaCRMWs/";
+				break;
+		}
 
 
-.input-stamp{
-    height: 102px !important;
-    border: 1px solid #606060 !important;
-    width: 100%;
-}
+		myAppPdf.controller('pdfCtrl', ['$rootScope', '$scope', '$location', '$http', '$filter', '$timeout', function ($rootScope, $scope, $location, $http, $filter, $timeout) {
 
-.footer-img {
-    
-    width: 100%;
-    margin-top: 32px;
-}
-    
+			function BuildReport() {
+				console.log('BuildReport');
+			};
+
+			setTimeout(BuildReport, 30000);
+
+			$timeout(function () {
+				//  $scope.card = {};
+				$http({
+					url: urlBaseP + 'Service.svc/GetOrders',
+					method: "POST",
+					data: {},
+				})
+					.then(function (response) {
+						$scope.OrdersList = response.data;
+						$scope.order = $scope.OrdersList[0]//[$scope.OrdersList.length - 1]
+
+						$timeout(function () {
+							//  $scope.card = {};
+							$http({
+								url: urlBaseP + 'Service.svc/GetUserCodeTables',
+								method: "POST",
+								data: {},
+							})
+								.then(function (response) {
+									$scope.codeTables = response.data;
+									$scope.translateTypeList = $filter('filter')(response.data, { Key: 'translateType' }, true)[0].Value;
+									$scope.orderTypeList = $filter('filter')(response.data, { Key: 'orderType' }, true)[0].Value;
+									$scope.areaList = $filter('filter')(response.data, { Key: 'area' }, true)[0].Value;
+									$scope.city = $filter('filter')(response.data, { Key: 'city' }, true)[0].Value;
+									$scope.monthList = $filter('filter')(response.data, { Key: 'month' }, true)[0].Value;
+									$scope.yearList = $filter('filter')(response.data, { Key: 'year' }, true)[0].Value;
+									$scope.monthYearList = $filter('filter')(response.data, { Key: 'monthYear' }, true)[0].Value;
+									$scope.translateTypeList.forEach(function (item) {
+										if (item.iId == $scope.order.iTypeTranslation) {
+											$scope.order.nvTypeTranslation = item.nvName;
+											return;
+										}
+									})
+									$scope.orderTypeList.forEach(function (item) {
+										if (item.iId == $scope.order.iTypeOrder) {
+											$scope.order.nvTypeOrder = item.nvName;
+											return;
+										}
+									})
+									$scope.areaList.forEach(function (item) {
+										if (item.iId == $scope.order.iAreaId) {
+											$scope.order.nvArea = item.nvName;
+											return;
+										}
+									})
+									$scope.city.forEach(function (item) {
+										if (item.iId == $scope.order.iCityId) {
+											$scope.order.nvCity = item.nvName;
+											return;
+										}
+									})
+									$scope.order.dtDateTraslation = new Date(parseInt($scope.order.dtDateTraslation.replace("/Date(", "").replace(")/")));
+									$scope.order.dtTimeBegin = new Date(parseInt($scope.order.dtTimeBegin.replace("/Date(", "").replace(")/")));
+									$scope.order.dtTimeEnd = new Date(parseInt($scope.order.dtTimeEnd.replace("/Date(", "").replace(")/")));
+									$scope.order.dtTimeTranslation = new Date(parseInt($scope.order.dtTimeTranslation.replace("/Date(", "").replace(")/")));
+									$scope.order.dtTimeBegin = $filter('date')($scope.order.dtTimeBegin, 'HH:mm');
+									$scope.order.dtTimeEnd = $filter('date')($scope.order.dtTimeEnd, 'HH:mm');
+									$scope.order.dtTimeTranslation = $filter('date')($scope.order.dtTimeTranslation, 'HH:mm');
+									$scope.order.dtDateTraslation = $filter('date')($scope.order.dtDateTraslation, 'dd/MM/yyyy');
+									if ($scope.order.dtTimeWaiting)
+										$scope.order.dtTimeWaiting = $filter('date')($scope.order.dtTimeWaiting, 'HH:mm');
+
+									$timeout(function () {
+										$http({
+											url: urlBaseP + 'Service.svc/GetUsers',
+											method: "POST",
+											data: { iUserId: $scope.order.iUserId },
+										})
+											.then(function (response) {
+												$scope.order.nvIdentityCustomer = response.data[0].nvId
+												$timeout(function () {
+													$http({
+														url: urlBaseP + 'Service.svc/GetUsers',
+														method: "POST",
+														data: { iUserId: $scope.order.iSelectedTranslator },
+													})
+														.then(function (response) {
+															$scope.order.nvIdentityProvider = response.data[0].nvId;
+															$scope.order.nvLocationSignature = urlBaseP+"Files/signatures/" + $scope.order.nvLocationSignature;
+															$scope.order.nvProviderSignature = urlBaseP + "Files/signatures/" + $scope.order.nvProviderSignature;
+															$scope.order.nvCustomerSignature = urlBaseP + "Files/signatures/" + $scope.order.nvCustomerSignature;
+														});
+												});
+											});
+									});
+								});
+						});
+					});
+			});
+		}]);
 
 
+	</script>
+	<style>
+
+		@font-face {
+			font-family: 'Rubik';
+			src: url('fonts/RUBIK-LIGHT.TTF');
+		}
+
+		html {
+			height: 100%;
+		}
 
 
-    </style>
+		body {
+			direction: rtl;
+			font-family: Rubik;
+			height: 100%;
+			font-size: 17px;
+		}
+
+		#PdfDiv {
+			position: relative;
+			padding: 280px 28px 30px 28px;
+		}
+
+			#PdfDiv .head-img {
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
 
 
-<body  ng-app="NOApp" ng-controller="NewOrderCtrl">
+			#PdfDiv .logo-center-img {
+				position: absolute;
+				top: 64px;
+				left: 30px;
+				height: 136px;
+			}
 
-    <div id="PdfDiv" ><!--ng-show="1==2"-->
-	
-		<img class="head-img" src="../Images/head.png" />
-		<img class="logo-center-img" src="../Images/logo-center.png" />
-		<img class="shikum-img" src="../Images/shikum.png" />
-		<div class=" content-pdf content-absolut">
-			<span>תאריך התרגום</span>
-			<label></label>
-		</div>
+		.shikum-img {
+			position: absolute;
+			top: 140px;
+			right: 30px;
+			height: 110px;
+		}
 
-		<h1 class="header-pdf">דוח ביצוע</h1>
+		#PdfDiv .header-pdf {
+			text-align: center;
+			font-size: 24px;
+			font-weight: 600;
+		}
 
-		<label class="sub-header">פרטי נותן השירות</label>
-		<div class="row content-pdf">
-			<div class="col-md-6">
-				<span>מספר זהות</span>
-				<label>{{order.nvIdentityProvider}}</label>
-			</div>
+		.sub-header {
+			font-size: 18px;
+			display: block;
+			margin-top: 16px;
+			color: black;
+			margin-bottom: 9px;
+		}
 
-			<div class="col-md-6">
-				<span>שם</span>
-				<label>{{order.nameTranslator}}</label>
-			</div>
-		</div>
+		.content-pdf {
+			margin-top: 5px;
+			margin-bottom: 13px;
+		}
 
-		<label class="sub-header">פרטי לקוח</label>
-		<div class="row content-pdf">
-			<div class="col-md-6">
-				<span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
-			</div>
-			<div class="col-md-6">
-				<span>שם</span><label>{{order.nameCustomer}}</label>
-			</div>
-		</div>
-		<label class="sub-header">פרטי העבודה</label>
-		<div class="row content-pdf">
-			<div class="col-md-4">
-				<span>סוג ההזמנה</span>
-				<label>{{order.nvTypeOrder}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>סוג התרגום</span><label>{{order.nvTypeTranslation}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>עיר</span><label>{{order.nvCity}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>איזור</span><label>{{order.nvArea}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>מקום התרגום</span><label>{{order.nvStreet}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>שעת התחלה</span><label>{{order.dtTimeBegin}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>משך התרגום</span><label>{{order.dtTimeTranslation}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
-			</div>
-			<div class="col-md-4">
-				<span>זמן המתנה</span><label>{{order.dtTimeWaiting}}</label>
-			</div>
+		.col-md-6 {
+			width: 49%;
+			display: inline-block;
+		}
 
-		</div>
-		<label class="know-label">ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
-		<label class="know-label">בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
-		<label class="know-label">התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
-		<label class="sub-header">חתימות</label>
-		<div class="row">
+		.col-md-4 {
+			width: 32%;
+			display: inline-block;
+		}
 
-			<div class=" signature col-md-4">
-				<span class=" p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
-				<div class="input col-md-8 p-none">
-					<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
-					<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
-				</div>
-			</div>
-			<div class="signature col-md-4">
-				<span class=" p-none">חתימת לקוח</span>
-				<div class="input  col-md-8 p-none">
-					<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
-					<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
-				</div>
-			</div>
+		.content-pdf span {
+			margin-bottom: 19px;
+			width: 103px;
+			display: inline-block;
+			font-weight: 600;
+		}
 
-			<div class="signature col-md-4">
-				<span class=" p-none">שם וחתימת מקום התרגום</span>
-				<div class="input  col-md-8 p-none">
-					<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
-					<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
-				</div>
-			</div>
+		.content-pdf label {
+			background-color: rgba(204, 204, 204, 0.4);
+			padding: 0 11px;
+			margin-right: 5px;
+			width: calc(100% - 115px);
+			min-height: 23px;
+			vertical-align: middle;
+			font-weight: 200;
+			max-width: 214px;
+		}
 
-		</div>
-          <img class="footer-img" src="../Images/footer.png" />
-        
-        
+		.content-absolut {
+			position: absolute;
+			top: 178px;
+			right: 372px;
+			width: 346px;
+		}
+
+		.know-label {
+			font-weight: normal;
+			line-height: 2px;
+		}
+
+		.signature {
+			position: relative;
+		}
+
+			.signature span {
+				position: absolute;
+				top: 109px;
+				font-weight: 600;
+				width: 89%;
+				text-align: center;
+			}
+
+
+		.input-stamp {
+			height: 102px !important;
+			border: 1px solid #606060 !important;
+			width: 100%;
+		}
+
+		.footer-img {
+			width: 100%;
+			margin-top: 32px;
+		}
+	</style>
+
+</head>
+
+<body ng-controller="pdfCtrl">
+
+	<img class="head-img" src="../Images/head.png" />
+	<img class="logo-center-img" src="../Images/logo-center.png" />
+	<img class="shikum-img" src="../Images/shikum.png" />
+	<div class=" content-pdf content-absolut">
+		<span>תאריך התרגום</span>
+		<label>{{order.dtDateTraslation}}</label>
 	</div>
 
+	<h1 class="header-pdf">דוח ביצוע</h1>
 
+	<label class="sub-header">פרטי נותן השירות</label>
+	<div class="row content-pdf">
+		<div class="col-md-6">
+			<span>מספר זהות</span>
+			<label>{{order.nvIdentityProvider}}</label>
+		</div>
 
+		<div class="col-md-6">
+			<span>שם</span>
+			<label>{{order.nameTranslator}}</label>
+		</div>
+	</div>
+
+	<label class="sub-header">פרטי לקוח</label>
+	<div class="row content-pdf">
+		<div class="col-md-6">
+			<span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
+		</div>
+		<div class="col-md-6">
+			<span>שם</span><label>{{order.nameCustomer}}</label>
+		</div>
+	</div>
+	<label class="sub-header">פרטי העבודה</label>
+	<div class="row content-pdf">
+		<div class="col-md-4">
+			<span>סוג ההזמנה</span>
+			<label>{{order.nvTypeOrder}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>סוג התרגום</span><label>{{order.nvTypeTranslation}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>עיר</span><label>{{order.nvCity}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>איזור</span><label>{{order.nvArea}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>מקום התרגום</span><label>{{order.nvStreet}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>שעת התחלה</span><label>{{order.dtTimeBegin}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>משך התרגום</span><label>{{order.dtTimeTranslation}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
+		</div>
+		<div class="col-md-4">
+			<span>זמן המתנה</span><label>{{order.dtTimeWaiting}}</label>
+		</div>
+
+	</div>
+	<label class="know-label">ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
+	<label class="know-label">בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
+	<label class="know-label">התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
+	<label class="sub-header">חתימות</label>
+	<div class="row">
+
+		<div class=" signature col-md-4">
+			<span class=" p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+			<div class="input col-md-8 p-none">
+				<img class="input-stamp" ng-src="{{order.nvProviderSignature}}" />
+			</div>
+		</div>
+		<div class="signature col-md-4">
+			<span class=" p-none">חתימת לקוח</span>
+			<div class="input  col-md-8 p-none">
+				<img class="input-stamp" ng-src="{{order.nvCustomerSignature}}" />
+			</div>
+		</div>
+
+		<div class="signature col-md-4">
+			<span class=" p-none">שם וחתימת מקום התרגום</span>
+			<div class="input  col-md-8 p-none">
+				<img class="input-stamp"  ng-src="{{order.nvLocationSignature}}" />
+			</div>
+		</div>
+
+	</div>
+	<img class="footer-img" src="../Images/footer.png" />
 
 
 </body>
+</html>

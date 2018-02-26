@@ -176,36 +176,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 $scope.noValid = true;
                 return;
 			}
-			$scope.translateTypeList.forEach(function (item) {
-				if (item.iId == $scope.order.iTypeTranslation) {
-					$scope.order.nvTypeTranslation = item.nvName;
-					return;
-				}
-			})
-			$scope.orderTypeList.forEach(function (item) {
-				if (item.iId == $scope.order.iTypeOrder) {
-					$scope.order.nvTypeOrder = item.nvName;
-					return;
-				}
-			})
-			$scope.areaList.forEach(function (item) {
-				if (item.iId == $scope.order.iAreaId) {
-					$scope.order.nvArea = item.nvName;
-					return;
-				}
-			})
-			$scope.city.forEach(function (item) {
-				if (item.iId == $scope.order.iCityId) {
-					$scope.order.nvCity = item.nvName;
-					return;
-				}
-			})
 
-			$scope.order.dtTimeBegin = $filter('date')($scope.order.dtTimeBegin_original, 'HH:mm');
-			$scope.order.dtTimeEnd = $filter('date')($scope.order.dtTimeEnd_original, 'HH:mm');
-			$scope.order.dtTimeTranslation = $filter('date')($scope.order.dtTimeTranslation_original, 'HH:mm');
-			if ($scope.order.dtTimeWaiting)
-				$scope.order.dtTimeWaiting = $filter('date')($scope.order.dtTimeWaiting_original, 'HH:mm');
 
 			$scope.isSign1 = false
 			$scope.isSign2 = false
@@ -215,17 +186,15 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
 			$scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
-			$scope.order.dtTimeEnd = angular.copy($scope.order.dtTimeEnd_original)
+			//$scope.order.dtTimeEnd = angular.copy($scope.order.dtTimeEnd_original)
             orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite':0 }, function (result) {
 				if (result.iOrderId && result.iOrderId > 0) {
 					$scope.successSend = true;
 					
-					$scope.html = document.getElementById('PdfDiv').innerHTML;
-					orderConnect.post(true, 'GeneratePdfFromHtml', {
-						title: '',
-						html: $scope.html,
-						css: null /*css*/,
-						sFileName: 'pdfReport',
+					//$scope.html = document.getElementById('PdfDiv').innerHTML;
+					orderConnect.post(true, 'GenerateAttendanceReport', {
+						folderName: null,
+						url:"http://localhost:36667/NewOrder/pdfReport.html",
 						identityTranslator: $scope.order.nvIdentityProvider
 					}, function (result) {
 						if (result)
