@@ -212,7 +212,7 @@
     </div>
 
 
-	<div id="PdfDiv" ng-show="1==2">
+	<div id="PdfDiv" ><!--ng-show="1==2"-->
 	
 		<img class="head-img" src="../Images/head.png" />
 		<img class="logo-center-img" src="../Images/logo-center.png" />
@@ -281,29 +281,29 @@
 			</div>
 
 		</div>
-		<label>ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
-		<label>בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
-		<label>התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
-		<h3>חתימות</h3>
+		<label class="know-label">ידוע לי כי התשלום עבור הרכיבים המפורטים לעיל מותנה באישור החשבונות של המזמין</label><br />
+		<label class="know-label">בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
+		<label class="know-label">התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
+		<label class="sub-header">חתימות</label>
 		<div class="row">
 
-			<div class="form-item  col-md-4">
-				<span class="text col-md-4 p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
+			<div class=" signature col-md-4">
+				<span class=" p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
 				<div class="input col-md-8 p-none">
 					<input class="input-stamp" required ng-if="!isSign1" ng-click="OpenSignatureDialog(1)" />
 					<img class="input-stamp" required ng-if="isSign1" ng-click="OpenSignatureDialog(1)" data-ng-src="data:image/png;base64,{{order.nvProviderSignature}}" />
 				</div>
 			</div>
-			<div class="form-item  col-md-4">
-				<span class="text col-md-4 p-none">חתימת לקוח</span>
+			<div class="signature col-md-4">
+				<span class=" p-none">חתימת לקוח</span>
 				<div class="input  col-md-8 p-none">
 					<input class="input-stamp" required ng-if="!isSign2" ng-click="OpenSignatureDialog(2)" />
 					<img class="input-stamp" required ng-if="isSign2" ng-click="OpenSignatureDialog(2)" data-ng-src="data:image/png;base64,{{order.nvCustomerSignature}}" />
 				</div>
 			</div>
 
-			<div class="form-item  col-md-4">
-				<span class="text col-md-4 p-none">שם וחתימת מקום התרגום</span>
+			<div class="signature col-md-4">
+				<span class=" p-none">שם וחתימת מקום התרגום</span>
 				<div class="input  col-md-8 p-none">
 					<input class="input-stamp" required ng-if="!isSign3" ng-click="OpenSignatureDialog(3)" />
 					<img class="input-stamp" required ng-if="isSign3" ng-click="OpenSignatureDialog(3)" data-ng-src="data:image/png;base64,{{order.nvLocationSignature}}" />
@@ -311,6 +311,9 @@
 			</div>
 
 		</div>
+          <img class="footer-img" src="../Images/footer.png" />
+        
+        
 	</div>
 
     <script src="../Scripts/Libraries/jquery-3.1.1.min.js"></script>
