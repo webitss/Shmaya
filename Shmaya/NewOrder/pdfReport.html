@@ -144,29 +144,38 @@
 
 
 		body {
-			direction: rtl;
-			font-family: Rubik;
-			height: 100%;
-			font-size: 17px;
+		
+    direction: rtl;
+    font-family: Rubik;
+    height: 100%;
+    font-size: 16px;
+    margin: 0;
 		}
+
+	    .padding-0-44 {
+            padding:0 44px;
+	    }
 
 		#PdfDiv {
-			position: relative;
-			padding: 280px 28px 30px 28px;
+		
+  
+    position: relative;
+    padding: 225px 0;
 		}
 
-			#PdfDiv .head-img {
+			.head-img {
 				position: absolute;
 				top: 0;
 				width: 100%;
 			}
 
 
-			#PdfDiv .logo-center-img {
-				position: absolute;
-				top: 64px;
-				left: 30px;
-				height: 136px;
+		 .logo-center-img {
+			
+    position: absolute;
+    top: 52px;
+    left: 30px;
+    height: 114px;
 			}
 
 		.shikum-img {
@@ -179,20 +188,24 @@
 		#PdfDiv .header-pdf {
 			text-align: center;
 			font-size: 24px;
-			font-weight: 600;
+			    font-weight: 500;
 		}
 
 		.sub-header {
-			font-size: 18px;
-			display: block;
-			margin-top: 16px;
-			color: black;
-			margin-bottom: 9px;
+font-size: 18px;
+    display: block;
+    margin-top: 24px;
+    color: black;
+    margin-bottom: 15px;
+    font-weight: 500;
+    padding: 0 44px;
 		}
 
 		.content-pdf {
-			margin-top: 5px;
-			margin-bottom: 13px;
+			
+    padding: 0 44px;
+    margin-top: 5px;
+    margin-bottom: 13px;
 		}
 
 		.col-md-6 {
@@ -204,47 +217,61 @@
 			width: 32%;
 			display: inline-block;
 		}
+	    .col-37 {
+            	width: 37%;
+			display: inline-block;
+	    }
 
 		.content-pdf span {
 			margin-bottom: 19px;
 			width: 103px;
 			display: inline-block;
-			font-weight: 600;
+			    font-weight: 400;
 		}
 
 		.content-pdf label {
-			background-color: rgba(204, 204, 204, 0.4);
-			padding: 0 11px;
-			margin-right: 5px;
-			width: calc(100% - 115px);
-			min-height: 23px;
-			vertical-align: middle;
-			font-weight: 200;
-			max-width: 214px;
+			
+    background-color: rgba(204, 204, 204, 0.4);
+    padding: 0 11px;
+    margin-right: 5px;
+    width: calc(100% - 147px);
+    min-height: 23px;
+    vertical-align: middle;
+    font-weight: 200;
+    max-width: 214px;
+    display: inline-block;
 		}
 
 		.content-absolut {
-			position: absolute;
-			top: 178px;
-			right: 372px;
-			width: 346px;
+			
+    position: absolute;
+    top: 178px;
+    right: 372px;
+    width: 262px;
 		}
 
 		.know-label {
-			font-weight: normal;
-			line-height: 2px;
+	
+    font-weight: normal;
+    line-height: 2px;
+    font-size: 15px;
+    padding: 0 44px;
 		}
 
 		.signature {
-			position: relative;
+	
+    position: relative;
+    width: 28%;
+    padding: 0 0 0 2%;
 		}
 
 			.signature span {
-				position: absolute;
-				top: 109px;
-				font-weight: 600;
-				width: 89%;
-				text-align: center;
+				
+    position: absolute;
+    top: 109px;
+    font-weight: 400;
+    width: 89%;
+    text-align: center;
 			}
 
 
@@ -263,7 +290,7 @@
 </head>
 
 <body ng-controller="pdfCtrl">
-
+    <div id="PdfDiv">
 	<img class="head-img" src="../Images/head.png" />
 	<img class="logo-center-img" src="../Images/logo-center.png" />
 	<img class="shikum-img" src="../Images/shikum.png" />
@@ -276,12 +303,12 @@
 
 	<label class="sub-header">פרטי נותן השירות</label>
 	<div class="row content-pdf">
-		<div class="col-md-6">
+		<div class="col-37">
 			<span>מספר זהות</span>
 			<label>{{order.nvIdentityProvider}}</label>
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-37">
 			<span>שם</span>
 			<label>{{order.nameTranslator}}</label>
 		</div>
@@ -289,10 +316,10 @@
 
 	<label class="sub-header">פרטי לקוח</label>
 	<div class="row content-pdf">
-		<div class="col-md-6">
+		<div class="col-37">
 			<span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
 		</div>
-		<div class="col-md-6">
+		<div class="col-37">
 			<span>שם</span><label>{{order.nameCustomer}}</label>
 		</div>
 	</div>
@@ -335,7 +362,7 @@
 	<label class="know-label">בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
 	<label class="know-label">התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
 	<label class="sub-header">חתימות</label>
-	<div class="row">
+	<div class="row padding-0-44">
 
 		<div class=" signature col-md-4">
 			<span class=" p-none">חתימת המתורגמנ/ית<span ng-if="!order.dtDateTraslation_original" style="color: red">*</span></span>
@@ -360,6 +387,6 @@
 	</div>
 	<img class="footer-img" src="../Images/footer.png" />
 
-
+    </div>
 </body>
 </html>
