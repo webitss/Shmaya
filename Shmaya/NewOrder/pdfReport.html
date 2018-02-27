@@ -148,7 +148,7 @@
     direction: rtl;
     font-family: Rubik;
     height: 100%;
-    font-size: 16px;
+    font-size: 17px;
     margin: 0;
 		}
 
@@ -160,7 +160,8 @@
 		
   
     position: relative;
-    padding: 225px 0;
+    padding: 250px 0 0 0;
+    height: 100%;
 		}
 
 			.head-img {
@@ -188,16 +189,17 @@
 		#PdfDiv .header-pdf {
 			text-align: center;
 			font-size: 24px;
-			    font-weight: 500;
+			    font-weight: 600;
 		}
 
 		.sub-header {
-font-size: 18px;
+
+    font-size: 19px;
     display: block;
     margin-top: 24px;
     color: black;
     margin-bottom: 15px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0 44px;
 		}
 
@@ -231,6 +233,7 @@ font-size: 18px;
 
 		.content-pdf label {
 			
+  
     background-color: rgba(204, 204, 204, 0.4);
     padding: 0 11px;
     margin-right: 5px;
@@ -240,6 +243,7 @@ font-size: 18px;
     font-weight: 200;
     max-width: 214px;
     display: inline-block;
+    min-width: calc(100% - 147px);
 		}
 
 		.content-absolut {
@@ -282,8 +286,11 @@ font-size: 18px;
 		}
 
 		.footer-img {
-			width: 100%;
-			margin-top: 32px;
+			
+    width: 100%;
+    margin-top: 32px;
+    position: fixed;
+    bottom: 0;
 		}
 	</style>
 
