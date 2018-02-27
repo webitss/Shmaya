@@ -165,7 +165,7 @@ namespace ShmayaService.Entities
                 pdf.Margins.Right = 1;
                 pdf.Margins.Left = 1;
                 pdf.Size = PageSize.A4;
-                pdf.Orientation = PageOrientation.Landscape;
+                pdf.Orientation = PageOrientation.Portrait;
 
                 string sFileName = DateTime.Now.ToFileTime().ToString();
 
