@@ -148,12 +148,13 @@
     direction: rtl;
     font-family: Rubik;
     height: 100%;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
 		}
 
-	    .padding-0-44 {
-            padding:0 44px;
+	    .padding-0-94 {
+           
+    padding: 0 94px 0 0;
 	    }
 
 		#PdfDiv {
@@ -195,13 +196,13 @@
 		.sub-header {
 
   
-    font-size: 20px;
+    font-size: 21px;
     display: block;
     margin-top: 24px;
     color: black;
-    margin-bottom: 15px;
+    margin-bottom: 19px;
     font-weight: 600;
-    padding: 0 44px;
+    padding: 0 32px;
 		}
 
 		.content-pdf {
@@ -228,23 +229,23 @@
 		.content-pdf span {
 
     margin-bottom: 33px;
-    width: 107px;
+    width: 119px;
     display: inline-block;
     font-weight: 400;
 		}
 
 		.content-pdf label {
 	
-  
     background-color: rgba(204, 204, 204, 0.4);
-    padding: 0 11px;
+    padding: 6px 11px;
     margin-right: 5px;
     width: 116px;
     min-height: 23px;
-    vertical-align: text-top;
+    vertical-align: middle;
     font-weight: 200;
     display: inline-block;
     margin-bottom: 4px;
+    color: #404040;
 		}
 
 		.content-absolut {
@@ -252,14 +253,14 @@
     position: absolute;
     top: 178px;
     right: 340px;
-    width: 267px;
+    width: 278px;
 		}
 
 		.know-label {
-	
+
     font-weight: normal;
     line-height: 2px;
-    font-size: 15px;
+    font-size: 17px;
     padding: 0 44px;
 		}
 
@@ -312,12 +313,12 @@
 	<label class="sub-header">פרטי נותן השירות</label>
 	<div class="row content-pdf">
 		<div class="col-37">
-			<span>מספר זהות</span>
+			<span>מספר זהות:</span>
 			<label>{{order.nvIdentityProvider}}</label>
 		</div>
 
 		<div class="col-37">
-			<span>שם</span>
+			<span>שם:</span>
 			<label>{{order.nameTranslator}}</label>
 		</div>
 	</div>
@@ -325,44 +326,44 @@
 	<label class="sub-header">פרטי לקוח</label>
 	<div class="row content-pdf">
 		<div class="col-37">
-			<span>מספר זהות</span><label>{{order.nvIdentityCustomer}}</label>
+			<span>מספר זהות:</span><label>{{order.nvIdentityCustomer}}</label>
 		</div>
 		<div class="col-37">
-			<span>שם</span><label>{{order.nameCustomer}}</label>
+			<span>שם:</span><label>{{order.nameCustomer}}</label>
 		</div>
 	</div>
 	<label class="sub-header">פרטי העבודה</label>
 	<div class="row content-pdf">
 		<div class="col-md-4">
-			<span>סוג ההזמנה</span>
+			<span>סוג ההזמנה:</span>
 			<label>{{order.nvTypeOrder}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>סוג התרגום</span><label>{{order.nvTypeTranslation}}</label>
+			<span>סוג התרגום:</span><label>{{order.nvTypeTranslation}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>מטרת התרגום</span><label>{{order.nvRemark}}</label>
+			<span>מטרת התרגום:</span><label>{{order.nvRemark}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>עיר</span><label>{{order.nvCity}}</label>
+			<span>עיר:</span><label>{{order.nvCity}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>איזור</span><label>{{order.nvArea}}</label>
+			<span>איזור:</span><label>{{order.nvArea}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>מקום התרגום</span><label>{{order.nvStreet}}</label>
+			<span>מקום התרגום:</span><label>{{order.nvStreet}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>שעת התחלה</span><label>{{order.dtTimeBegin}}</label>
+			<span>שעת התחלה:</span><label>{{order.dtTimeBegin}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>משך התרגום</span><label>{{order.dtTimeTranslation}}</label>
+			<span>משך התרגום:</span><label>{{order.dtTimeTranslation}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>שעת סיום</span><label>{{order.dtTimeEnd}}</label>
+			<span>שעת סיום:</span><label>{{order.dtTimeEnd}}</label>
 		</div>
 		<div class="col-md-4">
-			<span>זמן המתנה</span><label>{{order.dtTimeWaiting}}</label>
+			<span>זמן המתנה:</span><label>{{order.dtTimeWaiting}}</label>
 		</div>
 
 	</div>
@@ -370,7 +371,7 @@
 	<label class="know-label">בכפוף לביצוע התשלום עבור הרכיבים המפורטים ב"פרטי העבודה "ולאור מהות ההתקשרות ביני לבין המזמין</label><br />
 	<label class="know-label">התמורה הנ"ל הינה מלאה ,סופית ומוחלטת עבור השירותים שאני נותן ולא תהיה דרישה נוספת מהאמור לעיל</label>
 	<label class="sub-header">חתימות</label>
-	<div class="row padding-0-44">
+	<div class="row padding-0-94">
 
 		<div class=" signature col-md-4">
 			<span class=" p-none">חתימת המתורגמנ/ית</span>
