@@ -11,7 +11,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 		
 	        $scope.isDataLoaded = 0;
 			$scope.gridIdentity = 'OrdersList';
-			$scope.item2
+			$scope.item2;
 			$scope.newOrder = { dialogIsOpen: false };
 			$scope.order = { dialogIsOpen: false };
 	        $scope.columns = [
@@ -107,7 +107,7 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 				{ title: 'סוג הזמנה', fieldName: 'typeOrder' },
 				{ title: 'סוג תרגום', fieldName: 'typeTranslation' },
 				{ title: 'איזור', fieldName: 'area' },
-				{ title: 'עיר', fieldName: 'nvStreet' },
+				{ title: 'עיר', fieldName: 'nvCity' },
 				{ title: 'תאריך תרגום', fieldName: 'dtDateTraslation', type: 'date' },
 				{ title: 'שיוך לחודש ושנה', fieldName: 'iMonthYearId' },
 				{

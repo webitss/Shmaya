@@ -15,15 +15,13 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
 			});
 		}
 		$scope.getAllConversations();
-
+		//יצירת שיחה חדשה
         $scope.openNewConversation = function () {
-            
             $scope.bIsNewConversationOpen = true;
             $scope.newConversation = {
                 iConversationId: -1,
 				iUserId: $scope.user.iUserId,
 				iCreateUserId:$rootScope.user.iUserId,
-                nvCoordinatorName: $scope.user.nvName,
                 nvSubject: '',
                 nvComment: '',
 				dtCreateDate: new Date()
@@ -33,17 +31,13 @@ companionApp.controller('ConversationsCtrl', ['$scope', '$rootScope', 'connect',
 		$scope.saveConversation = function () {
 			if (!$scope.newConversationForm.$valid) {
 				$scope.$broadcast('show-errors-check-validity');
-					var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-					$rootScope.notification(savingStatus);
 					alerts.alert("יש למלא ערכים תקינים בכל השדות");
 					return;
             }
-			connect.post(true, 'CreateNewConversation', { conversation: $scope.newConversation/*, iCreateUserId: $rootScope.user.iUserId, iUserId: $scope.user.iUserId*/ }, function (result) {
+			connect.post(true, 'CreateNewConversation', { conversation: $scope.newConversation }, function (result) {
                 $scope.bIsNewConversationOpen = false;
 				$scope.newConversation = {};
 				$scope.noConversation = null;
-                var savingStatus = "שיחה נוספה בהצלחה"
-                $rootScope.notification(savingStatus);
                 $scope.getAllConversations();
             });
 

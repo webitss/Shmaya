@@ -1,10 +1,11 @@
 ﻿<div>
 		<div class=" second-menu">
+			<!--הצגת הכותרות לטאבים-->
 			<div ng-repeat="tab in tabs" class="second-menu-item" ng-class="{'second-menu-item-active': ordersActiveTab == $index }">
 				<span class="header-menu-tab" ng-click="ordersTabClick($index)">{{tab.title}}</span>
 			</div>
-
 		</div>
+	<!--html הצגת תוכן ה-->
 		<div ng-repeat="tab in tabs" ng-if="ordersActiveTab == $index">
 			<div ng-include="tab.content + $root.appVersionParameter"></div>
 		</div>

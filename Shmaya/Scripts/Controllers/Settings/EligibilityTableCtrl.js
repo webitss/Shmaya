@@ -41,8 +41,6 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
                                                 )
 
 								                console.log('EligibilityUpdate:' + result);
-								                var savingStatus = "השינויים נשמרו בהצלחה";
-								                $rootScope.notification(savingStatus);
 								                $scope.user.dialogIsOpen = false;
 								            }
 								            else {
@@ -96,8 +94,6 @@ companionApp.controller('EligibilityTableCtrl', ['$scope', '$rootScope', 'connec
 				        connect.post(true, 'EligibilityInsert', { eligibility: $scope.newEligibility, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 				            if (result && result > 0) {
 				                console.log('EligibilityInsert:' + result);
-				                var savingStatus = "השינויים נשמרו בהצלחה";
-				                $rootScope.notification(savingStatus);
 				                $scope.newEligibility.dialogIsOpen = false;
 				                $scope.newEligibility = {}
 				                $scope.getData();

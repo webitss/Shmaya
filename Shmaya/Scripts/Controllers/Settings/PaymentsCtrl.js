@@ -34,8 +34,6 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 									connect.post(true, 'PaymentUpdate', { payment: $scope.payment2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 											if (result && result > 0) {
 												console.log('PaymentUpdate:' + result);
-												var savingStatus = "השינויים נשמרו בהצלחה";
-												$rootScope.notification(savingStatus);
 												$scope.user.dialogIsOpen = false;
 											}
 											else {
@@ -85,8 +83,6 @@ companionApp.controller('PaymentsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 					connect.post(true, 'PaymentInsert', { payment: $scope.newPayment, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 						if (result && result > 0) {
 							console.log('PaymentInsert:' + result);
-							var savingStatus = "השינויים נשמרו בהצלחה";
-							$rootScope.notification(savingStatus);
 							$scope.newPayment = {};
 							$scope.getData();
 						}

@@ -23,6 +23,7 @@ companionApp.controller('ConnectionsCtrl', ['$scope', '$rootScope', 'connect', '
 				    clickEvent: function (order) {
 						if (order.item == undefined) {
 							$scope.order = angular.copy(order)
+							//sql ב int המרת השדה שיוך לחודש ושנה מפורמט של סטרינג לפורמט של  
 							if ($scope.order.iMonthYearId instanceof String || typeof $scope.order.iMonthYearId === 'string') {
 								$scope.tmpDate2 = $scope.order.iMonthYearId.substring(0, 2);
 								$scope.tmpDate1 = $scope.order.iMonthYearId.substring(3, 7);
@@ -57,6 +58,7 @@ companionApp.controller('ConnectionsCtrl', ['$scope', '$rootScope', 'connect', '
 
 	        connect.post(true, 'GetOrdersByUser', { iUserId: $scope.user.iUserId, iUserType: $scope.userType },
 				function (result) {
+					//המרת השדה שיוך לחודש ושנה לפורמט של סטרינג קריא וברור למשתמש
 				    $scope.ordersByUserList = result;
 				    $scope.isDataLoaded++;
 				    $scope.ordersByUserList.forEach(function (order) {

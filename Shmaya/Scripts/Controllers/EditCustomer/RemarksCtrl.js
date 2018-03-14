@@ -35,17 +35,13 @@ companionApp.controller('RemarksCtrl', ['$scope', '$rootScope', 'connect', 'code
 			$scope.saveRemark = function () {
 				$scope.$broadcast('show-errors-check-validity');
 				if (!$scope.newRemarkForm.$valid) {
-					var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-					$rootScope.notification(savingStatus);
 					alerts.alert("יש למלא ערכים תקינים בכל השדות");
 					return;
 				}
 				connect.post(true, 'CreateNewRemark', { remark: $scope.newRemark }, function (result) {
 					$scope.bIsNewRemarkOpen = false;
 					$scope.newRemark = {};
-					var savingStatus = "שיחה נוספה בהצלחה"
 					$scope.noConversation = null;
-					$rootScope.notification(savingStatus);
 					$scope.getAllRemarks();
 				});
 

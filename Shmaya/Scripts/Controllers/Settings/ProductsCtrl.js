@@ -42,8 +42,6 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 									connect.post(true, 'ProductUpdate', { product: $scope.product2, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 										if (result && result > 0) {
 											console.log('ProductUpdate:' + result);
-											var savingStatus = "השינויים נשמרו בהצלחה";
-											$rootScope.notification(savingStatus);
 											$scope.product2.dialogIsOpen = false;
 										}
 										else {
@@ -92,8 +90,6 @@ companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$ti
 							connect.post(true, 'ProductInsert', { product: $scope.newProduct, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 								if (result && result > 0) {
 									console.log('ProductInsert:' + result);
-									var savingStatus = "השינויים נשמרו בהצלחה";
-									$rootScope.notification(savingStatus);
 									$scope.newProduct.dialogIsOpen = false;
 									$scope.newProduct = {};
 									$scope.getData();

@@ -14,7 +14,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 		$scope.user = { dialogIsOpen: false };
 	    $rootScope.newMessage2 = { dialogIsOpen: false };
 		$scope.messageFromSelect = false;
-
+		//מימוש הגריד
 		$scope.prepareData = function () {
 			$scope.getData();
 			$scope.isDataLoadedAdministrator = 0;
@@ -30,6 +30,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 					{
 						if (!isNaN(parseFloat(user.iUserId)) && !isNaN(user.iUserId - 0))
 						{
+							//בעריכת לקוח - קריאה לפונקציה ששולפת פרטים מלאים ללקוח ספציפי
 							connect.post(true, 'GetUsers', { iUserId: user.iUserId },
 								function (result) {
 									$scope.user = result[0];
@@ -197,7 +198,8 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	        ];
 	    };
 
-	    $scope.initData = function () {
+		$scope.initData = function () {
+			//טיפול בשליחת ההודעה למשתמשים נבחרים
 	        $rootScope.listToSend = [];
 	        if ($scope.showCustomer) {
 	            angular.forEach($scope.ABCBookCustomers, function (item) {
@@ -222,7 +224,7 @@ companionApp.controller('ABCBookCtrl', ['$scope', '$rootScope', 'connect', '$tim
 	        }
 
 	    };
-
+		//דחיפת המשתמשים הנבחרים לרשימה לשליחה
 	    $scope.messageList = function (user) {
 	        if (user.bChecked == true) {
 	            $scope.aMember = {

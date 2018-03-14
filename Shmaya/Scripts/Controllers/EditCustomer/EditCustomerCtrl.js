@@ -13,7 +13,7 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 			{ title: 'החזרים  ללקוח', content: 'Partials/Pages/EditCustomer/Refunds.html' },
 			{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
 			{ title: 'הזמנות ללקוח', content: 'Partials/Pages/EditCustomer/Connections.html' },
-			{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
+			{ title: 'תיעוד שיחות', content: 'Partials/Pages/EditCustomer/Conversations.html' },
 			{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
 		];
 	}
@@ -23,7 +23,7 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 				{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
 				{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
 				{ title: 'הזמנות', content: 'Partials/Pages/EditCustomer/Connections.html' },
-				{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
+				{ title: 'תיעוד שיחות', content: 'Partials/Pages/EditCustomer/Conversations.html' },
 				{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
 			];
 		}
@@ -32,7 +32,7 @@ companionApp.controller('EditCustomerCtrl', ['$scope', '$rootScope', 'connect', 
 			$scope.tabs = [
 				{ title: 'פרטים אישיים', content: 'Partials/Pages/EditCustomer/PrivateDetails.html' },
 				{ title: 'שליחת הודעות', content: 'Partials/Pages/EditCustomer/MessagesCust.html' },
-				{ title: 'תיעוד שיחות', content: 'Partials/Pages/Conversations.html' },
+				{ title: 'תיעוד שיחות', content: 'Partials/Pages/EditCustomer/Conversations.html' },
 				{ title: 'הערות', content: 'Partials/Pages/EditCustomer/Remarks.html' }
 			];
 		}

@@ -3,7 +3,7 @@
 			function ($scope, $rootScope, connect, codeTablesName, $timeout, $filter) {
 				$rootScope.newMessage1 = { dialogIsOpen: false };
 				$rootScope.messageFromCust = false;
-				//לא התבצעו שיחות 
+				//לא נשלחו הודעות 
 				$scope.noConversation = null;
 
 				$scope.bIsNewMessageOpen = false;
@@ -46,9 +46,7 @@
 					connect.post(true, 'CreateNewMessage', { message: $scope.newMessage }, function (result) {
 						$scope.bIsNewMessageOpen = false;
 						$scope.newMessage = {};
-						var savingStatus = "שיחה נוספה בהצלחה"
 						$scope.noConversation = null;
-						$rootScope.notification(savingStatus);
 						$scope.getAllMessages();
 					});
 

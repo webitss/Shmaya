@@ -24,36 +24,26 @@
 				<span> כולם </span>
 				<br />
 				<span>נבחרו {{len}}</span>
-
 			</div>
 			<div class="line-in-message ">
 				<span>נושא</span>
-
 				<div class="in-message-div">
 					<input ng-model="messageToSend.nvSubject" />
 				</div>
 			</div>
-
 			<div class="line-in-message">
 				<span>*תוכן</span>
-
 				<div class="in-message-div">
 					<textarea style="vertical-align: text-top; resize: none;" required ng-model="messageToSend.nvMessage" />
 				</div>
-
 				<div class="">
 					<span></span>
 					<div ng-if="typeSelect==2" class="in-message-div">
 						<section ng-if="messageToSend.nvMessage" class="sms-message-length">מספר תווים: <b>{{messageToSend.nvMessage.length}}</b></section>
 						<section ng-if="typeSelect==2" class="sms-message-length">כל 69 תווים בעברית נחשבים כהודעה, יש לשכתב את ההודעה בהתאם!</section>
 					</div>
-
 				</div>
-
-
 			</div>
-
-
 			<div class="line-in-message ">
 				<span class="vertical-align-super">*מאת</span>
 
@@ -67,19 +57,16 @@
 							</div>
 						</div>
 					</div>
-
 					<div ng-if="typeSelect==1" class="col-md-6 ">
 						<div class="row">
 							<div class="col-md "><span class="vertical-baseline-middle">מייל לתוצאות</span></div>
 
 							<div class="col-md-12">
-								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required />
+								<input required ng-disabled="iUser.iUserType != codeTablesId.permissionType.systemAdministrator" ng-model="messageToSend.nvFrom"  required />
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 			<br /><br /><br /><br />
 		</form>
@@ -103,11 +90,6 @@
                     </button>
             </form>
 		</div>
-
-        <div ng-if="!canSend" class="container">
-            <br />
-            <h5><b>{{messageCantSend}}</b></h5>
-        </div>
     </div>
 
 </div>

@@ -1,4 +1,5 @@
-﻿using ShmayaService.Entities;
+﻿using Infra.DL;
+using ShmayaService.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;

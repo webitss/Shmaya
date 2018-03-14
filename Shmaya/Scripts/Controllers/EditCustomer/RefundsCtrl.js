@@ -10,18 +10,18 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isShowAlert2 = false;
 			$scope.restart = true;
 
-
+			//חישוב תאריך התחדשות ההחזרים
 			if ($scope.user.dtResetCommunication != null) {
 				$scope.YearOfRenewal = $scope.user.dtResetCommunication.getFullYear();
 				while (($scope.YearOfRenewal) < (new Date().getFullYear())) {
 					$scope.YearOfRenewal += 4;
 				}
 				$scope.DateOfRenewal = new Date($scope.YearOfRenewal, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
-				if ($scope.DateOfRenewal.getFullYear() == new Date().getFullYear())
+				if ($scope.DateOfRenewal.getFullYear() == new Date().getFullYear() && ($scope.DateOfRenewal.getMonth() < new Date().getMonth() || ($scope.DateOfRenewal.getMonth() == new Date().getMonth() && $scope.DateOfRenewal.getDate() < new Date().getDate())))
+					$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate())
+				if ($scope.user.dtResetCommunication.getFullYear() == new Date().getFullYear() && $scope.user.dtResetCommunication.getMonth() == new Date().getMonth() && $scope.user.dtResetCommunication.getDate() == new Date().getDate())
 					$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate())
 			}
-			if ($scope.DateOfRenewal == $scope.user.dtResetCommunication && $scope.user.dtResetCommunication != undefined)
-				$scope.DateOfRenewal = new Date($scope.YearOfRenewal + 4, $scope.user.dtResetCommunication.getMonth(), $scope.user.dtResetCommunication.getDate());
 			if ($scope.DateOfRenewal != undefined && $scope.DateOfRenewal != null && $scope.DateOfRenewal != "")
 				$scope.DateOfRenewal = $filter('date')($scope.DateOfRenewal, 'dd/MM/yyyy');
 			$scope.refund2 = {};
@@ -61,6 +61,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							'<button ng-click="deleteFile()" ng-if="refund2.nvDocName">מחק קובץ</button>';
 						alerts.custom($scope.pop, 'עריכת רכישה', $scope,
 							function () {
+								//בדיקות תקינות
 								if (new Date($scope.refund2.dtPurchase_original) > new Date()) {
 									createDialog({
 										id: 'refund2dtPurchase',
@@ -149,9 +150,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
 									if (result) {
 										console.log('RefundUpdate:');
-										var savingStatus = "השינויים נשמרו בהצלחה";
 										$scope.getData();
-										$rootScope.notification(savingStatus);
 										$scope.isReference = true;
 										$scope.RefundsList.forEach(function (refund) {
 											if (refund.iMonthYearId != 0) {
@@ -376,8 +375,6 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							alerts.alert("לא ניתן לקבל החזרים עד לתאריך ההתחדשות");
 						if (result && result > 0) {
 							console.log('RefundInsert:' + result);
-							var savingStatus = "השינויים נשמרו בהצלחה";
-							$rootScope.notification(savingStatus);
 							$scope.newRefund = {};
 							$scope.getData();
 						}
@@ -412,7 +409,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isDelete = true;
 		}
 
-
+		//base 64 לקיחת הקובץ הנבחר והמרתו ל          
 		$scope.docFileSelect = function ($files, number) {
 			$scope.isDelete = false;
 			$scope.isReference = false;

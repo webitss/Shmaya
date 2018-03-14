@@ -111,9 +111,9 @@ namespace ShmayaService
           UriTemplate = "UserUpdate",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public int? UserUpdate(User user, int iUserManagerId)
+        public int? UserUpdate(User user, int iUserManagerId, int changeEligibility)
         {
-            return User.UserUpdate(user, iUserManagerId);
+            return User.UserUpdate(user, iUserManagerId, changeEligibility);
         }
 
 		[OperationContract]

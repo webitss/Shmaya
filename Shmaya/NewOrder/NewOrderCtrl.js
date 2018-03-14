@@ -90,9 +90,6 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original) return;
 			var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation_original.getHours();
 			var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation_original.getMinutes();
-			//if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeEnd) return;
-			//var hours = $scope.order.dtTimeEnd.getHours() - $scope.order.dtTimeBegin_original.getHours();
-			//var minutes = $scope.order.dtTimeEnd.getMinutes() - $scope.order.dtTimeBegin_original.getMinutes();
 			if (minutes >= 60) {
 				minutes -= 60;
 				hours += 1;
@@ -171,7 +168,7 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
             if (!$scope.order.iTypeOrder || !$scope.order.iTypeTranslation
 				|| !$scope.order.nvIdentityCustomer || !$scope.order.nvIdentityProvider || !$scope.order.nameCustomer
 				|| !$scope.order.nameTranslator || !$scope.order.dtDateTraslation_original
-                || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original //|| !$scope.order.dtTimeWaiting_original
+                || !$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation_original 
 				|| !$scope.order.iAreaId || !$scope.order.iCityId || !$scope.isSign1 || !$scope.isSign2 || !$scope.isSign3) {
                 $scope.noValid = true;
                 return;
@@ -186,18 +183,21 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
 			$scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
-			//$scope.order.dtTimeEnd = angular.copy($scope.order.dtTimeEnd_original)
-            orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite':0 }, function (result) {
+			orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite': 0 }, function (result) {
+				if (result.iOrderId == -1) {
+					$scope.noIdentity = true;
+					$scope.noIdentityAlert = 'קיימת הזמנה למתורגמן זה בטווח השעות הנבחר';
+				}
+				else
 				if (result.iOrderId && result.iOrderId > 0) {
 					$scope.successSend = true;
 					
-					//$scope.html = document.getElementById('PdfDiv').innerHTML;
 					orderConnect.post(true, 'GenerateAttendanceReport', {
 						folderName: null,
-						url:"http://localhost:36667/NewOrder/pdfReport.html",
+						url:"NewOrder/pdfReport.html",
 						identityTranslator: $scope.order.nvIdentityProvider
 					}, function (result) {
-						if (result)
+						//if (result)
 						{
 							console.log("generate pdf");
 							$scope.order =
@@ -212,22 +212,6 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                     $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';
                 }
 			});
-						//var css;
-
-				//css = '.wait.modal-backdrop {visibility: hidden !important;}' + '.screen-height { max-height: none !important; overflow : auto; height: inherit !important; }'
-				//	+ '.fc-scroller.fc-day-grid-container{ overflow-y: hidden !important; } ';
-				////+'.fc-head:first-child {background: red !important;  display: table-header-group !important; border :15px solid green; }'
-				//// 'table, tr, td, th, tbody, thead, tfoot { page-break-inside: avoid !important; }';
-
-				//var styleFiles = ['bootstrap.min.css', 'bootstrap-rtl.min.css', 'jquery-ui.min.css', 'font-awesome.css', 'font-awesome.min.css', 'flaticon.css',
-				//	'calendar/fullcalendar.css', 'grid-style.css', 'directives-style.css', 'StyleSheet.css', 'NefeshStyle.css', 'StudentWorkersMembers.css', 'after-schools-style.css'];
-
-
-				//angular.forEach(styleFiles, function (fileName) {
-				//	$http.get('Style/' + fileName).success(function (response) {
-				//		css += response.split('../').join(document.location.origin + document.location.pathname.split('index.html')[0]);
-				//	});
-				//});
         };
 
         $scope.getData();

@@ -9,7 +9,7 @@ using System.Web;
 using System.Runtime.Serialization;
 using ShmayaService.Utilities;
 using System.Configuration;
-
+using Infra.DL;
 
 namespace ShmayaService.Entities
 {
@@ -293,13 +293,14 @@ namespace ShmayaService.Entities
             }
         }
 
-        public static int? UserUpdate(User user, int iUserManagerId)
+        public static int? UserUpdate(User user, int iUserManagerId, int changeEligibility)
         {
             try
             {
                 List<SqlParameter> parameters = ObjectGenerator<User>.GetSqlParametersFromObject(user);
                 parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
-				if(user.lLanguage!=null && user.lLanguage.Count != 0)
+				parameters.Add(new SqlParameter("changeEligibility", changeEligibility));
+				if (user.lLanguage!=null && user.lLanguage.Count != 0)
 					parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lLanguage, "int", "lLanguage"));
 				if(user.lOrderType!=null && user.lOrderType.Count != 0)
 					parameters.Add(ObjectGenerator<int>.GenerateSimpleDataTableFromList(user.lOrderType, "int", "lOrderType"));
@@ -378,7 +379,9 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
+				Log.ExceptionLog("i enter1", "YearOfRenewalUpdate");
 				SqlDataAccess.ExecuteDatasetSP("TYearOfRenewal_UPD");
+				Log.ExceptionLog("i enter2", "YearOfRenewalUpdate");
 
 			}
 			catch (Exception ex)

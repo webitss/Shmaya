@@ -3,9 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="commands menu-klaly">
-
 				<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
-
 				<div class="nav pull-left">
 					<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="addNewOrder()">
 						<i class="glyphicon glyphicon-list-alt"></i>
@@ -35,11 +33,9 @@
 				<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 			</create-dialog>
 
-
 			<create-dialog ng-if="newOrder.dialogIsOpen" id="newOrder" cancel="true" title="הזמנה חדשה">
 				<div ng-include="'Partials/Pages/Orders/AddNewOrder.html'+ $root.appVersionParameter"></div>
 			</create-dialog>
-
 		</div>
 	</div>
 </div>

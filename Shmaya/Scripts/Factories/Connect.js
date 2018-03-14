@@ -130,6 +130,9 @@ companionApp.factory("connect", ['$http', '$rootScope', '$location', 'alerts', '
 				case 'qa.webit-track.com':
 					url = "http://qa.webit-track.com/ShmayaCRMWs/";
 					break;
+				case 'sl.shmaya.org.il':
+					url = "http://sl.shmaya.org.il/ShmayaCRMws/";
+					break;
 			}
 			return url;
 		},

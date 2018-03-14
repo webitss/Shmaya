@@ -1,4 +1,5 @@
-﻿using ShmayaService.Utilities;
+﻿using Infra.DL;
+using ShmayaService.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -62,7 +63,10 @@ namespace ShmayaService.Entities
         [DataMember]
         [NoSendToSQL]
         public string nvNumberHouse { get; set; }
-        [DataMember]
+		[DataMember]
+		[NoSendToSQL]
+		public string nvCity { get; set; }
+		[DataMember]
         public DateTime? dtTimeBegin { get; set; }
         [DataMember]
         public DateTime? dtTimeWaiting { get; set; }

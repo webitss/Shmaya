@@ -166,20 +166,17 @@ namespace ShmayaService.Entities
                 pdf.Margins.Left = 1;
                 pdf.Size = PageSize.A4;
                 pdf.Orientation = PageOrientation.Portrait;
-
-                string sFileName = DateTime.Now.ToFileTime().ToString();
-
-				string filePath = url;//System.Configuration.ConfigurationManager.AppSettings["BaseUrlForPDF"] + url;
-                //string filePath = url;
-                var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
-                sFileName = "דוח" + sFileName;
-                File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + sFileName + ".pdf", pdfBytes);
-				//File.WriteAllBytes( folderName + sFileName + ".pdf", pdfBytes);
+                //string sFileName = DateTime.Now.ToFileTime().ToString();
+				string filePath =  System.Configuration.ConfigurationManager.AppSettings["BaseUrlForPDF"] + url;
+				//string filePath = url;
+				var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
+                //sFileName = "דוח" + sFileName;
+                File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator.pdf", pdfBytes);
 
 				List<UserBasic> lusers = new List<UserBasic>();
 				UserBasic provider = new UserBasic();
 				UserBasic shmaya = new UserBasic();
-				shmaya.nvEmail = "simanim1@gmail.com";
+				shmaya.nvEmail = "reports@shmaya.org.il";
 				lusers = UserBasic.GetUsersBasic(3);
 				foreach (UserBasic user in lusers)
 				{
@@ -193,10 +190,10 @@ namespace ShmayaService.Entities
 				lusers.Add(provider);
 				lusers.Add(shmaya);
 				Messages message = new Messages();
-				message.nvFrom = "shmaya@gmail.com";
+				message.nvFrom = "reports@shmaya.org.il";
 				message.nvSubject = "מצ\"ב דו\"ח ביצוע הזמנה";
 				List<Attachment> lAttach = new List<Attachment>();
-				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + sFileName + ".pdf"));
+				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator.pdf"));
 				Messages.SendEmailToGroup(lusers, message, 1, lAttach);
 
 				return filePath;
@@ -246,7 +243,7 @@ namespace ShmayaService.Entities
 				List<UserBasic> lusers = new List<UserBasic>();
 				UserBasic provider = new UserBasic();
 				UserBasic shmaya = new UserBasic();
-				shmaya.nvEmail = "simanim1@gmail.com";
+				shmaya.nvEmail = "reports@shmaya.org.il";
 				lusers = UserBasic.GetUsersBasic(3);
 				foreach (UserBasic user in lusers)
 				{
@@ -260,7 +257,7 @@ namespace ShmayaService.Entities
 				lusers.Add(provider);
 				lusers.Add(shmaya);
 				Messages message = new Messages();
-				message.nvFrom = "shmaya@gmail.com";
+				message.nvFrom = "reports@shmaya.org.il";
 				message.nvSubject = "מצ\"ב דו\"ח ביצוע הזמנה";
 				List<Attachment> lAttach = new List<Attachment>();
 				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator" + fileName + ".pdf"));

@@ -24,21 +24,18 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 					$scope.typeTranslation = 41
 				else
 					$scope.typeTranslation = 42
-	    $scope.Orderinsert_update;
+		$scope.Orderinsert_update;
 		if ($scope.isEdit)
 			var Orderinsert_update = 'OrderUpdate';
-		else 
+		else
 			var Orderinsert_update = 'OrderInsert';
 
 
-		$scope.saveOrders = function ()
-		{
+		$scope.saveOrders = function () {
 			$scope.$broadcast('show-errors-check-validity');
 			if (!$scope.formOrder.$valid || !$scope.order.iSelectedTranslator || !$scope.order.iUserId) {
-	            var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-				$rootScope.notification(savingStatus);
 				alerts.alert("יש למלא ערכים תקינים בכל השדות");
-	            return;
+				return;
 			}
 			$scope.orderToSend = angular.copy($scope.order);
 			if ($scope.order.iMonthYearId instanceof String || typeof $scope.order.iMonthYearId === 'string') {
@@ -49,28 +46,33 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 			}
 			if (!($scope.orderToSend.dtDateTraslation_original instanceof String || typeof $scope.orderToSend.dtDateTraslation_original === 'string'))
 				$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
-			else
-			{
+			else {
 				var day = $scope.order.dtDateTraslation_original.substring(0, 2);
 				var month = $scope.order.dtDateTraslation_original.substring(3, 5);
 				var year = $scope.order.dtDateTraslation_original.substring(6, 10);
 				$scope.order.dtDateTraslation = angular.copy(new Date(parseInt(year), parseInt(month) - 1, parseInt(day)))
 			}
-	        $scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
-	        $scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
+			$scope.orderToSend.dtDateTraslation = angular.copy($scope.order.dtDateTraslation_original)
+			$scope.orderToSend.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
 			$scope.orderToSend.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation)
-	
-				if ($scope.order.iSelectedTranslator)
+
+			if ($scope.order.iSelectedTranslator)
+				if ($scope.order.iSelectedTranslator.iId)
 					$scope.orderToSend.iSelectedTranslator = angular.copy($scope.order.iSelectedTranslator.iId)
-				if ($scope.order.iUserId)
+			if ($scope.order.iUserId)
+				if ($scope.order.iUserId.iId)
 					$scope.orderToSend.iUserId = angular.copy($scope.order.iUserId.iId)
-				if ($scope.order.iAreaId)
+			if ($scope.order.iAreaId)
+				if ($scope.order.iAreaId.iId)
 					$scope.orderToSend.iAreaId = angular.copy($scope.order.iAreaId.iId)
-				if ($scope.order.iCityId)
+			if ($scope.order.iCityId)
+				if ($scope.order.iCityId.iId)
 					$scope.orderToSend.iCityId = angular.copy($scope.order.iCityId.iId)
-				if ($scope.order.iTypeTranslation)
+			if ($scope.order.iTypeTranslation)
+				if ($scope.order.iTypeTranslation.iId)
 					$scope.orderToSend.iTypeTranslation = angular.copy($scope.order.iTypeTranslation.iId)
-		
+
+
 			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation: $scope.prevTimeTranslation }, function (result) {
 				if (result.iOrderId == -1) {
 					alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
@@ -78,25 +80,22 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 						$scope.order.dialogIsOpen = false;
 				}
 				else
-					if (result.iOrderId  && result.iOrderId  > 0) {
-	                console.log(Orderinsert_update + ":" + result);
-	                var savingStatus = "השינויים נשמרו בהצלחה";
-	                $rootScope.notification(savingStatus);
-	                if ($scope.isEdit)
-	                    $scope.order.dialogIsOpen = false;
-					else
-					{
-						$scope.newOrder.dialogIsOpen = false;
-						$scope.OrdersList.push($scope.order);
-	                }
-	                $scope.prepareData();
-	            }
-				else {
-					//alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
-	                alert('ארעה שגיאה בלתי צפויה');
-	            }
+					if (result.iOrderId && result.iOrderId > 0) {
+						console.log(Orderinsert_update + ":" + result);
+						if ($scope.isEdit)
+							$scope.order.dialogIsOpen = false;
+						else {
+							$scope.newOrder.dialogIsOpen = false;
+							$scope.OrdersList.push($scope.order);
+						}
+						$scope.prepareData();
+					}
+					else {
+						//alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
+						alert('ארעה שגיאה בלתי צפויה');
+					}
 			});
-	    }
+		}
 		$scope.getData = function () {
 
 			connect.post(true, 'GetUsersCode',
@@ -131,25 +130,24 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 
 				})
 			}
-	        if ($scope.order && $scope.order.dtTimeBegin_original && $scope.order.dtTimeEnd && !$scope.order.dtTimeTranslation)
-	        {
-	            var hours = new Date($scope.order.dtTimeEnd).getHours() - new Date($scope.order.dtTimeBegin_original).getHours();
-	            var minutes = new Date($scope.order.dtTimeEnd).getMinutes() - new Date($scope.order.dtTimeBegin_original).getMinutes();
-	            if (minutes < 0) {
-	                minutes += 60;
-	                hours -= 1;
-	            }
-	            $scope.order.dtTimeTranslation = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
-	        }
-	    };
+			if ($scope.order && $scope.order.dtTimeBegin_original && $scope.order.dtTimeEnd && !$scope.order.dtTimeTranslation) {
+				var hours = new Date($scope.order.dtTimeEnd).getHours() - new Date($scope.order.dtTimeBegin_original).getHours();
+				var minutes = new Date($scope.order.dtTimeEnd).getMinutes() - new Date($scope.order.dtTimeBegin_original).getMinutes();
+				if (minutes < 0) {
+					minutes += 60;
+					hours -= 1;
+				}
+				$scope.order.dtTimeTranslation = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
+			}
+		};
 
-	    $scope.calculateTimeEnd = function () {
-	        if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation) return;
-	        var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation.getHours();
-	        var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation.getMinutes();
-	        if (minutes >= 60) {
-	            minutes -= 60;
-	            hours += 1;
+		$scope.calculateTimeEnd = function () {
+			if (!$scope.order.dtTimeBegin_original || !$scope.order.dtTimeTranslation) return;
+			var hours = $scope.order.dtTimeBegin_original.getHours() + $scope.order.dtTimeTranslation.getHours();
+			var minutes = $scope.order.dtTimeBegin_original.getMinutes() + $scope.order.dtTimeTranslation.getMinutes();
+			if (minutes >= 60) {
+				minutes -= 60;
+				hours += 1;
 			}
 			$scope.order.dtTimeEnd = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 
@@ -180,6 +178,6 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 				}
 		}
 
-	    $scope.getData();
+		$scope.getData();
 
 	}]);

@@ -128,7 +128,10 @@ NOApp.factory("orderConnect", ['$http', '$rootScope', '$location', 'orderAlerts'
                     break;
                 case 'qa.webit-track.com':
 					url = "http://qa.webit-track.com/ShmayaCRMWs/";
-                    break;
+					break;
+				case 'sl.shmaya.org.il':
+					url = "http://sl.shmaya.org.il/ShmayaCRMws/";
+					break;
             }
             return url;
         },

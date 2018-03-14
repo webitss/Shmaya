@@ -16,8 +16,6 @@ companionApp.controller('MessagesCtrl', ['$scope', '$rootScope', '$routeParams',
 	$scope.sendMessage = function () {
 		$scope.$broadcast('show-errors-check-validity');
 		if (!$scope.massegeForm.$valid) {
-			var savingStatus = "ישנם למלא ערכים תקינים בכל השדות";
-			$rootScope.notification(savingStatus);
 			alerts.alert("יש למלא ערכים תקינים בכל השדות");
 			console.log(JSON.stringify($scope.formDetails));
 			return;

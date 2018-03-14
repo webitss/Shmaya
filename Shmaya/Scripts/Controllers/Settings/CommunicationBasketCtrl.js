@@ -47,8 +47,6 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 								        connect.post(true, 'CommunicationUpdate', { comm: $scope.comm, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 								            if (result && result > 0) {
 								                console.log('CommunicationUpdate:' + result);
-								                var savingStatus = "השינויים נשמרו בהצלחה";
-								                $rootScope.notification(savingStatus);
 								            }
 								            else {
 								                alert('ארעה שגיאה בלתי צפויה');
@@ -113,8 +111,6 @@ companionApp.controller('CommunicationBasketCtrl', ['$scope', '$rootScope', 'con
 				        connect.post(true, 'CommunicationInsert', { comm: $scope.newCommunication, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 				            if (result && result > 0) {
 				                console.log('CommunicationInsert:' + result);
-				                var savingStatus = "השינויים נשמרו בהצלחה";
-				                $rootScope.notification(savingStatus);
 				                $scope.newCommunication = {};
 				                $scope.getData();
 				            }

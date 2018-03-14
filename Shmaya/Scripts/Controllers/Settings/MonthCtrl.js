@@ -48,8 +48,6 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 										if (result && result > 0)
 										{
 											console.log('MonthUpdate:' + result);
-											var savingStatus = "השינויים נשמרו בהצלחה";
-											$rootScope.notification(savingStatus);
 											$scope.getData();
 										}
 										else
@@ -114,8 +112,6 @@ companionApp.controller('MonthCtrl', ['$scope', '$rootScope', 'connect', '$timeo
 					connect.post(true, 'monthInsert', { month: $scope.newMonth, iUserManagerId: $rootScope.user.iUserId }, function (result) {
 						if (result && result > 0) {
 							console.log('monthInsert:' + result);
-							var savingStatus = "השינויים נשמרו בהצלחה";
-							$rootScope.notification(savingStatus);
 							$scope.newMonth = {};
 							$scope.getData();
 						}

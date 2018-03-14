@@ -3,6 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="commands menu-klaly">
+					<!--שימוש בדירקטיב המאפשר דפדוף בגריד-->
 					<grid-pager class="col-md pull-right grid-paging-style-b cancel-right-padding" grid-paging-identity="{{gridIdentity}}"></grid-pager>
 
 					<div class="nav pull-left">
@@ -22,6 +23,7 @@
 				</div>
 			</div>
 			<br />
+			<!--שימוש בגריד של לקוחות-->
 			<div class="row" ng-if="showCustomer">
 				<grid columns="columnsCustomers"
 					  data="ABCBookCustomers"
@@ -30,7 +32,7 @@
 					  footer-text="ערכים"
 					  grid-identity="{{gridIdentity}}"></grid>
 			</div>
-
+			<!--שימוש בגריד של נותני שירות-->
 			<div class="row" ng-if="!showCustomer&&!showAdmin">
 				<grid columns="columnsProviders"
 					  data="ABCBookProviders"
@@ -39,14 +41,13 @@
 					  footer-text="ערכים"
 					  grid-identity="{{gridIdentity}}"></grid>
 			</div>
-
+			<!--שימוש בגריד של מנהלים-->
 			<div class="row" ng-if="showAdmin">
 				<grid columns="columns"
 					  data="ABCBookAdministrator"
 					  class="color-gray"
 					  is-data-loaded="isDataLoadedAdministrator"
 					  footer-text="ערכים"
-					  row-class="{'highlight-row': item.bIsTodayConversation}"
 					  grid-identity="{{gridIdentity}}"></grid>
 			</div>
 
