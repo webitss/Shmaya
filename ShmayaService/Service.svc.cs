@@ -316,12 +316,12 @@ namespace ShmayaService
         [OperationContract]
         [WebInvoke(
           Method = "POST",
-          UriTemplate = "SendSMSToGroup",
+          UriTemplate = "SendEmailToOne",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public static bool SendEmailToOne(Messages message, List<Attachment> lAttach)
+        public static bool SendEmailToOne(Messages message, List<Attachment> lAttach, bool fromLogin)
         {
-            return Messages.SendEmailToOne(message, lAttach);
+            return Messages.SendEmailToOne(message, lAttach,fromLogin);
         }
 
 

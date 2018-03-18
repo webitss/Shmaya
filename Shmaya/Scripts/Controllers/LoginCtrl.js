@@ -46,9 +46,9 @@ companionApp.controller('LoginCtrl', ['$scope', '$location', '$rootScope', 'aler
 				alerts.alert("הסיסמא נשלחה לכתובת מייל שהזנת");
 				$scope.var.forgetPassword = false;
 			}
-			if (result == -1)
+			if (result == 2)
 				alerts.alert("ארעה שגיאה בלתי צפויה, נסה שנית");
-			if (result == -2)
+			if (result == 3)
 				alerts.alert("כתובת המייל לא נמצאה במערכת");
 			$scope.resetUser();
 		});

@@ -221,28 +221,28 @@ namespace ShmayaService.Entities
                 {
                     User user = ObjectGenerator<User>.GeneratFromDataRow(ds.Tables[0].Rows[0]);
                     string body = user.nvFirstName + " " + user.nvLastName + "\n" +
-                                 "שם המשתמש שלך הוא:" + " " + user.nvUserName + "\n" +
+                                 "שם המשתמש שלך הוא:" + " " + user.nvId + "\n" +
                                  "הסיסמה שלך היא:" + " " + user.nvPassword;
                     Messages message = new Messages();
                     message.nvMessage = body;
                     message.nvSubject = "שיחזור סיסמא";
                     message.nvTo = user.nvEmail;
                     message.nvFrom = ConfigurationManager.AppSettings["mailFrom"].ToString();
-                    bool b = Messages.SendEmailToOne(message,null);
+                    bool b = Messages.SendEmailToOne(message,null,true);
                     if (b == false)
-                        return -1;
+                        return 2;
                     //return "שליחת המייל נכשלה";
                     else
                         return 1;
                     //    "הסיסמא נשלחה לכתובת מייל שהזנת";
                 }
-                return -2;
+                return 3;
                 // "כתובת המייל לא נמצאה במערכת";
             }
             catch (Exception ex)
             {
                 Log.ExceptionLog(ex.Message, "ResetUserPassword");
-                return -1;
+                return 2;
                 //  "שליחת המייל נכשלה";
             }
         }

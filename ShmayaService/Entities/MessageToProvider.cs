@@ -90,7 +90,7 @@ namespace ShmayaService.Entities
 							lAttach.Add(new Attachment(path));
 						if (lOrders != null && lOrders.Count != 0)
 							lAttach.Add(new Attachment(path2));
-						bool isSuccess = Messages.SendEmailToOne(message, lAttach);
+						bool isSuccess = Messages.SendEmailToOne(message, lAttach,false);
 					
 					}
 				return 1;
