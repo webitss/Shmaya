@@ -154,12 +154,12 @@ namespace ShmayaService
 				[OperationContract]
 		[WebInvoke(
 		 Method = "POST",
-		 UriTemplate = "UpdateVat",
+		 UriTemplate = "UpdateGlobalParameter",
 		 BodyStyle = WebMessageBodyStyle.WrappedRequest,
 		 ResponseFormat = WebMessageFormat.Json)]
-		public void UpdateVat(int vat)
+		public int UpdateGlobalParameter(int value, int id)
 		{
-			 SysTableRow.UpdateVat(vat);
+			 return SysTableRow.UpdateGlobalParameter(value,id);
 		}
 
 		#region Order
@@ -214,9 +214,9 @@ namespace ShmayaService
           UriTemplate = "OrderInsert",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public Orders OrderInsert(Orders order, int iUserManagerId, int? isFromSite)
+        public Orders OrderInsert(Orders order, int iUserManagerId, int? isFromSite, User customer,bool inValidOrder)
         {
-            return Orders.OrderInsert(order, iUserManagerId, isFromSite);
+            return Orders.OrderInsert(order, iUserManagerId, isFromSite, customer, inValidOrder);
         }
 
         [OperationContract]
@@ -319,9 +319,9 @@ namespace ShmayaService
           UriTemplate = "SendEmailToOne",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public static bool SendEmailToOne(Messages message, List<Attachment> lAttach, bool fromLogin)
+        public static bool SendEmailToOne(Messages message, List<Attachment> lAttach, bool withoutAttach)
         {
-            return Messages.SendEmailToOne(message, lAttach,fromLogin);
+            return Messages.SendEmailToOne(message, lAttach, withoutAttach);
         }
 
 
@@ -491,9 +491,9 @@ namespace ShmayaService
           UriTemplate = "RefundUpdate",
           BodyStyle = WebMessageBodyStyle.WrappedRequest,
           ResponseFormat = WebMessageFormat.Json)]
-        public string RefundUpdate(Refund refund, int iUserManagerId, bool isDelete)
+        public string RefundUpdate(Refund refund, int iUserManagerId, bool isDelete, double prevRefund)
         {
-            return Refund.RefundUpdate(refund, iUserManagerId, isDelete);
+            return Refund.RefundUpdate(refund, iUserManagerId, isDelete, prevRefund);
         }
 
         [OperationContract]
@@ -714,7 +714,16 @@ namespace ShmayaService
             return VideoTranslation.GetNumHours(nvIdentity);
         }
 
-        [OperationContract]
+		[OperationContract]
+		[WebGet(
+			ResponseFormat = WebMessageFormat.Json)]
+		public double GetCommunicationBalance(string nvIdentity)
+		{
+			return VideoTranslation.GetCommunicationBalance(nvIdentity);
+		}
+
+
+		[OperationContract]
         [WebGet(
             ResponseFormat = WebMessageFormat.Json)]
         public int NewVideoTranslation(DateTime dtTimeBegin, DateTime dtTimeTranslation, string nvTranslatorIdentity, string nvUserIdentity)
@@ -748,5 +757,6 @@ namespace ShmayaService
 		}
 
 		#endregion
+
 	}
 }

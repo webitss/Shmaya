@@ -59,13 +59,14 @@ namespace ShmayaService.Entities
             }
         }
 
-        public string SaveFile(string sFile, string subFile, string sFileType, int iUserManagerId)
+        public string SaveFile(string sFile, string subFile, string sFileType, int iUserManagerId, string sFileName = null)
         {
             try
             {
 
                 byte[] array = Convert.FromBase64String(sFile);
-                string FileName = DateTime.Now.ToFileTime().ToString() + iUserManagerId + "." + sFileType;
+				sFileName = sFileName == null ? string.Empty:sFileName;
+                string FileName = sFileName+ DateTime.Now.ToFileTime().ToString() + iUserManagerId + "." + sFileType;
                 File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Files\\" + subFile +"\\"+ FileName, array);
                 return FileName;
             }
@@ -170,8 +171,9 @@ namespace ShmayaService.Entities
 				string filePath =  System.Configuration.ConfigurationManager.AppSettings["BaseUrlForPDF"] + url;
 				//string filePath = url;
 				var pdfBytes = pdf.GeneratePdfFromFile(filePath, null);
-                //sFileName = "דוח" + sFileName;
-                File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator.pdf", pdfBytes);
+				//sFileName = "דוח" + sFileName;
+				string sFileName = "pdfReport_" + DateTime.Now.ToFileTime().ToString();
+				File.WriteAllBytes(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\" + sFileName + ".pdf", pdfBytes);
 
 				List<UserBasic> lusers = new List<UserBasic>();
 				UserBasic provider = new UserBasic();
@@ -193,7 +195,7 @@ namespace ShmayaService.Entities
 				message.nvFrom = "reports@shmaya.org.il";
 				message.nvSubject = "מצ\"ב דו\"ח ביצוע הזמנה";
 				List<Attachment> lAttach = new List<Attachment>();
-				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\pdfGenerator.pdf"));
+				lAttach.Add(new Attachment(AppDomain.CurrentDomain.BaseDirectory + "\\Files\\pdfReports\\"+sFileName+".pdf"));
 				Messages.SendEmailToGroup(lusers, message, 1, lAttach);
 
 				return filePath;

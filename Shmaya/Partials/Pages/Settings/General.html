@@ -1,0 +1,19 @@
+﻿
+<div ng-controller="GeneralCtrl" class="container container-message">
+<wait></wait>
+<div class="container">
+	<div class="row">
+		<label>כמות שעות מקסימלית לדיווח מהאתר:</label>
+		<input type="number" ng-model="maxHours"/><br />
+		<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="UpdateGlobalParameter(maxHours,2)">
+			<i class="glyphicon glyphicon-plus-sign"></i>
+			<span class="color-text-white">עדכן</span>
+		</button><br /><br />
+		<label>עדכון ערך מע"מ:</label><input type="number" ng-model="vat"/><br />
+		<button type="button" class="col-md btn  pass color-grn btn-ayelet" ng-click="UpdateGlobalParameter(vat,1)">
+			<i class="glyphicon glyphicon-plus-sign"></i>
+			<span class="color-text-white">עדכן</span>
+		</button>
+	</div>
+</div>
+</div>

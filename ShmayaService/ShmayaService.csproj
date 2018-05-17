@@ -42,6 +42,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Users\User\Downloads\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Infra">
+      <HintPath>..\..\..\Users\User\Downloads\Infra.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\מרים מרצבך\DEV\Shift\Service\ShiftService\bin\Newtonsoft.Json.dll</HintPath>
@@ -69,6 +76,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\DocumentFormat.OpenXml.dll" />
+    <Content Include="bin\Infra.dll" />
+    <Content Include="bin\msvcp120.dll" />
+    <Content Include="bin\msvcr120.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\NReco.PdfGenerator.dll" />
+    <Content Include="bin\ShmayaService.dll" />
+    <Content Include="bin\ShmayaService.pdb" />
+    <Content Include="bin\wkhtmltopdf.exe" />
     <Content Include="Global.asax" />
     <Content Include="Service.svc" />
     <Content Include="Web.config">
@@ -102,8 +118,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilisties\Config.cs" />
+    <Compile Include="Utilisties\ExcelHendler.cs" />
     <Compile Include="Utilisties\FileManageCtrl.cs" />
-    <Compile Include="Utilisties\Infra.cs" />
     <Compile Include="Utilisties\Log.cs" />
     <Compile Include="Utilisties\ObjectGenerator.cs" />
     <Compile Include="Utilisties\ProcedureParameter.cs" />
@@ -115,6 +131,7 @@
     <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\ShmayaService.dll.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\ShmayaWS.pubxml" />

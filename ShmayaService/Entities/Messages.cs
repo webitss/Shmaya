@@ -30,9 +30,9 @@ namespace ShmayaService.Entities
 
 		#region methods
 
-		public static bool SendEmailToOne( Messages message, List<Attachment> lAttach, bool fromLogin)
+		public static bool SendEmailToOne( Messages message, List<Attachment> lAttach, bool withoutAttach)
 		{
-			if ((message.nvTo != null && message.nvTo != "" && lAttach != null && lAttach.Count != 0)||fromLogin == true)
+			if ((message.nvTo != null && message.nvTo != "" && lAttach != null && lAttach.Count != 0)|| withoutAttach == true)
 			{
 
 				MailMessage mailMessage = new MailMessage();

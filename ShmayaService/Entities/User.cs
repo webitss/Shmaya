@@ -379,9 +379,8 @@ namespace ShmayaService.Entities
 		{
 			try
 			{
-				Log.ExceptionLog("i enter1", "YearOfRenewalUpdate");
 				SqlDataAccess.ExecuteDatasetSP("TYearOfRenewal_UPD");
-				Log.ExceptionLog("i enter2", "YearOfRenewalUpdate");
+				Log.ExceptionLog("I enter", "YearOfRenewalUpdate");
 
 			}
 			catch (Exception ex)

@@ -9,6 +9,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 			$scope.isShowAlert = false;
 			$scope.isShowAlert2 = false;
 			$scope.restart = true;
+			var prevRefund = 0;
 
 			//חישוב תאריך התחדשות ההחזרים
 			if ($scope.user.dtResetCommunication != null) {
@@ -53,6 +54,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 							$scope.refund2.iMonthYearId = $scope.tmpDate
 						}
 						$scope.isEdit = true;
+						prevRefund = $scope.refund2.nRefund;
 						$scope.pop = "<label>שם מוצר</label><input type='text' class='form-control' required ng-model='refund2.nvPruductName' disabled />" +
 							"<label>תאריך רכישה</label><input type='date' class='form-control' required ng-model='refund2.dtPurchase_original' required/>" +
 							"<label>שיוך לחודש ושנה</label><form-dropdown ng-model='refund2.iMonthYearId' enablesearch='false' data='monthYearList' required></form-dropdown>" +
@@ -122,16 +124,16 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									if ($scope.refund2.iProductId == 30)
 										$scope.refund2.nRefund = $scope.refund2.nPayment * ($rootScope.vat / 100);
 									else {
-										if ($scope.sumBalance > ($scope.refund2.nPayment * 0.9))
+										if ($scope.sumBalance + prevRefund > ($scope.refund2.nPayment * 0.9))
 										{
 											$scope.refund2.nRefund = $scope.refund2.nPayment * 0.9;
-											$scope.sumRefunds += $scope.refund2.nRefund;
-											$scope.user.nBankCommunication += $scope.refund2.nRefund;
-											$scope.sumBalance -= $scope.refund2.nRefund;
+											$scope.sumRefunds = $scope.sumRefunds + $scope.refund2.nRefund - prevRefund;
+											$scope.user.nBankCommunication = $scope.user.nBankCommunication + $scope.refund2.nRefund - prevRefund ;
+											$scope.sumBalance = $scope.sumBalance - $scope.refund2.nRefund + prevRefund;
 											Math.round($scope.sumBalance * 100) / 100;
 											Math.round($scope.sumRefunds * 100) / 100;
 										}
-										else {
+										else { 
 											$scope.refund2.nRefund = $scope.sumBalance + $scope.refund2.nRefund;
 											$scope.sumRefunds = $scope.sumCommunication;
 											$scope.sumBalance = 0;
@@ -147,7 +149,7 @@ companionApp.controller('RefundsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 									$scope.tmpDate = parseInt($scope.tmpDate1) * 100 + parseInt($scope.tmpDate2)
 									$scope.refundToSend.iMonthYearId = $scope.tmpDate
 								}
-								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete }, function (result) {
+								connect.post(true, 'RefundUpdate', { refund: $scope.refundToSend, iUserManagerId: $rootScope.user.iUserId, isDelete: $scope.isDelete, prevRefund:prevRefund }, function (result) {
 									if (result) {
 										console.log('RefundUpdate:');
 										$scope.getData();

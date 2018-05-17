@@ -72,14 +72,17 @@ namespace ShmayaService.Entities
 			}
 		}
 
-		public static string RefundUpdate(Refund refund, int iUserManagerId, bool isDelete)
+		public static string RefundUpdate(Refund refund, int iUserManagerId, bool isDelete, double prevRefund)
 		{
 			try
 			{
 				if (refund.nvDocPath!=null)
-				{ 
+				{
 					if (isDelete == false)
-						refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1),"reference", refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+					{
+						if (refund.nvDocPath.Split(':')[0] == "data")
+							refund.nvDocPath = new FileManageCtrl().SaveFile(refund.nvDocPath.Substring(refund.nvDocPath.LastIndexOf(",") + 1), "reference", refund.nvDocPath.Substring(refund.nvDocPath.IndexOf('/') + 1, refund.nvDocPath.LastIndexOf(';') - refund.nvDocPath.IndexOf('/') - 1), iUserManagerId);
+					}
 					else
 					{
 						refund.nvDocPath = refund.nvDocPath.Split('/')[4];
@@ -89,6 +92,7 @@ namespace ShmayaService.Entities
 				}
 				List<SqlParameter> parameters = ObjectGenerator<Refund>.GetSqlParametersFromObject(refund);
 				parameters.Add(new SqlParameter("iUserManagerId", iUserManagerId));
+				parameters.Add(new SqlParameter("prevRefund", prevRefund));
 				DataSet ds = SqlDataAccess.ExecuteDatasetSP("TRefund_UPD", parameters);
 				return "success";
 			}

@@ -1,5 +1,5 @@
 ﻿"use strict"
-companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId','alerts',
+companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$location', '$filter', '$timeout', 'codeTablesName', 'codeTablesId', 'alerts',
 	function ($scope, $rootScope, connect, $location, $filter, $timeout, codeTablesName, codeTablesId, alerts) {
 		$scope.isPrepareData = true;
 		$scope.isPrepareData2 = true;
@@ -17,7 +17,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'סוג שעה', fieldName: 'nvTypeOrder' },
 					{ title: 'מספר שעות', fieldName: 'nNumHours' },
 					{ title: 'סוג עוסק', fieldName: 'nvWorkerType' }
-					
+
 				];
 
 			}
@@ -28,8 +28,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		$scope.prepareData2 = function () {
 			$scope.getData2();
-			if ($scope.isPrepareData2 = true)
-			{
+			if ($scope.isPrepareData2 = true) {
 				$scope.isDataLoaded2 = 0;
 				$scope.gridIdentity2 = 'ReportsList2';
 				$scope.columns2 = [
@@ -41,7 +40,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 					{ title: 'מספר שעות', fieldName: 'nNumHours' },
 					{ title: 'סוג עוסק', fieldName: 'nvWorkerType' }
 				];
-			
+
 			}
 			else
 				$scope.isPrepareData2 = true;
@@ -51,8 +50,7 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		$scope.prepareData3 = function () {
 			$scope.getData3();
-			if ($scope.isPrepareData3 = true)
-			{
+			if ($scope.isPrepareData3 = true) {
 				$scope.isDataLoaded3 = 0;
 				$scope.gridIdentity3 = 'ReportsList2';
 				$scope.columns3 = [
@@ -70,32 +68,27 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 		};
 
 
-		$scope.getData = function ()
-		{
-			connect.post(true, 'GetReports', { iMonthYearId: $scope.iMonthYearId, iTypeOrder:22 },
-				function (result)
-				{
-					if (result.length == 0)
-					{
+		$scope.getData = function () {
+			connect.post(true, 'GetReports', { iMonthYearId: $scope.iMonthYearId, iTypeOrder: 22 },
+				function (result) {
+					if (result.length == 0) {
 						$scope.isPrepareData = false;
 						alerts.alert('אין נתונים להצגה בדוח מתרגמים');
 						return;
 					}
 					$scope.ReportsList1 = result;
-					$scope.ReportsList1.forEach(function (item)
-					{
+					$scope.ReportsList1.forEach(function (item) {
 						item.nNumHours = Math.round(item.nNumHours * 100) / 100
 					})
 					$scope.isDataLoaded1++;
-				
+
 				});
-			
+
 		};
 
 		$scope.getData2 = function () {
 			connect.post(true, 'GetReports', { iMonthYearId: $scope.iMonthYearId, iTypeOrder: 23 },
-				function (result)
-				{
+				function (result) {
 					if (result.length == 0) {
 						$scope.isPrepareData2 = false;
 						alerts.alert('אין נתונים להצגה בדוח מתמללים')
@@ -129,30 +122,27 @@ companionApp.controller('ReportsCtrl', ['$scope', '$rootScope', 'connect', '$loc
 
 		};
 
-		$scope.exportToExcel = function ()
-		{
+		$scope.exportToExcel = function () {
 			$scope.$broadcast('exportToExcel',
 				{
 					id: $scope.gridIdentity1,
 					fileName: 'דוח נותני שירות'
 				})
-	
+
 		}
 
 
 
-		$scope.checkValidation = function ()
-		{
+		$scope.checkValidation = function () {
 			$scope.$broadcast('show-errors-check-validity');
-			if (!$scope.formReport1.$valid)
-			{
+			if (!$scope.formReport1.$valid) {
 				alerts.alert('יש לבחור חודש!', 'שגיאה');
 				return;
 			}
 			$scope.exportToExcel()
 		}
 
-	
-		
+
+
 
 	}])

@@ -59,18 +59,25 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\footer.png" />
+    <Content Include="Images\head.png" />
+    <Content Include="Images\logo-center.png" />
+    <Content Include="Images\shikum.png" />
     <Content Include="NewOrder\NewOrderApp.js" />
     <Content Include="NewOrder\NewOrderCtrl.js" />
     <Content Include="NewOrder\OrderFormDropdownTemplate.html" />
+    <Content Include="NewOrder\pdfReport.html" />
     <Content Include="NewOrder\shmaya.html" />
     <Content Include="NewOrder\SignatureDirective.js" />
     <Content Include="Images\bg-shmaya.png" />
     <Content Include="Images\good-icon.png" />
-    <Content Include="Images\logo-ravacha.png" />
+    <Content Include="Partials\Pages\Settings\General.html" />
     <Content Include="Partials\Templates\FormDropdownFilterTemplate.html" />
-    <Content Include="Scripts\Factories\ConnectForPdf.js" />
+    <Content Include="NewOrder\Signature.html" />
+    <Content Include="Scripts\Controllers\Settings\GeneralCtrl.js" />
+    <Content Include="Scripts\Directives\CreateDialogDir.js" />
+    <Content Include="Scripts\Directives\multiSearchDrct.js" />
     <Content Include="AlertTemplate.html" />
-    <Content Include="OrderFormDropdownTemplate.html" />
     <Content Include="Images\building.jpg" />
     <Content Include="Images\excel-icon.png" />
     <Content Include="Images\phone-plus.png" />
@@ -88,8 +95,9 @@
     <Content Include="Images\webit_logo.png" />
     <Content Include="Images\x-command.png" />
     <Content Include="index.html" />
+    <Content Include="Scripts\Factories\createDialogFactory.js" />
+    <Content Include="Scripts\Libraries\signature_pad.min.js" />
     <Content Include="shmaya-Logo.ico" />
-    <Content Include="shmaya.html" />
     <Content Include="Shmaya\bootstrap\bootstrap-rtl.css" />
     <Content Include="Shmaya\bootstrap\bootstrap-rtl.js" />
     <Content Include="Shmaya\bootstrap\bootstrap-theme-rtl.css" />
@@ -106,11 +114,9 @@
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\bootstrap.min.js" />
     <Content Include="Shmaya\bootstrap\bootstrap-3.3.7-dist-original\js\npm.js" />
     <Content Include="Shmaya\bootstrap\ui-bootstrap-tpls.min.js" />
-    <Content Include="NewOrderApp.js" />
     <Content Include="Partials\Pages\ABCBook\ABCBook.html" />
-    <Content Include="Partials\Pages\ABCBook\ABCBookDetailes.html" />
     <Content Include="Partials\Pages\ABCBook\ABCBookTabs.html" />
-    <Content Include="Partials\Pages\Conversations.html" />
+    <Content Include="Partials\Pages\EditCustomer\Conversations.html" />
     <Content Include="Partials\Pages\EditCustomer\Connections.html" />
     <Content Include="Partials\Pages\EditCustomer\EditCustomer.html" />
     <Content Include="Partials\Pages\EditCustomer\MessagesCust.html" />
@@ -121,7 +127,6 @@
     <Content Include="Partials\Pages\menu\Header.html" />
     <Content Include="Partials\Pages\menu\Menu.html" />
     <Content Include="Partials\Pages\Messages\Messages.html" />
-    <Content Include="Partials\Pages\Messages\PdfToProviders.html" />
     <Content Include="Partials\Pages\Orders\AddNewOrder.html" />
     <Content Include="Partials\Pages\Orders\Orders.html" />
     <Content Include="Partials\Pages\Orders\OrdersBoard.html" />
@@ -149,13 +154,11 @@
     <Content Include="Partials\Templates\multiFormDropdownTemplate.html" />
     <Content Include="Partials\Templates\SearchTemplate.html" />
     <Content Include="Partials\Templates\TableCodeDetailsTemplate.html" />
-    <Content Include="PdfMessage.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\Constant\CodeTablesId.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookCtrl.js" />
-    <Content Include="Scripts\Controllers\ABCBook\ABCBookDetailesCtrl.js" />
     <Content Include="Scripts\Controllers\ABCBook\ABCBookTabsCtrl.js" />
-    <Content Include="Scripts\Controllers\Conversations\ConversationsCtrl.js" />
+    <Content Include="Scripts\Controllers\EditCustomer\ConversationsCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\ConnectionsCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\EditCustomerCtrl.js" />
     <Content Include="Scripts\Controllers\EditCustomer\MessagesCustCtrl.js" />
@@ -166,9 +169,7 @@
     <Content Include="Scripts\Controllers\Menu\HeaderCtrl.js" />
     <Content Include="Scripts\Controllers\Menu\MenuCtrl.js" />
     <Content Include="Scripts\Controllers\Messages\MessagesCtrl.js" />
-    <Content Include="Scripts\Controllers\Messages\PdfToProvidersCtrl.js" />
     <Content Include="Scripts\Controllers\Orders\AddNewOrderCtrl.js" />
-    <Content Include="NewOrderCtrl.js" />
     <Content Include="Scripts\Controllers\Orders\OrdersBoardCtrl.js" />
     <Content Include="Scripts\Controllers\Orders\OrdersCtrl.js" />
     <Content Include="Scripts\Controllers\Orders\OrdersTabsCtrl.js" />
@@ -185,7 +186,6 @@
     <Content Include="Scripts\Directives\angular-file-upload.js" />
     <Content Include="Scripts\Directives\CalendarDirective.js" />
     <Content Include="Scripts\Directives\OrderFormDropdown.js" />
-    <Content Include="Scripts\Directives\CreateDialogDir.js" />
     <Content Include="Scripts\Directives\DateRtl.js" />
     <Content Include="Scripts\Directives\DropdownDirective.js" />
     <Content Include="Scripts\Directives\FormDropdown.js" />
@@ -205,7 +205,6 @@
     <Content Include="Scripts\Factories\Connect.js" />
     <Content Include="Scripts\Factories\orderAlerts.js" />
     <Content Include="Scripts\Factories\orderConnect.js" />
-    <Content Include="Scripts\Factories\createDialogFactory.js" />
     <Content Include="Scripts\Factories\ExcelFactory2.js" />
     <Content Include="Scripts\Factories\ForceLogOut.js" />
     <Content Include="Scripts\Factories\ScreenHeight.js" />
@@ -222,7 +221,7 @@
     <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Libraries\bootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\Libraries\bootstrap\js\npm.js" />
-    <Content Include="Scripts\Libraries\createDialog.js" />
+    <Content Include="Scripts\Factories\createDialog.js" />
     <Content Include="Scripts\Libraries\fullcalendar.js" />
     <Content Include="Scripts\Libraries\jquery-3.1.1.min.js" />
     <Content Include="Scripts\Libraries\jquery-ui.min.js" />
@@ -231,8 +230,6 @@
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.3.1.min.js" />
     <Content Include="Scripts\Libraries\ui-bootstrap-tpls-2.4.0.min.js" />
     <Content Include="pdfMessage\shmaya.html" />
-    <Content Include="Signature.html" />
-    <Content Include="SignatureDirective.js" />
     <Content Include="Style\ayelet_hashachar-companionship.css" />
     <Content Include="Style\bootstrap-flipped.css" />
     <Content Include="Style\bootstrap-flipped.min.css" />

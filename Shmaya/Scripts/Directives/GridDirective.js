@@ -204,11 +204,15 @@
                 });
             };
 
-            scope.$on('exportToExcel', function (scopeDetails, data) {
-                //if (data.id == scope.gridIdentity) {
-                excelFactory.excelExport(data.fileName, scope.columns, $filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
-                //}
-            });
+			scope.$on('exportToExcel', function (scopeDetails, data) {
+				//if (data.id == scope.gridIdentity) {
+				alert("לחץ אישור להפקת הדוח")
+
+			
+				excelFactory.excelExport(data.fileName, scope.columns, $filter('orderBy')($filter('filter')(scope.data, scope.filterFields), scope.currentsort.name, scope.currentsort.value));
+				//}
+			});
+
 
             var dataWatch = scope.$watch('isDataLoaded', function (newValue) {
                 if (scope.data != undefined) {

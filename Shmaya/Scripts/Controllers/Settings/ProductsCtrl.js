@@ -2,12 +2,20 @@
 companionApp.controller('ProductsCtrl', ['$scope', '$rootScope', 'connect', '$timeout', '$filter', 'alerts', 'createDialog', '$uibModal', 'codeTablesId',
 	function ($scope, $rootScope, connect, $timeout, $filter, alerts, createDialog, $uibModal, codeTablesId) {
 		$scope.newProduct = {};
-		$scope.updateVat = function (num)
+		$scope.UpdateGlobalParameter = function (num)
 		{
 			num = parseInt(num);
 			$rootScope.vat = num;
-			connect.post(true, 'UpdateVat', { vat: num},
+			let id = 1;
+			connect.post(true, 'UpdateGlobalParameter', { value: num, id:id},
 				function (result) {
+					if (result)
+						if (id == 1)
+							$rootScope.vat = result;
+						else
+							if (id == 2)
+								$rootScope.maxHours = result;
+						alerts.alert("העדכון בוצע בהצלחה")
 				});
 		}
 		$scope.prepareData = function () {

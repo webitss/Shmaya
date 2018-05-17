@@ -11,7 +11,8 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 			nvRemark:null
 			}
 		$scope.showWaiting = false;
-        $scope.successSend = false;
+		$scope.successSend = false;
+		$scope.inValidOrder = false;
 
         $scope.getData = function () {
             orderConnect.post(true, 'GetUserCodeTables', { iUserId: 1 }, function (result) {
@@ -22,7 +23,12 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
                 $scope.city = $filter('filter')(result, { Key: 'city' }, true)[0].Value;
                 $scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
                 $scope.yearList = $filter('filter')(result, { Key: 'year' }, true)[0].Value;
-                $scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+				$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+				$scope.globalParameterList = $filter('filter')(result, { Key: 'globalParameter' }, true)[0].Value;
+				$rootScope.vat = $scope.globalParameterList[0].nvName;
+				$rootScope.vat = parseInt($rootScope.vat);
+				$rootScope.maxHours = $scope.globalParameterList[1].nvName;
+				$rootScope.maxHours = parseInt($rootScope.maxHours);
                 $scope.monthYearList.forEach(function (date) {
                     $scope.tmpDate1 = date.nvName.substring(0, 4);
                     $scope.tmpDate2 = date.nvName.substring(4, 6);
@@ -47,8 +53,10 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 
 		$scope.selectTypeTranslating = function (iTypeTranslation)
 		{
-				if (iTypeTranslation == 58)
-					$scope.showWaiting = true;
+			if (iTypeTranslation == 58)
+				$scope.showWaiting = true;
+			else
+				$scope.showWaiting = false;
 		}
 
 		$scope.OpenSignatureDialog = function (ind) {
@@ -93,6 +101,13 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 			if (minutes >= 60) {
 				minutes -= 60;
 				hours += 1;
+			}
+			
+			if ($scope.order.dtTimeTranslation_original.getHours() > $rootScope.maxHours)
+			{
+				$scope.noIdentity = true;
+				$scope.noIdentityAlert = "משך זמן התרגום גדול מדי. הזמנה זו תמתין לאישור";
+				$scope.inValidOrder = true
 			}
 			$scope.order.dtTimeEnd = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), hours, minutes);
 		}
@@ -183,18 +198,22 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
             $scope.order.dtTimeBegin = angular.copy($scope.order.dtTimeBegin_original)
             $scope.order.dtTimeTranslation = angular.copy($scope.order.dtTimeTranslation_original)
 			$scope.order.dtTimeWaiting = angular.copy($scope.order.dtTimeWaiting_original)
-			orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite': 0 }, function (result) {
-				if (result.iOrderId == -1) {
-					$scope.noIdentity = true;
-					$scope.noIdentityAlert = 'קיימת הזמנה למתורגמן זה בטווח השעות הנבחר';
-				}
-				else
+			orderConnect.post(true, 'OrderInsert', { 'order': $scope.order, 'iUserManagerId': 1, 'isFromSite': 0, 'customer': $scope.customer, 'inValidOrder': $scope.inValidOrder }, function (result) {
+				//if (result.iOrderId == -1) {
+				//	$scope.noIdentity = true;
+				//	$scope.noIdentityAlert = 'קיימת הזמנה בטווח השעות הנבחר';
+				//}
+				////if (result.iOrderId == -2) {
+				////	$scope.noIdentity = true;
+				////	$scope.noIdentityAlert = 'מכסת השעות ללקוח זה הסתיימה. הדוחות ממתינים אצלינו. לקבלת תוספת שעות יש לפנות למשרד הרווחה';
+				////}
+				//else
 				if (result.iOrderId && result.iOrderId > 0) {
 					$scope.successSend = true;
-					
+
 					orderConnect.post(true, 'GenerateAttendanceReport', {
 						folderName: null,
-						url:"NewOrder/pdfReport.html",
+						url: "NewOrder/pdfReport.html",
 						identityTranslator: $scope.order.nvIdentityProvider
 					}, function (result) {
 						//if (result)
@@ -204,9 +223,27 @@ NOApp.controller('NewOrderCtrl', ['$scope', 'orderConnect', '$filter', 'orderAle
 								{
 									dtDateTraslation_original: new Date()
 								}
+							$scope.customer = {}
 						}
 					})
-                }
+				}
+				else
+					if (result.iOrderId == -1) {
+						$scope.noIdentity = true;
+						$scope.noIdentityAlert = 'קיימת הזמנה בטווח השעות הנבחר';
+					}
+					else
+						if (result.iOrderId == -2)
+						{
+							$scope.noIdentity = true;
+							$scope.noIdentityAlert = 'מכסת השעות ללקוח זה הסתיימה. הדוחות ממתינים אצלינו. לקבלת תוספת שעות יש לפנות למשרד הרווחה';
+							$scope.order =
+								{
+									dtDateTraslation_original: new Date()
+								}
+							$scope.customer = {}
+
+						}
                 else {
                     $scope.noIdentity = true;
                     $scope.noIdentityAlert = 'ארעה שגיאה בלתי צפויה';

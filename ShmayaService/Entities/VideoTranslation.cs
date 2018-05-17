@@ -11,6 +11,7 @@ namespace ShmayaService.Entities
 {
     public class VideoTranslation
     {
+		//מחזיר בנק שעות
         public static double GetNumHours(string nvIdentity)
         {
             try
@@ -29,8 +30,28 @@ namespace ShmayaService.Entities
                 return -1;
             }
         }
+		//מחזיר סך יתרה
 
-        public static int NewVideoTranslation(DateTime dtTimeBegin, DateTime dtTimeTranslation, string nvTranslatorIdentity, string nvUserIdentity)
+		public static double GetCommunicationBalance(string nvIdentity)
+		{
+			try
+			{
+				DataSet ds = SqlDataAccess.ExecuteDatasetSP("GetCommunicationBalance_ByIdentity", new SqlParameter("nvIdentity", nvIdentity));
+				if (ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows[0][0].ToString() != string.Empty)
+				{
+					double iCommunicationBalance = double.Parse(ds.Tables[0].Rows[0][0].ToString());
+					return iCommunicationBalance;
+				}
+				return 0;
+			}
+			catch (Exception e)
+			{
+				Log.ExceptionLog(e.Message, "GetCommunicationBalance");
+				return -1;
+			}
+		}
+
+		public static int NewVideoTranslation(DateTime dtTimeBegin, DateTime dtTimeTranslation, string nvTranslatorIdentity, string nvUserIdentity)
         {
             try
             {

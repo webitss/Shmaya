@@ -146,9 +146,10 @@ companionApp.controller('OrdersCtrl', ['$scope', '$rootScope', '$timeout', 'conn
 	    }
 
 	    $scope.exportToExcel = function () {
-	        $scope.$broadcast('exportToExcel', {
-	            id: $scope.gridIdentity,
-	            fileName: 'הזמנות'
+			$scope.$broadcast('exportToExcel', {
+				fileName: 'הזמנות',
+	            id: $scope.gridIdentity
+	            
 	        });
 	    };
 

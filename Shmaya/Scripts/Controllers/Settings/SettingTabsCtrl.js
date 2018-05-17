@@ -6,7 +6,8 @@ companionApp.controller('SettingTabsCtrl', ['$scope', '$rootScope', 'connect', '
 		{ title: 'סל תקשורת', content: 'Partials/Pages/Settings/CommunicationBasket.html'},
 		{ title: 'תשלומים', content: 'Partials/Pages/Settings/Payments.html'},
 		{ title: 'מוצרים', content: 'Partials/Pages/Settings/Products.html'},
-		{ title: 'חודשים', content: 'Partials/Pages/Settings/Month.html'}
+		{ title: 'חודשים', content: 'Partials/Pages/Settings/Month.html' },
+		{ title: 'כללי', content: 'Partials/Pages/Settings/General.html' }
 
 	];
 
@@ -28,6 +29,11 @@ companionApp.controller('SettingTabsCtrl', ['$scope', '$rootScope', 'connect', '
 			$scope.isWorkerList = $filter('filter')(result, { Key: 'isWorker' }, true)[0].Value;
 			$scope.monthList = $filter('filter')(result, { Key: 'month' }, true)[0].Value;
 			$scope.monthYearList = $filter('filter')(result, { Key: 'monthYear' }, true)[0].Value;
+			$scope.globalParameterList = $filter('filter')(result, { Key: 'globalParameter' }, true)[0].Value;
+			$rootScope.vat = $scope.globalParameterList[0].nvName;
+			$rootScope.vat = parseInt($rootScope.vat);
+			$rootScope.maxHours = $scope.globalParameterList[1].nvName;
+			$rootScope.maxHours = parseInt($rootScope.maxHours);
 			$scope.monthYearList.forEach(function (date) {
 				$scope.tmpDate1 = date.nvName.substring(0, 4);
 				$scope.tmpDate2 = date.nvName.substring(4, 6);
