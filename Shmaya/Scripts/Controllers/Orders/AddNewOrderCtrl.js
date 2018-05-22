@@ -75,10 +75,23 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 
 			connect.post(true, Orderinsert_update, { order: $scope.orderToSend, iUserManagerId: $rootScope.user.iUserId, prevTimeTranslation: $scope.prevTimeTranslation }, function (result) {
 				if (result.iOrderId == -1) {
-					alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
+					alerts.alert("קיימת הזמנה בטווח השעות הנבחר")
 					if ($scope.isEdit)
 						$scope.order.dialogIsOpen = false;
 				}
+				else
+					if (result.iOrderId == -2)
+					{
+						alerts.alert("מכסת השעות ללקוח זה הסתיימה וההזמנה תישמר בסטטוס ממתין לאישור");
+						if ($scope.isEdit)
+							$scope.order.dialogIsOpen = false;
+						else {
+							$scope.newOrder.dialogIsOpen = false;
+							$scope.OrdersList.push($scope.order);
+						}
+						$scope.prepareData();
+
+					}
 				else
 					if (result.iOrderId && result.iOrderId > 0) {
 						console.log(Orderinsert_update + ":" + result);
@@ -91,8 +104,7 @@ companionApp.controller('AddNewOrderCtrl', ['$scope', '$rootScope', 'connect', '
 						$scope.prepareData();
 					}
 					else {
-						//alerts.alert("קיימת הזמנה למתורגמן זה בטווח השעות הנבחר")
-						alert('ארעה שגיאה בלתי צפויה');
+						alerts.alert('ארעה שגיאה בלתי צפויה');
 					}
 			});
 		}
